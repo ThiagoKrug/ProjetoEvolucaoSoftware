@@ -4,6 +4,12 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * Documentação do Hibernate Validator
+ * http://docs.jboss.org/hibernate/validator/4.3/reference/en-US/html_single/#validator-customconstraints
+ *
+ */
 public class Car {
 
     /**
@@ -11,20 +17,19 @@ public class Car {
      */
     @NotNull
     private String manufacturer;
-
     /**
-     * Diz que a variavel não pode ser nula e o tamanho tem que ser maior ou igual 2 e no maximo 14
+     * Diz que a variavel não pode ser nula e o tamanho tem que ser maior ou
+     * igual 2 e no maximo 14
      */
     @NotNull
     @Size(min = 2, max = 14)
     private String licensePlate;
-    
     /**
      * Diz que a variavel tem que ser maior ou igual 2
      */
     @Min(2)
     private int seatCount;
-    
+
     public Car(String manufacturer, String licencePlate, int seatCount) {
         this.manufacturer = manufacturer;
         this.licensePlate = licencePlate;
@@ -54,6 +59,4 @@ public class Car {
     public void setSeatCount(int seatCount) {
         this.seatCount = seatCount;
     }
-
-    
 }

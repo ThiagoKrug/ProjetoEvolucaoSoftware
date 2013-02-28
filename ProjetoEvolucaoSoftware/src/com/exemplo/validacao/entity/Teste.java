@@ -9,13 +9,21 @@ import javax.validation.ValidatorFactory;
 
 /**
  *
- * @author Rafael
+ * Documentação do Hibernate Validator
+ * http://docs.jboss.org/hibernate/validator/4.3/reference/en-US/html_single/#validator-customconstraints
+ *
  */
 public class Teste {
 
     private static Validator validator;
 
     public static void main(String[] args) {
+        /**
+         *
+         * Documentação do Hibernate Validator
+         * http://docs.jboss.org/hibernate/validator/4.3/reference/en-US/html_single/#validator-customconstraints
+         *
+         */
         //Chama classe para validar a entidade
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
@@ -26,7 +34,7 @@ public class Teste {
         if (constraintViolations.size() > 0) {
             for (ConstraintViolation<Car> constraintViolation : constraintViolations) {
                 //System.out.println(constraintViolation);
-                System.out.println("O atributo "+constraintViolation.getPropertyPath() +" "+ constraintViolation.getMessage());
+                System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
             }
         }
         System.out.println("=========== Validação para pessoa ================");
@@ -41,7 +49,7 @@ public class Teste {
         if (constraintViolations2.size() > 0) {
             for (ConstraintViolation<Pessoa> constraintViolation : constraintViolations2) {
                 //System.out.println(constraintViolation);
-                System.out.println("O atributo "+constraintViolation.getPropertyPath() +" "+ constraintViolation.getMessage());
+                System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
             }
         }
     }

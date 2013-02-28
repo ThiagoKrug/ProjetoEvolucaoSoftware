@@ -9,27 +9,28 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ *
+ * Documentação do Hibernate Validator
+ * http://docs.jboss.org/hibernate/validator/4.3/reference/en-US/html_single/#validator-customconstraints
+ *
+ */
 public class Pessoa {
-    
+
     @NotBlank //não pode estar vazio, diferente de @NotNull que pode ser uma string vazia
     @Size(min = 4, max = 50)
     private String nome;
-    
     @NotNull
     @Past //data deve ser inferior a data de hoje
     private Date dataNascimento;
-    
     @NotBlank
     @CPF
     private String cpf;
-    
     @NotNull
     private String rg;
-    
     @NotNull
     @Min(18)
     private int idade;
-    
     @NotBlank
     @Email
     private String email;
@@ -81,7 +82,4 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
 }
