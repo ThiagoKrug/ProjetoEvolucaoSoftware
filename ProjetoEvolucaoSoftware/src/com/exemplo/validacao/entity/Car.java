@@ -1,4 +1,4 @@
-package com.teste.entity;
+package com.exemplo.validacao.entity;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
