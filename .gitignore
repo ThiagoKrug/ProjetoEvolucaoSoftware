@@ -1,0 +1,9 @@
+/ProjetoEvolucaoSoftware/nbproject/private/
+/ProjetoEvolucaoSoftware/build/
+/ProjetoEvolucaoSoftware/dist/
+*.class
+
+# Package Files #
+*.war
+*.ear
+*.log
