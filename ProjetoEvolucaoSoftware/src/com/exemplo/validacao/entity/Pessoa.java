@@ -26,7 +26,7 @@ public class Pessoa {
     @NotBlank
     @CPF
     private String cpf;
-    @NotNull
+    @NotNull(message="não é permitido ficar nulo!")//se quiser alterar mensagem, use (message="...")
     private String rg;
     @NotNull
     @Min(18)
