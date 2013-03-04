@@ -44,12 +44,14 @@ public class janCadCurso extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
-        btnSalvar.setBounds(140, 230, 76, 29);
+        btnSalvar.setBounds(110, 230, 140, 40);
         jLayeredPane1.add(btnSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBounds(220, 230, 74, 29);
+        btnCancelar.setBounds(250, 230, 140, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         titulo.setText("Título do Curso:");
@@ -86,7 +88,7 @@ public class janCadCurso extends javax.swing.JFrame {
         cadcurso.setText("Cadastro de Curso");
         cadcurso.setBounds(120, 20, 160, 21);
         jLayeredPane1.add(cadcurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSeparator1.setBounds(0, 50, 400, 10);
+        jSeparator1.setBounds(0, 50, 400, 6);
         jLayeredPane1.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

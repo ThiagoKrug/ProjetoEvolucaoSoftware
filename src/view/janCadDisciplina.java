@@ -26,17 +26,127 @@ public class janCadDisciplina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        cadcurso = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        sCurso = new javax.swing.JComboBox();
+        nome = new javax.swing.JLabel();
+        cargahorariapratica = new javax.swing.JLabel();
+        cargahorariateorica = new javax.swing.JLabel();
+        periodo = new javax.swing.JLabel();
+        ementa = new javax.swing.JLabel();
+        curso = new javax.swing.JLabel();
+        edtNome = new javax.swing.JTextField();
+        edtCHPratica = new javax.swing.JTextField();
+        sPeriodo = new javax.swing.JComboBox();
+        btnAdd = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        btnUpload = new javax.swing.JButton();
+        edtCHPratica1 = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cadcurso.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        cadcurso.setText("Cadastro de Disciplina");
+        cadcurso.setBounds(170, 20, 200, 21);
+        jLayeredPane1.add(cadcurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jSeparator1.setBounds(0, 50, 490, 10);
+        jLayeredPane1.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        sCurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sCurso.setBounds(70, 100, 210, 27);
+        jLayeredPane1.add(sCurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        nome.setText("Nome:");
+        nome.setBounds(20, 80, 46, 17);
+        jLayeredPane1.add(nome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        cargahorariapratica.setText("Carga Horária Prática:");
+        cargahorariapratica.setBounds(20, 140, 170, 17);
+        jLayeredPane1.add(cargahorariapratica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        cargahorariateorica.setText("Carga Horária Teórica:");
+        cargahorariateorica.setBounds(250, 140, 170, 20);
+        jLayeredPane1.add(cargahorariateorica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        periodo.setText("Período:");
+        periodo.setBounds(290, 110, 70, 17);
+        jLayeredPane1.add(periodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        ementa.setText("Ementa:");
+        ementa.setBounds(20, 180, 59, 17);
+        jLayeredPane1.add(ementa, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        curso.setText("Curso:");
+        curso.setBounds(20, 110, 46, 17);
+        jLayeredPane1.add(curso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        edtNome.setBounds(70, 70, 400, 27);
+        jLayeredPane1.add(edtNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        edtCHPratica.setBounds(410, 140, 60, 27);
+        jLayeredPane1.add(edtCHPratica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        sPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Integral", "Noturno" }));
+        sPeriodo.setBounds(360, 100, 110, 30);
+        jLayeredPane1.add(sPeriodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnAdd.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/addbook.png"))); // NOI18N
+        btnAdd.setText("Adicionar");
+        btnAdd.setBounds(340, 170, 130, 30);
+        jLayeredPane1.add(btnAdd, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Busque por arquivos no computador");
+        jLabel1.setBounds(250, 200, 220, 20);
+        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/save.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBounds(180, 240, 140, 40);
+        jLayeredPane1.add(btnSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/cancel.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBounds(330, 240, 140, 40);
+        jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setText("Bibliografia:");
+        jLabel2.setBounds(250, 180, 100, 17);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setBounds(240, 170, 10, 60);
+        jLayeredPane1.add(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setText("Busque por arquivos no computador");
+        jLabel3.setBounds(20, 200, 220, 20);
+        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnUpload.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        btnUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/upload.png"))); // NOI18N
+        btnUpload.setText("Carregar Arquivo");
+        btnUpload.setBounds(90, 170, 130, 30);
+        jLayeredPane1.add(btnUpload, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        edtCHPratica1.setBounds(180, 140, 60, 27);
+        jLayeredPane1.add(edtCHPratica1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -77,5 +187,27 @@ public class janCadDisciplina extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnUpload;
+    private javax.swing.JLabel cadcurso;
+    private javax.swing.JLabel cargahorariapratica;
+    private javax.swing.JLabel cargahorariateorica;
+    private javax.swing.JLabel curso;
+    private javax.swing.JTextField edtCHPratica;
+    private javax.swing.JTextField edtCHPratica1;
+    private javax.swing.JTextField edtNome;
+    private javax.swing.JLabel ementa;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel nome;
+    private javax.swing.JLabel periodo;
+    private javax.swing.JComboBox sCurso;
+    private javax.swing.JComboBox sPeriodo;
     // End of variables declaration//GEN-END:variables
 }

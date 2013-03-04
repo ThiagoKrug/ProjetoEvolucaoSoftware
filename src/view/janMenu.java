@@ -9,7 +9,6 @@ package view;
  * @author gattuso
  */
 public class janMenu extends javax.swing.JFrame {
-
     /**
      * Creates new form janMenu
      */
@@ -32,24 +31,28 @@ public class janMenu extends javax.swing.JFrame {
         btnCadBiblio = new javax.swing.JButton();
         labelSGD = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnCadDisc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/ndisciplina.png"))); // NOI18N
         btnCadDisc.setText("Cadastra Disciplina");
         btnCadDisc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadDiscActionPerformed(evt);
             }
         });
-        btnCadDisc.setBounds(10, 90, 160, 80);
+        btnCadDisc.setBounds(190, 90, 200, 40);
         jLayeredPane1.add(btnCadDisc, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnCadCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/ncurso.png"))); // NOI18N
         btnCadCurso.setText("Cadastrar Curso");
-        btnCadCurso.setBounds(20, 180, 150, 90);
+        btnCadCurso.setBounds(190, 140, 200, 40);
         jLayeredPane1.add(btnCadCurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnCadBiblio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/nbook.png"))); // NOI18N
         btnCadBiblio.setText("Cadastrar Bibliografia");
-        btnCadBiblio.setBounds(200, 190, 166, 80);
+        btnCadBiblio.setBounds(190, 190, 202, 40);
         jLayeredPane1.add(btnCadBiblio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         labelSGD.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
@@ -58,6 +61,8 @@ public class janMenu extends javax.swing.JFrame {
         jLayeredPane1.add(labelSGD, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator1.setBounds(0, 70, 430, 10);
         jLayeredPane1.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        logo.setBounds(30, 130, 100, 90);
+        jLayeredPane1.add(logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,7 +74,7 @@ public class janMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -120,5 +125,6 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelSGD;
+    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }

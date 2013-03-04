@@ -1,6 +1,7 @@
 
 package controller;
 
+import util.Funcoes;
 import view.janMenu;
 
 /**
@@ -9,13 +10,14 @@ import view.janMenu;
  * @version 28/02/2013
  * 
  */
-public class Executa_controller {
+public class Menu_controller {
 
     public static void main(String[] args) {
         
         janMenu Menu = new janMenu();
         Menu.setVisible(true);
-        
+        Funcoes nFuncao = new Funcoes();
+        nFuncao.centralizar(Menu);
         
     }
 }
