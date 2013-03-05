@@ -46,16 +46,17 @@ public class janCadBibliografia extends javax.swing.JFrame {
         edtNumEx = new javax.swing.JTextField();
         edtNumPg = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
-        btnSalvar.setBounds(160, 270, 130, 40);
+        btnSalvar.setBounds(120, 270, 150, 40);
         jLayeredPane1.add(btnSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBounds(290, 270, 130, 40);
+        btnCancelar.setBounds(270, 270, 150, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         titulo.setText("Título:");

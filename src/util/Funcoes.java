@@ -17,11 +17,7 @@ public class Funcoes {
      /**
      * Metodo que centraliza a janela na tela
      */
-    public Funcoes(){
-    
-        
-        
-    }
+    public Funcoes(){}
     
     public static void centralizar(Component componente){
        

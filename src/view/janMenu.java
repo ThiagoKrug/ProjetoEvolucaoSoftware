@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.*;
+
 /**
  *
  * @author gattuso
@@ -26,55 +28,80 @@ public class janMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        labelSGD = new javax.swing.JLabel();
         btnCadDisc = new javax.swing.JButton();
         btnCadCurso = new javax.swing.JButton();
         btnCadBiblio = new javax.swing.JButton();
-        labelSGD = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         logo = new javax.swing.JLabel();
+        btnCadDisc1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        btnCadDisc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/ndisciplina.png"))); // NOI18N
-        btnCadDisc.setText("Cadastra Disciplina");
+        labelSGD.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        labelSGD.setText("Sistema de Gestão de Disciplinas");
+        labelSGD.setBounds(30, 30, 400, 28);
+        jLayeredPane1.add(labelSGD, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnCadDisc.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnCadDisc.setText("Manual");
         btnCadDisc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadDiscActionPerformed(evt);
             }
         });
-        btnCadDisc.setBounds(190, 90, 200, 40);
+        btnCadDisc.setBounds(360, 240, 90, 40);
         jLayeredPane1.add(btnCadDisc, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnCadCurso.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnCadCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/ncurso.png"))); // NOI18N
         btnCadCurso.setText("Cadastrar Curso");
-        btnCadCurso.setBounds(190, 140, 200, 40);
+        btnCadCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadCursoActionPerformed(evt);
+            }
+        });
+        btnCadCurso.setBounds(210, 90, 240, 40);
         jLayeredPane1.add(btnCadCurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnCadBiblio.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnCadBiblio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/nbook.png"))); // NOI18N
         btnCadBiblio.setText("Cadastrar Bibliografia");
-        btnCadBiblio.setBounds(190, 190, 202, 40);
+        btnCadBiblio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadBiblioActionPerformed(evt);
+            }
+        });
+        btnCadBiblio.setBounds(210, 140, 240, 40);
         jLayeredPane1.add(btnCadBiblio, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        labelSGD.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        labelSGD.setText("Sistema de Gestão de Disciplinas");
-        labelSGD.setBounds(10, 20, 420, 28);
-        jLayeredPane1.add(labelSGD, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSeparator1.setBounds(0, 70, 430, 10);
+        jSeparator1.setBounds(10, 70, 440, 20);
         jLayeredPane1.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        logo.setBounds(30, 130, 100, 90);
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/sgd.jpg"))); // NOI18N
+        logo.setBounds(0, 100, 200, 120);
         jLayeredPane1.add(logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnCadDisc1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnCadDisc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/ndisciplina.png"))); // NOI18N
+        btnCadDisc1.setText("Cadastrar Disciplina");
+        btnCadDisc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadDisc1ActionPerformed(evt);
+            }
+        });
+        btnCadDisc1.setBounds(210, 190, 240, 40);
+        jLayeredPane1.add(btnCadDisc1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -83,6 +110,20 @@ public class janMenu extends javax.swing.JFrame {
     private void btnCadDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadDiscActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadDiscActionPerformed
+
+    private void btnCadCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCursoActionPerformed
+       CadCurso_controller nCurso = new CadCurso_controller();
+       
+    }//GEN-LAST:event_btnCadCursoActionPerformed
+
+    private void btnCadDisc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadDisc1ActionPerformed
+       CadDisciplina_controller nCadDisciplina = new CadDisciplina_controller();
+       
+    }//GEN-LAST:event_btnCadDisc1ActionPerformed
+
+    private void btnCadBiblioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadBiblioActionPerformed
+       CadBibliografia_controller nCadBibliografia = new CadBibliografia_controller();
+    }//GEN-LAST:event_btnCadBiblioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +163,7 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnCadBiblio;
     private javax.swing.JButton btnCadCurso;
     private javax.swing.JButton btnCadDisc;
+    private javax.swing.JButton btnCadDisc1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelSGD;

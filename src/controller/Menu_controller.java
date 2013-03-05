@@ -16,6 +16,7 @@ public class Menu_controller {
         
         janMenu Menu = new janMenu();
         Menu.setVisible(true);
+        
         Funcoes nFuncao = new Funcoes();
         nFuncao.centralizar(Menu);
         

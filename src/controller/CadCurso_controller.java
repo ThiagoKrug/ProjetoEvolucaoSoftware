@@ -10,13 +10,15 @@ import view.janCadCurso;
  * @version 28/02/2013
  * 
  */
-public class CadCurso_controller extends Funcoes {
+public class CadCurso_controller {
     
   public CadCurso_controller(){
       
     janCadCurso nCurso = new janCadCurso();
     nCurso.setVisible(true);
-    centralizar(nCurso);
+    
+    Funcoes nFuncao = new Funcoes();
+    nFuncao.centralizar(nCurso);
     
   }
 }

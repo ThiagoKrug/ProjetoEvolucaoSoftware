@@ -42,16 +42,17 @@ public class janCadCurso extends javax.swing.JFrame {
         cadcurso = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
-        btnSalvar.setBounds(110, 230, 140, 40);
+        btnSalvar.setBounds(90, 230, 140, 40);
         jLayeredPane1.add(btnSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBounds(250, 230, 140, 40);
+        btnCancelar.setBounds(240, 230, 140, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         titulo.setText("Título do Curso:");
@@ -67,7 +68,7 @@ public class janCadCurso extends javax.swing.JFrame {
         jLayeredPane1.add(universidade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         campus.setText("Campus:");
-        campus.setBounds(20, 190, 60, 17);
+        campus.setBounds(20, 190, 80, 17);
         jLayeredPane1.add(campus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         formacao.setText("Formação: ");

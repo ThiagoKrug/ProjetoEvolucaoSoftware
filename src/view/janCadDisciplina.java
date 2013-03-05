@@ -49,7 +49,8 @@ public class janCadDisciplina extends javax.swing.JFrame {
         btnUpload = new javax.swing.JButton();
         edtCHPratica1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         cadcurso.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         cadcurso.setText("Cadastro de Disciplina");
