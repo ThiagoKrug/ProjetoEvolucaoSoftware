@@ -4,13 +4,18 @@
  */
 package br.com.model.entity;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author Bruno
  */
 public class Titulacao {
     
+    @NotNull 
     private int idTitulacao;
+    @NotBlank
     private String titulacao;
 
     public Titulacao(String titulacao) {

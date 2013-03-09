@@ -5,15 +5,19 @@
 package br.com.model.entity;
 
 import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Bruno
  */
 public class ProvaMemorial {
-    
+   
+   @NotNull 
    private int idProvaMemorial;
+   @NotNull 
    private Concurso concurso;
+   @NotNull 
    private ArrayList<CriterioAvaliacaoProvaMemorial> criterios;
 
     public int getIdProvaMemorial() {

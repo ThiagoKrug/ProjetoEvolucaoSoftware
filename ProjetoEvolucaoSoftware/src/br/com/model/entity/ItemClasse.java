@@ -4,15 +4,26 @@
  */
 package br.com.model.entity;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author Bruno
  */
 class ItemClasse {
     
+    @NotNull
     private int idItemClasse;
+    @NotNull
     private Classe classe;
+    @NotBlank
     private String discriminacao;
+    @Min(0)
+    @Max(10)
+    @NotNull
     private float pontuacao;
 
     public int getIdItemClasse() {
