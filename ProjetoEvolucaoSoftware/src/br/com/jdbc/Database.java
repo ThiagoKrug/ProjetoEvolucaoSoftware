@@ -32,7 +32,7 @@ public class Database {
             stmt = ConnectionFactory.getConnectionWithNoDatabase().createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
 
     }
@@ -43,7 +43,7 @@ public class Database {
             stmt = ConnectionFactory.getConnectionWithNoDatabase().createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -61,7 +61,7 @@ public class Database {
             stmt.executeUpdate(sql);
             //this.populate();
         } catch (SQLException | IOException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 }
