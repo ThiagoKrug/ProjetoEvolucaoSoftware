@@ -55,4 +55,12 @@ public class DatabaseTest {
         Database instance = new Database();
         instance.deletaBanco();
     }
+    
+    @Test
+    public void testCriarTabelas() throws Exception {
+        System.out.println("criarTabelasBanco");
+        Database instance = new Database();
+        instance.criarBanco();
+        instance.criarTabelas();
+    }
 }

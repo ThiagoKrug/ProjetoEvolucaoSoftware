@@ -5,6 +5,8 @@
 package br.com.jdbc;
 
 import br.com.config.ConfigurationFactory;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,40 +18,50 @@ import java.util.logging.Logger;
  * @author Rafael
  */
 public class Database {
-    
+
     private String database;
-    
-     private Connection connection;
-     private Statement stmt;
+    private Statement stmt;
 
     public Database() {
-        this.connection = ConnectionFactory.getConnectionWithNoDatabase();
         this.database = ConfigurationFactory.getConfiguration().get("db.database");
     }
-     
-     public void criarBanco() {
-        String sql = "CREATE DATABASE " + this.database+" DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+
+    public void criarBanco() {
+        String sql = "CREATE DATABASE " + this.database + " DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
         try {
-            this.connection.setSchema("");
-            stmt = this.connection.createStatement();
+            stmt = ConnectionFactory.getConnectionWithNoDatabase().createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public void deletaBanco() {
         String sql = "DROP DATABASE " + this.database;
         try {
-            this.connection.setSchema("");
-            stmt = this.connection.createStatement();
+            stmt = ConnectionFactory.getConnectionWithNoDatabase().createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+
+    public void criarTabelas() {
+        try {
+            stmt = ConnectionFactory.getConnection().createStatement();
+            DataInputStream in = new DataInputStream(this.getClass().getResourceAsStream("database.sql"));
+            String sql = "";
+            String line;
+            while ((line = in.readLine()) != null) {
+
+                sql += line + "\n";
+            }
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            //this.populate();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
