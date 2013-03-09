@@ -1,5 +1,6 @@
 [main]
-db.driver=com.mysql.jdbc.Driver
-db.url=jdbc:mysql://localhost:3306/gcp?autoReconnect=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8
+db.name=mysql
+db.host=localhost
+db.database=gcp
 db.user=root
 db.password=
