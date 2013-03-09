@@ -5,6 +5,7 @@
 package br.com.model.entity;
 
 import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -12,10 +13,19 @@ import java.util.ArrayList;
  */
 public class AvaliacaoProvaMemorial implements IEntidade {
     
+    @NotNull(message="O valor não pode ser nulo!")
     private int idAvaliacaoProvaMemorial;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private Candidato candidato;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private ProvaMemorial provaMemorial;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private ArrayList<AvaliacaoExaminadorCriterio> examinadorCriterio;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private Examinador examinador;
 
     public int getIdAvaliacaoProvaMemorial() {

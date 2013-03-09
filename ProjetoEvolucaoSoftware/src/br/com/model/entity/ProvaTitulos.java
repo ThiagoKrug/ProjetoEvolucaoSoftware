@@ -4,16 +4,23 @@
  */
 package br.com.model.entity;
 
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author Bruno
  */
 public class ProvaTitulos implements IEntidade {
  
+    @NotNull 
     private int idProvaTitulos;
+    @NotNull 
     private Concurso concurso;
+    @NotNull 
     private Classe classe1;
+    @NotNull 
     private Classe classe2;
+    @NotNull 
     private Classe classe3;
 
     public ProvaTitulos(int idProvaTitulos, Concurso concurso, Classe classe1, Classe classe2, Classe classe3) {

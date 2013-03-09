@@ -5,6 +5,9 @@
 package br.com.model.entity;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -12,12 +15,21 @@ import java.util.Date;
  */
 public class Pessoa implements IEntidade {
     
+    @NotNull
     private int idPessoa;
+    @NotNull
     private String nome;
+    @NotNull
     private String sexo;
+    @NotNull
+    @Past
     private Date dataNascimento;
+    @NotNull
     private String rg;
+    @NotNull
+    @CPF
     private String cpf;
+    @NotNull
     private String email;
 
     public Pessoa(String nome, String sexo, Date dataNascimento, String rg, String cpf, String email) {

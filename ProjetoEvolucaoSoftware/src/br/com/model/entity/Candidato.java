@@ -5,6 +5,7 @@
 package br.com.model.entity;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -12,14 +13,31 @@ import java.util.Date;
  */
 public class Candidato extends Pessoa implements IEntidade {
 
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaEscrita;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaEscrita;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaTitulos;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaTitulos;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaDidatica;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaDidatica;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaMemorial;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaMemorial;
+    
 
     public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento, String rg, String cpf, String email) {
         super(nome, sexo, dataNascimento, rg, cpf, email);
