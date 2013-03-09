@@ -5,6 +5,11 @@
 package br.com.model.entity;
 
 import java.util.ArrayList;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -12,10 +17,19 @@ import java.util.ArrayList;
  */
 public class Classe {
     
+    @NotNull
     private int idClasse;
+    @NotBlank 
     private String nomeClasse;
+    @NotNull
+    @Min(0)
+    @Max(10)
     private float pesoClasse;
+    @NotNull
+    @Min(0)
+    @Max(10)
     private float notaReferenciaClasse;
+    @NotNull
     private ArrayList<ItemClasse> itens;
 
     public int getIdClasse() {

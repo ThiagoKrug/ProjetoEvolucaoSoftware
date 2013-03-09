@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
 package br.com.model.entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -10,11 +14,22 @@ package br.com.model.entity;
  */
 public class AvaliacaoExaminadorCriterio {
     
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private int idAvaliacaoExaminadorCriterio;
+    
+    @NotNull(message="O valor não pode ser nulo!")
+    @Min(2)
+    @Max(10)
     private float ponto;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private CriterioAvaliacaoProvaMemorial criterioAvaliacaoProvaMemorial;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private Examinador examinador;
 
+     
     public int getIdAvaliacaoExaminadorCriterio() {
         return idAvaliacaoExaminadorCriterio;
     }

@@ -4,15 +4,24 @@
  */
 package br.com.model.entity;
 
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author Bruno
  */
 public class AvalicaoItem {
     
+    @NotNull(message="O valor não pode ser nulo!")
     private int idAvaliacaoItem;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private AvaliacaoProvaTitulo avaliacaoProvaTitulo;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private ItemClasse itemClasse;
+    
+    @NotNull(message="O valor não pode ser nulo!")
     private int quantidade;
 
     public int getIdAvaliacaoItem() {
