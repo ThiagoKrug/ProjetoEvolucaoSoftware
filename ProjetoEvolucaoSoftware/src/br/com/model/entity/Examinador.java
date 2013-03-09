@@ -8,7 +8,7 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-public class Examinador {
+public class Examinador implements IEntidade {
 
     private int idExaminador;
     private Pessoa pessoa;

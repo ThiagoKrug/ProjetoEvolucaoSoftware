@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Bruno
  */
-public class Pessoa {
+public class Pessoa implements IEntidade {
     
     private int idPessoa;
     private String nome;

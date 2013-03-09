@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Bruno
  */
-public class Classe {
+public class Classe implements IEntidade {
     
     private int idClasse;
     private String nomeClasse;
@@ -18,6 +18,18 @@ public class Classe {
     private float notaReferenciaClasse;
     private ArrayList<ItemClasse> itens;
 
+    public Classe() {
+    }
+
+    public Classe(String nomeClasse, float pesoClasse, float notaReferenciaClasse, ArrayList<ItemClasse> itens) {
+       
+        this.nomeClasse = nomeClasse;
+        this.pesoClasse = pesoClasse;
+        this.notaReferenciaClasse = notaReferenciaClasse;
+        this.itens = itens;
+    }
+
+    
     public int getIdClasse() {
         return idClasse;
     }
@@ -57,6 +69,7 @@ public class Classe {
     public void setItens(ArrayList<ItemClasse> itens) {
         this.itens = itens;
     }
+    
     
     
 }

@@ -8,7 +8,7 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-public class CriterioAvaliacaoProvaMemorial {
+public class CriterioAvaliacaoProvaMemorial implements IEntidade {
     
     private int idCriterioAvaliacaoProvaMemorial;
     private String criterio;

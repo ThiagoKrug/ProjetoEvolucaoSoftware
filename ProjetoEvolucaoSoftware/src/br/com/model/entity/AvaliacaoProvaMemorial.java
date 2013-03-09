@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Bruno
  */
-public class AvaliacaoProvaMemorial {
+public class AvaliacaoProvaMemorial implements IEntidade {
     
     private int idAvaliacaoProvaMemorial;
     private Candidato candidato;

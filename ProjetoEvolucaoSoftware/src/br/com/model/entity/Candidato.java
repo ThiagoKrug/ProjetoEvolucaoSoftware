@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Bruno
  */
-public class Candidato extends Pessoa {
+public class Candidato extends Pessoa implements IEntidade {
 
     private boolean aptoProvaEscrita;
     private boolean presenteProvaEscrita;

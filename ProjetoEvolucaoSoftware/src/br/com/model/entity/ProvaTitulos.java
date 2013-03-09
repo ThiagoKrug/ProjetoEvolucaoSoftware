@@ -8,7 +8,7 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-public class ProvaTitulos {
+public class ProvaTitulos implements IEntidade {
  
     private int idProvaTitulos;
     private Concurso concurso;
@@ -16,6 +16,17 @@ public class ProvaTitulos {
     private Classe classe2;
     private Classe classe3;
 
+    public ProvaTitulos(int idProvaTitulos, Concurso concurso, Classe classe1, Classe classe2, Classe classe3) {
+        this.idProvaTitulos = idProvaTitulos;
+        this.concurso = concurso;
+        this.classe1 = classe1;
+        this.classe2 = classe2;
+        this.classe3 = classe3;
+    }
+
+    public ProvaTitulos() {
+    }
+    
     public int getIdProvaTitulos() {
         return idProvaTitulos;
     }

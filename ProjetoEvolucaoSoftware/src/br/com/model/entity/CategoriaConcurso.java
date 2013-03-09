@@ -8,8 +8,12 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-public class BancaExaminadora implements IEntidade {
+public enum CategoriaConcurso {
     
-    private int idBanca;
+    ADJUNTO,
+    ASSISTENTE,
+    AUXILIAR,
+    SUBSTITUTO,
+    TEMPORARIO
     
 }

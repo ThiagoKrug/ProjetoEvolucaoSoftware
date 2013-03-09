@@ -8,8 +8,6 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-public class BancaExaminadora implements IEntidade {
-    
-    private int idBanca;
+class Campus {
     
 }
