@@ -8,6 +8,11 @@ package br.com.model.entity;
  *
  * @author Bruno
  */
-class CriterioAvaliacaoProvaMemorial {
+public class CriterioAvaliacaoProvaMemorial {
+    
+    private int idCriterioAvaliacaoProvaMemorial;
+    private String criterio;
+    private float peso;
+    
     
 }

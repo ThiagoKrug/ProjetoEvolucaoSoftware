@@ -12,13 +12,10 @@ import java.util.ArrayList;
  */
 public class ProvaMemorial {
     
-    private int idProvaMemorial;
-    private Concurso concurso;
-    private ArrayList<CriterioAvaliacaoProvaMemorial> criterios;
-    private ArrayList<Candidato> candidatos;
-    private ArrayList<Float> notas;
+   private int idProvaMemorial;
+   private Concurso concurso;
+   private ArrayList<CriterioAvaliacaoProvaMemorial> criterios;
 
-    
     public int getIdProvaMemorial() {
         return idProvaMemorial;
     }
@@ -42,24 +39,7 @@ public class ProvaMemorial {
     public void setCriterios(ArrayList<CriterioAvaliacaoProvaMemorial> criterios) {
         this.criterios = criterios;
     }
-
-    public ArrayList<Candidato> getCandidatos() {
-        return candidatos;
-    }
-
-    public void setCandidatos(ArrayList<Candidato> candidatos) {
-        this.candidatos = candidatos;
-    }
-
-    public ArrayList<Float> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(ArrayList<Float> notas) {
-        this.notas = notas;
-    }
-    
-    
-    
+   
+   
     
 }
