@@ -1,5 +1,7 @@
 package view;
 
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,12 +11,12 @@ package view;
  *
  * @author Douglas F. Almeida
  */
-public class janNovoConcurso extends javax.swing.JFrame {
+public class janNovoConc extends javax.swing.JFrame {
 
     /**
-     * Creates new form janNovoConcurso
+     * Creates new form janNovoConc
      */
-    public janNovoConcurso() {
+    public janNovoConc() {
         super("Configurações do Concurso");
         initComponents();
         
@@ -538,20 +540,20 @@ public class janNovoConcurso extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janNovoConcurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janNovoConcurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janNovoConcurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janNovoConcurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new janNovoConcurso().setVisible(true);
+                new janNovoConc().setVisible(true);
             }
         });
     }
