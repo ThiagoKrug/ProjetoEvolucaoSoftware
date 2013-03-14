@@ -59,8 +59,6 @@ public class ExecutaRelatorio {
             ReportUtils.openReport("Relatorio de Venda", inputStream, parametros,
                     ConnectionFactory.getConnection());
 
-        } catch (SQLException exc) {
-            exc.printStackTrace();
         } catch (JRException exc) {
             exc.printStackTrace();
         }
@@ -81,8 +79,6 @@ public class ExecutaRelatorio {
         try {
             // abre o relatório
             ReportUtils.openReport("Relatório de Parcelas por Convênio", inputStream, parametros, ConnectionFactory.getConnection());
-        } catch (SQLException exc) {
-            exc.printStackTrace();
         } catch (JRException exc) {
             exc.printStackTrace();
         }
@@ -103,9 +99,7 @@ public class ExecutaRelatorio {
         try {
             // abre o relatório
             ReportUtils.openReport("Relatório de Vendas por Período", inputStream, parametros, ConnectionFactory.getConnection());
-        } catch (SQLException exc) {
-            exc.printStackTrace();
-        } catch (JRException exc) {
+        } catch ( JRException exc) {
             exc.printStackTrace();
         }
 
@@ -148,8 +142,6 @@ public class ExecutaRelatorio {
             ReportUtils.openReport("Digite aqui o titulo", inputStream, parametros,
                     ConnectionFactory.getConnection());
 
-        } catch (SQLException exc) {
-            exc.printStackTrace();
         } catch (JRException exc) {
             exc.printStackTrace();
         }
