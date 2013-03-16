@@ -24,7 +24,7 @@ public class AvaliacaoExaminadorCriterio implements IEntidade {
     private float ponto;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private CriterioAvaliacaoProvaMemorial criterioAvaliacaoProvaMemorial;
+    private CriterioAvaliacao criterioAvaliacaoProvaMemorial;
     
     @NotNull(message="O valor não pode ser nulo!")
     private Examinador examinador;
@@ -46,11 +46,11 @@ public class AvaliacaoExaminadorCriterio implements IEntidade {
         this.ponto = ponto;
     }
 
-    public CriterioAvaliacaoProvaMemorial getCriterioAvaliacaoProvaMemorial() {
+    public CriterioAvaliacao getCriterioAvaliacaoProvaMemorial() {
         return criterioAvaliacaoProvaMemorial;
     }
 
-    public void setCriterioAvaliacaoProvaMemorial(CriterioAvaliacaoProvaMemorial criterioAvaliacaoProvaMemorial) {
+    public void setCriterioAvaliacaoProvaMemorial(CriterioAvaliacao criterioAvaliacaoProvaMemorial) {
         this.criterioAvaliacaoProvaMemorial = criterioAvaliacaoProvaMemorial;
     }
 

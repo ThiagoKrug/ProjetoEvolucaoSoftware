@@ -18,7 +18,7 @@ public class ProvaMemorial {
    @NotNull 
    private Concurso concurso;
    @NotNull 
-   private ArrayList<CriterioAvaliacaoProvaMemorial> criterios;
+   private ArrayList<CriterioAvaliacao> criterios;
 
     public int getIdProvaMemorial() {
         return idProvaMemorial;
@@ -36,11 +36,11 @@ public class ProvaMemorial {
         this.concurso = concurso;
     }
 
-    public ArrayList<CriterioAvaliacaoProvaMemorial> getCriterios() {
+    public ArrayList<CriterioAvaliacao> getCriterios() {
         return criterios;
     }
 
-    public void setCriterios(ArrayList<CriterioAvaliacaoProvaMemorial> criterios) {
+    public void setCriterios(ArrayList<CriterioAvaliacao> criterios) {
         this.criterios = criterios;
     }
    
