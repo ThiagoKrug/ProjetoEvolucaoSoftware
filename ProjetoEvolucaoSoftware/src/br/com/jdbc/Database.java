@@ -57,11 +57,14 @@ public class Database {
 
                 sql += line + "\n";
             }
-            System.out.println(sql);
             stmt.executeUpdate(sql);
-            //this.populate();
+            this.populate();
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    private void populate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
