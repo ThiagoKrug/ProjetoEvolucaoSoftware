@@ -43,7 +43,7 @@ public class janNovoConc extends javax.swing.JFrame {
         ministerio = new javax.swing.JLabel();
         instituicao = new javax.swing.JLabel();
         data = new javax.swing.JLabel();
-        edtMinisterio = new javax.swing.JTextField();
+        jTextFieldMinis = new javax.swing.JTextField();
         edtInstituicao = new javax.swing.JTextField();
         edtEdital = new javax.swing.JTextField();
         edtData = new javax.swing.JTextField();
@@ -53,7 +53,6 @@ public class janNovoConc extends javax.swing.JFrame {
         edtArea = new javax.swing.JTextField();
         sClasseConcurso = new javax.swing.JComboBox();
         edital = new javax.swing.JLabel();
-        jTextFieldMinisterio = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
@@ -154,9 +153,9 @@ public class janNovoConc extends javax.swing.JFrame {
         data.setBounds(240, 140, 100, 17);
         jLayeredPane2.add(data, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        edtMinisterio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edtMinisterio.setBounds(80, 50, 410, 23);
-        jLayeredPane2.add(edtMinisterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldMinis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldMinis.setBounds(80, 50, 410, 23);
+        jLayeredPane2.add(jTextFieldMinis, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         edtInstituicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edtInstituicao.setBounds(80, 80, 410, 23);
@@ -201,10 +200,6 @@ public class janNovoConc extends javax.swing.JFrame {
         edital.setText("Edital:");
         edital.setBounds(10, 140, 50, 17);
         jLayeredPane2.add(edital, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTextFieldMinisterio.setText("jTextField1");
-        jTextFieldMinisterio.setBounds(340, 210, 69, 22);
-        jLayeredPane2.add(jTextFieldMinisterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -582,7 +577,6 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField edtExaminador1;
     private javax.swing.JTextField edtExaminador2;
     private javax.swing.JTextField edtInstituicao;
-    private javax.swing.JTextField edtMinisterio;
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtOutro;
     private javax.swing.JTextField edtOutro1;
@@ -618,7 +612,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextFieldMinisterio;
+    private javax.swing.JTextField jTextFieldMinis;
     private javax.swing.JLabel ministerio;
     private javax.swing.JComboBox sCategoria;
     private javax.swing.JComboBox sCategoria2;
