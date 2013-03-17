@@ -19,7 +19,7 @@ public class ProvaMemorial implements IEntidade{
    @NotNull 
    private Concurso concurso;
    @NotNull 
-   private ArrayList<CriterioAvaliacaoProvaMemorial> criterios;
+   private ArrayList<CriterioAvaliacao> criterios;
    @NotNull
    private boolean compareceu;
    @NotNull
@@ -61,11 +61,11 @@ public class ProvaMemorial implements IEntidade{
         this.concurso = concurso;
     }
 
-    public ArrayList<CriterioAvaliacaoProvaMemorial> getCriterios() {
+    public ArrayList<CriterioAvaliacao> getCriterios() {
         return criterios;
     }
 
-    public void setCriterios(ArrayList<CriterioAvaliacaoProvaMemorial> criterios) {
+    public void setCriterios(ArrayList<CriterioAvaliacao> criterios) {
         this.criterios = criterios;
     }
    
