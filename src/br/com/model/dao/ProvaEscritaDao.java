@@ -140,6 +140,34 @@ public class ProvaEscritaDao implements IDao {
             provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
             Concurso c = (Concurso) new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso"));
             provaEscrita.setConcurso(c);
+            
+            /**
+             * Buscar candidatos
+             */
+            String sql2 = "select * from candidatos_aptos_prova_escrita as cap, candidato as c, pessoa as p "
+                    + "where cap.id_prova_escrita = 1 "
+                    + "AND cap.id_candidato = c.id_candidato "
+                    + "AND p.id_pessoa = c.id_pessoa";
+            PreparedStatement stmt2 = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs2 = stmt2.executeQuery();
+            while (rs2.next()) {
+                Candidato can = new Candidato();
+                can.setIdCandidato(rs2.getInt("id_candidato"));
+                can.setIdPessoa(rs2.getInt("id_pessoa"));
+                can.setNome(rs2.getString("nome"));
+                can.setDataNascimento(rs2.getDate("data_nascimento"));
+                can.setSexo(rs2.getString("sexo"));
+                can.setAptoProvaDidatica(rs2.getBoolean("apto_prova_didatica"));
+                can.setAptoProvaEscrita(rs2.getBoolean("apto_prova_escrita"));
+                can.setAptoProvaMemorial(rs2.getBoolean("apto_prova_memorial"));
+                can.setAptoProvaTitulos(rs2.getBoolean("apto_prova_titulos"));
+                provaEscrita.getCandidatosAptosProva().add(can);
+            }
+            /**
+             * Fim buscar candidatos
+             */
+            
+            
             listProvaEscrita.add(provaEscrita);
         }
         return listProvaEscrita;
