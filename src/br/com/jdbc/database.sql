@@ -495,13 +495,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pontos_prova_escrita`
+-- Table `ponto_prova_escrita`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `pontos_prova_escrita` (
-  `id_pontos_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `ponto_prova_escrita` (
+  `id_ponto_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
   `descricao` VARCHAR(255) NULL ,
   `id_prova_escrita` INT NULL ,
-  PRIMARY KEY (`id_pontos_prova_escrita`) ,
+  PRIMARY KEY (`id_ponto_prova_escrita`) ,
   INDEX `fk_pontos_prova_escrita_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
   CONSTRAINT `fk_pontos_prova_escrita_prova_escrita1`
     FOREIGN KEY (`id_prova_escrita` )
@@ -539,7 +539,7 @@ CREATE  TABLE IF NOT EXISTS `prova_escrita` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_prova_escrita_pontos_prova_escrita1`
     FOREIGN KEY (`id_ponto_sorteado_prova_escrita` )
-    REFERENCES `pontos_prova_escrita` (`id_pontos_prova_escrita` )
+    REFERENCES `ponto_prova_escrita` (`id_ponto_prova_escrita` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -639,9 +639,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `candidatos_aptos_prova_escrita`
+-- Table `candidato_aptos_prova_escrita`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `candidatos_aptos_prova_escrita` (
+CREATE  TABLE IF NOT EXISTS `candidato_aptos_prova_escrita` (
   `id_candidato` INT NOT NULL ,
   `id_prova_escrita` INT NOT NULL ,
   PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,
@@ -661,9 +661,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `candidatos_aptos_leitura_prova_escrita`
+-- Table `candidato_aptos_leitura_prova_escrita`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `candidatos_aptos_leitura_prova_escrita` (
+CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
   `id_prova_escrita` INT NOT NULL ,
   `id_candidato` INT NOT NULL ,
   PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,

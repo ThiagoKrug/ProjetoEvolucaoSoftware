@@ -144,11 +144,12 @@ public class ProvaEscritaDao implements IDao {
             /**
              * Buscar candidatos
              */
-            String sql2 = "select * from candidatos_aptos_prova_escrita as cap, candidato as c, pessoa as p "
-                    + "where cap.id_prova_escrita = 1 "
+            String sql2 = "select * from candidato_aptos_prova_escrita as cap, candidato as c, pessoa as p "
+                    + "where cap.id_prova_escrita = ? "
                     + "AND cap.id_candidato = c.id_candidato "
                     + "AND p.id_pessoa = c.id_pessoa";
             PreparedStatement stmt2 = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+            stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
             ResultSet rs2 = stmt2.executeQuery();
             while (rs2.next()) {
                 Candidato can = new Candidato();
