@@ -43,6 +43,8 @@ public class ProvaEscrita implements IEntidade {
 
     public ProvaEscrita() {
         this.candidatosAptosProva = new ArrayList<>();
+        this.criterios = new ArrayList<>();
+        this.pontos = new ArrayList<>();
     }
     
     
@@ -72,6 +74,13 @@ public class ProvaEscrita implements IEntidade {
     }
     
     public void adicionarPonto(PontoProvaEscrita p){
+        Iterator<PontoProvaEscrita> iterator = this.pontos.iterator();
+        while (iterator.hasNext()) {
+            PontoProvaEscrita object = iterator.next();
+            if(object.getIdPontoProvaEscrita() == p.getIdPontoProvaEscrita()){
+                return;
+            }
+        }
         this.pontos.add(p);
     }
     public void removerPonto(PontoProvaEscrita p){
@@ -99,9 +108,14 @@ public class ProvaEscrita implements IEntidade {
     }
 
     public void adicionarCandidatoApto(Candidato c) {
-        if(this.candidatosAptosProva.contains(c) == false){
-            this.candidatosAptosProva.add(c);
+        Iterator<Candidato> iterator = this.candidatosAptosProva.iterator();
+        while (iterator.hasNext()) {
+            Candidato object = iterator.next();
+            if(object.getIdCandidato()== c.getIdCandidato()){
+                return;
+            }
         }
+        this.candidatosAptosProva.add(c);
     }
     
     
