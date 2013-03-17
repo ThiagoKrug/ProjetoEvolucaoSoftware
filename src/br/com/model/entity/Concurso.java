@@ -26,6 +26,8 @@ public class Concurso implements IEntidade {
     private boolean temProvaTitulos;
     private boolean temProvaDidática;
     private boolean temProvaMemorial;
+    
+    private String ministerio;
 
     public Concurso() {
     }
@@ -57,8 +59,9 @@ public class Concurso implements IEntidade {
     /**
      * @param idConcurso the idConcurso to set
      */
-    public void setIdConcurso(int idConcurso) {
+    public Concurso setIdConcurso(int idConcurso) {
         this.idConcurso = idConcurso;
+        return this;
     }
 
     /**
@@ -242,5 +245,15 @@ public class Concurso implements IEntidade {
     public void setTemProvaMemorial(boolean temProvaMemorial) {
         this.temProvaMemorial = temProvaMemorial;
     }
+
+    public String getMinisterio() {
+        return ministerio;
+    }
+
+    public void setMinisterio(String ministerio) {
+        this.ministerio = ministerio;
+    }
+    
+    
     
 }

@@ -8,6 +8,4 @@ package br.com.model.entity;
  */
 public interface IEntidade {
     
-    
-    
 }

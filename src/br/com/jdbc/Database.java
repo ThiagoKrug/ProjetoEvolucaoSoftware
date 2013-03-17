@@ -58,7 +58,7 @@ public class Database {
                 sql += line + "\n";
             }
             stmt.executeUpdate(sql);
-            this.populate();
+            //this.populate();
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
