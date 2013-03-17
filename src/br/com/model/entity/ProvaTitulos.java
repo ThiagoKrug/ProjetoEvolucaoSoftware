@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
  */
 public class ProvaTitulos implements IEntidade {
  
+    private String local;
     @NotNull 
     private int idProvaTitulos;
     @NotNull 
@@ -32,6 +33,14 @@ public class ProvaTitulos implements IEntidade {
     }
 
     public ProvaTitulos() {
+    }
+
+    public String getLocal() {
+        return local;
+    }
+    
+    public void setLocal(String local) {
+        this.local = local;
     }
     
     public int getIdProvaTitulos() {
@@ -73,6 +82,5 @@ public class ProvaTitulos implements IEntidade {
     public void setClasse3(Classe classe3) {
         this.classe3 = classe3;
     }
-    
     
 }
