@@ -3,6 +3,7 @@ package br.com.model.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  *
@@ -34,7 +35,7 @@ public class ProvaEscrita implements IEntidade {
      
     private ArrayList<Candidato> candidatosAptosProva;
     
-    private ArrayList<Ponto> pontos;
+    private ArrayList<PontoProvaEscrita> pontos;
     
     
     private Date horaInicioResultado;
@@ -64,7 +65,32 @@ public class ProvaEscrita implements IEntidade {
         this.idProvaEscrita = idProvaEscrita;
     }
     
+    public void adicionarPonto(PontoProvaEscrita p){
+        this.pontos.add(p);
+    }
+    public void removerPonto(PontoProvaEscrita p){
+        Iterator<PontoProvaEscrita> iterator = this.pontos.iterator();
+        while (iterator.hasNext()) {
+            PontoProvaEscrita object = iterator.next();
+            if(object.getIdPontoProvaEscrita() == p.getIdPontoProvaEscrita()){
+                this.pontos.remove(object);
+                return;
+            }
+        }
+    }
     
+    public void alterarPonto(PontoProvaEscrita p){
+        Iterator<PontoProvaEscrita> iterator = this.pontos.iterator();
+        while (iterator.hasNext()) {
+            PontoProvaEscrita object = iterator.next();
+            if(object.getIdPontoProvaEscrita() == p.getIdPontoProvaEscrita()){
+                object.setIdPontoProvaEscrita(p.getIdPontoProvaEscrita());
+                object.setDescricao(p.getDescricao());
+                object.setProvaEscrita(p.getProvaEscrita());
+                return;
+            }
+        }
+    }
     
     
 }
