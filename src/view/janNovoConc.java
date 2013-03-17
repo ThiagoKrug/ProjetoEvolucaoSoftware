@@ -1,12 +1,9 @@
 package view;
 
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Douglas F. Almeida
@@ -19,7 +16,7 @@ public class janNovoConc extends javax.swing.JFrame {
     public janNovoConc() {
         super("Configurações do Concurso");
         initComponents();
-        
+
     }
 
     /**
@@ -565,7 +562,13 @@ public class janNovoConc extends javax.swing.JFrame {
     }//GEN-LAST:event_sCategoria2ActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+
         // TODO add your handling code here:
+        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -574,6 +577,10 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
+        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
+        if (nextTab >= 0) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void edtDataNasc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDataNasc2ActionPerformed
