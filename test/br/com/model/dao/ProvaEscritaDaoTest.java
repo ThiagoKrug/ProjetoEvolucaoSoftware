@@ -8,6 +8,7 @@ import br.com.jdbc.Database;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
 import br.com.model.entity.ProvaEscrita;
+import java.sql.SQLException;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -122,7 +123,7 @@ public class ProvaEscritaDaoTest {
      * Test of pesquisarTodosOrdenadoPor method, of class ProvaEscritaDao.
      */
     @Test
-    public void testPesquisarTodosOrdenadoPor() {
+    public void testPesquisarTodosOrdenadoPor() throws Exception {
         System.out.println("pesquisarTodosOrdenadoPor");
         String criterioOrdenamento = "";
         ProvaEscritaDao instance = new ProvaEscritaDao();

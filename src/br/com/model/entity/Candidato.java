@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 public class Candidato extends Pessoa implements IEntidade {
 
+   private int idCandidato;
     
     @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaEscrita;
@@ -117,4 +118,14 @@ public class Candidato extends Pessoa implements IEntidade {
     public void setPresenteProvaMemorial(boolean presenteProvaMemorial) {
         this.presenteProvaMemorial = presenteProvaMemorial;
     }
+
+    public int getIdCandidato() {
+        return idCandidato;
+    }
+
+    public void setIdCandidato(int idCandidato) {
+        this.idCandidato = idCandidato;
+    }
+    
+    
 }

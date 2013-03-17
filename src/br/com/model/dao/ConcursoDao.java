@@ -47,27 +47,27 @@ public class ConcursoDao implements IDao {
     }
 
     @Override
-    public IEntidade alterar(IEntidade entidade) throws SQLException {
+    public Concurso alterar(IEntidade entidade) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public IEntidade excluir(IEntidade entidade) throws SQLException {
+    public Concurso excluir(IEntidade entidade) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public IEntidade pesquisarPorId(int id) throws SQLException {
+    public Concurso pesquisarPorId(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<IEntidade> pesquisarTodos() throws SQLException {
+    public List<Concurso> pesquisarTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) {
+    public List<Concurso> pesquisarTodosOrdenadoPor(String criterioOrdenamento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

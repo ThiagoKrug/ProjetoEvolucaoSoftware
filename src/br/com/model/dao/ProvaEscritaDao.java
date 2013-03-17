@@ -5,6 +5,7 @@
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
 import br.com.model.entity.ProvaEscrita;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -32,6 +34,21 @@ public class ProvaEscritaDao implements IDao {
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setInt(1, provaEscrita.getConcurso().getIdConcurso());
                 stmt.executeUpdate();
+
+                if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
+                    ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
+                    Iterator<Candidato> iterator = listaAptos.iterator();
+                    while (iterator.hasNext()) {
+                        Candidato object = iterator.next();
+                        String sql2 = "insert into candidatos_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
+                        PreparedStatement stmt2 = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+                        stmt2.setInt(1, object.getIdCandidato());
+                        stmt2.setInt(2, provaEscrita.getIdProvaEscrita());
+                        stmt2.executeUpdate();
+                    }
+                }
+
+
                 ResultSet rs = stmt.getGeneratedKeys();
 
                 if (rs.next()) {
@@ -51,8 +68,6 @@ public class ProvaEscritaDao implements IDao {
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
             String sql = "UPDATE prova_escrita SET "
                     + "id_ponto_sorteado_prova_escrita = ?,"
-                    + "classe = ?,"
-                    + "classe = ?,"
                     + "WHERE id_prova_escrita = ? ";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -96,8 +111,7 @@ public class ProvaEscritaDao implements IDao {
         if (rs.next()) {
             provaEscrita = new ProvaEscrita();
             provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
-            Concurso c = (Concurso) new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso"));
-            provaEscrita.setConcurso(c);
+            provaEscrita.setConcurso(new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso")));
         }
         return provaEscrita;
     }
