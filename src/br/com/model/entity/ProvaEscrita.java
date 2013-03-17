@@ -41,6 +41,12 @@ public class ProvaEscrita implements IEntidade {
     private Date horaInicioResultado;
     private String localResultado;
 
+    public ProvaEscrita() {
+        this.candidatosAptosProva = new ArrayList<>();
+    }
+    
+    
+
     public Concurso getConcurso() {
         return concurso;
     }
@@ -89,6 +95,12 @@ public class ProvaEscrita implements IEntidade {
                 object.setProvaEscrita(p.getProvaEscrita());
                 return;
             }
+        }
+    }
+
+    public void adicionarCandidatoApto(Candidato c) {
+        if(this.candidatosAptosProva.contains(c) == false){
+            this.candidatosAptosProva.add(c);
         }
     }
     

@@ -2,8 +2,10 @@ package view;
 
 import br.com.model.dao.CandidatoDao;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.ProvaEscrita;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -18,6 +20,10 @@ import java.util.logging.Logger;
  * @author Douglas F. Almeida
  */
 public class janProvaEscrita extends javax.swing.JFrame {
+    
+    private List<Candidato> listCandidatos;
+    private List<Candidato> listCandidatosAptos;
+    private ProvaEscrita provaEscrita;
 
     /**
      * Creates new form janNovoConc
@@ -25,8 +31,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
     public janProvaEscrita() {
         super("Configurações do Concurso");
         initComponents();
-        
+        this.provaEscrita = new ProvaEscrita();
+        this.listCandidatosAptos = new ArrayList<>();
         this.carregarCandidatos();
+        
 
     }
 
@@ -51,11 +59,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jListCandidatosConcurso = new javax.swing.JList();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jListCandidatosAptos = new javax.swing.JList();
+        jButtonAdicionarCandidato = new javax.swing.JButton();
+        jButtonAdicionarTodosCandidatos = new javax.swing.JButton();
+        jButtonRemoverCandidato = new javax.swing.JButton();
+        jButtonRemoverTodosCandidatos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -111,31 +119,31 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jSeparator1.setBounds(400, 110, 10, 240);
         jLayeredPane2.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jListCandidatosAptos);
 
         jScrollPane2.setBounds(450, 110, 280, 240);
         jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setText(">");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionarCandidato.setText(">");
+        jButtonAdicionarCandidato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAdicionarCandidatoActionPerformed(evt);
             }
         });
-        jButton1.setBounds(320, 130, 41, 23);
-        jLayeredPane2.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonAdicionarCandidato.setBounds(320, 130, 41, 23);
+        jLayeredPane2.add(jButtonAdicionarCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setText(">>");
-        jButton2.setBounds(320, 160, 49, 23);
-        jLayeredPane2.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonAdicionarTodosCandidatos.setText(">>");
+        jButtonAdicionarTodosCandidatos.setBounds(320, 160, 49, 23);
+        jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setText("<");
-        jButton3.setBounds(320, 190, 41, 23);
-        jLayeredPane2.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonRemoverCandidato.setText("<");
+        jButtonRemoverCandidato.setBounds(320, 190, 41, 23);
+        jLayeredPane2.add(jButtonRemoverCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton4.setText("<<");
-        jButton4.setBounds(320, 220, 49, 23);
-        jLayeredPane2.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonRemoverTodosCandidatos.setText("<<");
+        jButtonRemoverTodosCandidatos.setBounds(320, 220, 49, 23);
+        jLayeredPane2.add(jButtonRemoverTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText("Selecione os candidadtos aptos a realização da prova escrita.");
         jLabel2.setBounds(30, 30, 710, 40);
@@ -229,9 +237,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAdicionarCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCandidatoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int selected = this.jListCandidatosConcurso.getSelectedIndex();
+        Candidato c = this.listCandidatos.get(selected);
+        this.provaEscrita.adicionarCandidatoApto(c);
+        this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        
+    }//GEN-LAST:event_jButtonAdicionarCandidatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,10 +284,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAdicionarCandidato;
+    private javax.swing.JButton jButtonAdicionarTodosCandidatos;
+    private javax.swing.JButton jButtonRemoverCandidato;
+    private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,7 +296,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JList jList2;
+    private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosConcurso;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -297,7 +310,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void carregarCandidatos() {
         CandidatoDao c = new CandidatoDao();
         try {
-            List<Candidato> listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
+            this.listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
             this.jListCandidatosConcurso.removeAll();
             this.jListCandidatosConcurso.setListData( listCandidatos.toArray());
         } catch (Exception ex) {
