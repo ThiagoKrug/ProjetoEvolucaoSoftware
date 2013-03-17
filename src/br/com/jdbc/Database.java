@@ -64,7 +64,20 @@ public class Database {
         }
     }
 
-    private void populate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void populate() {
+        try {
+            stmt = ConnectionFactory.getConnection().createStatement();
+            DataInputStream in = new DataInputStream(this.getClass().getResourceAsStream("inserts.sql"));
+            String sql = "";
+            String line;
+            while ((line = in.readLine()) != null) {
+
+                sql += line + "\n";
+            }
+            stmt.executeUpdate(sql);
+            //this.populate();
+        } catch (SQLException | IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

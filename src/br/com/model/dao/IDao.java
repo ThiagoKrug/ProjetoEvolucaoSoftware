@@ -27,7 +27,7 @@ public interface IDao {
 
     public IEntidade pesquisarPorId(int id) throws SQLException;
 
-    public List<IEntidade> pesquisarTodos() throws SQLException;
+    public List<? extends IEntidade> pesquisarTodos() throws SQLException;
 
-    public List<IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento);
+    public List<? extends IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento);
 }

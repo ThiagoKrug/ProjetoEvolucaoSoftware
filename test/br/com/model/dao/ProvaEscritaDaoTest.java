@@ -39,6 +39,7 @@ public class ProvaEscritaDaoTest {
         database.deletaBanco();
         database.criarBanco();
         database.criarTabelas();
+        database.populate();
     }
     
     @After
@@ -96,13 +97,11 @@ public class ProvaEscritaDaoTest {
     @Test
     public void testPesquisarPorId() throws Exception {
         System.out.println("pesquisarPorId");
-        int id = 0;
         ProvaEscritaDao instance = new ProvaEscritaDao();
-        IEntidade expResult = null;
-        IEntidade result = instance.pesquisarPorId(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ProvaEscrita result = (ProvaEscrita) instance.pesquisarPorId(1);
+        assertNotNull(result);
+        assertEquals(result.getIdProvaEscrita(), 1);
+
     }
 
     /**
