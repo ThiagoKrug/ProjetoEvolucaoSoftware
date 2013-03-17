@@ -3,13 +3,11 @@ package view;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.ProvaEscrita;
-import java.awt.BorderLayout;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -20,9 +18,8 @@ import java.util.logging.Logger;
  * @author Douglas F. Almeida
  */
 public class janProvaEscrita extends javax.swing.JFrame {
-    
+
     private List<Candidato> listCandidatos;
-    private List<Candidato> listCandidatosAptos;
     private ProvaEscrita provaEscrita;
 
     /**
@@ -32,9 +29,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
         super("Configurações do Concurso");
         initComponents();
         this.provaEscrita = new ProvaEscrita();
-        this.listCandidatosAptos = new ArrayList<>();
         this.carregarCandidatos();
-        
+
 
     }
 
@@ -134,6 +130,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane2.add(jButtonAdicionarCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCandidatos.setText(">>");
+        jButtonAdicionarTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarTodosCandidatosActionPerformed(evt);
+            }
+        });
         jButtonAdicionarTodosCandidatos.setBounds(320, 160, 49, 23);
         jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -240,11 +241,21 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void jButtonAdicionarCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCandidatoActionPerformed
         // TODO add your handling code here:
         int selected = this.jListCandidatosConcurso.getSelectedIndex();
-        Candidato c = this.listCandidatos.get(selected);
-        this.provaEscrita.adicionarCandidatoApto(c);
-        this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
-        
+        if (selected != -1) {
+            Candidato c = this.listCandidatos.get(selected);
+            this.provaEscrita.adicionarCandidatoApto(c);
+            this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!",null,JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButtonAdicionarCandidatoActionPerformed
+
+    private void jButtonAdicionarTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCandidatosActionPerformed
+        // TODO add your handling code here:
+        this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
+        this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
+    }//GEN-LAST:event_jButtonAdicionarTodosCandidatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,7 +323,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         try {
             this.listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
             this.jListCandidatosConcurso.removeAll();
-            this.jListCandidatosConcurso.setListData( listCandidatos.toArray());
+            this.jListCandidatosConcurso.setListData(listCandidatos.toArray());
         } catch (Exception ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
