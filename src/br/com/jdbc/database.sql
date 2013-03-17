@@ -414,7 +414,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `item_classe` (
   `id_item_classe` INT NOT NULL AUTO_INCREMENT ,
-  `discriminacao` TEXT NULL ,
+  `discriminacao` LONGTEXT NULL ,
   `pontuacao` FLOAT NULL ,
   `id_classe` INT NOT NULL ,
   PRIMARY KEY (`id_item_classe`) ,
