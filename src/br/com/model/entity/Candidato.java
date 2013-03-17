@@ -127,5 +127,8 @@ public class Candidato extends Pessoa implements IEntidade {
         this.idCandidato = idCandidato;
     }
     
-    
+   @Override
+    public String toString(){
+        return this.getNome();
+    }
 }

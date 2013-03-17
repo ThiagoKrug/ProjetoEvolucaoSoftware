@@ -1,5 +1,14 @@
 package view;
 
+import br.com.model.dao.CandidatoDao;
+import br.com.model.entity.Candidato;
+import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -16,6 +25,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
     public janProvaEscrita() {
         super("Configurações do Concurso");
         initComponents();
+        
+        this.carregarCandidatos();
 
     }
 
@@ -37,7 +48,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListCandidatosConcurso = new javax.swing.JList();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -91,12 +102,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         btnVoltar.setBounds(490, 470, 80, 25);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListCandidatosConcurso);
 
         jScrollPane1.setBounds(30, 110, 270, 240);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -105,11 +111,6 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jSeparator1.setBounds(400, 110, 10, 240);
         jLayeredPane2.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
         jScrollPane2.setBounds(450, 110, 280, 240);
@@ -282,8 +283,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
+    private javax.swing.JList jListCandidatosConcurso;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -292,4 +293,15 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarCandidatos() {
+        CandidatoDao c = new CandidatoDao();
+        try {
+            List<Candidato> listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
+            this.jListCandidatosConcurso.removeAll();
+            this.jListCandidatosConcurso.setListData( listCandidatos.toArray());
+        } catch (Exception ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
