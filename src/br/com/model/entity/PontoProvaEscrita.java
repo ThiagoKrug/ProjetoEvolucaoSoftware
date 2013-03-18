@@ -45,6 +45,33 @@ public class PontoProvaEscrita implements IEntidade {
     public void setProvaEscrita(ProvaEscrita provaEscrita) {
         this.provaEscrita = provaEscrita;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.idPontoProvaEscrita;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PontoProvaEscrita other = (PontoProvaEscrita) obj;
+        if (this.idPontoProvaEscrita != other.idPontoProvaEscrita) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public String toString() {
+        return  descricao;
+    }
     
     
     

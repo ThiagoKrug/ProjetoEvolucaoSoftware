@@ -29,7 +29,10 @@ public class PontoProvaEscritaDao implements IDao {
             String sql = "insert into ponto_prova_escrita (id_prova_escrita, descricao) values(?,?) ";
             Connection connection = ConnectionFactory.getConnection();
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setInt(1, pontoProvaEscrita.getProvaEscrita().getIdProvaEscrita());
+                if(pontoProvaEscrita.getProvaEscrita().getIdProvaEscrita() != 0)
+                    stmt.setInt(1, pontoProvaEscrita.getProvaEscrita().getIdProvaEscrita());
+                else
+                    stmt.setString(1, null);
                 stmt.setString(2, pontoProvaEscrita.getDescricao());
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();

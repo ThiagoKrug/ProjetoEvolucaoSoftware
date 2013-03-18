@@ -1,8 +1,13 @@
 package view;
 
 import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.CriterioAvaliacaoDao;
+import br.com.model.dao.PontoProvaEscritaDao;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.CriterioAvaliacao;
+import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -72,17 +77,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonAdicionarPonto = new javax.swing.JButton();
         jButtonRemoverPonto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonGerarRelacaoPontos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jListCriterios = new javax.swing.JList();
+        jTextFieldTextoCriterio = new javax.swing.JTextField();
+        jTextFieldCriterioPeso = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonAdicionarCriterio = new javax.swing.JButton();
+        jButtonRemoverCriterio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -204,16 +209,26 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane3.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarPonto.setText("Adicionar");
+        jButtonAdicionarPonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarPontoActionPerformed(evt);
+            }
+        });
         jButtonAdicionarPonto.setBounds(660, 30, 90, 30);
         jLayeredPane3.add(jButtonAdicionarPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverPonto.setText("Remover");
+        jButtonRemoverPonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverPontoActionPerformed(evt);
+            }
+        });
         jButtonRemoverPonto.setBounds(670, 340, 80, 23);
         jLayeredPane3.add(jButtonRemoverPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setText("Gerar Relação de Pontos");
-        jButton1.setBounds(20, 340, 160, 23);
-        jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonGerarRelacaoPontos.setText("Gerar Relação de Pontos");
+        jButtonGerarRelacaoPontos.setBounds(20, 340, 170, 23);
+        jLayeredPane3.add(jButtonGerarRelacaoPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -228,30 +243,40 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Pontos", jPanel2);
 
-        jScrollPane4.setViewportView(jList1);
+        jScrollPane4.setViewportView(jListCriterios);
 
         jScrollPane4.setBounds(10, 110, 740, 210);
         jLayeredPane4.add(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextField1.setBounds(60, 20, 680, 20);
-        jLayeredPane4.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextField2.setBounds(60, 50, 40, 20);
-        jLayeredPane4.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldTextoCriterio.setBounds(60, 20, 680, 30);
+        jLayeredPane4.add(jTextFieldTextoCriterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldCriterioPeso.setBounds(60, 60, 40, 30);
+        jLayeredPane4.add(jTextFieldCriterioPeso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel7.setText("Peso:");
-        jLabel7.setBounds(30, 50, 27, 20);
+        jLabel7.setBounds(10, 60, 40, 30);
         jLayeredPane4.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel8.setText("Critério:");
-        jLabel8.setBounds(20, 20, 40, 20);
+        jLabel8.setBounds(10, 20, 50, 30);
         jLayeredPane4.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setText("Adicionar");
-        jButton2.setBounds(660, 50, 80, 23);
-        jLayeredPane4.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonAdicionarCriterio.setText("Adicionar");
+        jButtonAdicionarCriterio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarCriterioActionPerformed(evt);
+            }
+        });
+        jButtonAdicionarCriterio.setBounds(660, 60, 80, 30);
+        jLayeredPane4.add(jButtonAdicionarCriterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setText("Remover");
-        jButton3.setBounds(663, 330, 80, 23);
-        jLayeredPane4.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonRemoverCriterio.setText("Remover");
+        jButtonRemoverCriterio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCriterioActionPerformed(evt);
+            }
+        });
+        jButtonRemoverCriterio.setBounds(663, 330, 80, 23);
+        jLayeredPane4.add(jButtonRemoverCriterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -314,8 +339,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Candidato c = this.listCandidatos.get(selected);
             this.provaEscrita.adicionarCandidatoApto(c);
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
-        }else{
-            JOptionPane.showMessageDialog(this, "Selecione um candidato!",null,JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonAdicionarCandidatoActionPerformed
@@ -325,6 +350,87 @@ public class janProvaEscrita extends javax.swing.JFrame {
         this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
         this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
     }//GEN-LAST:event_jButtonAdicionarTodosCandidatosActionPerformed
+
+    private void jButtonAdicionarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPontoActionPerformed
+        // TODO add your handling code here:
+        String ponto = this.jTextFieldTextoPonto.getText();
+        if (ponto.isEmpty() == false) {
+            PontoProvaEscritaDao pdao = new PontoProvaEscritaDao();
+            PontoProvaEscrita p = new PontoProvaEscrita();
+            p.setDescricao(ponto);
+            p.setProvaEscrita(this.provaEscrita);
+            try {
+                pdao.inserir(p);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            this.provaEscrita.adicionarPonto(p);
+            this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+        } else {
+            JOptionPane.showMessageDialog(this, "Escreva o ponto!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAdicionarPontoActionPerformed
+
+    private void jButtonRemoverPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPontoActionPerformed
+        // TODO add your handling code here:
+        int selected = this.jListListaPontos.getSelectedIndex();
+        if (selected != -1) {
+            PontoProvaEscrita p = (PontoProvaEscrita) this.jListListaPontos.getSelectedValue();
+            PontoProvaEscritaDao pdao = new PontoProvaEscritaDao();
+            try {
+                pdao.excluir(p);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.provaEscrita.removerPonto(p);
+            this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverPontoActionPerformed
+
+    private void jButtonAdicionarCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCriterioActionPerformed
+        // TODO add your handling code here:
+        if (this.jTextFieldTextoCriterio.getText().isEmpty() == false && this.jTextFieldCriterioPeso.getText().isEmpty() == false) {
+            CriterioAvaliacao c = new CriterioAvaliacao();
+            c.setCriterio(this.jTextFieldTextoCriterio.getText());
+            c.setPeso(Float.parseFloat(this.jTextFieldCriterioPeso.getText()));
+            c.setProvaEscrita(this.provaEscrita);
+
+            CriterioAvaliacaoDao cdao = new CriterioAvaliacaoDao();
+            try {
+                cdao.inserir(c);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.provaEscrita.adicionarCriterioAvaliacao(c);
+            this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Escreva o critério e peso!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAdicionarCriterioActionPerformed
+
+    private void jButtonRemoverCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCriterioActionPerformed
+        // TODO add your handling code here:
+        int selected = this.jListCriterios.getSelectedIndex();
+        if (selected != -1) {
+            CriterioAvaliacao c = (CriterioAvaliacao) this.jListCriterios.getSelectedValue();
+            CriterioAvaliacaoDao cdao = new CriterioAvaliacaoDao();
+            try {
+                cdao.excluir(c);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.provaEscrita.removerCriterioAvaliacao(c);
+            this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um critério!", null, JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonRemoverCriterioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,13 +470,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAdicionarCandidato;
+    private javax.swing.JButton jButtonAdicionarCriterio;
     private javax.swing.JButton jButtonAdicionarPonto;
     private javax.swing.JButton jButtonAdicionarTodosCandidatos;
+    private javax.swing.JButton jButtonGerarRelacaoPontos;
     private javax.swing.JButton jButtonRemoverCandidato;
+    private javax.swing.JButton jButtonRemoverCriterio;
     private javax.swing.JButton jButtonRemoverPonto;
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JLabel jLabel1;
@@ -385,9 +491,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JList jList1;
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosConcurso;
+    private javax.swing.JList jListCriterios;
     private javax.swing.JList jListListaPontos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -398,8 +504,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldCriterioPeso;
+    private javax.swing.JTextField jTextFieldTextoCriterio;
     private javax.swing.JTextField jTextFieldTextoPonto;
     // End of variables declaration//GEN-END:variables
 

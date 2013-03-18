@@ -26,11 +26,15 @@ public class CriterioAvaliacaoDao implements IDao{
         if (entidade instanceof CriterioAvaliacao) {
             CriterioAvaliacao criterio = (CriterioAvaliacao) entidade;
 
-            String sql = "insert into criterio_avaliacao (criterio, peso) values(?,?) ";
+            String sql = "insert into criterio_avaliacao (criterio, peso, id_prova_escrita) values(?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, criterio.getCriterio());
                 stmt.setFloat(2, criterio.getPeso());
+                if(criterio.getProvaEscrita().getIdProvaEscrita() != 0)
+                    stmt.setInt(3, criterio.getProvaEscrita().getIdProvaEscrita());
+                else
+                    stmt.setString(3, null);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
 
