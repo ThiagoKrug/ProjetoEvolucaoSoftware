@@ -88,6 +88,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButtonAdicionarCriterio = new javax.swing.JButton();
         jButtonRemoverCriterio = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLayeredPane5 = new javax.swing.JLayeredPane();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -278,6 +292,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jButtonRemoverCriterio.setBounds(663, 330, 80, 23);
         jLayeredPane4.add(jButtonRemoverCriterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton1.setText("Gerar Relação de Critérios");
+        jButton1.setBounds(10, 330, 190, 23);
+        jLayeredPane4.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -292,6 +310,67 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
 
         jTabbedPane5.addTab("Critérios", jPanel3);
+
+        jLabel9.setText("Ponto Sorteado:");
+        jLabel9.setBounds(10, 40, 90, 30);
+        jLayeredPane5.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.setBounds(100, 40, 70, 30);
+        jLayeredPane5.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField1.setBounds(100, 80, 70, 30);
+        jLayeredPane5.add(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel10.setText("Hora do Sorteio:");
+        jLabel10.setBounds(10, 80, 90, 30);
+        jLayeredPane5.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jSeparator2.setBounds(10, 140, 740, 20);
+        jLayeredPane5.add(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel11.setText("Hora do Inicio da Prova:");
+        jLabel11.setBounds(10, 170, 140, 30);
+        jLayeredPane5.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField2.setBounds(160, 170, 70, 30);
+        jLayeredPane5.add(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel12.setText("Hora do Fim da Prova:");
+        jLabel12.setBounds(20, 210, 130, 30);
+        jLayeredPane5.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField3.setBounds(160, 210, 70, 30);
+        jLayeredPane5.add(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel13.setText("Local da Realização:");
+        jLabel13.setBounds(30, 260, 100, 30);
+        jLayeredPane5.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextField2.setBounds(160, 260, 350, 30);
+        jLayeredPane5.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 765, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("Realização", jPanel4);
 
         jTabbedPane5.setBounds(0, 50, 770, 400);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -432,6 +511,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRemoverCriterioActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -470,6 +553,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdicionarCandidato;
     private javax.swing.JButton jButtonAdicionarCriterio;
     private javax.swing.JButton jButtonAdicionarPonto;
@@ -479,7 +563,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemoverCriterio;
     private javax.swing.JButton jButtonRemoverPonto;
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -487,10 +578,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JLayeredPane jLayeredPane5;
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosConcurso;
     private javax.swing.JList jListCriterios;
@@ -498,12 +591,16 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldCriterioPeso;
     private javax.swing.JTextField jTextFieldTextoCriterio;
     private javax.swing.JTextField jTextFieldTextoPonto;
