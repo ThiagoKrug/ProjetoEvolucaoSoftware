@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,28 +107,51 @@ public class PessoaDao implements IDao {
 
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        
+
         Pessoa pessoa = null;
 
-        if(rs.next()){
+        if (rs.next()) {
             pessoa = new Pessoa();
             pessoa.setIdPessoa(rs.getInt("id_pessoa"));
             pessoa.setNome(rs.getString("nome"));
             pessoa.setSexo(rs.getString("sexo"));
             pessoa.setDataNascimento(rs.getDate("data_nascimento"));
         }
-        
+
         return pessoa;
 
     }
 
     @Override
     public List<? extends IEntidade> pesquisarTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql = "SELECT * from pessoa";
+        List<Pessoa> listPessoa = pesquisar(sql);
+        return listPessoa;
     }
 
     @Override
     public List<? extends IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql = "SELECT * from pessoa ORDER BY" + criterioOrdenamento;
+        List<Pessoa> listPessoa = pesquisar(sql);
+        return listPessoa;
+    }
+
+    private List<Pessoa> pesquisar(String sql) throws SQLException {
+        List<Pessoa> listPessoa = new ArrayList<>();
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Pessoa pessoa = new Pessoa();
+            pessoa.setIdPessoa(rs.getInt("id_pessoa"));
+            pessoa.setNome(rs.getString("nome"));
+            pessoa.setSexo(rs.getString("sexo"));
+            pessoa.setDataNascimento(rs.getDate("data_nascimento"));
+            listPessoa.add(pessoa);
+
+        }
+
+        return listPessoa;
     }
 }
