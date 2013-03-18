@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.IEntidade;
+import br.com.model.entity.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Rafael
+ * @author Thiago Lima <thiagolimaes@gmail.com>
  */
 public class CandidatoDao implements IDao {
 
@@ -185,6 +182,13 @@ public class CandidatoDao implements IDao {
             candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
             candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
             
+            PessoaDao pessoaDao = new PessoaDao();
+            Pessoa pessoa       = pessoaDao.pesquisarPorId( candidato.getIdPessoa() );
+            
+            candidato.setNome( pessoa.getNome() );
+            candidato.setSexo( pessoa.getSexo() );
+            candidato.setDataNascimento( pessoa.getDataNascimento() );
+            
         }
         
         if ( candidato.getIdCandidato() != 0 ) {
@@ -224,12 +228,21 @@ public class CandidatoDao implements IDao {
         
         while ( rs.next() ) {
             
-            Candidato c = new Candidato();
+            Candidato candidato = new Candidato();
             
-            c.setIdCandidato(rs.getInt("id_candidato"));
-            c.setNome(rs.getString("nome"));
+            candidato.setIdCandidato( rs.getInt( "id_candidato" ) );
+            candidato.setIdPessoa( rs.getInt( "id_pessoa" ) );
+            candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
+            candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
+            candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
+            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+            candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
             
-            listCandidato.add(c);
+            candidato.setNome( rs.getString( "nome" ) );
+            candidato.setSexo( rs.getString( "sexo" ) );
+            candidato.setDataNascimento( rs.getDate( "data_nascimento" ) );
+            
+            listCandidato.add(candidato);
             
         }
         
