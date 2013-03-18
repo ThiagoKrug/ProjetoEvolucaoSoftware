@@ -24,21 +24,12 @@ public class Pessoa implements IEntidade {
     @NotNull
     @Past
     private Date dataNascimento;
-    @NotNull
-    private String rg;
-    @NotNull
-    @CPF
-    private String cpf;
-    @NotNull
-    private String email;
 
-    public Pessoa(String nome, String sexo, Date dataNascimento, String rg, String cpf, String email) {
+    public Pessoa(String nome, String sexo, Date dataNascimento) {
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
-        this.rg = rg;
-        this.cpf = cpf;
-        this.email = email;
+
     }
 
     public Pessoa() {
@@ -75,30 +66,6 @@ public class Pessoa implements IEntidade {
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
     
 }

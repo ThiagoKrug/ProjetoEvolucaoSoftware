@@ -1,13 +1,32 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.model.entity;
 
 /**
- *
- * @author Bruno
+ * @author Thiago Lima <thiagolimaes@gmail.com>
  */
-class Campus {
+public class Campus implements IEntidade {
+    
+    private int idCampus;
+    private String cidadeCampus;
+    
+    public Campus() {
+        
+    }
+
+    public int getIdCampus() {
+        return idCampus;
+    }
+
+    public String getCidadeCampus() {
+        return cidadeCampus;
+    }
+
+    public void setIdCampus(int idCampus) {
+        this.idCampus = idCampus;
+    }
+
+    public void setCidadeCampus(String cidadeCampus) {
+        this.cidadeCampus = cidadeCampus;
+    }
     
 }

@@ -15,6 +15,7 @@ public class Concurso implements IEntidade {
     private int idConcurso;
     private String instituicao;
     private Campus campus;
+    private ClasseConcurso classeConcurso;
     private String area;
     private String edital;
     private Date dataInicio;
@@ -30,6 +31,7 @@ public class Concurso implements IEntidade {
     private String ministerio;
 
     public Concurso() {
+        
     }
 
     public Concurso(int idConcurso, String instituicao, Campus campus, String area, String edital, Date dataInicio, Date horaInicio, CategoriaConcurso categoria, String portaria, String orgaoEmissor, boolean temProvaEscrita, boolean temProvaTitulos, boolean temProvaDidática, boolean temProvaMemorial) {
@@ -253,7 +255,13 @@ public class Concurso implements IEntidade {
     public void setMinisterio(String ministerio) {
         this.ministerio = ministerio;
     }
-    
-    
+
+    public ClasseConcurso getClasseConcurso() {
+        return classeConcurso;
+    }
+
+    public void setClasseConcurso(ClasseConcurso classeConcurso) {
+        this.classeConcurso = classeConcurso;
+    }
     
 }

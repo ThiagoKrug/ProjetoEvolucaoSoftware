@@ -13,7 +13,13 @@ import javax.validation.constraints.NotNull;
  */
 public class Candidato extends Pessoa implements IEntidade {
 
-   private int idCandidato;
+    private int idCandidato;
+    
+    @NotNull(message="O Valor não pode ser nulo!")
+    private int idConcurso;
+    
+    private int idProvaDidatica;
+    private int idProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaEscrita;
@@ -38,10 +44,9 @@ public class Candidato extends Pessoa implements IEntidade {
     
     @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaMemorial;
-    
 
-    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento, String rg, String cpf, String email) {
-        super(nome, sexo, dataNascimento, rg, cpf, email);
+    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
+        super(nome, sexo, dataNascimento);
         this.aptoProvaEscrita = aptoProvaEscrita;
         this.presenteProvaEscrita = presenteProvaEscrita;
         this.aptoProvaTitulos = aptoProvaTitulos;
@@ -53,6 +58,18 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public Candidato() {
+        this.aptoProvaDidatica = false;
+        this.aptoProvaEscrita  = false;
+        this.aptoProvaMemorial = false;
+        this.aptoProvaTitulos  = false;
+    }
+
+    public int getIdConcurso() {
+        return idConcurso;
+    }
+
+    public void setIdConcurso(int idConcurso) {
+        this.idConcurso = idConcurso;
     }
 
     public boolean isAptoProvaEscrita() {
@@ -81,6 +98,22 @@ public class Candidato extends Pessoa implements IEntidade {
 
     public boolean isPresenteProvaTitulos() {
         return presenteProvaTitulos;
+    }
+
+    public int getIdProvaDidatica() {
+        return idProvaDidatica;
+    }
+
+    public int getIdProvaEscrita() {
+        return idProvaEscrita;
+    }
+
+    public void setIdProvaDidatica(int idProvaDidatica) {
+        this.idProvaDidatica = idProvaDidatica;
+    }
+
+    public void setIdProvaEscrita(int idProvaEscrita) {
+        this.idProvaEscrita = idProvaEscrita;
     }
 
     public void setPresenteProvaTitulos(boolean presenteProvaTitulos) {
@@ -127,7 +160,7 @@ public class Candidato extends Pessoa implements IEntidade {
         this.idCandidato = idCandidato;
     }
     
-   @Override
+    @Override
     public String toString(){
         return this.getNome();
     }
