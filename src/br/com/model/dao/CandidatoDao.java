@@ -56,7 +56,7 @@ public class CandidatoDao implements IDao {
     }
 
     private List<Candidato> pesquisar(String sql) throws SQLException {
-        List<Candidato> listCandidato = new ArrayList<>();
+        List<Candidato> listCandidato = new ArrayList<Candidato>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
