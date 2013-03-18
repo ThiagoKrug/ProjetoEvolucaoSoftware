@@ -78,7 +78,7 @@ public class ConcursoDao implements IDao {
     @Override
     public Concurso alterar(IEntidade entidade) throws SQLException {
         
-        
+        return null;
         
     }
 
@@ -110,7 +110,28 @@ public class ConcursoDao implements IDao {
 
     @Override
     public Concurso pesquisarPorId(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Concurso concurso      = new Concurso();
+        
+        String sql             = " SELECT * FROM concurso WHERE id_concurso = ? ";
+               
+        Connection connection  = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        
+        while ( rs.next() ) {
+            
+            concurso.setMinisterio( rs.getString( "ministerio" ) );
+            concurso.setArea( rs.getString( "area" ) );
+            concurso.setEdital( rs.getString( "edital" ) );
+            concurso.setDataInicio( rs.getDate( "data_inicio" ) );
+            concurso.setPortaria( rs.getString( "" ) );
+            
+        }
+        
+        return concurso;
+        
     }
 
     @Override
