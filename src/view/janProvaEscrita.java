@@ -65,6 +65,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListListaPontos = new javax.swing.JList();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldTextoPonto = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jButtonAdicionarPonto = new javax.swing.JButton();
+        jButtonRemoverPonto = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
 
@@ -170,6 +178,34 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
 
         jTabbedPane5.addTab("Candidatos Aptos A Realização", jPanel1);
+
+        jScrollPane3.setViewportView(jListListaPontos);
+
+        jScrollPane3.setBounds(20, 100, 730, 230);
+        jLayeredPane3.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel5.setText("Lista de pontos para a prova escrita:");
+        jLabel5.setBounds(20, 80, 210, 14);
+        jLayeredPane3.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldTextoPonto.setBounds(60, 30, 580, 30);
+        jLayeredPane3.add(jTextFieldTextoPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Ponto:");
+        jLabel6.setBounds(14, 30, 40, 30);
+        jLayeredPane3.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionarPonto.setText("Adicionar");
+        jButtonAdicionarPonto.setBounds(660, 30, 90, 30);
+        jLayeredPane3.add(jButtonAdicionarPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoverPonto.setText("Remover");
+        jButtonRemoverPonto.setBounds(670, 340, 80, 23);
+        jLayeredPane3.add(jButtonRemoverPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton1.setText("Gerar Relação de Pontos");
+        jButton1.setBounds(20, 340, 160, 23);
+        jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -295,27 +331,35 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdicionarCandidato;
+    private javax.swing.JButton jButtonAdicionarPonto;
     private javax.swing.JButton jButtonAdicionarTodosCandidatos;
     private javax.swing.JButton jButtonRemoverCandidato;
+    private javax.swing.JButton jButtonRemoverPonto;
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosConcurso;
+    private javax.swing.JList jListListaPontos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTextField jTextFieldTextoPonto;
     // End of variables declaration//GEN-END:variables
 
     private void carregarCandidatos() {
