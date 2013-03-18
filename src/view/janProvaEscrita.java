@@ -323,11 +323,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jTextField1.setBounds(100, 40, 70, 30);
+        jTextField1.setBounds(160, 40, 70, 30);
         jLayeredPane5.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField1.setBounds(100, 80, 70, 30);
+        jFormattedTextField1.setBounds(160, 80, 70, 30);
         jLayeredPane5.add(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Hora do Sorteio:");
@@ -345,7 +345,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane5.add(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText("Hora do Fim da Prova:");
-        jLabel12.setBounds(20, 210, 130, 30);
+        jLabel12.setBounds(10, 210, 130, 30);
         jLayeredPane5.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
@@ -353,7 +353,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane5.add(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText("Local da Realização:");
-        jLabel13.setBounds(30, 260, 100, 30);
+        jLabel13.setBounds(10, 260, 130, 30);
         jLayeredPane5.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextField2.setBounds(160, 260, 350, 30);
         jLayeredPane5.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
