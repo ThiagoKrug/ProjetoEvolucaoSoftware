@@ -77,12 +77,35 @@ public class ConcursoDao implements IDao {
 
     @Override
     public Concurso alterar(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        
     }
 
     @Override
     public Concurso excluir(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if ( entidade instanceof Concurso ) {
+            
+            Concurso concurso     = (Concurso) entidade;
+            Connection connection = ConnectionFactory.getConnection();
+            
+            String sql = " DELETE FROM concurso WHERE id_concurso = ? ";
+            
+            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+                
+                stmt.setInt(1, concurso.getIdConcurso());
+                
+                if ( stmt.executeUpdate() == 1 ) {
+                    return concurso;
+                }
+                
+            }
+            
+        }
+        
+        return null;
+        
     }
 
     @Override
