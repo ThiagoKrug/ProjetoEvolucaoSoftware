@@ -4,35 +4,121 @@
  */
 package br.com.model.dao;
 
+import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.IEntidade;
+import br.com.model.entity.Pessoa;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
  *
  * @author Helison
  */
-public class PessoaDao implements IDao{
+public class PessoaDao implements IDao {
 
     @Override
-    public IEntidade inserir(IEntidade entidade) throws SQLException {
+    public Pessoa inserir(IEntidade entidade) throws SQLException {
+        if (entidade instanceof Pessoa) {
+            Pessoa pessoa = (Pessoa) entidade;
+
+            String sql = "insert into pessoa (id_pessoa, nome, sexo, data_nascimento)";
+            sql += " vales (?,?,?,?)";
+
+            Connection connection = ConnectionFactory.getConnection();
+
+            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                if (pessoa.getIdPessoa() != 0) {
+                    stmt.setInt(1, pessoa.getIdPessoa());
+                } else {
+                    stmt.setString(1, null);
+                }
+                stmt.setString(2, pessoa.getNome());
+                stmt.setString(3, pessoa.getSexo());
+                stmt.setDate(4, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+
+                stmt.executeUpdate();
+                ResultSet rs = stmt.getGeneratedKeys();
+
+                if (rs.next()) {
+                    pessoa.setIdPessoa(rs.getInt(1));
+
+                }
+            }
+            return pessoa;
+
+
+        }
+        return null;
+
+    }
+
+    @Override
+    public Pessoa alterar(IEntidade entidade) throws SQLException {
+        if (entidade instanceof Pessoa) {
+            Pessoa pessoa = (Pessoa) entidade;
+            String sql = "UPDATE pessoa SET"
+                    + "id_pessoa = ?,"
+                    + "nome = ?,"
+                    + "sexo = ?,"
+                    + "data_nascimento = ?,"
+                    + "WHERE id_pessoa = ?";
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setInt(1, pessoa.getIdPessoa());
+            stmt.setString(2, pessoa.getNome());
+            stmt.setString(3, pessoa.getSexo());
+            stmt.setDate(4, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+
+            if (stmt.executeUpdate() == 1) {
+                return pessoa;
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    public Pessoa excluir(IEntidade entidade) throws SQLException {
+        Pessoa pessoa = (Pessoa) entidade;
+        String sql = "DELETE FROM pessoa WHERE id_pessoa = ? ";
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.setInt(1, pessoa.getIdPessoa());
+
+
+        if (stmt.executeUpdate() == 1) {
+            return pessoa;
+        }
+        return null;
+    }
+
+    @Override
+    public Pessoa pesquisarPorId(int id) throws SQLException {
+        String sql = "SELECT * from pessoa WHERE id_pessoa = ? ";
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
         
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        Pessoa pessoa = null;
 
-    @Override
-    public IEntidade alterar(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        if(rs.next()){
+            pessoa = new Pessoa();
+            pessoa.setIdPessoa(rs.getInt("id_pessoa"));
+            pessoa.setNome(rs.getString("nome"));
+            pessoa.setSexo(rs.getString("sexo"));
+            pessoa.setDataNascimento(rs.getDate("data_nascimento"));
+        }
+        
+        return pessoa;
 
-    @Override
-    public IEntidade excluir(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public IEntidade pesquisarPorId(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -44,5 +130,4 @@ public class PessoaDao implements IDao{
     public List<? extends IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }
