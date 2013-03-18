@@ -82,9 +82,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
-        edtDataNasc = new javax.swing.JTextField();
         sSexo3 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tCandidatos = new javax.swing.JTable();
@@ -92,13 +90,7 @@ public class janNovoConc extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        edtDataNasc1 = new javax.swing.JTextField();
-        edtDataNasc2 = new javax.swing.JTextField();
         edtDataNasc3 = new javax.swing.JTextField();
-        edtDataNasc4 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jCheckBoxProvaEscrita = new javax.swing.JCheckBox();
@@ -399,18 +391,9 @@ public class janNovoConc extends javax.swing.JFrame {
         jLabel22.setBounds(280, 80, 36, 17);
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setText("Email:");
-        jLabel23.setBounds(30, 230, 40, 17);
-        jLayeredPane4.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         edtNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edtNome.setBounds(30, 100, 240, 23);
         jLayeredPane4.add(edtNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        edtDataNasc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edtDataNasc.setBounds(30, 250, 240, 23);
-        jLayeredPane4.add(edtDataNasc, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         sSexo3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sSexo3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
@@ -469,41 +452,9 @@ public class janNovoConc extends javax.swing.JFrame {
         jLabel24.setBounds(30, 130, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel25.setText("RG:");
-        jLabel25.setBounds(30, 180, 30, 17);
-        jLayeredPane4.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("CPF:");
-        jLabel26.setBounds(150, 180, 50, 17);
-        jLayeredPane4.add(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel27.setText("Telefone:");
-        jLabel27.setBounds(170, 130, 60, 17);
-        jLayeredPane4.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        edtDataNasc1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edtDataNasc1.setBounds(150, 200, 120, 23);
-        jLayeredPane4.add(edtDataNasc1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        edtDataNasc2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edtDataNasc2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtDataNasc2ActionPerformed(evt);
-            }
-        });
-        edtDataNasc2.setBounds(170, 150, 100, 23);
-        jLayeredPane4.add(edtDataNasc2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         edtDataNasc3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edtDataNasc3.setBounds(30, 150, 130, 23);
         jLayeredPane4.add(edtDataNasc3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        edtDataNasc4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edtDataNasc4.setBounds(30, 200, 110, 23);
-        jLayeredPane4.add(edtDataNasc4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setBounds(400, 70, 10, 260);
@@ -638,10 +589,6 @@ public class janNovoConc extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void edtDataNasc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDataNasc2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtDataNasc2ActionPerformed
-
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
@@ -695,11 +642,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField edtCampus;
     private javax.swing.JComboBox edtCategoria1;
     private javax.swing.JTextField edtData;
-    private javax.swing.JTextField edtDataNasc;
-    private javax.swing.JTextField edtDataNasc1;
-    private javax.swing.JTextField edtDataNasc2;
     private javax.swing.JTextField edtDataNasc3;
-    private javax.swing.JTextField edtDataNasc4;
     private javax.swing.JTextField edtEdital;
     private javax.swing.JTextField edtExaminador1;
     private javax.swing.JTextField edtExaminador2;
@@ -730,11 +673,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;

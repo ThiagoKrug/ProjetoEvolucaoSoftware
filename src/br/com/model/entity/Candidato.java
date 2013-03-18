@@ -45,8 +45,8 @@ public class Candidato extends Pessoa implements IEntidade {
     @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaMemorial;
 
-    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento, String rg, String cpf, String email) {
-        super(nome, sexo, dataNascimento, rg, cpf, email);
+    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
+        super(nome, sexo, dataNascimento);
         this.aptoProvaEscrita = aptoProvaEscrita;
         this.presenteProvaEscrita = presenteProvaEscrita;
         this.aptoProvaTitulos = aptoProvaTitulos;
