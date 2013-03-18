@@ -47,5 +47,10 @@ public class CriterioAvaliacao implements IEntidade {
     public void setProvaEscrita(ProvaEscrita provaEscrita) {
         this.provaEscrita = provaEscrita;
     }
+
+    @Override
+    public String toString() {
+        return  this.criterio + " - " + this.peso ;
+    }
     
 }
