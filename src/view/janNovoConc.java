@@ -100,6 +100,12 @@ public class janNovoConc extends javax.swing.JFrame {
         edtDataNasc3 = new javax.swing.JTextField();
         edtDataNasc4 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        jPanel4 = new javax.swing.JPanel();
+        jCheckBoxProvaEscrita = new javax.swing.JCheckBox();
+        jCheckBoxProvaDeTitulos = new javax.swing.JCheckBox();
+        jCheckBoxProvaMemorial = new javax.swing.JCheckBox();
+        jCheckBoxProvaDidatica = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -138,6 +144,8 @@ public class janNovoConc extends javax.swing.JFrame {
         });
         btnVoltar.setBounds(490, 470, 80, 25);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTabbedPane5.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Área:");
@@ -199,7 +207,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 sClasseConcursoActionPerformed(evt);
             }
         });
-        sClasseConcurso.setBounds(140, 170, 90, 22);
+        sClasseConcurso.setBounds(140, 170, 90, 20);
         jLayeredPane2.add(sClasseConcurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         edital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -215,7 +223,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Dados Gerais", jPanel1);
@@ -376,7 +384,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Banca Examinador", jPanel2);
@@ -516,6 +524,53 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Candidatos", jPanel3);
 
+        jCheckBoxProvaEscrita.setText("Prova Escrita");
+
+        jCheckBoxProvaDeTitulos.setText("Prova de Titulos");
+
+        jCheckBoxProvaMemorial.setText("Prova Memorial");
+
+        jCheckBoxProvaDidatica.setText("Prova Didática");
+        jCheckBoxProvaDidatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxProvaDidaticaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Selecione os tipos de provas que fazem parte desse concurso.");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxProvaDeTitulos)
+                    .addComponent(jCheckBoxProvaMemorial)
+                    .addComponent(jCheckBoxProvaDidatica)
+                    .addComponent(jCheckBoxProvaEscrita)
+                    .addComponent(jLabel3))
+                .addContainerGap(456, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxProvaEscrita)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxProvaDeTitulos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxProvaMemorial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxProvaDidatica)
+                .addContainerGap(237, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("Provas do Concurso", jPanel4);
+
         jTabbedPane5.setBounds(0, 50, 770, 400);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -587,6 +642,10 @@ public class janNovoConc extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtDataNasc2ActionPerformed
 
+    private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -652,6 +711,10 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField edtPresidente;
     private javax.swing.JComboBox edtSexo2;
     private javax.swing.JLabel instituicao;
+    private javax.swing.JCheckBox jCheckBoxProvaDeTitulos;
+    private javax.swing.JCheckBox jCheckBoxProvaDidatica;
+    private javax.swing.JCheckBox jCheckBoxProvaEscrita;
+    private javax.swing.JCheckBox jCheckBoxProvaMemorial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -672,6 +735,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
@@ -680,6 +744,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
