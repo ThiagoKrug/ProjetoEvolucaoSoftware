@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b75cffa2-347d-4334-aae8-afae03b78431">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     candidato.`id_candidato` AS candidato_id_candidato,
+     candidato.`id_pessoa` AS candidato_id_pessoa,
+     candidato.`id_concurso` AS candidato_id_concurso,
+     candidato.`apto_prova_escrita` AS candidato_apto_prova_escrita,
+     candidato.`apto_prova_didatica` AS candidato_apto_prova_didatica,
+     candidato.`id_prova_didatica` AS candidato_id_prova_didatica,
+     candidato.`id_prova_escrita` AS candidato_id_prova_escrita,
+     pessoa.`id_pessoa` AS pessoa_id_pessoa,
+     pessoa.`nome` AS pessoa_nome,
+     pessoa.`sexo` AS pessoa_sexo,
+     pessoa.`data_nascimento` AS pessoa_data_nascimento
+FROM
+     `pessoa` pessoa INNER JOIN `candidato` candidato ON pessoa.`id_pessoa` = candidato.`id_pessoa`]]>
+	</queryString>
+	<field name="candidato_id_candidato" class="java.lang.Integer"/>
+	<field name="candidato_id_pessoa" class="java.lang.Integer"/>
+	<field name="candidato_id_concurso" class="java.lang.Integer"/>
+	<field name="candidato_apto_prova_escrita" class="java.lang.Boolean"/>
+	<field name="candidato_apto_prova_didatica" class="java.lang.Boolean"/>
+	<field name="candidato_id_prova_didatica" class="java.lang.Integer"/>
+	<field name="candidato_id_prova_escrita" class="java.lang.Integer"/>
+	<field name="pessoa_id_pessoa" class="java.lang.Integer"/>
+	<field name="pessoa_nome" class="java.lang.String"/>
+	<field name="pessoa_sexo" class="java.lang.String"/>
+	<field name="pessoa_data_nascimento" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c836b073-a6bb-4211-a2da-701c802c004b" x="211" y="30" width="235" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXEMPLO DE RELATÓRIO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7b5710ec-37e2-4dcf-9ab2-b71af9a29dff" x="13" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[candidato_id_candidato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a74fd23-b454-4e20-8e82-99a5e9e0a8e1" x="145" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[pessoa_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1d2b73a-eddb-4b69-a63f-3fc236851fbc" x="264" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[pessoa_data_nascimento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1c7a8eb8-6067-4c9c-a498-802292b77b41" x="13" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{candidato_id_candidato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6d295cf4-d037-4e6c-b353-ea2d72f9150a" x="145" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pessoa_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4bbe34c6-8c2b-4e0d-bdc7-62b5243e6367" x="264" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pessoa_data_nascimento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
