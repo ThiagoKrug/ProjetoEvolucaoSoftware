@@ -1,4 +1,4 @@
-
+//
 package br.com.model.dao;
 
 import br.com.model.entity.IEntidade;
