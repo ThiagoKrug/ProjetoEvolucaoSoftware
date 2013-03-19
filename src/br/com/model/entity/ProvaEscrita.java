@@ -12,13 +12,15 @@ public class ProvaEscrita implements IEntidade {
 
     private int idProvaEscrita;
     private Concurso concurso;
-    private int pontoSorteado;
+    private PontoProvaEscrita pontoSorteado;
+    private Date dataPontoSorteado;
     private Date horaPontoSorteado;
     private Date horaInicioProva;
     private Date horaFimProva;
     private String localRealizacao;
     private ArrayList<Candidato> candidatosAptosLeitura;
     private Date horaInicioLeitura;
+    private Date horaFimLeitura;
     private String localLeitura;
     private ArrayList<CriterioAvaliacao> criterios;
     private Date horaInicioJulgamento;
@@ -33,6 +35,15 @@ public class ProvaEscrita implements IEntidade {
         this.criterios = new ArrayList<>();
         this.pontos = new ArrayList<>();
     }
+
+    public PontoProvaEscrita getPontoSorteado() {
+        return pontoSorteado;
+    }
+
+    public void setPontoSorteado(PontoProvaEscrita pontoSorteado) {
+        this.pontoSorteado = pontoSorteado;
+    }
+    
 
     public Concurso getConcurso() {
         return concurso;
@@ -177,5 +188,111 @@ public class ProvaEscrita implements IEntidade {
         }
         return true;
     }
+
+    public Date getHoraPontoSorteado() {
+        return horaPontoSorteado;
+    }
+
+    public void setHoraPontoSorteado(Date horaPontoSorteado) {
+        this.horaPontoSorteado = horaPontoSorteado;
+    }
+
+    public Date getHoraInicioProva() {
+        return horaInicioProva;
+    }
+
+    public void setHoraInicioProva(Date horaInicioProva) {
+        this.horaInicioProva = horaInicioProva;
+    }
+
+    public Date getHoraFimProva() {
+        return horaFimProva;
+    }
+
+    public void setHoraFimProva(Date horaFimProva) {
+        this.horaFimProva = horaFimProva;
+    }
+
+    public String getLocalRealizacao() {
+        return localRealizacao;
+    }
+
+    public void setLocalRealizacao(String localRealizacao) {
+        this.localRealizacao = localRealizacao;
+    }
+
+    public ArrayList<Candidato> getCandidatosAptosLeitura() {
+        return candidatosAptosLeitura;
+    }
+
+    public void setCandidatosAptosLeitura(ArrayList<Candidato> candidatosAptosLeitura) {
+        this.candidatosAptosLeitura = candidatosAptosLeitura;
+    }
+
+    public Date getHoraInicioLeitura() {
+        return horaInicioLeitura;
+    }
+
+    public void setHoraInicioLeitura(Date horaInicioLeitura) {
+        this.horaInicioLeitura = horaInicioLeitura;
+    }
+
+    public String getLocalLeitura() {
+        return localLeitura;
+    }
+
+    public void setLocalLeitura(String localLeitura) {
+        this.localLeitura = localLeitura;
+    }
+
+    public Date getHoraInicioJulgamento() {
+        return horaInicioJulgamento;
+    }
+
+    public void setHoraInicioJulgamento(Date horaInicioJulgamento) {
+        this.horaInicioJulgamento = horaInicioJulgamento;
+    }
+
+    public String getLocalJulgamento() {
+        return localJulgamento;
+    }
+
+    public void setLocalJulgamento(String localJulgamento) {
+        this.localJulgamento = localJulgamento;
+    }
+
+    public Date getHoraInicioResultado() {
+        return horaInicioResultado;
+    }
+
+    public void setHoraInicioResultado(Date horaInicioResultado) {
+        this.horaInicioResultado = horaInicioResultado;
+    }
+
+    public String getLocalResultado() {
+        return localResultado;
+    }
+
+    public void setLocalResultado(String localResultado) {
+        this.localResultado = localResultado;
+    }
+
+    public Date getDataPontoSorteado() {
+        return dataPontoSorteado;
+    }
+
+    public void setDataPontoSorteado(Date dataPontoSorteado) {
+        this.dataPontoSorteado = dataPontoSorteado;
+    }
+
+    public Date getHoraFimLeitura() {
+        return horaFimLeitura;
+    }
+
+    public void setHoraFimLeitura(Date horaFimLeitura) {
+        this.horaFimLeitura = horaFimLeitura;
+    }
+    
+    
     
 }

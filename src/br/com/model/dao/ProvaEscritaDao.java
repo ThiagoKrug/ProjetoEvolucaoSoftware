@@ -6,10 +6,10 @@ package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.Candidato;
-import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
 import br.com.model.entity.ProvaEscrita;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,11 +28,36 @@ public class ProvaEscritaDao implements IDao {
     public ProvaEscrita inserir(IEntidade entidade) throws SQLException {
         if (entidade instanceof ProvaEscrita) {
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
-
-            String sql = "insert into prova_escrita (id_concurso) values(?) ";
+            String sql = "insert into prova_escrita ("
+                    + "id_concurso,"
+                    + "id_ponto_sorteado_prova_escrita,"
+                    + "data_ponto_sorteado,"
+                    + "hora_inicio_prova,"
+                    + "hora_fim_prova,"
+                    + "local_realizacao,"
+                    + "hora_inicio_leitura,"
+                    + "hora_fim_leitura,"
+                    + "local_leitura,"
+                    + "hora_inicio_julgamento,"
+                    + "local_julgamento,"
+                    + "hora_inicio_resultado,"
+                    + "local_resultado"
+                    + ") values(?,?,?,?,?,?,?,?,?,?,?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setInt(1, provaEscrita.getConcurso().getIdConcurso());
+                this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
+                this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
+                stmt.setDate(3, (Date) provaEscrita.getDataPontoSorteado());
+                stmt.setDate(4, (Date) provaEscrita.getHoraInicioProva());
+                stmt.setDate(5, (Date) provaEscrita.getHoraFimProva());
+                stmt.setString(6, provaEscrita.getLocalRealizacao());
+                stmt.setDate(7, (Date) provaEscrita.getHoraInicioLeitura());
+                stmt.setDate(8, (Date) provaEscrita.getHoraFimLeitura());
+                stmt.setString(9, provaEscrita.getLocalLeitura());
+                stmt.setDate(10, (Date) provaEscrita.getHoraInicioJulgamento());
+                stmt.setString(11, provaEscrita.getLocalJulgamento());
+                stmt.setDate(12, (Date) provaEscrita.getHoraInicioResultado());
+                stmt.setString(13, provaEscrita.getLocalResultado());
                 stmt.executeUpdate();
 
                 if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
@@ -67,12 +92,37 @@ public class ProvaEscritaDao implements IDao {
 
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
             String sql = "UPDATE prova_escrita SET "
+                    + "id_concurso = ?,"
                     + "id_ponto_sorteado_prova_escrita = ?,"
+                    + "data_ponto_sorteado = ? ,"
+                    + "hora_inicio_prova = ?,"
+                    + "hora_fim_prova = ?,"
+                    + "local_realizacao = ?,"
+                    + "hora_inicio_leitura = ?,"
+                    + "hora_fim_leitura = ?,"
+                    + "local_leitura = ?,"
+                    + "hora_inicio_julgamento = ?,"
+                    + "local_julgamento = ?,"
+                    + "hora_inicio_resultado = ?,"
+                    + "local_resultado = ?"
                     + "WHERE id_prova_escrita = ? ";
 
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, provaEscrita.getConcurso().getIdConcurso());
+            this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
+            this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
+            stmt.setDate(3, (Date) provaEscrita.getDataPontoSorteado());
+            stmt.setDate(4, (Date) provaEscrita.getHoraInicioProva());
+            stmt.setDate(5, (Date) provaEscrita.getHoraFimProva());
+            stmt.setString(6, provaEscrita.getLocalRealizacao());
+            stmt.setDate(7, (Date) provaEscrita.getHoraInicioLeitura());
+            stmt.setDate(8, (Date) provaEscrita.getHoraFimLeitura());
+            stmt.setString(9, provaEscrita.getLocalLeitura());
+            stmt.setDate(10, (Date) provaEscrita.getHoraInicioJulgamento());
+            stmt.setString(11, provaEscrita.getLocalJulgamento());
+            stmt.setDate(12, (Date) provaEscrita.getHoraInicioResultado());
+            stmt.setString(13, provaEscrita.getLocalResultado());
+            stmt.setInt(14, provaEscrita.getIdProvaEscrita());
 
             if (stmt.executeUpdate() == 1) {
                 return provaEscrita;
@@ -112,6 +162,17 @@ public class ProvaEscritaDao implements IDao {
             provaEscrita = new ProvaEscrita();
             provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
             provaEscrita.setConcurso(new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso")));
+            provaEscrita.setLocalJulgamento(rs.getString("local_julgamento"));
+            provaEscrita.setLocalLeitura(rs.getString("local_leitura"));
+            provaEscrita.setLocalRealizacao(rs.getString("local_realizacao"));
+            provaEscrita.setLocalResultado(rs.getString("local_resultado"));
+            provaEscrita.setHoraFimLeitura(rs.getDate("hora_fim_leitura"));
+            provaEscrita.setHoraFimProva(rs.getDate("hora_fim_prova"));
+            provaEscrita.setHoraInicioJulgamento(rs.getDate("hora_inicio_julgamento"));
+            provaEscrita.setHoraInicioLeitura(rs.getDate("hora_inicio_leitura"));
+            provaEscrita.setHoraInicioProva(rs.getDate("hora_inicio_prova"));
+            provaEscrita.setHoraInicioResultado(rs.getDate("hora_inicio_resultado"));
+            provaEscrita.setDataPontoSorteado(rs.getDate("data_ponto_sorteado"));
         }
         return provaEscrita;
     }
@@ -138,9 +199,19 @@ public class ProvaEscritaDao implements IDao {
         while (rs.next()) {
             ProvaEscrita provaEscrita = new ProvaEscrita();
             provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
-            Concurso c = (Concurso) new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso"));
-            provaEscrita.setConcurso(c);
-            
+            provaEscrita.setConcurso(new ConcursoDao().pesquisarPorId(rs.getInt("id_concurso")));
+            provaEscrita.setLocalJulgamento(rs.getString("local_julgamento"));
+            provaEscrita.setLocalLeitura(rs.getString("local_leitura"));
+            provaEscrita.setLocalRealizacao(rs.getString("local_realizacao"));
+            provaEscrita.setLocalResultado(rs.getString("local_resultado"));
+            provaEscrita.setHoraFimLeitura(rs.getDate("hora_fim_leitura"));
+            provaEscrita.setHoraFimProva(rs.getDate("hora_fim_prova"));
+            provaEscrita.setHoraInicioJulgamento(rs.getDate("hora_inicio_julgamento"));
+            provaEscrita.setHoraInicioLeitura(rs.getDate("hora_inicio_leitura"));
+            provaEscrita.setHoraInicioProva(rs.getDate("hora_inicio_prova"));
+            provaEscrita.setHoraInicioResultado(rs.getDate("hora_inicio_resultado"));
+            provaEscrita.setDataPontoSorteado(rs.getDate("data_ponto_sorteado"));
+
             /**
              * Buscar candidatos
              */
@@ -167,10 +238,16 @@ public class ProvaEscritaDao implements IDao {
             /**
              * Fim buscar candidatos
              */
-            
-            
             listProvaEscrita.add(provaEscrita);
         }
         return listProvaEscrita;
+    }
+
+    private void setInt(PreparedStatement stmt, int index, int value) throws SQLException {
+        if (value != 0) {
+            stmt.setInt(index, value);
+        } else {
+            stmt.setString(index, null);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package br.com.main;
 
-import br.com.model.entity.Classe;
 import javax.swing.JOptionPane;
 
 /**
