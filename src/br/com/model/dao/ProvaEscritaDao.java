@@ -192,7 +192,7 @@ public class ProvaEscritaDao implements IDao {
     }
 
     private List<ProvaEscrita> pesquisar(String sql) throws SQLException {
-        List<ProvaEscrita> listProvaEscrita = new ArrayList<>();
+        List<ProvaEscrita> listProvaEscrita = new ArrayList<ProvaEscrita>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();

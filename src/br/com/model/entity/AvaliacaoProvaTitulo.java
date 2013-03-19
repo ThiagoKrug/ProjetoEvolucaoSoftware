@@ -26,7 +26,7 @@ public class AvaliacaoProvaTitulo implements IEntidade {
     private Candidato candidato;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private ArrayList<AvalicaoItem> avaliacaoItens;
+    private ArrayList<AvaliacaoItem> avaliacaoItens;
 
     public int getIdAvaliacaoProvaTitulo() {
         return idAvaliacaoProvaTitulo;
@@ -52,11 +52,11 @@ public class AvaliacaoProvaTitulo implements IEntidade {
         this.candidato = candidato;
     }
 
-    public ArrayList<AvalicaoItem> getAvaliacaoItens() {
+    public ArrayList<AvaliacaoItem> getAvaliacaoItens() {
         return avaliacaoItens;
     }
 
-    public void setAvaliacaoItens(ArrayList<AvalicaoItem> avaliacaoItens) {
+    public void setAvaliacaoItens(ArrayList<AvaliacaoItem> avaliacaoItens) {
         this.avaliacaoItens = avaliacaoItens;
     }
     

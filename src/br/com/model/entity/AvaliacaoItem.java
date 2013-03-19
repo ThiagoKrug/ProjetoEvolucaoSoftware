@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Bruno
  */
-public class AvalicaoItem implements IEntidade {
+public class AvaliacaoItem implements IEntidade {
     
     @NotNull(message="O valor não pode ser nulo!")
     private int idAvaliacaoItem;
