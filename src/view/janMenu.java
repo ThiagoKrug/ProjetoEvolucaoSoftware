@@ -57,7 +57,7 @@ public class janMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonSalvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\save.png")); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -95,7 +95,7 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbertura.setBounds(10, 110, 90, 90);
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonNovo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\new_page.png")); // NOI18N
+        jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/new_page.png"))); // NOI18N
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -104,7 +104,7 @@ public class janMenu extends javax.swing.JFrame {
         jButtonNovo.setBounds(0, 0, 40, 40);
         jLayeredPane1.add(jButtonNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAbrir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\folder.png")); // NOI18N
+        jButtonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/folder.png"))); // NOI18N
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
