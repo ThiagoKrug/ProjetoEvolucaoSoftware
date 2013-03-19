@@ -78,7 +78,7 @@ public class ConcursoDao implements IDao {
     @Override
     public Concurso alterar(IEntidade entidade) throws SQLException {
         
-        
+        return null;
         
     }
 
