@@ -56,8 +56,10 @@ public class janMenu extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
+        jButtonSalvar.setToolTipText("Salvar Concurso");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -96,6 +98,7 @@ public class janMenu extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/new_page.png"))); // NOI18N
+        jButtonNovo.setToolTipText("Novo Concurso");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -105,6 +108,7 @@ public class janMenu extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/folder.png"))); // NOI18N
+        jButtonAbrir.setToolTipText("Abrir Concurso");
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
