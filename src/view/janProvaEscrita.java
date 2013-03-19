@@ -425,13 +425,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jScrollPane5.setBounds(70, 150, 380, 146);
         jLayeredPane6.add(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalLeitura.setBounds(170, 70, 280, 22);
+        jTextFieldLocalLeitura.setBounds(170, 70, 280, 30);
         jLayeredPane6.add(jTextFieldLocalLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraLeitura.setBounds(620, 70, 80, 22);
+        jTextFieldHoraLeitura.setBounds(620, 70, 80, 30);
         jLayeredPane6.add(jTextFieldHoraLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAtaLeitura.setText("Criar Ata de Leitura");
-        jButtonCriarAtaLeitura.setBounds(470, 150, 160, 25);
+        jButtonCriarAtaLeitura.setBounds(470, 150, 160, 40);
         jLayeredPane6.add(jButtonCriarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -462,13 +462,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel19.setText("Horário do Julgamento:");
         jLabel19.setBounds(160, 150, 140, 16);
         jLayeredPane7.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraJulgamento.setBounds(300, 150, 70, 22);
+        jTextFieldHoraJulgamento.setBounds(300, 150, 70, 30);
         jLayeredPane7.add(jTextFieldHoraJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalJulgamento.setBounds(300, 120, 280, 22);
+        jTextFieldLocalJulgamento.setBounds(300, 112, 280, 30);
         jLayeredPane7.add(jTextFieldLocalJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAtaJulgamento.setText("Criar Ata de Julgamento");
-        jButtonAtaJulgamento.setBounds(380, 150, 200, 25);
+        jButtonAtaJulgamento.setBounds(380, 150, 200, 30);
         jLayeredPane7.add(jButtonAtaJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -491,13 +491,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel21.setText("Horário de Divulgação do Resultado:");
         jLabel21.setBounds(80, 150, 220, 16);
         jLayeredPane8.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraDivulgacaoResultado.setBounds(300, 150, 70, 22);
+        jTextFieldHoraDivulgacaoResultado.setBounds(300, 150, 70, 30);
         jLayeredPane8.add(jTextFieldHoraDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalDivulgacaoResultado.setBounds(300, 120, 280, 22);
+        jTextFieldLocalDivulgacaoResultado.setBounds(300, 112, 280, 30);
         jLayeredPane8.add(jTextFieldLocalDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAtaResultado.setText("Criar Ata do Resultado");
-        jButtonAtaResultado.setBounds(380, 150, 200, 25);
+        jButtonAtaResultado.setBounds(380, 150, 200, 30);
         jLayeredPane8.add(jButtonAtaResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
