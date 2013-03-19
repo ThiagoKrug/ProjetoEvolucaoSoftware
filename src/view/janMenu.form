@@ -123,7 +123,7 @@
         <Component class="javax.swing.JButton" name="jButtonSalvar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\save.png"/>
+              <Image iconType="3" name="/view/icones/save.png"/>
             </Property>
           </Properties>
           <Events>
@@ -138,7 +138,7 @@
         <Component class="javax.swing.JButton" name="jButtonEscrita">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\prova1.png"/>
+              <Image iconType="3" name="/view/icones/prova1.png"/>
             </Property>
           </Properties>
           <Events>
@@ -153,7 +153,7 @@
         <Component class="javax.swing.JButton" name="jButtonResultado">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\results.png"/>
+              <Image iconType="3" name="/view/icones/results.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -165,7 +165,7 @@
         <Component class="javax.swing.JButton" name="jButtonMemorial">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\prova5.png"/>
+              <Image iconType="3" name="/view/icones/prova5.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -177,7 +177,7 @@
         <Component class="javax.swing.JButton" name="jButtonDidatica">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\prova7.png"/>
+              <Image iconType="3" name="/view/icones/prova7.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -189,7 +189,7 @@
         <Component class="javax.swing.JButton" name="jButtonTitulos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\prova6.png"/>
+              <Image iconType="3" name="/view/icones/prova6.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -201,7 +201,7 @@
         <Component class="javax.swing.JButton" name="jButtonAbertura">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\abertura.png"/>
+              <Image iconType="3" name="/view/icones/abertura.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -213,7 +213,7 @@
         <Component class="javax.swing.JButton" name="jButtonNovo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\new_page.png"/>
+              <Image iconType="3" name="/view/icones/new_page.png"/>
             </Property>
           </Properties>
           <Events>
@@ -228,7 +228,7 @@
         <Component class="javax.swing.JButton" name="jButtonAbrir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Sendeski\Documents\NetBeansProjects\ProjetoEvolucaoSoftware\ProjetoEvolucaoSoftware\src\view\icones\folder.png"/>
+              <Image iconType="3" name="/view/icones/folder.png"/>
             </Property>
           </Properties>
           <Constraints>

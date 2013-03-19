@@ -57,7 +57,7 @@ public class janMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonSalvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\save.png")); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -66,7 +66,7 @@ public class janMenu extends javax.swing.JFrame {
         jButtonSalvar.setBounds(80, 0, 40, 40);
         jLayeredPane1.add(jButtonSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonEscrita.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\prova1.png")); // NOI18N
+        jButtonEscrita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova1.png"))); // NOI18N
         jButtonEscrita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEscritaActionPerformed(evt);
@@ -75,27 +75,27 @@ public class janMenu extends javax.swing.JFrame {
         jButtonEscrita.setBounds(100, 110, 90, 90);
         jLayeredPane1.add(jButtonEscrita, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonResultado.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\results.png")); // NOI18N
+        jButtonResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/results.png"))); // NOI18N
         jButtonResultado.setBounds(460, 110, 90, 90);
         jLayeredPane1.add(jButtonResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonMemorial.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\prova5.png")); // NOI18N
+        jButtonMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova5.png"))); // NOI18N
         jButtonMemorial.setBounds(370, 110, 90, 90);
         jLayeredPane1.add(jButtonMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonDidatica.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\prova7.png")); // NOI18N
+        jButtonDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova7.png"))); // NOI18N
         jButtonDidatica.setBounds(280, 110, 90, 90);
         jLayeredPane1.add(jButtonDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonTitulos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\prova6.png")); // NOI18N
+        jButtonTitulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova6.png"))); // NOI18N
         jButtonTitulos.setBounds(190, 110, 90, 90);
         jLayeredPane1.add(jButtonTitulos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAbertura.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\abertura.png")); // NOI18N
+        jButtonAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/abertura.png"))); // NOI18N
         jButtonAbertura.setBounds(10, 110, 90, 90);
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonNovo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\new_page.png")); // NOI18N
+        jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/new_page.png"))); // NOI18N
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -104,7 +104,7 @@ public class janMenu extends javax.swing.JFrame {
         jButtonNovo.setBounds(0, 0, 40, 40);
         jLayeredPane1.add(jButtonNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAbrir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\folder.png")); // NOI18N
+        jButtonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/folder.png"))); // NOI18N
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
