@@ -27,7 +27,7 @@ public class PessoaDao implements IDao {
             Pessoa pessoa = (Pessoa) entidade;
 
             String sql = "insert into pessoa (id_pessoa, nome, sexo, data_nascimento)";
-            sql += " vales (?,?,?,?)";
+            sql += " values (?,?,?,?)";
 
             Connection connection = ConnectionFactory.getConnection();
 
@@ -62,11 +62,11 @@ public class PessoaDao implements IDao {
         if (entidade instanceof Pessoa) {
             Pessoa pessoa = (Pessoa) entidade;
             String sql = "UPDATE pessoa SET"
-                    + "id_pessoa = ?,"
-                    + "nome = ?,"
-                    + "sexo = ?,"
-                    + "data_nascimento = ?,"
-                    + "WHERE id_pessoa = ?";
+                    + " id_pessoa = ?,"
+                    + " nome = ?,"
+                    + " sexo = ?,"
+                    + " data_nascimento = ?,"
+                    + " WHERE id_pessoa = ?";
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -131,7 +131,7 @@ public class PessoaDao implements IDao {
 
     @Override
     public List<? extends IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) throws SQLException {
-        String sql = "SELECT * from pessoa ORDER BY" + criterioOrdenamento;
+        String sql = "SELECT * from pessoa ORDER BY " + criterioOrdenamento;
         List<Pessoa> listPessoa = pesquisar(sql);
         return listPessoa;
     }
