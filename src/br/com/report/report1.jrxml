@@ -34,13 +34,21 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c836b073-a6bb-4211-a2da-701c802c004b" x="211" y="30" width="235" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXEMPLO DE RELATÓRIO]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="7b5710ec-37e2-4dcf-9ab2-b71af9a29dff" x="13" y="2" width="100" height="20"/>
 				<textElement/>
@@ -59,19 +67,19 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="44" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<textField>
-				<reportElement uuid="1c7a8eb8-6067-4c9c-a498-802292b77b41" x="13" y="20" width="100" height="20"/>
+				<reportElement uuid="1c7a8eb8-6067-4c9c-a498-802292b77b41" x="13" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{candidato_id_candidato}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="6d295cf4-d037-4e6c-b353-ea2d72f9150a" x="145" y="20" width="100" height="20"/>
+				<reportElement uuid="6d295cf4-d037-4e6c-b353-ea2d72f9150a" x="145" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{pessoa_nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="4bbe34c6-8c2b-4e0d-bdc7-62b5243e6367" x="264" y="20" width="100" height="20"/>
+				<reportElement uuid="4bbe34c6-8c2b-4e0d-bdc7-62b5243e6367" x="264" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{pessoa_data_nascimento}]]></textFieldExpression>
 			</textField>

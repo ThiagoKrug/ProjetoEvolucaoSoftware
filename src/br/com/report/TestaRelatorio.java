@@ -19,7 +19,7 @@ public class TestaRelatorio {
             public void abrirRelatorioTeste(){
         
           //InputStream inputStream = getClass().getResourceAsStream("../relatorios/" + rel);
-        InputStream inputStream = getClass().getResourceAsStream("report1.jaspser");
+        InputStream inputStream = getClass().getResourceAsStream("report1.jasper");
 
         // mapa de parâmetros do relatório (ainda vamos aprender a usar)
         Map parametros = new HashMap();
