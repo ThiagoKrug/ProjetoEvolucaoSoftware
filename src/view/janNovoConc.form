@@ -127,7 +127,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane2" alignment="1" pref="340" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane2" alignment="1" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -318,6 +318,13 @@
                         </Constraint>
                       </Constraints>
                     </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+                          <JLayeredPaneConstraints x="540" y="220" width="180" height="-1" layer="0" position="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -339,7 +346,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane3" alignment="0" pref="340" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane3" alignment="0" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -752,7 +759,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane4" alignment="0" pref="340" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane4" alignment="0" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -969,7 +976,7 @@
                               <Component id="jCheckBoxProvaEscrita" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="366" max="32767" attributes="0"/>
+                          <EmptySpace pref="426" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -986,7 +993,7 @@
                           <Component id="jCheckBoxProvaMemorial" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jCheckBoxProvaDidatica" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="193" max="32767" attributes="0"/>
+                          <EmptySpace pref="207" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

@@ -50,6 +50,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jTextFieldArea = new javax.swing.JTextField();
         jComboBoxClasse = new javax.swing.JComboBox();
         edital = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
@@ -201,13 +202,15 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxClasseActionPerformed(evt);
             }
         });
-        jComboBoxClasse.setBounds(340, 250, 90, 22);
+        jComboBoxClasse.setBounds(340, 250, 90, 20);
         jLayeredPane2.add(jComboBoxClasse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         edital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edital.setText("Edital:");
         edital.setBounds(210, 200, 50, 17);
         jLayeredPane2.add(edital, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(540, 220, 180, 20);
+        jLayeredPane2.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,7 +220,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Dados Gerais", jPanel1);
@@ -378,7 +381,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Banca Examinador", jPanel2);
@@ -476,7 +479,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Candidatos", jPanel3);
@@ -508,7 +511,7 @@ public class janNovoConc extends javax.swing.JFrame {
                     .addComponent(jCheckBoxProvaDidatica)
                     .addComponent(jCheckBoxProvaEscrita)
                     .addComponent(jLabel3))
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,7 +526,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 .addComponent(jCheckBoxProvaMemorial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBoxProvaDidatica)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Provas do Concurso", jPanel4);
@@ -657,6 +660,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxSexo2;
     private javax.swing.JComboBox jComboBoxSexo3;
     private javax.swing.JComboBox jComboBoxSexo4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
