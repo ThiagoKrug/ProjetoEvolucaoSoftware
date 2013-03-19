@@ -21,6 +21,14 @@ public class Database {
 
     private String database;
     private Statement stmt;
+    
+    public static void main(String[] args) {
+        Database db = new Database();
+        db.deletaBanco();
+        db.criarBanco();
+        db.criarTabelas();
+        db.populate();
+    }
 
     public Database() {
         this.database = ConfigurationFactory.getConfiguration().get("db.database");
