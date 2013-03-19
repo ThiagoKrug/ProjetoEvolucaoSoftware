@@ -3,7 +3,9 @@ package view;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.CriterioAvaliacaoDao;
 import br.com.model.dao.PontoProvaEscritaDao;
+import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacao;
 import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
@@ -27,6 +29,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     private List<Candidato> listCandidatos;
     private ProvaEscrita provaEscrita;
+    private ProvaEscritaDao pdao;
 
     /**
      * Creates new form janNovoConc
@@ -35,6 +38,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         super("Configurações do Concurso");
         initComponents();
         this.provaEscrita = new ProvaEscrita();
+        this.pdao =new ProvaEscritaDao();
+        this.provaEscrita.setConcurso(new Concurso());
+        this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
+        try {
+            this.pdao.inserir(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.carregarCandidatos();
 
 
