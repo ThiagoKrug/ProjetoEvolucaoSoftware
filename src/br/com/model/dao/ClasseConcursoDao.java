@@ -86,7 +86,7 @@ public class ClasseConcursoDao implements IDao {
 
     @Override
     public ClasseConcurso pesquisarPorId(int id) throws SQLException {
-        String sql = "SELECT * from class_concurso WHERE id_class = ? ";
+        String sql = "SELECT * from classe_concurso WHERE id_classe = ? ";
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
