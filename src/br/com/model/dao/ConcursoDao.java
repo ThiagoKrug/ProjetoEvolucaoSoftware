@@ -2,6 +2,8 @@
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
+import br.com.model.entity.Campus;
+import br.com.model.entity.ClasseConcurso;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
 import java.sql.Connection;
@@ -9,7 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import util.Datas;
 
 /**
  * @author Thiago Lima <thiagolimaes@gmail.com>
@@ -110,7 +116,41 @@ public class ConcursoDao implements IDao {
 
     @Override
     public Concurso pesquisarPorId(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Datas datas            = new Datas();
+        Concurso concurso      = new Concurso();
+        
+        String sql             = " SELECT * FROM concurso WHERE id_concurso = ? ";
+               
+        Connection connection  = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        
+        while ( rs.next() ) {
+            
+            concurso.setIdConcurso( rs.getInt( "id_concurso" ) );
+            concurso.setMinisterio( rs.getString( "ministerio" ) );
+            concurso.setInstituicao( rs.getString( "instituicao" ) );
+            concurso.setArea( rs.getString( "area" ) );
+            concurso.setEdital( rs.getString( "edital" ) );
+            concurso.setDataInicio( rs.getDate("data_inicio") );
+            concurso.setHoraInicio( rs.getDate("data_inicio") );
+            concurso.setTemProvaEscrita( rs.getBoolean( "tem_prova_escrita" ) );
+            concurso.setTemProvaTitulos( rs.getBoolean( "tem_prova_titulo" ) );
+            concurso.setTemProvaDidática( rs.getBoolean( "tem_prova_didatica" ) );
+            concurso.setTemProvaMemorial( rs.getBoolean( "tem_prova_memorial" ) );
+            
+            CampusDao campusDao = new CampusDao();
+            concurso.setCampus( (Campus) campusDao.pesquisarPorId( rs.getInt( "id_campus" ) ) );
+            
+            ClasseConcursoDao classeConcursoDao = new ClasseConcursoDao();
+            concurso.setClasseConcurso( (ClasseConcurso) classeConcursoDao.pesquisarPorId( rs.getInt( "id_classe_concurso" ) ) );
+            
+        }
+        
+        return concurso;
+        
     }
 
     @Override

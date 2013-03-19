@@ -83,4 +83,8 @@ public class ProvaTitulos implements IEntidade {
         this.classe3 = classe3;
     }
     
+    public void criarProvaTitulos() {
+        
+    }
+    
 }
