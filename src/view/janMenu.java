@@ -36,6 +36,12 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbertura = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonAbrir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -99,6 +105,36 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbrir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sendeski\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\ProjetoEvolucaoSoftware\\src\\view\\icones\\folder.png")); // NOI18N
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Abertura");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel1.setBounds(14, 204, 80, 15);
+        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Prova Escrita");
+        jLabel2.setBounds(104, 204, 80, 15);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText("Prova de Títulos");
+        jLabel3.setBounds(194, 204, 80, 15);
+        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Prova Didática");
+        jLabel4.setBounds(284, 204, 80, 15);
+        jLayeredPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Prova Memorial");
+        jLabel5.setBounds(374, 204, 80, 15);
+        jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Resultados");
+        jLabel6.setBounds(464, 204, 80, 15);
+        jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu1.setText("Arquivos ");
 
@@ -212,6 +248,12 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonResultado;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTitulos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
