@@ -166,7 +166,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jTableCriteriosMemorial.getColumnModel().getColumn(0).setResizable(false);
         jTableCriteriosMemorial.getColumnModel().getColumn(1).setResizable(false);
 
-        jScrollPane3.setBounds(50, 50, 530, 220);
+        jScrollPane3.setBounds(50, 50, 530, 210);
         jLayeredPane3.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -197,7 +197,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="50" y="50" width="530" height="220" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="50" y="50" width="530" height="210" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
 
