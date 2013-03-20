@@ -244,7 +244,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel5.setText("Local de Realização da Prova de Memorial:");
         jLabel5.setBounds(180, 100, 280, 16);
         jLayeredPane5.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalProvaMemorial.setBounds(180, 122, 250, 30);
+        jTextFieldLocalProvaMemorial.setBounds(150, 122, 320, 30);
         jLayeredPane5.add(jTextFieldLocalProvaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAtaMemorial.setText("Criar Ata de Realização da Prova de Memorial");

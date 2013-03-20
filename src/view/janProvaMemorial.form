@@ -428,7 +428,7 @@
                     <Component class="javax.swing.JTextField" name="jTextFieldLocalProvaMemorial">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="180" y="122" width="250" height="30" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="150" y="122" width="320" height="30" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

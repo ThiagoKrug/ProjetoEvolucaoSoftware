@@ -43,13 +43,13 @@ public class janNovoConc extends javax.swing.JFrame {
         jTextFieldMinisterio = new javax.swing.JTextField();
         jTextFieldInstituicao = new javax.swing.JTextField();
         jTextFieldEdital = new javax.swing.JTextField();
-        jTextFieldData = new javax.swing.JTextField();
         campus = new javax.swing.JLabel();
         classe = new javax.swing.JLabel();
         jTextFieldCampus = new javax.swing.JTextField();
         jTextFieldArea = new javax.swing.JTextField();
         jComboBoxClasse = new javax.swing.JComboBox();
         edital = new javax.swing.JLabel();
+        jDateChooserData = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
@@ -90,10 +90,10 @@ public class janNovoConc extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jTextFieldDataNasc4 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jCheckBoxProvaEscrita = new javax.swing.JCheckBox();
         jCheckBoxProvaDeTitulos = new javax.swing.JCheckBox();
@@ -116,7 +116,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jButtonProximoActionPerformed(evt);
             }
         });
-        jButtonProximo.setBounds(620, 440, 90, 25);
+        jButtonProximo.setBounds(620, 435, 90, 30);
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -126,7 +126,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setBounds(520, 440, 100, 25);
+        jButtonCancelar.setBounds(520, 435, 100, 30);
         jLayeredPane1.add(jButtonCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -136,7 +136,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jButtonVoltarActionPerformed(evt);
             }
         });
-        jButtonVoltar.setBounds(440, 440, 80, 25);
+        jButtonVoltar.setBounds(440, 435, 80, 30);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
@@ -162,20 +162,16 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane2.add(data, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldMinisterio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldMinisterio.setBounds(210, 70, 320, 23);
+        jTextFieldMinisterio.setBounds(210, 70, 320, 30);
         jLayeredPane2.add(jTextFieldMinisterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldInstituicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldInstituicao.setBounds(210, 120, 320, 23);
+        jTextFieldInstituicao.setBounds(210, 120, 320, 30);
         jLayeredPane2.add(jTextFieldInstituicao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldEdital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldEdital.setBounds(210, 220, 150, 23);
+        jTextFieldEdital.setBounds(210, 220, 150, 30);
         jLayeredPane2.add(jTextFieldEdital, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTextFieldData.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldData.setBounds(370, 220, 160, 23);
-        jLayeredPane2.add(jTextFieldData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         campus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campus.setText("Campus:");
@@ -188,11 +184,11 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane2.add(classe, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCampus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldCampus.setBounds(210, 170, 150, 23);
+        jTextFieldCampus.setBounds(210, 170, 150, 30);
         jLayeredPane2.add(jTextFieldCampus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldArea.setBounds(370, 170, 160, 23);
+        jTextFieldArea.setBounds(370, 170, 160, 30);
         jLayeredPane2.add(jTextFieldArea, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxClasse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Adjunto", "Assistente", "Auxiliar" }));
@@ -201,13 +197,15 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxClasseActionPerformed(evt);
             }
         });
-        jComboBoxClasse.setBounds(340, 250, 90, 22);
+        jComboBoxClasse.setBounds(340, 250, 90, 30);
         jLayeredPane2.add(jComboBoxClasse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         edital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edital.setText("Edital:");
         edital.setBounds(210, 200, 50, 17);
         jLayeredPane2.add(edital, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooserData.setBounds(370, 220, 160, 30);
+        jLayeredPane2.add(jDateChooserData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,24 +215,24 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Dados Gerais", jPanel1);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Presidente:");
-        jLabel9.setBounds(200, 20, 70, 17);
+        jLabel9.setBounds(200, 10, 70, 17);
         jLayeredPane3.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Sexo:");
-        jLabel10.setBounds(450, 20, 50, 17);
+        jLabel10.setBounds(450, 10, 50, 17);
         jLayeredPane3.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Outro:");
-        jLabel11.setBounds(350, 70, 70, 20);
+        jLabel11.setBounds(350, 60, 70, 20);
         jLayeredPane3.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldPresidente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -243,11 +241,11 @@ public class janNovoConc extends javax.swing.JFrame {
                 jTextFieldPresidenteActionPerformed(evt);
             }
         });
-        jTextFieldPresidente.setBounds(200, 40, 240, 23);
+        jTextFieldPresidente.setBounds(200, 30, 240, 30);
         jLayeredPane3.add(jTextFieldPresidente, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldOutro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldOutro.setBounds(350, 90, 200, 23);
+        jTextFieldOutro.setBounds(350, 80, 200, 30);
         jLayeredPane3.add(jTextFieldOutro, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -257,19 +255,19 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxCategoriaActionPerformed(evt);
             }
         });
-        jComboBoxCategoria.setBounds(200, 90, 140, 23);
+        jComboBoxCategoria.setBounds(200, 80, 140, 30);
         jLayeredPane3.add(jComboBoxCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo.setBounds(450, 40, 100, 23);
+        jComboBoxSexo.setBounds(450, 30, 100, 30);
         jLayeredPane3.add(jComboBoxSexo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Categoria:");
-        jLabel12.setBounds(200, 70, 70, 20);
+        jLabel12.setBounds(200, 60, 70, 20);
         jLayeredPane3.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSeparator1.setBounds(0, 230, 730, 20);
+        jSeparator1.setBounds(0, 240, 730, 10);
         jLayeredPane3.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -283,7 +281,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jTextFieldExaminador1ActionPerformed(evt);
             }
         });
-        jTextFieldExaminador1.setBounds(200, 150, 240, 23);
+        jTextFieldExaminador1.setBounds(200, 150, 240, 30);
         jLayeredPane3.add(jTextFieldExaminador1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -298,7 +296,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxCategoria1ActionPerformed(evt);
             }
         });
-        jComboBoxCategoria1.setBounds(200, 200, 140, 23);
+        jComboBoxCategoria1.setBounds(200, 200, 140, 30);
         jLayeredPane3.add(jComboBoxCategoria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -312,23 +310,23 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane3.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldOutro1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldOutro1.setBounds(350, 200, 200, 23);
+        jTextFieldOutro1.setBounds(350, 200, 200, 30);
         jLayeredPane3.add(jTextFieldOutro1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo2.setBounds(450, 150, 100, 23);
+        jComboBoxSexo2.setBounds(450, 150, 100, 30);
         jLayeredPane3.add(jComboBoxSexo2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator2.setBounds(0, 120, 730, 20);
         jLayeredPane3.add(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldOutro3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldOutro3.setBounds(350, 310, 200, 23);
+        jTextFieldOutro3.setBounds(350, 320, 200, 30);
         jLayeredPane3.add(jTextFieldOutro3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo3.setBounds(450, 260, 100, 23);
+        jComboBoxSexo3.setBounds(450, 270, 100, 30);
         jLayeredPane3.add(jComboBoxSexo3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldExaminador3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -337,17 +335,17 @@ public class janNovoConc extends javax.swing.JFrame {
                 jTextFieldExaminador3ActionPerformed(evt);
             }
         });
-        jTextFieldExaminador3.setBounds(200, 260, 240, 23);
+        jTextFieldExaminador3.setBounds(200, 270, 240, 30);
         jLayeredPane3.add(jTextFieldExaminador3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Outro:");
-        jLabel23.setBounds(350, 290, 70, 20);
+        jLabel23.setBounds(350, 300, 70, 20);
         jLayeredPane3.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Categoria:");
-        jLabel25.setBounds(200, 290, 70, 20);
+        jLabel25.setBounds(200, 300, 70, 20);
         jLayeredPane3.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCategoria3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -357,17 +355,17 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxCategoria3ActionPerformed(evt);
             }
         });
-        jComboBoxCategoria3.setBounds(200, 310, 140, 23);
+        jComboBoxCategoria3.setBounds(200, 320, 140, 30);
         jLayeredPane3.add(jComboBoxCategoria3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Examinador:");
-        jLabel26.setBounds(200, 240, 90, 17);
+        jLabel26.setBounds(200, 250, 90, 17);
         jLayeredPane3.add(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Sexo:");
-        jLabel27.setBounds(450, 240, 50, 17);
+        jLabel27.setBounds(450, 250, 50, 17);
         jLayeredPane3.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -378,7 +376,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Banca Examinador", jPanel2);
@@ -394,12 +392,12 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldNome.setBounds(20, 90, 240, 23);
+        jTextFieldNome.setBounds(20, 90, 240, 30);
         jLayeredPane4.add(jTextFieldNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo4.setBounds(270, 90, 100, 23);
+        jComboBoxSexo4.setBounds(270, 90, 100, 30);
         jLayeredPane4.add(jComboBoxSexo4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         tCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -436,27 +434,23 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jButtonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setBounds(220, 170, 100, 25);
+        jButtonExcluir.setBounds(220, 170, 100, 30);
         jLayeredPane4.add(jButtonExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditar.setText("Editar");
-        jButtonEditar.setBounds(120, 170, 100, 25);
+        jButtonEditar.setBounds(120, 170, 100, 30);
         jLayeredPane4.add(jButtonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAdicionar.setText("Adicionar");
-        jButtonAdicionar.setBounds(20, 170, 100, 25);
+        jButtonAdicionar.setBounds(20, 170, 100, 30);
         jLayeredPane4.add(jButtonAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data de Nascimento:");
         jLabel24.setBounds(20, 120, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTextFieldDataNasc4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldDataNasc4.setBounds(20, 140, 130, 23);
-        jLayeredPane4.add(jTextFieldDataNasc4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator3.setBounds(0, 280, 730, 10);
         jLayeredPane4.add(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -465,6 +459,8 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator5.setBounds(0, 30, 730, 10);
         jLayeredPane4.add(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(20, 140, 150, 30);
+        jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -476,7 +472,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Candidatos", jPanel3);
@@ -523,12 +519,12 @@ public class janNovoConc extends javax.swing.JFrame {
                 .addComponent(jCheckBoxProvaMemorial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBoxProvaDidatica)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Provas do Concurso", jPanel4);
 
-        jTabbedPane5.setBounds(0, 50, 740, 370);
+        jTabbedPane5.setBounds(0, 50, 740, 380);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -657,6 +653,8 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxSexo2;
     private javax.swing.JComboBox jComboBoxSexo3;
     private javax.swing.JComboBox jComboBoxSexo4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooserData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -692,8 +690,6 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextFieldArea;
     private javax.swing.JTextField jTextFieldCampus;
-    private javax.swing.JTextField jTextFieldData;
-    private javax.swing.JTextField jTextFieldDataNasc4;
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldExaminador1;
     private javax.swing.JTextField jTextFieldExaminador3;
