@@ -7,6 +7,8 @@ package br.com.model.dao;
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.IEntidade;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,11 +53,18 @@ public class AberturaDao implements IDao {
         }
         
         public void prepare(PreparedStatement stmt, Abertura abertura) throws SQLException{
-            HashMap<String, Object> map = abertura.getTablemap();
-            int i = 1;
-            while (i < this.campos.length - 1) {
-                this.setStatement(i, stmt, map.get(this.campos[i][0]));
-                i++;
+            try {
+                HashMap<String, Method[]> map = abertura.getTablemap();
+                int i = 1;
+                while (i < this.campos.length - 1) {
+                    Method method = map.get(this.campos[i][0])[0];
+                    this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
+                    i++;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e2) {
+                e2.printStackTrace();
             }
 //            stmt.setDate(1, new java.sql.Date(abertura.getHoraInicio().getTime()));
 //            stmt.setString(2, abertura.getLocal());
@@ -64,19 +73,35 @@ public class AberturaDao implements IDao {
 //            stmt.setInt(5, abertura.getIdConcurso());
         }
         
+        private Integer s_to_int(String s) {
+            if (s.equals("Integer")) {
+                return 0;
+            }
+            if (s.equals("String")) {
+                return 1;
+            }
+            if (s.equals("Date")) {
+                return 2;
+            }
+            if (s.equals("Boolean")) {
+                return 3;
+            }
+            return -1;
+        }
+        
         public void setStatement(Integer i, PreparedStatement stmt, Object stuff) throws SQLException{
-            switch (this.campos[i][1]) {
-                case "Integer":
+            switch (this.s_to_int(this.campos[i][1])) {
+                case 0:
                     stmt.setInt(i, (Integer)stuff);
                     break;
-                case "String":
+                case 1:
                     stmt.setString(i, (String)stuff);
                     break;
-                case "Date":
+                case 2:
                     java.util.Date date = (java.util.Date)stuff;
                     stmt.setDate(i, new java.sql.Date(date.getTime()));
                     break;
-                case "Boolean":
+                case 3:
                     stmt.setBoolean(i, (Boolean)stuff);
                     break;
             }
@@ -97,7 +122,14 @@ public class AberturaDao implements IDao {
             this.prepare(stmt, abertura);
             Integer endField = this.campos.length;
             String idField = this.campos[0][0];
-            stmt.setInt(endField, (Integer)abertura.getTablemap().get(idField));
+            try {
+                Method method = abertura.getTablemap().get(idField)[0];
+                stmt.setInt(endField, (Integer)method.invoke(abertura, new Object[] {}));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e2) {
+                e2.printStackTrace();
+            }
         }
         
         public String getDeleteSql() {
@@ -113,13 +145,22 @@ public class AberturaDao implements IDao {
         }
         
         public void setsFromDatabase(Abertura abertura, ResultSet rs) throws SQLException {
-            int i = 0;
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            while (i < this.campos.length) {
-                map.put(this.campos[i][0], rs.getObject(this.campos[i][0]));
-                i++;
+            try {
+                int i = 0;
+                HashMap<String, Method[]> map = abertura.getTablemap();
+                while (i < this.campos.length) {
+                    Method method = map.get(this.campos[i][0])[1];
+                    method.invoke(abertura, new Object [] {
+                        method.getParameterTypes()[0].cast(rs.getObject(this.campos[i][0]))
+                    });
+                    //map.put(this.campos[i][0], rs.getObject(this.campos[i][0]));
+                    i++;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e2) {
+                e2.printStackTrace();
             }
-            abertura.setTablemap(map);
 //            abertura.setEmissor(rs.getString(this.campos[4][0]));
 //            abertura.setHoraInicio(rs.getDate(this.campos[1][0]));
 //            abertura.setIdAbertura(rs.getInt(this.campos[0][0]));
