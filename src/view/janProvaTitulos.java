@@ -37,7 +37,18 @@ public class janProvaTitulos extends javax.swing.JFrame {
         jTextFieldSubTotal = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextFieldSubTotal1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLayeredPane4 = new javax.swing.JLayeredPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jTextFieldSubTotal2 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
@@ -115,7 +126,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,30 +135,143 @@ public class janProvaTitulos extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("I. Formação Acadêmica", jPanel1);
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "Pontuação", "Candidato", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getColumn(0).setResizable(false);
+        jTable2.getColumnModel().getColumn(1).setResizable(false);
+        jTable2.getColumnModel().getColumn(2).setResizable(false);
+        jTable2.getColumnModel().getColumn(3).setResizable(false);
+        jTable2.getColumnModel().getColumn(4).setResizable(false);
+
+        jScrollPane2.setBounds(10, 40, 630, 190);
+        jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldSubTotal1.setBounds(570, 10, 70, 22);
+        jLayeredPane2.add(jTextFieldSubTotal1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel10.setText("Sub-Total:");
+        jLabel10.setBounds(500, 10, 80, 16);
+        jLayeredPane2.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel14.setText("Produção Cientifica, Tecnológica, Artística e Cultural:  ");
+        jLabel14.setBounds(10, 10, 320, 16);
+        jLayeredPane2.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("I.2 Produção Ciêntifíca", jPanel2);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "Pontuação", "Candidato", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable3.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTable3);
+        jTable3.getColumnModel().getColumn(0).setResizable(false);
+        jTable3.getColumnModel().getColumn(1).setResizable(false);
+        jTable3.getColumnModel().getColumn(2).setResizable(false);
+        jTable3.getColumnModel().getColumn(3).setResizable(false);
+        jTable3.getColumnModel().getColumn(4).setResizable(false);
+
+        jScrollPane3.setBounds(10, 40, 630, 190);
+        jLayeredPane4.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldSubTotal2.setBounds(570, 10, 70, 22);
+        jLayeredPane4.add(jTextFieldSubTotal2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel15.setText("Sub-Total:");
+        jLabel15.setBounds(500, 10, 80, 16);
+        jLayeredPane4.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel16.setText("Atividades de Pesquisa, Ensino e Extensão:");
+        jLabel16.setBounds(10, 10, 260, 16);
+        jLayeredPane4.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 895, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("I.3 Atividades de Pesquisa, Ensino e Extensão", jPanel3);
@@ -156,7 +280,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 895, Short.MAX_VALUE)
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +293,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 895, Short.MAX_VALUE)
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +302,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ata", jPanel5);
 
-        jTabbedPane1.setBounds(0, 150, 900, 300);
+        jTabbedPane1.setBounds(0, 150, 750, 300);
         jLayeredPane1.add(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -189,7 +313,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        btnVoltar.setBounds(530, 460, 120, 40);
+        btnVoltar.setBounds(380, 450, 120, 40);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -200,7 +324,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        btnCancelar.setBounds(650, 460, 120, 40);
+        btnCancelar.setBounds(500, 450, 120, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -211,7 +335,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnProximoActionPerformed(evt);
             }
         });
-        btnProximo.setBounds(770, 460, 120, 40);
+        btnProximo.setBounds(620, 450, 120, 40);
         jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCandidato.setBounds(80, 10, 120, 30);
@@ -349,9 +473,13 @@ public class janProvaTitulos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGerarPlanilha;
     private javax.swing.JComboBox jComboBoxCandidato;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -363,14 +491,19 @@ public class janProvaTitulos extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
+    private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextFieldNotaCl1;
     private javax.swing.JTextField jTextFieldNotaCl2;
     private javax.swing.JTextField jTextFieldNotaCl3;
@@ -378,5 +511,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPesoCl2;
     private javax.swing.JTextField jTextFieldPesoCl3;
     private javax.swing.JTextField jTextFieldSubTotal;
+    private javax.swing.JTextField jTextFieldSubTotal1;
+    private javax.swing.JTextField jTextFieldSubTotal2;
     // End of variables declaration//GEN-END:variables
 }
