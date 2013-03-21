@@ -278,6 +278,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
         btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
         btnProximo.setText("Próximo");
+        btnProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);

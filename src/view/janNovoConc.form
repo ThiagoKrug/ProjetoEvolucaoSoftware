@@ -63,6 +63,7 @@
               <Image iconType="3" name="/view/icones/next.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pr&#xf3;ximo"/>
+            <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonProximoActionPerformed"/>
@@ -259,7 +260,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="210" y="250" width="140" height="-1" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="210" y="260" width="140" height="-1" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -302,7 +303,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="340" y="250" width="90" height="30" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="340" y="260" width="90" height="30" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

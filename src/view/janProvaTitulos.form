@@ -497,6 +497,7 @@
               <Image iconType="3" name="/view/icones/next.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pr&#xf3;ximo"/>
+            <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProximoActionPerformed"/>
