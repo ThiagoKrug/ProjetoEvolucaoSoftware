@@ -129,6 +129,11 @@ public class janMenu extends javax.swing.JFrame {
         jButtonTitulos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonTitulos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButtonTitulos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonTitulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTitulosActionPerformed(evt);
+            }
+        });
         jButtonTitulos.setBounds(280, 60, 140, 110);
         jLayeredPane1.add(jButtonTitulos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -309,6 +314,13 @@ public class janMenu extends javax.swing.JFrame {
         Abertura.setVisible(true);
         
     }//GEN-LAST:event_jButtonAberturaActionPerformed
+
+    private void jButtonTitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTitulosActionPerformed
+        
+        janProvaTitulos Titulos = new janProvaTitulos();
+        Titulos.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonTitulosActionPerformed
 
     /**
      * @param args the command line arguments
