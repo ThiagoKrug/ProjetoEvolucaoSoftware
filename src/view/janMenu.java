@@ -53,6 +53,8 @@ public class janMenu extends javax.swing.JFrame {
         setTitle("Menu- GCP");
         setResizable(false);
 
+        jLayeredPane1.setBackground(new java.awt.Color(204, 204, 204));
+
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
         jButtonSalvar.setToolTipText("Salvar Concurso");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -133,11 +135,15 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/abertura.png"))); // NOI18N
         jButtonAbertura.setMnemonic('a');
         jButtonAbertura.setText("Abertura");
-        jButtonAbertura.setToolTipText("null");
         jButtonAbertura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonAbertura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonAbertura.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButtonAbertura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonAbertura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAberturaActionPerformed(evt);
+            }
+        });
         jButtonAbertura.setBounds(0, 60, 140, 110);
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -296,6 +302,13 @@ public class janMenu extends javax.swing.JFrame {
         System.exit(0);
         
     }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jButtonAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAberturaActionPerformed
+        
+        janAbertura Abertura = new janAbertura();
+        Abertura.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonAberturaActionPerformed
 
     /**
      * @param args the command line arguments

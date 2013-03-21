@@ -111,33 +111,36 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
         jButtonProximo.setText("Próximo");
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonProximoActionPerformed(evt);
             }
         });
-        jButtonProximo.setBounds(620, 435, 90, 30);
+        jButtonProximo.setBounds(600, 450, 120, 40);
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setBounds(520, 435, 100, 30);
+        jButtonCancelar.setBounds(480, 450, 120, 40);
         jLayeredPane1.add(jButtonCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
-        jButtonVoltar.setBounds(440, 435, 80, 30);
+        jButtonVoltar.setBounds(360, 450, 120, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
@@ -384,21 +387,21 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Nome:");
-        jLabel21.setBounds(20, 70, 41, 17);
+        jLabel21.setBounds(20, 90, 41, 17);
         jLayeredPane4.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Sexo:");
-        jLabel22.setBounds(270, 70, 36, 17);
+        jLabel22.setBounds(270, 90, 36, 17);
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldNome.setBounds(20, 90, 240, 30);
+        jTextFieldNome.setBounds(20, 110, 240, 30);
         jLayeredPane4.add(jTextFieldNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo4.setBounds(270, 90, 100, 30);
+        jComboBoxSexo4.setBounds(270, 110, 100, 30);
         jLayeredPane4.add(jComboBoxSexo4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         tCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -430,37 +433,43 @@ public class janNovoConc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tCandidatos);
         tCandidatos.getColumnModel().getColumn(0).setResizable(false);
 
-        jScrollPane1.setBounds(390, 60, 320, 190);
+        jScrollPane1.setBounds(390, 80, 340, 190);
         jLayeredPane4.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/excluir.png"))); // NOI18N
+        jButtonExcluir.setMnemonic('x');
         jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setBounds(220, 170, 100, 30);
+        jButtonExcluir.setBounds(250, 200, 120, 33);
         jLayeredPane4.add(jButtonExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/edt.png"))); // NOI18N
+        jButtonEditar.setMnemonic('e');
         jButtonEditar.setText("Editar");
-        jButtonEditar.setBounds(120, 170, 100, 30);
+        jButtonEditar.setBounds(130, 200, 120, 33);
         jLayeredPane4.add(jButtonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        jButtonAdicionar.setMnemonic('a');
         jButtonAdicionar.setText("Adicionar");
-        jButtonAdicionar.setBounds(20, 170, 100, 30);
+        jButtonAdicionar.setBounds(10, 200, 120, 33);
         jLayeredPane4.add(jButtonAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data de Nascimento:");
-        jLabel24.setBounds(20, 120, 140, 17);
+        jLabel24.setBounds(20, 140, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSeparator3.setBounds(0, 280, 730, 10);
+        jSeparator3.setBounds(0, 300, 730, 10);
         jLayeredPane4.add(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator4.setBounds(380, 30, 10, 250);
+        jSeparator4.setBounds(380, 50, 10, 250);
         jLayeredPane4.add(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSeparator5.setBounds(0, 30, 730, 10);
+        jSeparator5.setBounds(0, 50, 730, 10);
         jLayeredPane4.add(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(20, 140, 150, 30);
+        jDateChooser1.setBounds(20, 160, 150, 30);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -539,11 +548,11 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-756)/2, (screenSize.height-520)/2, 756, 520);
+        setBounds((screenSize.width-756)/2, (screenSize.height-545)/2, 756, 545);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed

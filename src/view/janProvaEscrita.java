@@ -150,33 +150,36 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
         jButtonProximo.setText("Próximo");
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonProximoActionPerformed(evt);
             }
         });
-        jButtonProximo.setBounds(670, 470, 90, 25);
+        jButtonProximo.setBounds(630, 470, 130, 40);
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setBounds(570, 470, 100, 25);
+        jButtonCancelar.setBounds(500, 470, 130, 40);
         jLayeredPane1.add(jButtonCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
             }
         });
-        jButtonVoltar.setBounds(490, 470, 80, 25);
+        jButtonVoltar.setBounds(370, 470, 130, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane1.setViewportView(jListCandidatosConcurso);
@@ -525,11 +528,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-791)/2, (screenSize.height-549)/2, 791, 549);
+        setBounds((screenSize.width-791)/2, (screenSize.height-571)/2, 791, 571);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
