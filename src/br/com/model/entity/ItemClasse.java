@@ -4,6 +4,10 @@
  */
 package br.com.model.entity;
 
+import br.com.model.dao.ClasseDAO;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import java.util.HashMap;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -16,7 +20,8 @@ import org.hibernate.validator.constraints.NotBlank;
 public class ItemClasse implements IEntidade {
     
     @NotNull
-    private int idItemClasse;
+    private Integer idItemClasse;
+    private Integer idClasse;
     @NotNull
     private Classe classe;
     @NotBlank
@@ -24,7 +29,40 @@ public class ItemClasse implements IEntidade {
     @Min(0)
     @Max(10)
     @NotNull
-    private float pontuacao;
+    private Float pontuacao;
+    private HashMap<String, Method[]> tablemap;
+    
+    public ItemClasse() {
+        this.tablemap = new HashMap<String, Method[]>();
+        try {
+        Method[] ids = new Method[] {
+            this.getClass().getMethod("getIdItemClasse", new Class<?>[] {}),
+            this.getClass().getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
+        };
+        this.tablemap.put("id_item_classe", ids);
+        
+        this.tablemap.put("discriminacao", new Method[] {
+            this.getClass().getMethod("getDiscriminacao", new Class<?>[] {}),
+            this.getClass().getMethod("setDiscriminacao", new Class<?>[] {this.discriminacao.getClass()})
+        });
+        
+        this.tablemap.put("pontuacao", new Method[] {
+            this.getClass().getMethod("getPontuacao", new Class<?>[] {}),
+            this.getClass().getMethod("setPontuacao", new Class<?>[] {this.pontuacao.getClass()})
+        });
+        
+        this.tablemap.put("id_classe", new Method[] {
+            this.getClass().getMethod("getIdClasse", new Class<?>[] {}),
+            this.getClass().getMethod("setIdClasse", new Class<?>[] {this.idClasse.getClass()})
+        });
+        
+
+        
+        } catch (NoSuchMethodException e) {
+            System.out.println("Erro na reflection.");
+            e.printStackTrace();
+        }
+    }
 
     public int getIdItemClasse() {
         return idItemClasse;
@@ -34,12 +72,17 @@ public class ItemClasse implements IEntidade {
         this.idItemClasse = idItemClasse;
     }
 
-    public Classe getClasse() {
+    public Classe getClasse() throws SQLException {
+        if (classe == null) {
+            ClasseDAO cd = new ClasseDAO();
+            this.classe = (Classe)cd.pesquisarPorId(getIdClasse());
+        }
         return classe;
     }
 
     public void setClasse(Classe classe) {
         this.classe = classe;
+        this.setIdClasse((Integer) classe.getIdClasse());
     }
 
     public String getDiscriminacao() {
@@ -56,6 +99,27 @@ public class ItemClasse implements IEntidade {
 
     public void setPontuacao(float pontuacao) {
         this.pontuacao = pontuacao;
+    }
+
+    /**
+     * @return the idClasse
+     */
+    public Integer getIdClasse() {
+        return idClasse;
+    }
+
+    /**
+     * @param idClasse the idClasse to set
+     */
+    public void setIdClasse(Integer idClasse) {
+        this.idClasse = idClasse;
+    }
+
+    /**
+     * @return the tablemap
+     */
+    public HashMap<String, Method[]> getTablemap() {
+        return tablemap;
     }
     
     
