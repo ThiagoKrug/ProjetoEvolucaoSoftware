@@ -32,11 +32,11 @@ public class janResultados extends javax.swing.JFrame {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldLocal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableResumoResultados = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldHorario = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -75,14 +75,13 @@ public class janResultados extends javax.swing.JFrame {
         jLabel2.setBounds(10, 30, 36, 17);
         jLayeredPane2.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldLocalActionPerformed(evt);
             }
         });
-        jTextField1.setBounds(10, 50, 280, 30);
-        jLayeredPane2.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocal.setBounds(10, 50, 280, 30);
+        jLayeredPane2.add(jTextFieldLocal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -108,10 +107,8 @@ public class janResultados extends javax.swing.JFrame {
 
         jScrollPane1.setBounds(10, 90, 510, 140);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTextField2.setText("jTextField2");
-        jTextField2.setBounds(300, 50, 90, 30);
-        jLayeredPane2.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHorario.setBounds(300, 50, 90, 30);
+        jLayeredPane2.add(jTextFieldHorario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,7 +118,7 @@ public class janResultados extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Resumo", jPanel1);
@@ -135,7 +132,6 @@ public class janResultados extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Pesquisar Candidato:");
 
-        jTextFieldPesquisarCandidatoResultados.setText("jTextField3");
         jTextFieldPesquisarCandidatoResultados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPesquisarCandidatoResultadosActionPerformed(evt);
@@ -197,7 +193,7 @@ public class janResultados extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Notas por Candidato", jPanel2);
@@ -231,9 +227,9 @@ public class janResultados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldLocalActionPerformed
 
     private void jTextFieldPesquisarCandidatoResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarCandidatoResultadosActionPerformed
         // TODO add your handling code here:
@@ -293,8 +289,8 @@ public class janResultados extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableCandidatoResulatdos;
     private javax.swing.JTable jTableResumoResultados;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldHorario;
+    private javax.swing.JTextField jTextFieldLocal;
     private javax.swing.JTextField jTextFieldPesquisarCandidatoResultados;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,7 +75,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonVoltarActionPerformed(evt);
             }
         });
-        jButtonVoltar.setBounds(140, 550, 120, 40);
+        jButtonVoltar.setBounds(90, 550, 120, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -86,7 +86,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setBounds(260, 550, 120, 40);
+        jButtonCancelar.setBounds(210, 550, 120, 40);
         jLayeredPane1.add(jButtonCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -98,7 +98,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonProximoActionPerformed(evt);
             }
         });
-        jButtonProximo.setBounds(380, 550, 120, 40);
+        jButtonProximo.setBounds(330, 550, 120, 40);
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");

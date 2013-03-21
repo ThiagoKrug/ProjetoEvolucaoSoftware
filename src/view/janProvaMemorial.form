@@ -86,6 +86,11 @@
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JLayeredPane" name="jLayeredPane2">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
                   <SubComponents>
@@ -467,7 +472,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="510" y="420" width="120" height="40" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="500" y="420" width="120" height="40" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -486,7 +491,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="390" y="420" width="120" height="40" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="380" y="420" width="120" height="40" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -505,7 +510,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="270" y="420" width="120" height="40" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="260" y="420" width="120" height="40" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>

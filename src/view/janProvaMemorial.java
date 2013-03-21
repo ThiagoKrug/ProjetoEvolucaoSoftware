@@ -71,6 +71,8 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel1.setBounds(200, 10, 300, 29);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLayeredPane2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("Informe a Data e o Horário das Apresentações de Defesa do Memorial ");
         jLabel2.setBounds(10, 50, 420, 16);
@@ -276,7 +278,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
                 btnProximoActionPerformed(evt);
             }
         });
-        btnProximo.setBounds(510, 420, 120, 40);
+        btnProximo.setBounds(500, 420, 120, 40);
         jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -287,7 +289,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        btnCancelar.setBounds(390, 420, 120, 40);
+        btnCancelar.setBounds(380, 420, 120, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -298,7 +300,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        btnVoltar.setBounds(270, 420, 120, 40);
+        btnVoltar.setBounds(260, 420, 120, 40);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
