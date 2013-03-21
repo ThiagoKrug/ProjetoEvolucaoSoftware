@@ -5,7 +5,7 @@
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
-import br.com.model.entity.Abertura;
+import br.com.model.entity.Cronograma;
 import br.com.model.entity.IEntidade;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,27 +14,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class AberturaDao implements IDao {
-    
+public class CronogramaDao implements IDao {
     private class Fields {
         
-        private String table_name = "abertura";
+        private String table_name = "cronograma";
         
         private String[][] campos =
         {
-            {"id_abertura", "Integer"},
-            {"hora_inicio", "Date"},
+            {"id_cronograma", "Integer"},
             {"local", "String"},
-            {"portaria", "String"},
-            {"emissor", "String"},
+            {"atividade", "String"},
+            {"data", "Date"},
             {"id_concurso", "Integer"}
         };
         
@@ -52,13 +48,13 @@ public class AberturaDao implements IDao {
             return sql;
         }
         
-        public void prepare(PreparedStatement stmt, Abertura abertura) throws SQLException{
+        public void prepare(PreparedStatement stmt, Cronograma cronograma) throws SQLException{
             try {
-                HashMap<String, Method[]> map = abertura.getTablemap();
+                HashMap<String, Method[]> map = cronograma.getTablemap();
                 int i = 1;
                 while (i < this.campos.length - 1) {
                     Method method = map.get(this.campos[i][0])[0];
-                    this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
+                    this.setStatement(i, stmt, method.invoke(cronograma, new Object[] {}));
                     i++;
                 }
             } catch (IllegalAccessException e) {
@@ -66,11 +62,11 @@ public class AberturaDao implements IDao {
             } catch (InvocationTargetException e2) {
                 e2.printStackTrace();
             }
-//            stmt.setDate(1, new java.sql.Date(abertura.getHoraInicio().getTime()));
-//            stmt.setString(2, abertura.getLocal());
-//            stmt.setString(3, abertura.getPortaria());
-//            stmt.setString(4, abertura.getEmissor());
-//            stmt.setInt(5, abertura.getIdConcurso());
+//            stmt.setDate(1, new java.sql.Date(cronograma.getHoraInicio().getTime()));
+//            stmt.setString(2, cronograma.getLocal());
+//            stmt.setString(3, cronograma.getPortaria());
+//            stmt.setString(4, cronograma.getEmissor());
+//            stmt.setInt(5, cronograma.getIdConcurso());
         }
         
         private Integer s_to_int(String s) {
@@ -118,13 +114,13 @@ public class AberturaDao implements IDao {
             return sql;
         }
         
-        public void prepareUpdate(PreparedStatement stmt, Abertura abertura) throws SQLException {
-            this.prepare(stmt, abertura);
+        public void prepareUpdate(PreparedStatement stmt, Cronograma cronograma) throws SQLException {
+            this.prepare(stmt, cronograma);
             Integer endField = this.campos.length;
             String idField = this.campos[0][0];
             try {
-                Method method = abertura.getTablemap().get(idField)[0];
-                stmt.setInt(endField, (Integer)method.invoke(abertura, new Object[] {}));
+                Method method = cronograma.getTablemap().get(idField)[0];
+                stmt.setInt(endField, (Integer)method.invoke(cronograma, new Object[] {}));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e2) {
@@ -144,13 +140,13 @@ public class AberturaDao implements IDao {
             return sql;
         }
         
-        public void setsFromDatabase(Abertura abertura, ResultSet rs) throws SQLException {
+        public void setsFromDatabase(Cronograma cronograma, ResultSet rs) throws SQLException {
             try {
                 int i = 0;
-                HashMap<String, Method[]> map = abertura.getTablemap();
+                HashMap<String, Method[]> map = cronograma.getTablemap();
                 while (i < this.campos.length) {
                     Method method = map.get(this.campos[i][0])[1];
-                    method.invoke(abertura, new Object [] {
+                    method.invoke(cronograma, new Object [] {
                         method.getParameterTypes()[0].cast(rs.getObject(this.campos[i][0]))
                     });
                     //map.put(this.campos[i][0], rs.getObject(this.campos[i][0]));
@@ -161,12 +157,12 @@ public class AberturaDao implements IDao {
             } catch (InvocationTargetException e2) {
                 e2.printStackTrace();
             }
-//            abertura.setEmissor(rs.getString(this.campos[4][0]));
-//            abertura.setHoraInicio(rs.getDate(this.campos[1][0]));
-//            abertura.setIdAbertura(rs.getInt(this.campos[0][0]));
-//            abertura.setIdConcurso(rs.getInt(this.campos[5][0]));
-//            abertura.setLocal(rs.getString(this.campos[2][0]));
-//            abertura.setPortaria(rs.getString(this.campos[3][0]));
+//            cronograma.setEmissor(rs.getString(this.campos[4][0]));
+//            cronograma.setHoraInicio(rs.getDate(this.campos[1][0]));
+//            cronograma.setIdCronograma(rs.getInt(this.campos[0][0]));
+//            cronograma.setIdConcurso(rs.getInt(this.campos[5][0]));
+//            cronograma.setLocal(rs.getString(this.campos[2][0]));
+//            cronograma.setPortaria(rs.getString(this.campos[3][0]));
         }
         
         
@@ -181,39 +177,39 @@ public class AberturaDao implements IDao {
 
     @Override
     public IEntidade inserir(IEntidade entidade) throws SQLException {
-        if (entidade instanceof Abertura) {
-            Abertura abertura = (Abertura) entidade;
+        if (entidade instanceof Cronograma) {
+            Cronograma cronograma = (Cronograma) entidade;
             Fields fields = new Fields();
             String sql = fields.getInsertSql();
             Connection connection = ConnectionFactory.getConnection();
             try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                fields.prepare(stmt, abertura);
+                fields.prepare(stmt, cronograma);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
 
                 if (rs.next()) {
-                    abertura.setIdAbertura(rs.getInt(1));
+                    cronograma.setIdCronograma(rs.getInt(1));
                 }
             }
-            return abertura;
+            return cronograma;
         }
         return null;
     }
 
     @Override
     public IEntidade alterar(IEntidade entidade) throws SQLException {
-        if (entidade instanceof Abertura) {
+        if (entidade instanceof Cronograma) {
 
-            Abertura abertura = (Abertura) entidade;
+            Cronograma cronograma = (Cronograma) entidade;
             Fields fields = new Fields();
             String sql = fields.getUpdateSql();
 
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
-            fields.prepareUpdate(stmt, abertura);
+            fields.prepareUpdate(stmt, cronograma);
 
             if (stmt.executeUpdate() == 1) {
-                return abertura;
+                return cronograma;
             }
         }
         return null;
@@ -221,17 +217,17 @@ public class AberturaDao implements IDao {
 
     @Override
     public IEntidade excluir(IEntidade entidade) throws SQLException {
-        if (entidade instanceof Abertura) {
-            Abertura abertura = (Abertura) entidade;
+        if (entidade instanceof Cronograma) {
+            Cronograma cronograma = (Cronograma) entidade;
             Fields fields = new Fields();
             String sql = fields.getDeleteSql();
 
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, abertura.getIdAbertura());
+            stmt.setInt(1, cronograma.getIdCronograma());
 
             if (stmt.executeUpdate() == 1) {
-                return abertura;
+                return cronograma;
             }
         }
         return null;
@@ -247,27 +243,27 @@ public class AberturaDao implements IDao {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
 
-        Abertura abertura = null;
+        Cronograma cronograma = null;
         if (rs.next()) {
-            fields.setsFromDatabase(abertura, rs);
+            fields.setsFromDatabase(cronograma, rs);
         }
-        return abertura;
+        return cronograma;
     }
 
     @Override
     public List<? extends IEntidade> pesquisarTodos() throws SQLException {
-        List<Abertura> aberturas = new ArrayList<Abertura>();
+        List<Cronograma> cronogramas = new ArrayList<Cronograma>();
         Fields fields = new Fields();
         String sql = fields.getAllSql();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Abertura abertura = new Abertura();
-            fields.setsFromDatabase(abertura, rs);
-            aberturas.add(abertura);
+            Cronograma cronograma = new Cronograma();
+            fields.setsFromDatabase(cronograma, rs);
+            cronogramas.add(cronograma);
         }
-        return aberturas;
+        return cronogramas;
     }
 
     @Override
