@@ -76,7 +76,7 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonEscritaActionPerformed(evt);
             }
         });
-        jButtonEscrita.setBounds(140, 60, 140, 110);
+        jButtonEscrita.setBounds(210, 60, 140, 110);
         jLayeredPane1.add(jButtonEscrita, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/results.png"))); // NOI18N
@@ -91,7 +91,7 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonResultadoActionPerformed(evt);
             }
         });
-        jButtonResultado.setBounds(420, 170, 140, 110);
+        jButtonResultado.setBounds(350, 170, 140, 110);
         jLayeredPane1.add(jButtonResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova5.png"))); // NOI18N
@@ -106,7 +106,7 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonMemorialActionPerformed(evt);
             }
         });
-        jButtonMemorial.setBounds(280, 170, 140, 110);
+        jButtonMemorial.setBounds(210, 170, 140, 110);
         jLayeredPane1.add(jButtonMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova7.png"))); // NOI18N
@@ -120,11 +120,11 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonDidaticaActionPerformed(evt);
             }
         });
-        jButtonDidatica.setBounds(140, 170, 140, 110);
+        jButtonDidatica.setBounds(70, 170, 140, 110);
         jLayeredPane1.add(jButtonDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonTitulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova6.png"))); // NOI18N
-        jButtonTitulos.setMnemonic('m');
+        jButtonTitulos.setMnemonic('T');
         jButtonTitulos.setText("Prova de Títulos");
         jButtonTitulos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonTitulos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -134,7 +134,7 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonTitulosActionPerformed(evt);
             }
         });
-        jButtonTitulos.setBounds(280, 60, 140, 110);
+        jButtonTitulos.setBounds(350, 60, 140, 110);
         jLayeredPane1.add(jButtonTitulos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/abertura.png"))); // NOI18N
@@ -149,7 +149,7 @@ public class janMenu extends javax.swing.JFrame {
                 jButtonAberturaActionPerformed(evt);
             }
         });
-        jButtonAbertura.setBounds(0, 60, 140, 110);
+        jButtonAbertura.setBounds(70, 60, 140, 110);
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/new_page.png"))); // NOI18N

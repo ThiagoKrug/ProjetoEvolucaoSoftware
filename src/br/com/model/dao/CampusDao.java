@@ -24,7 +24,11 @@ public class CampusDao implements IDao {
             String sql = "insert into campus(id_campus, cidade_campus)";
             sql += " values (?,?)";
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                        
                 if (campus.getIdCampus() != 0) {
                     stmt.setInt(1, campus.getIdCampus());
                 } else {
@@ -38,6 +42,8 @@ public class CampusDao implements IDao {
                     campus.setIdCampus(rs.getInt(1));
                 }
 
+            } catch (Exception e) {
+                
             }
             return campus;
         }
@@ -122,7 +128,7 @@ public class CampusDao implements IDao {
     }
 
     private List<Campus> pesquisar(String sql) throws SQLException {
-        List<Campus> listCampus = new ArrayList<>();
+        List<Campus> listCampus = new ArrayList<Campus>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();

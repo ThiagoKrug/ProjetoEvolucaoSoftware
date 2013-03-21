@@ -150,6 +150,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        jButtonProximo.setMnemonic('p');
         jButtonProximo.setText("Próximo");
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +162,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        jButtonCancelar.setMnemonic('c');
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +174,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +262,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane3.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        jButtonAdicionarPonto.setMnemonic('a');
         jButtonAdicionarPonto.setText("Adicionar");
         jButtonAdicionarPonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,6 +317,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane4.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarCriterio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        jButtonAdicionarCriterio.setMnemonic('a');
         jButtonAdicionarCriterio.setText("Adicionar");
         jButtonAdicionarCriterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

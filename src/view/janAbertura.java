@@ -69,6 +69,7 @@ public class janAbertura extends javax.swing.JFrame {
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +81,7 @@ public class janAbertura extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        jButtonCancelar.setMnemonic('c');
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +93,7 @@ public class janAbertura extends javax.swing.JFrame {
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        jButtonProximo.setMnemonic('p');
         jButtonProximo.setText("Próximo");
         jButtonProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {

@@ -31,7 +31,10 @@ public class PessoaDao implements IDao {
 
             Connection connection = ConnectionFactory.getConnection();
 
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                
                 if (pessoa.getIdPessoa() != 0) {
                     stmt.setInt(1, pessoa.getIdPessoa());
                 } else {
@@ -46,11 +49,13 @@ public class PessoaDao implements IDao {
 
                 if (rs.next()) {
                     pessoa.setIdPessoa(rs.getInt(1));
-
                 }
+                
+            } catch (Exception e) {
+                
             }
+            
             return pessoa;
-
 
         }
         return null;
@@ -137,7 +142,7 @@ public class PessoaDao implements IDao {
     }
 
     private List<Pessoa> pesquisar(String sql) throws SQLException {
-        List<Pessoa> listPessoa = new ArrayList<>();
+        List<Pessoa> listPessoa = new ArrayList<Pessoa>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();

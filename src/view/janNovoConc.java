@@ -112,7 +112,9 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        jButtonProximo.setMnemonic('p');
         jButtonProximo.setText("Próximo");
+        jButtonProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonProximoActionPerformed(evt);
@@ -123,6 +125,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        jButtonCancelar.setMnemonic('c');
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +137,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,7 +188,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         classe.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         classe.setText("Classe do Concurso:");
-        classe.setBounds(210, 250, 140, 17);
+        classe.setBounds(210, 260, 140, 17);
         jLayeredPane2.add(classe, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCampus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -201,7 +205,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jComboBoxClasseActionPerformed(evt);
             }
         });
-        jComboBoxClasse.setBounds(340, 250, 90, 30);
+        jComboBoxClasse.setBounds(340, 260, 90, 30);
         jLayeredPane2.add(jComboBoxClasse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         edital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
