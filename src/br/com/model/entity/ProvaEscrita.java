@@ -31,9 +31,9 @@ public class ProvaEscrita implements IEntidade {
     private String localResultado;
 
     public ProvaEscrita() {
-        this.candidatosAptosProva = new ArrayList<>();
-        this.criterios = new ArrayList<>();
-        this.pontos = new ArrayList<>();
+        this.candidatosAptosProva = new ArrayList<Candidato>();
+        this.criterios = new ArrayList<CriterioAvaliacao>();
+        this.pontos = new ArrayList<PontoProvaEscrita>();
     }
 
     public PontoProvaEscrita getPontoSorteado() {
