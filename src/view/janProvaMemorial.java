@@ -209,11 +209,16 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLayeredPane4.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonPlanilhaMemorial.setText("Gerar Planilha de Avaliação do Candidato e Examinador Selecionado");
-        jButtonPlanilhaMemorial.setBounds(20, 245, 430, 30);
+        jButtonPlanilhaMemorial.setBounds(20, 230, 430, 40);
         jLayeredPane4.add(jButtonPlanilhaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonPlanilhasMemorialTodas.setText("Gerar Todas as Planilhas");
-        jButtonPlanilhasMemorialTodas.setBounds(20, 280, 210, 30);
+        jButtonPlanilhasMemorialTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlanilhasMemorialTodasActionPerformed(evt);
+            }
+        });
+        jButtonPlanilhasMemorialTodas.setBounds(20, 270, 210, 40);
         jLayeredPane4.add(jButtonPlanilhasMemorialTodas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel6.setForeground(new java.awt.Color(153, 0, 51));
@@ -247,11 +252,11 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel5.setText("Local de Realização da Prova de Memorial:");
         jLabel5.setBounds(180, 100, 280, 16);
         jLayeredPane5.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalProvaMemorial.setBounds(150, 122, 320, 30);
+        jTextFieldLocalProvaMemorial.setBounds(150, 122, 320, 40);
         jLayeredPane5.add(jTextFieldLocalProvaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAtaMemorial.setText("Criar Ata de Realização da Prova de Memorial");
-        jButtonAtaMemorial.setBounds(150, 160, 320, 30);
+        jButtonAtaMemorial.setBounds(150, 170, 320, 40);
         jLayeredPane5.add(jButtonAtaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -307,7 +312,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,6 +334,10 @@ public class janProvaMemorial extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void jButtonPlanilhasMemorialTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlanilhasMemorialTodasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPlanilhasMemorialTodasActionPerformed
 
     /**
      * @param args the command line arguments
