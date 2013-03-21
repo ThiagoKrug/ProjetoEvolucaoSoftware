@@ -62,6 +62,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/icones/next.png"/>
             </Property>
+            <Property name="mnemonic" type="int" value="112"/>
             <Property name="text" type="java.lang.String" value="Pr&#xf3;ximo"/>
           </Properties>
           <Events>
@@ -81,6 +82,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/icones/cancel.png"/>
             </Property>
+            <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
@@ -100,6 +102,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/view/icones/back.png"/>
             </Property>
+            <Property name="mnemonic" type="int" value="118"/>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
           <Events>
@@ -350,6 +353,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/view/icones/add.png"/>
                         </Property>
+                        <Property name="mnemonic" type="int" value="97"/>
                         <Property name="text" type="java.lang.String" value="Adicionar"/>
                       </Properties>
                       <Events>
@@ -480,6 +484,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/view/icones/add.png"/>
                         </Property>
+                        <Property name="mnemonic" type="int" value="97"/>
                         <Property name="text" type="java.lang.String" value="Adicionar"/>
                       </Properties>
                       <Events>

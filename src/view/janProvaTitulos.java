@@ -307,6 +307,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        btnVoltar.setMnemonic('v');
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +319,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        btnCancelar.setMnemonic('c');
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +331,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
 
         btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        btnProximo.setMnemonic('p');
         btnProximo.setText("Próximo");
         btnProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
