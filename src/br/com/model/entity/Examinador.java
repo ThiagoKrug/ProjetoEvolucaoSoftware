@@ -5,6 +5,7 @@
 package br.com.model.entity;
 
 import br.com.model.dao.PessoaDao;
+import br.com.model.dao.TitulacaoDao;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -68,9 +69,9 @@ public class Examinador implements IEntidade {
         this.pessoa = pessoa;
     }
 
-    public Titulacao getTitulacao() {
+    public Titulacao getTitulacao() throws SQLException {
         if (titulacao == null) {
-            titulacao = new TitulacaoDao().pesquisarPorId(getIdTitulacao());
+            titulacao = (Titulacao)new TitulacaoDao().pesquisarPorId(getIdTitulacao());
         }
         return titulacao;
     }
