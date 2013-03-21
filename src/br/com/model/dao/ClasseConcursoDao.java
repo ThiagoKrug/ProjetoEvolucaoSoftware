@@ -24,22 +24,31 @@ public class ClasseConcursoDao implements IDao {
             String sql = "insert into classe_concurso(id_classe, nome)";
             sql += " values (?,?)";
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                
                 if (classeConcurso.getIdClasseConcurso() != 0) {
                     stmt.setInt(1, classeConcurso.getIdClasseConcurso());
                 } else {
                     stmt.setString(1, null);
                 }
+                
                 stmt.setString(2, classeConcurso.getNome());
                 stmt.executeUpdate();
+                
                 ResultSet rs = stmt.getGeneratedKeys();
 
                 if (rs.next()) {
                     classeConcurso.setIdClasseConcurso(rs.getInt(1));
                 }
 
+            } catch (Exception e) {
+                
             }
+            
             return classeConcurso;
+            
         }
 
         return null;
@@ -122,7 +131,7 @@ public class ClasseConcursoDao implements IDao {
     }
 
     private List<ClasseConcurso> pesquisar(String sql) throws SQLException {
-        List<ClasseConcurso> listClasseConcurso = new ArrayList<>();
+        List<ClasseConcurso> listClasseConcurso = new ArrayList<ClasseConcurso>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
