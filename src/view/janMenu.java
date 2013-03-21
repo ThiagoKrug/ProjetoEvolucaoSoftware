@@ -36,19 +36,13 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbertura = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonAbrir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemNovo = new javax.swing.JMenuItem();
+        jMenuItemAbrir = new javax.swing.JMenuItem();
+        jMenuItemSalvar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -56,6 +50,7 @@ public class janMenu extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu- GCP");
         setResizable(false);
 
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
@@ -69,32 +64,81 @@ public class janMenu extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonEscrita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova1.png"))); // NOI18N
+        jButtonEscrita.setMnemonic('E');
+        jButtonEscrita.setText("Prova Escrita");
+        jButtonEscrita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEscrita.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonEscrita.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonEscrita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEscritaActionPerformed(evt);
             }
         });
-        jButtonEscrita.setBounds(100, 110, 90, 90);
+        jButtonEscrita.setBounds(140, 60, 140, 110);
         jLayeredPane1.add(jButtonEscrita, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/results.png"))); // NOI18N
-        jButtonResultado.setBounds(460, 110, 90, 90);
+        jButtonResultado.setMnemonic('r');
+        jButtonResultado.setText("Resultados");
+        jButtonResultado.setHideActionText(true);
+        jButtonResultado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonResultado.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonResultado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResultadoActionPerformed(evt);
+            }
+        });
+        jButtonResultado.setBounds(420, 170, 140, 110);
         jLayeredPane1.add(jButtonResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova5.png"))); // NOI18N
-        jButtonMemorial.setBounds(370, 110, 90, 90);
+        jButtonMemorial.setMnemonic('m');
+        jButtonMemorial.setText("Prova de Memorial");
+        jButtonMemorial.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMemorial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonMemorial.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonMemorial.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonMemorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMemorialActionPerformed(evt);
+            }
+        });
+        jButtonMemorial.setBounds(280, 170, 140, 110);
         jLayeredPane1.add(jButtonMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova7.png"))); // NOI18N
-        jButtonDidatica.setBounds(280, 110, 90, 90);
+        jButtonDidatica.setMnemonic('d');
+        jButtonDidatica.setText("Prova Didática");
+        jButtonDidatica.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonDidatica.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonDidatica.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonDidatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDidaticaActionPerformed(evt);
+            }
+        });
+        jButtonDidatica.setBounds(140, 170, 140, 110);
         jLayeredPane1.add(jButtonDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonTitulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/prova6.png"))); // NOI18N
-        jButtonTitulos.setBounds(190, 110, 90, 90);
+        jButtonTitulos.setMnemonic('m');
+        jButtonTitulos.setText("Prova de Títulos");
+        jButtonTitulos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonTitulos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonTitulos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonTitulos.setBounds(280, 60, 140, 110);
         jLayeredPane1.add(jButtonTitulos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/abertura.png"))); // NOI18N
-        jButtonAbertura.setBounds(10, 110, 90, 90);
+        jButtonAbertura.setMnemonic('a');
+        jButtonAbertura.setText("Abertura");
+        jButtonAbertura.setToolTipText("null");
+        jButtonAbertura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonAbertura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAbertura.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButtonAbertura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonAbertura.setBounds(0, 60, 140, 110);
         jLayeredPane1.add(jButtonAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/new_page.png"))); // NOI18N
@@ -112,59 +156,44 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Abertura");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.setBounds(14, 204, 80, 15);
-        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Prova Escrita");
-        jLabel2.setBounds(104, 204, 80, 15);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel3.setText("Prova de Títulos");
-        jLabel3.setBounds(194, 204, 80, 15);
-        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Prova Didática");
-        jLabel4.setBounds(284, 204, 80, 15);
-        jLayeredPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Prova Memorial");
-        jLabel5.setBounds(374, 204, 80, 15);
-        jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Resultados");
-        jLabel6.setBounds(464, 204, 80, 15);
-        jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jMenu1.setText("Arquivos ");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Novo");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Abrir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemNovo.setText("Novo");
+        jMenuItemNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemNovoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jMenuItemNovo);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Salvar");
-        jMenu1.add(jMenuItem3);
+        jMenuItemAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemAbrir.setText("Abrir");
+        jMenuItemAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAbrirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemAbrir);
+
+        jMenuItemSalvar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSalvar.setText("Salvar");
+        jMenuItemSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalvarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSalvar);
         jMenu1.add(jSeparator1);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Sair");
-        jMenu1.add(jMenuItem4);
+        jMenuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSair);
 
         jMenuBar1.add(jMenu1);
 
@@ -196,18 +225,22 @@ public class janMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-579)/2, (screenSize.height-372)/2, 579, 372);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        // TODO add your handling code here:
+        
+        janNovoConc NovoConcurso = new janNovoConc();
+        NovoConcurso.setVisible(true);
+        
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -215,16 +248,54 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscritaActionPerformed
-        // TODO add your handling code here:
+       
+        janProvaEscrita ProvaEscrita = new janProvaEscrita();
+        ProvaEscrita.setVisible(true);
+        
     }//GEN-LAST:event_jButtonEscritaActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItemAbrirActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButtonResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoActionPerformed
+        
+        janResultados Resultado = new janResultados();
+        Resultado.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonResultadoActionPerformed
+
+    private void jButtonDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDidaticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDidaticaActionPerformed
+
+    private void jButtonMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemorialActionPerformed
+        
+        janProvaMemorial ProvaMemorial = new janProvaMemorial();
+        ProvaMemorial.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonMemorialActionPerformed
+
+    private void jMenuItemSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemSalvarActionPerformed
+
+    private void jMenuItemNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoActionPerformed
+       
+        janNovoConc NovoConcurso = new janNovoConc();
+        NovoConcurso.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItemNovoActionPerformed
+
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        
+        System.exit(0);
+        
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,24 +341,18 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonResultado;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTitulos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItemAbrir;
+    private javax.swing.JMenuItem jMenuItemNovo;
+    private javax.swing.JMenuItem jMenuItemSair;
+    private javax.swing.JMenuItem jMenuItemSalvar;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

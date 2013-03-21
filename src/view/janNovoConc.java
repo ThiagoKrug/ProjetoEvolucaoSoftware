@@ -101,7 +101,8 @@ public class janNovoConc extends javax.swing.JFrame {
         jCheckBoxProvaDidatica = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo Concurso");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -496,20 +497,23 @@ public class janNovoConc extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(194, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxProvaDeTitulos)
-                    .addComponent(jCheckBoxProvaMemorial)
-                    .addComponent(jCheckBoxProvaDidatica)
-                    .addComponent(jCheckBoxProvaEscrita)
-                    .addComponent(jLabel3))
-                .addContainerGap(366, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxProvaDeTitulos)
+                            .addComponent(jCheckBoxProvaMemorial)
+                            .addComponent(jCheckBoxProvaDidatica)
+                            .addComponent(jCheckBoxProvaEscrita))))
+                .addGap(184, 184, 184))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(90, 90, 90)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxProvaEscrita)
@@ -519,7 +523,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 .addComponent(jCheckBoxProvaMemorial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBoxProvaDidatica)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Provas do Concurso", jPanel4);
@@ -538,7 +542,8 @@ public class janNovoConc extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-756)/2, (screenSize.height-520)/2, 756, 520);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed
