@@ -14,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -182,7 +184,8 @@ public class CronogramaDao implements IDao {
             Fields fields = new Fields();
             String sql = fields.getInsertSql();
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 fields.prepare(stmt, cronograma);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -190,7 +193,7 @@ public class CronogramaDao implements IDao {
                 if (rs.next()) {
                     cronograma.setIdCronograma(rs.getInt(1));
                 }
-            }
+//            }
             return cronograma;
         }
         return null;

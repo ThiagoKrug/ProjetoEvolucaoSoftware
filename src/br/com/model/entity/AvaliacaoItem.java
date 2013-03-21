@@ -4,7 +4,10 @@
  */
 package br.com.model.entity;
 
+import br.com.model.dao.AvaliacaoProvaTitulosDao;
+import br.com.model.dao.ItemClasseDao;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.util.HashMap;
 import javax.validation.constraints.NotNull;
 
@@ -71,15 +74,22 @@ public class AvaliacaoItem implements IEntidade {
         this.idAvaliacaoItem = idAvaliacaoItem;
     }
 
-    public AvaliacaoProvaTitulo getAvaliacaoProvaTitulo() {
+    public AvaliacaoProvaTitulo getAvaliacaoProvaTitulo() throws SQLException {
+        if (avaliacaoProvaTitulo == null) {
+            avaliacaoProvaTitulo = (AvaliacaoProvaTitulo)new AvaliacaoProvaTitulosDao().pesquisarPorId(this.idAvaliacaoPT);
+        }
         return avaliacaoProvaTitulo;
     }
 
     public void setAvaliacaoProvaTitulo(AvaliacaoProvaTitulo avaliacaoProvaTitulo) {
         this.avaliacaoProvaTitulo = avaliacaoProvaTitulo;
+        this.idAvaliacaoPT = avaliacaoProvaTitulo.getIdAvaliacaoProvaTitulo();
     }
 
-    public ItemClasse getItemClasse() {
+    public ItemClasse getItemClasse() throws SQLException {
+        if (itemClasse == null) {
+            this.itemClasse = (ItemClasse)new ItemClasseDao().pesquisarPorId(idItemClasse);
+        }
         return itemClasse;
     }
 

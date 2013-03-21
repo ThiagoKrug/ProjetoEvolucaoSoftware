@@ -194,7 +194,8 @@ public class ItemClasseDao implements IDao {
             ItemClasseDao.Fields fields = new ItemClasseDao.Fields();
             String sql = fields.getInsertSql();
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 fields.prepare(stmt, itemClasse);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -202,7 +203,7 @@ public class ItemClasseDao implements IDao {
                 if (rs.next()) {
                     itemClasse.setIdItemClasse(rs.getInt(1));
                 }
-            }
+//            }
             return itemClasse;
         }
         return null;

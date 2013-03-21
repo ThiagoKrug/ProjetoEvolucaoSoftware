@@ -186,7 +186,8 @@ public class AberturaDao implements IDao {
             Fields fields = new Fields();
             String sql = fields.getInsertSql();
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 fields.prepare(stmt, abertura);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -194,7 +195,7 @@ public class AberturaDao implements IDao {
                 if (rs.next()) {
                     abertura.setIdAbertura(rs.getInt(1));
                 }
-            }
+//            }
             return abertura;
         }
         return null;

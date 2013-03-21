@@ -28,7 +28,8 @@ public class CriterioAvaliacaoDao implements IDao{
 
             String sql = "insert into criterio_avaliacao (criterio, peso, id_prova_escrita) values(?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, criterio.getCriterio());
                 stmt.setFloat(2, criterio.getPeso());
                 if(criterio.getProvaEscrita().getIdProvaEscrita() != 0)
@@ -41,7 +42,7 @@ public class CriterioAvaliacaoDao implements IDao{
                 if (rs.next()) {
                     criterio.setIdCriterioAvaliacao(rs.getInt(1));
                 }
-            }
+//            }
             return criterio;
         }
         return null;
@@ -122,7 +123,7 @@ public class CriterioAvaliacaoDao implements IDao{
     }
 
     private List<CriterioAvaliacao> pesquisar(String sql) throws SQLException {
-        List<CriterioAvaliacao> listCriterio = new ArrayList<>();
+        List<CriterioAvaliacao> listCriterio = new ArrayList<CriterioAvaliacao>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
