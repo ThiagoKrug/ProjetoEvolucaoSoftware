@@ -71,6 +71,8 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel1.setBounds(200, 10, 300, 29);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLayeredPane2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("Informe a Data e o Horário das Apresentações de Defesa do Memorial ");
         jLabel2.setBounds(10, 50, 420, 16);
@@ -167,7 +169,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jTableCriteriosMemorial.getColumnModel().getColumn(0).setResizable(false);
         jTableCriteriosMemorial.getColumnModel().getColumn(1).setResizable(false);
 
-        jScrollPane3.setBounds(50, 50, 530, 210);
+        jScrollPane3.setBounds(50, 60, 530, 210);
         jLayeredPane3.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -269,33 +271,36 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLayeredPane1.add(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
         btnProximo.setText("Próximo");
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);
             }
         });
-        btnProximo.setBounds(530, 420, 90, 25);
+        btnProximo.setBounds(500, 420, 120, 40);
         jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-        btnCancelar.setBounds(430, 420, 100, 25);
+        btnCancelar.setBounds(380, 420, 120, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
-        btnVoltar.setBounds(350, 420, 80, 25);
+        btnVoltar.setBounds(260, 420, 120, 40);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -306,26 +311,24 @@ public class janProvaMemorial extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-652)/2, (screenSize.height-511)/2, 652, 511);
+        setBounds((screenSize.width-652)/2, (screenSize.height-526)/2, 652, 526);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-       
-        
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+
+    }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
-       
-    }//GEN-LAST:event_btnProximoActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
