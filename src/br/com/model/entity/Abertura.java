@@ -6,6 +6,7 @@ package br.com.model.entity;
 import br.com.model.dao.ConcursoDao;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,6 +14,8 @@ import javax.validation.constraints.NotNull;
  * @author Usuario
  */
 public class Abertura implements IEntidade {
+    
+    private HashMap<String, Object> tablemap;
     
     @NotNull(message="O id da abertura não pode ser nulo.")
     private Integer idAbertura;
@@ -24,6 +27,17 @@ public class Abertura implements IEntidade {
     
     @NotNull(message="O id do concurso não pode ser nulo.")
     private Integer idConcurso;
+    
+    
+    public Abertura() {
+        this.tablemap = new HashMap<String, Object>();
+        this.tablemap.put("id_abertura", this.idAbertura);
+        this.tablemap.put("hora_inicio", this.horaInicio);
+        this.tablemap.put("local", this.local);
+        this.tablemap.put("portaria", this.portaria);
+        this.tablemap.put("emissor", this.emissor);
+        this.tablemap.put("id_concurso", this.idConcurso);
+    }
 
     /**
      * @return the idAbertura
@@ -124,6 +138,26 @@ public class Abertura implements IEntidade {
      */
     public void setIdConcurso(Integer idConcurso) {
         this.idConcurso = idConcurso;
+    }
+
+    /**
+     * @return the tablemap
+     */
+    public HashMap<String, Object> getTablemap() {
+        return tablemap;
+    }
+
+    /**
+     * @param tablemap the tablemap to set
+     */
+    public void setTablemap(HashMap<String, Object> tablemap) {
+        this.tablemap = tablemap;
+        this.idAbertura = (Integer)this.tablemap.get("id_abertura");
+        this.emissor = (String)this.tablemap.get("emissor");
+        this.horaInicio = (Date)this.tablemap.get("hora_inicio");
+        this.idConcurso = (Integer)this.tablemap.get("id_concurso");
+        this.local = (String)this.tablemap.get("local");
+        this.portaria = (String)this.tablemap.get("portaria");
     }
     
     

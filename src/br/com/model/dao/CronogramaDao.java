@@ -4,35 +4,21 @@
  */
 package br.com.model.dao;
 
-import br.com.jdbc.ConnectionFactory;
-import br.com.model.entity.Abertura;
-import br.com.model.entity.IEntidade;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 /**
  *
  * @author Usuario
  */
-public class AberturaDao implements IDao {
-    
+public class CronogramaDao implements IDao {
     private class Fields {
         
-        private String table_name = "abertura";
+        private String table_name = "cronograma";
         
         private String[][] campos =
         {
-            {"id_abertura", "Integer"},
-            {"hora_inicio", "Date"},
+            {"id_cronograma", "Integer"},
+            {"atividade", "String"},
+            {"data", "Date"},
             {"local", "String"},
-            {"portaria", "String"},
-            {"emissor", "String"},
             {"id_concurso", "Integer"}
         };
         
@@ -51,35 +37,11 @@ public class AberturaDao implements IDao {
         }
         
         public void prepare(PreparedStatement stmt, Abertura abertura) throws SQLException{
-            HashMap<String, Object> map = abertura.getTablemap();
-            int i = 1;
-            while (i < this.campos.length - 1) {
-                this.setStatement(i, stmt, map.get(this.campos[i][0]));
-                i++;
-            }
-//            stmt.setDate(1, new java.sql.Date(abertura.getHoraInicio().getTime()));
-//            stmt.setString(2, abertura.getLocal());
-//            stmt.setString(3, abertura.getPortaria());
-//            stmt.setString(4, abertura.getEmissor());
-//            stmt.setInt(5, abertura.getIdConcurso());
-        }
-        
-        public void setStatement(Integer i, PreparedStatement stmt, Object stuff) throws SQLException{
-            switch (this.campos[i][1]) {
-                case "Integer":
-                    stmt.setInt(i, (Integer)stuff);
-                    break;
-                case "String":
-                    stmt.setString(i, (String)stuff);
-                    break;
-                case "Date":
-                    java.util.Date date = (java.util.Date)stuff;
-                    stmt.setDate(i, new java.sql.Date(date.getTime()));
-                    break;
-                case "Boolean":
-                    stmt.setBoolean(i, (Boolean)stuff);
-                    break;
-            }
+            stmt.setDate(1, new java.sql.Date(abertura.getHoraInicio().getTime()));
+            stmt.setString(2, abertura.getLocal());
+            stmt.setString(3, abertura.getPortaria());
+            stmt.setString(4, abertura.getEmissor());
+            stmt.setInt(5, abertura.getIdConcurso());
         }
         
         public String getUpdateSql() {
@@ -95,9 +57,7 @@ public class AberturaDao implements IDao {
         
         public void prepareUpdate(PreparedStatement stmt, Abertura abertura) throws SQLException {
             this.prepare(stmt, abertura);
-            Integer endField = this.campos.length;
-            String idField = this.campos[0][0];
-            stmt.setInt(endField, (Integer)abertura.getTablemap().get(idField));
+            stmt.setInt(6, abertura.getIdAbertura());
         }
         
         public String getDeleteSql() {
@@ -113,22 +73,13 @@ public class AberturaDao implements IDao {
         }
         
         public void setsFromDatabase(Abertura abertura, ResultSet rs) throws SQLException {
-            int i = 0;
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            while (i < this.campos.length) {
-                map.put(this.campos[i][0], rs.getObject(this.campos[i][0]));
-                i++;
-            }
-            abertura.setTablemap(map);
-//            abertura.setEmissor(rs.getString(this.campos[4][0]));
-//            abertura.setHoraInicio(rs.getDate(this.campos[1][0]));
-//            abertura.setIdAbertura(rs.getInt(this.campos[0][0]));
-//            abertura.setIdConcurso(rs.getInt(this.campos[5][0]));
-//            abertura.setLocal(rs.getString(this.campos[2][0]));
-//            abertura.setPortaria(rs.getString(this.campos[3][0]));
+            abertura.setEmissor(rs.getString(this.campos[4][0]));
+            abertura.setHoraInicio(rs.getDate(this.campos[1][0]));
+            abertura.setIdAbertura(rs.getInt(this.campos[0][0]));
+            abertura.setIdConcurso(rs.getInt(this.campos[5][0]));
+            abertura.setLocal(rs.getString(this.campos[2][0]));
+            abertura.setPortaria(rs.getString(this.campos[3][0]));
         }
-        
-        
         
         public String getAllSql() {
             String sql = "SELECT * FROM " + this.table_name;
