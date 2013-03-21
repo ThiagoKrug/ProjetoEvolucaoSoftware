@@ -387,21 +387,21 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Nome:");
-        jLabel21.setBounds(20, 90, 41, 17);
+        jLabel21.setBounds(10, 90, 41, 17);
         jLayeredPane4.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Sexo:");
-        jLabel22.setBounds(270, 90, 36, 17);
+        jLabel22.setBounds(260, 90, 36, 17);
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldNome.setBounds(20, 110, 240, 30);
+        jTextFieldNome.setBounds(10, 110, 240, 30);
         jLayeredPane4.add(jTextFieldNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxSexo4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSexo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
-        jComboBoxSexo4.setBounds(270, 110, 100, 30);
+        jComboBoxSexo4.setBounds(260, 110, 110, 30);
         jLayeredPane4.add(jComboBoxSexo4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         tCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -459,7 +459,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data de Nascimento:");
-        jLabel24.setBounds(20, 140, 140, 17);
+        jLabel24.setBounds(10, 140, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator3.setBounds(0, 300, 730, 10);
         jLayeredPane4.add(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -469,7 +469,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator5.setBounds(0, 50, 730, 10);
         jLayeredPane4.add(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(20, 160, 150, 30);
+        jDateChooser1.setBounds(10, 160, 150, 30);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
