@@ -35,7 +35,9 @@ public class ConcursoDao implements IDao {
                    sql += "   ?,?,?,?,?,?,?,?,?,?,? ";
                    sql += " ) ";
                    
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 
                 stmt.setString(1, concurso.getMinisterio());
                 stmt.setString(2, concurso.getInstituicao());
@@ -67,6 +69,8 @@ public class ConcursoDao implements IDao {
                 if ( rs.next() ) {
                     concurso.setIdConcurso( rs.getInt(1) );
                 }
+                
+            } catch (Exception e) {
                 
             }
             
@@ -101,7 +105,9 @@ public class ConcursoDao implements IDao {
                    sql += "   WHERE ";
                    sql += "     id_concurso = ? ";
                    
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 
                 stmt.setString(1, concurso.getMinisterio());
                 stmt.setString(2, concurso.getInstituicao());
@@ -133,6 +139,8 @@ public class ConcursoDao implements IDao {
                     return concurso;
                 }
                 
+            } catch (Exception e) {
+                
             }
             
         }
@@ -151,13 +159,17 @@ public class ConcursoDao implements IDao {
             
             String sql = " DELETE FROM concurso WHERE id_concurso = ? ";
             
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 
                 stmt.setInt(1, concurso.getIdConcurso());
                 
                 if ( stmt.executeUpdate() == 1 ) {
                     return concurso;
                 }
+                
+            } catch (Exception e) {
                 
             }
             
