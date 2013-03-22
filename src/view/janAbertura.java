@@ -166,7 +166,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(60, 380, 390, 40);
+        jButtonCriarAta.setBounds(70, 380, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);

@@ -281,7 +281,10 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonResultadoActionPerformed
 
     private void jButtonDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDidaticaActionPerformed
-        // TODO add your handling code here:
+        
+        janProvaDidatica Didatica =  new janProvaDidatica();
+        Didatica.setVisible(true);
+        
     }//GEN-LAST:event_jButtonDidaticaActionPerformed
 
     private void jButtonMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemorialActionPerformed
