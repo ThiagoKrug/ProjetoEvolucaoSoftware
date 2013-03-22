@@ -230,6 +230,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jLayeredPane3.add(jTextFieldPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarPlanilhadePontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCriarPlanilhadePontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButtonCriarPlanilhadePontos.setText("Criar planilha de pontos para a prova didática");
         jButtonCriarPlanilhadePontos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,17 +308,17 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jTablePresencaMemorial.getTableHeader().setReorderingAllowed(false);
         jScrollPaneTabelaCriterios.setViewportView(jTablePresencaMemorial);
 
-        jScrollPaneTabelaCriterios.setBounds(20, 40, 370, 380);
+        jScrollPaneTabelaCriterios.setBounds(20, 40, 380, 380);
         jLayeredPane4.add(jScrollPaneTabelaCriterios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         obs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         obs.setText("Obs.: o somatório dos pesos dos critérios de avaliação deve ser 10.");
-        obs.setBounds(410, 80, 410, 20);
+        obs.setBounds(410, 40, 410, 20);
         jLayeredPane4.add(obs, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText(" Isto não é conferido pelo programa. ");
-        jLabel1.setBounds(450, 100, 230, 17);
+        jLabel1.setBounds(450, 60, 230, 17);
         jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -348,6 +349,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jLayeredPane5.add(jTextFieldCriarAtaSorteioPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAtaSorteioPontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCriarAtaSorteioPontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonCriarAtaSorteioPontos.setText("Cria ata do sorteio dos pontos da prova didática");
         jButtonCriarAtaSorteioPontos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,22 +376,23 @@ public class janProvaDidatica extends javax.swing.JFrame {
 
         examinador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         examinador.setText("Examinador");
-        examinador.setBounds(350, 70, 80, 17);
+        examinador.setBounds(330, 70, 80, 20);
         jLayeredPane6.add(examinador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CriarTodasasPlanilhas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CriarTodasasPlanilhas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         CriarTodasasPlanilhas.setText("Criar todas as planilhas");
         CriarTodasasPlanilhas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CriarTodasasPlanilhasActionPerformed(evt);
             }
         });
-        CriarTodasasPlanilhas.setBounds(350, 300, 460, 40);
+        CriarTodasasPlanilhas.setBounds(330, 300, 480, 40);
         jLayeredPane6.add(CriarTodasasPlanilhas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPaneExaminador.setViewportView(jListCandidatos1);
 
-        jScrollPaneExaminador.setBounds(350, 90, 310, 100);
+        jScrollPaneExaminador.setBounds(330, 90, 330, 100);
         jLayeredPane6.add(jScrollPaneExaminador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPaneCandidato.setViewportView(jListCandidatos2);
@@ -403,13 +406,14 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jLayeredPane6.add(marqueoscadidatos3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CriarPlanilhadeNotas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CriarPlanilhadeNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         CriarPlanilhadeNotas.setText("Criar planilha de notas para o candidato e o examinador selecionados");
         CriarPlanilhadeNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CriarPlanilhadeNotasActionPerformed(evt);
             }
         });
-        CriarPlanilhadeNotas.setBounds(350, 260, 460, 40);
+        CriarPlanilhadeNotas.setBounds(330, 250, 480, 40);
         jLayeredPane6.add(CriarPlanilhadeNotas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -427,7 +431,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
 
         localdarealizacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         localdarealizacao.setText("Local da realização da prova didática:");
-        localdarealizacao.setBounds(250, 130, 450, 17);
+        localdarealizacao.setBounds(230, 130, 450, 17);
         jLayeredPane7.add(localdarealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCriarAtaSessao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -436,17 +440,18 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jTextFieldCriarAtaSessaoActionPerformed(evt);
             }
         });
-        jTextFieldCriarAtaSessao.setBounds(250, 150, 320, 40);
+        jTextFieldCriarAtaSessao.setBounds(230, 150, 380, 40);
         jLayeredPane7.add(jTextFieldCriarAtaSessao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAta4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCriarAta4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonCriarAta4.setText("Criar ata da sessão de realização da prova didática");
         jButtonCriarAta4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCriarAta4ActionPerformed(evt);
             }
         });
-        jButtonCriarAta4.setBounds(250, 200, 360, 40);
+        jButtonCriarAta4.setBounds(230, 200, 380, 40);
         jLayeredPane7.add(jButtonCriarAta4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -463,13 +468,14 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jTabbedPane5.addTab("Ata realização", jPanel6);
 
         jButtonCriarAta2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCriarAta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonCriarAta2.setText("Criar ata da sessão de divulgação do resultado da prova didática");
         jButtonCriarAta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCriarAta2ActionPerformed(evt);
             }
         });
-        jButtonCriarAta2.setBounds(220, 230, 440, 40);
+        jButtonCriarAta2.setBounds(190, 230, 480, 40);
         jLayeredPane8.add(jButtonCriarAta2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         localderealizacaodaprova.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

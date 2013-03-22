@@ -282,8 +282,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jButtonRemoverPonto.setBounds(620, 335, 130, 30);
         jLayeredPane3.add(jButtonRemoverPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonGerarRelacaoPontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarRelacaoPontos.setText("Gerar Relação de Pontos");
-        jButtonGerarRelacaoPontos.setBounds(20, 335, 200, 30);
+        jButtonGerarRelacaoPontos.setBounds(20, 335, 220, 30);
         jLayeredPane3.add(jButtonGerarRelacaoPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -337,8 +338,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jButtonRemoverCriterio.setBounds(630, 330, 120, 30);
         jLayeredPane4.add(jButtonRemoverCriterio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonGerarRelCriterios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarRelCriterios.setText("Gerar Relação de Critérios");
-        jButtonGerarRelCriterios.setBounds(10, 330, 190, 30);
+        jButtonGerarRelCriterios.setBounds(10, 330, 220, 30);
         jLayeredPane4.add(jButtonGerarRelCriterios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -438,8 +440,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldHoraLeitura.setBounds(620, 70, 80, 30);
         jLayeredPane6.add(jTextFieldHoraLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonCriarAtaLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonCriarAtaLeitura.setText("Criar Ata de Leitura");
-        jButtonCriarAtaLeitura.setBounds(470, 150, 160, 40);
+        jButtonCriarAtaLeitura.setBounds(470, 150, 180, 33);
         jLayeredPane6.add(jButtonCriarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -475,6 +478,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalJulgamento.setBounds(300, 112, 280, 30);
         jLayeredPane7.add(jTextFieldLocalJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonAtaJulgamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonAtaJulgamento.setText("Criar Ata de Julgamento");
         jButtonAtaJulgamento.setBounds(380, 150, 200, 30);
         jLayeredPane7.add(jButtonAtaJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -504,6 +508,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalDivulgacaoResultado.setBounds(300, 112, 280, 30);
         jLayeredPane8.add(jTextFieldLocalDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonAtaResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonAtaResultado.setText("Criar Ata do Resultado");
         jButtonAtaResultado.setBounds(380, 150, 200, 30);
         jLayeredPane8.add(jButtonAtaResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);

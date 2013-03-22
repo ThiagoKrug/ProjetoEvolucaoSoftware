@@ -337,16 +337,22 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonPlanilhaMemorial">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/planilha.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Gerar Planilha de Avalia&#xe7;&#xe3;o do Candidato e Examinador Selecionado"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="20" y="230" width="430" height="40" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="20" y="230" width="450" height="40" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonPlanilhasMemorialTodas">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/planilha.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Gerar Todas as Planilhas"/>
                       </Properties>
                       <Events>
@@ -440,17 +446,20 @@
                     <Component class="javax.swing.JTextField" name="jTextFieldLocalProvaMemorial">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="150" y="122" width="320" height="40" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="150" y="122" width="330" height="40" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonAtaMemorial">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/ataa.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Criar Ata de Realiza&#xe7;&#xe3;o da Prova de Memorial"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="150" y="170" width="320" height="40" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="150" y="170" width="330" height="40" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

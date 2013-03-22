@@ -208,10 +208,12 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel4.setBounds(360, 20, 72, 16);
         jLayeredPane4.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonPlanilhaMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButtonPlanilhaMemorial.setText("Gerar Planilha de Avaliação do Candidato e Examinador Selecionado");
-        jButtonPlanilhaMemorial.setBounds(20, 230, 430, 40);
+        jButtonPlanilhaMemorial.setBounds(20, 230, 450, 40);
         jLayeredPane4.add(jButtonPlanilhaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonPlanilhasMemorialTodas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButtonPlanilhasMemorialTodas.setText("Gerar Todas as Planilhas");
         jButtonPlanilhasMemorialTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,11 +254,12 @@ public class janProvaMemorial extends javax.swing.JFrame {
         jLabel5.setText("Local de Realização da Prova de Memorial:");
         jLabel5.setBounds(180, 100, 280, 16);
         jLayeredPane5.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalProvaMemorial.setBounds(150, 122, 320, 40);
+        jTextFieldLocalProvaMemorial.setBounds(150, 122, 330, 40);
         jLayeredPane5.add(jTextFieldLocalProvaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonAtaMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonAtaMemorial.setText("Criar Ata de Realização da Prova de Memorial");
-        jButtonAtaMemorial.setBounds(150, 170, 320, 40);
+        jButtonAtaMemorial.setBounds(150, 170, 330, 40);
         jLayeredPane5.add(jButtonAtaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

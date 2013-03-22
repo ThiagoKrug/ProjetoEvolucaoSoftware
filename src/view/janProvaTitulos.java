@@ -342,61 +342,62 @@ public class janProvaTitulos extends javax.swing.JFrame {
         btnProximo.setBounds(620, 450, 120, 40);
         jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBoxCandidato.setBounds(80, 10, 120, 30);
+        jComboBoxCandidato.setBounds(90, 10, 150, 30);
         jLayeredPane1.add(jComboBoxCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonGerarPlanilha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButtonGerarPlanilha.setText("Gerar Planilha");
-        jButtonGerarPlanilha.setBounds(80, 50, 120, 30);
+        jButtonGerarPlanilha.setBounds(90, 50, 150, 30);
         jLayeredPane1.add(jButtonGerarPlanilha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText("Candidatos:");
-        jLabel1.setBounds(10, 10, 90, 16);
+        jLabel1.setBounds(20, 10, 90, 16);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Peso das Classes:");
-        jLabel3.setBounds(230, 10, 120, 16);
+        jLabel3.setBounds(270, 10, 120, 16);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel4.setText("Nota de Referência:");
-        jLabel4.setBounds(400, 10, 140, 16);
+        jLabel4.setBounds(440, 10, 140, 16);
         jLayeredPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText("Classe I.1:");
-        jLabel5.setBounds(230, 30, 70, 16);
+        jLabel5.setBounds(270, 30, 70, 16);
         jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel6.setText("Classe I.2:");
-        jLabel6.setBounds(230, 60, 70, 16);
+        jLabel6.setBounds(270, 60, 70, 16);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel7.setText("Classe I.3:");
-        jLabel7.setBounds(230, 90, 70, 16);
+        jLabel7.setBounds(270, 90, 70, 16);
         jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldPesoCl1.setBounds(300, 30, 60, 22);
+        jTextFieldPesoCl1.setBounds(340, 30, 60, 22);
         jLayeredPane1.add(jTextFieldPesoCl1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldPesoCl2.setBounds(300, 60, 60, 22);
+        jTextFieldPesoCl2.setBounds(340, 60, 60, 22);
         jLayeredPane1.add(jTextFieldPesoCl2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldPesoCl3.setBounds(300, 90, 60, 22);
+        jTextFieldPesoCl3.setBounds(340, 90, 60, 22);
         jLayeredPane1.add(jTextFieldPesoCl3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldNotaCl1.setBounds(470, 30, 60, 22);
+        jTextFieldNotaCl1.setBounds(510, 30, 60, 22);
         jLayeredPane1.add(jTextFieldNotaCl1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldNotaCl2.setBounds(470, 60, 60, 22);
+        jTextFieldNotaCl2.setBounds(510, 60, 60, 22);
         jLayeredPane1.add(jTextFieldNotaCl2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldNotaCl3.setBounds(470, 90, 60, 22);
+        jTextFieldNotaCl3.setBounds(510, 90, 60, 22);
         jLayeredPane1.add(jTextFieldNotaCl3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel11.setText("Classe I.2:");
-        jLabel11.setBounds(400, 60, 70, 16);
+        jLabel11.setBounds(440, 60, 70, 16);
         jLayeredPane1.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText("Classe I.3:");
-        jLabel12.setBounds(400, 90, 70, 16);
+        jLabel12.setBounds(440, 90, 70, 16);
         jLayeredPane1.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText("Classe I.1:");
-        jLabel13.setBounds(400, 30, 70, 16);
+        jLabel13.setBounds(440, 30, 70, 16);
         jLayeredPane1.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

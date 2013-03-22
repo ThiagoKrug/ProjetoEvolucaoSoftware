@@ -50,7 +50,7 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablePresencaMemorial = new javax.swing.JTable();
-        jButtonAdicionar2 = new javax.swing.JButton();
+        jButtonCronograma = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -159,13 +159,14 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane2.add(jTextPortariaNomeacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCriarAta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonCriarAta.setText("Cria ata de instalação da comissão examinadora");
         jButtonCriarAta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(60, 380, 340, 40);
+        jButtonCriarAta.setBounds(60, 380, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -238,15 +239,16 @@ public class janAbertura extends javax.swing.JFrame {
         jScrollPane2.setBounds(30, 30, 460, 370);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAdicionar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonAdicionar2.setText("Cria cronograma");
-        jButtonAdicionar2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCronograma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCronograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cronograma.png"))); // NOI18N
+        jButtonCronograma.setText("Cria Cronograma");
+        jButtonCronograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdicionar2ActionPerformed(evt);
+                jButtonCronogramaActionPerformed(evt);
             }
         });
-        jButtonAdicionar2.setBounds(70, 410, 370, 40);
-        jLayeredPane3.add(jButtonAdicionar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonCronograma.setBounds(70, 410, 370, 40);
+        jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,13 +279,14 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane4.add(horadeinicio2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CriarAtaAbertura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CriarAtaAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         CriarAtaAbertura.setText("Criar ata da sessão de abertura do concurso");
         CriarAtaAbertura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CriarAtaAberturaActionPerformed(evt);
             }
         });
-        CriarAtaAbertura.setBounds(100, 420, 320, 40);
+        CriarAtaAbertura.setBounds(80, 420, 360, 40);
         jLayeredPane4.add(CriarAtaAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao1.setBounds(50, 380, 70, 30);
         jLayeredPane4.add(jTextFieldHoraInstalacao1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -292,9 +295,7 @@ public class janAbertura extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,9 +335,9 @@ public class janAbertura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLocalSessaoActionPerformed
 
-    private void jButtonAdicionar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionar2ActionPerformed
+    private void jButtonCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronogramaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAdicionar2ActionPerformed
+    }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
         // TODO add your handling code here:
@@ -404,9 +405,9 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JLabel PortariaNomeacao;
     private javax.swing.JLabel horadeinicio;
     private javax.swing.JLabel horadeinicio2;
-    private javax.swing.JButton jButtonAdicionar2;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAta;
+    private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;

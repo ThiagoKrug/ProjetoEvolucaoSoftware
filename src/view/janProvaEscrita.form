@@ -383,11 +383,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonGerarRelacaoPontos">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/rel.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Gerar Rela&#xe7;&#xe3;o de Pontos"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="20" y="335" width="200" height="30" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="20" y="335" width="220" height="30" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -514,11 +517,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonGerarRelCriterios">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/rel.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Gerar Rela&#xe7;&#xe3;o de Crit&#xe9;rios"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="10" y="330" width="190" height="30" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="10" y="330" width="220" height="30" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -777,11 +783,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonCriarAtaLeitura">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/ataa.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Criar Ata de Leitura"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="470" y="150" width="160" height="40" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="470" y="150" width="180" height="-1" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -851,6 +860,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonAtaJulgamento">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/ataa.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Criar Ata de Julgamento"/>
                       </Properties>
                       <Constraints>
@@ -925,6 +937,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonAtaResultado">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/ataa.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Criar Ata do Resultado"/>
                       </Properties>
                       <Constraints>
