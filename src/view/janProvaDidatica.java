@@ -87,6 +87,9 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jTextFieldLocalDidatica = new javax.swing.JTextField();
         horadeinicio3 = new javax.swing.JLabel();
         jTextFieldHoraDidatica = new javax.swing.JTextField();
+        btnProximo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -515,6 +518,43 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jTabbedPane5.setBounds(0, 0, 840, 470);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        btnProximo.setMnemonic('p');
+        btnProximo.setText("Próximo");
+        btnProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
+        btnProximo.setBounds(700, 480, 120, 40);
+        jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        btnCancelar.setMnemonic('c');
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        btnCancelar.setBounds(580, 480, 120, 40);
+        jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        btnVoltar.setMnemonic('v');
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        btnVoltar.setBounds(460, 480, 120, 40);
+        jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         jMenu1.setText("Configuração");
 
         jMenu6.setText("Configurar candidatos aptos a realizar essa etapa do concurso");
@@ -572,11 +612,11 @@ public class janProvaDidatica extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-857)/2, (screenSize.height-543)/2, 857, 543);
+        setBounds((screenSize.width-857)/2, (screenSize.height-603)/2, 857, 603);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CriarTodasasPlanilhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarTodasasPlanilhasActionPerformed
@@ -627,6 +667,28 @@ public class janProvaDidatica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditarResultadoActionPerformed
 
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+
+        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+
+    }//GEN-LAST:event_btnProximoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+
+        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
+        if (nextTab >= 0) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,6 +726,9 @@ public class janProvaDidatica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CriarPlanilhadeNotas;
     private javax.swing.JButton CriarTodasasPlanilhas;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnProximo;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel compareceu;
     private javax.swing.JLabel compareceu1;
     private javax.swing.JLabel criteriosdeavaliacao;
