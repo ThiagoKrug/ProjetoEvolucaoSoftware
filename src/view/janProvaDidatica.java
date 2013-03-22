@@ -31,7 +31,6 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         pontosorteado = new javax.swing.JLabel();
-        jButtonFechar = new javax.swing.JButton();
         horadeinicio6 = new javax.swing.JLabel();
         nomedocandidato = new javax.swing.JLabel();
         data = new javax.swing.JLabel();
@@ -41,9 +40,9 @@ public class janProvaDidatica extends javax.swing.JFrame {
         data1 = new javax.swing.JLabel();
         horario1 = new javax.swing.JLabel();
         compareceu1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
-        jButtonFechar4 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jListCandidatos = new javax.swing.JList();
         jLabelPonto = new javax.swing.JLabel();
@@ -57,16 +56,13 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         criteriosdeavaliacao = new javax.swing.JLabel();
-        parainserir = new javax.swing.JLabel();
-        JBUttonOk = new javax.swing.JButton();
         jScrollPaneTabelaCriterios = new javax.swing.JScrollPane();
         jTablePresencaMemorial = new javax.swing.JTable();
-        fechar = new javax.swing.JButton();
         obs = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         localdarealizacaodosorteiodospontos = new javax.swing.JLabel();
-        fechar1 = new javax.swing.JButton();
         jTextFieldCriarAtaSorteioPontos = new javax.swing.JTextField();
         jButtonCriarAtaSorteioPontos = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -79,22 +75,18 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jListCandidatos2 = new javax.swing.JList();
         marqueoscadidatos3 = new javax.swing.JLabel();
         CriarPlanilhadeNotas = new javax.swing.JButton();
-        fechar2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLayeredPane7 = new javax.swing.JLayeredPane();
-        jButtonFechar1 = new javax.swing.JButton();
         localdarealizacao = new javax.swing.JLabel();
         jTextFieldCriarAtaSessao = new javax.swing.JTextField();
         jButtonCriarAta4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLayeredPane8 = new javax.swing.JLayeredPane();
         jButtonCriarAta2 = new javax.swing.JButton();
-        jButtonFechar2 = new javax.swing.JButton();
         localderealizacaodaprova = new javax.swing.JLabel();
-        jTextFieldLocalSessao4 = new javax.swing.JTextField();
+        jTextFieldLocalDidatica = new javax.swing.JTextField();
         horadeinicio3 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        jTextFieldHoraDidatica = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -111,28 +103,21 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenu14 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Prova Didática");
+        setResizable(false);
 
         jTabbedPane5.setToolTipText("");
 
         pontosorteado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pontosorteado.setText("Ponto Sorteado:");
-        pontosorteado.setBounds(470, 30, 110, 17);
+        pontosorteado.setBounds(450, 30, 110, 17);
         jLayeredPane2.add(pontosorteado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonFechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonFechar.setText("Fechar");
-        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFecharActionPerformed(evt);
-            }
-        });
-        jButtonFechar.setBounds(430, 480, 150, 25);
-        jLayeredPane2.add(jButtonFechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        horadeinicio6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        horadeinicio6.setText("realizacao");
-        horadeinicio6.setBounds(680, 10, 70, 17);
+        horadeinicio6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        horadeinicio6.setForeground(new java.awt.Color(204, 0, 0));
+        horadeinicio6.setText("Realização:");
+        horadeinicio6.setBounds(590, 10, 90, 17);
         jLayeredPane2.add(horadeinicio6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nomedocandidato.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -142,12 +127,12 @@ public class janProvaDidatica extends javax.swing.JFrame {
 
         data.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         data.setText("Data");
-        data.setBounds(620, 30, 40, 17);
+        data.setBounds(580, 30, 40, 17);
         jLayeredPane2.add(data, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         horario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         horario.setText("Horário");
-        horario.setBounds(670, 30, 50, 17);
+        horario.setBounds(650, 30, 50, 17);
         jLayeredPane2.add(horario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         compareceu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -155,9 +140,10 @@ public class janProvaDidatica extends javax.swing.JFrame {
         compareceu.setBounds(730, 30, 90, 17);
         jLayeredPane2.add(compareceu, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        sorteiodoponto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sorteiodoponto.setText("Sorteio do ponto");
-        sorteiodoponto.setBounds(370, 10, 120, 17);
+        sorteiodoponto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sorteiodoponto.setForeground(new java.awt.Color(204, 0, 0));
+        sorteiodoponto.setText("Sorteio do ponto:");
+        sorteiodoponto.setBounds(130, 10, 140, 17);
         jLayeredPane2.add(sorteiodoponto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         data1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -175,58 +161,64 @@ public class janProvaDidatica extends javax.swing.JFrame {
         compareceu1.setBounds(320, 30, 90, 17);
         jLayeredPane2.add(compareceu1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setBounds(430, 0, 20, 440);
+        jLayeredPane2.add(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Candidatos", jPanel1);
 
-        jButtonFechar4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonFechar4.setText("Fechar");
-        jButtonFechar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFechar4ActionPerformed(evt);
-            }
-        });
-        jButtonFechar4.setBounds(430, 480, 150, 25);
-        jLayeredPane3.add(jButtonFechar4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jScrollPane6.setViewportView(jListCandidatos);
 
-        jScrollPane6.setBounds(50, 90, 280, 250);
+        jScrollPane6.setBounds(460, 70, 260, 260);
         jLayeredPane3.add(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabelPonto.setText("Ponto:");
-        jLabelPonto.setBounds(50, 410, 32, 14);
+        jLabelPonto.setBounds(130, 120, 37, 16);
         jLayeredPane3.add(jLabelPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonEditarResultado.setText("Editar ponto");
-        jButtonEditarResultado.setBounds(290, 360, 110, 30);
+        jButtonEditarResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/edt.png"))); // NOI18N
+        jButtonEditarResultado.setText("Editar ");
+        jButtonEditarResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarResultadoActionPerformed(evt);
+            }
+        });
+        jButtonEditarResultado.setBounds(340, 180, 120, 40);
         jLayeredPane3.add(jButtonEditarResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAtaResultado1.setText("Importar da prova escrita");
-        jButtonAtaResultado1.setBounds(170, 40, 160, 30);
+        jButtonAtaResultado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/import.png"))); // NOI18N
+        jButtonAtaResultado1.setText("Importar da Prova Escrita");
+        jButtonAtaResultado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtaResultado1ActionPerformed(evt);
+            }
+        });
+        jButtonAtaResultado1.setBounds(130, 70, 210, 40);
         jLayeredPane3.add(jButtonAtaResultado1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAdicionarPonto.setText("Adicionar ponto");
-        jButtonAdicionarPonto.setBounds(50, 360, 110, 30);
+        jButtonAdicionarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        jButtonAdicionarPonto.setText("Adicionar");
+        jButtonAdicionarPonto.setBounds(340, 140, 120, 40);
         jLayeredPane3.add(jButtonAdicionarPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonRemoverPonto.setText("Remover ponto");
-        jButtonRemoverPonto.setBounds(170, 360, 110, 30);
+        jButtonRemoverPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        jButtonRemoverPonto.setText("Remover ");
+        jButtonRemoverPonto.setBounds(340, 220, 120, 40);
         jLayeredPane3.add(jButtonRemoverPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabelLocaldaLeitura.setText("Local da Leitura:");
-        jLabelLocaldaLeitura.setBounds(50, 70, 79, 14);
+        jLabelLocaldaLeitura.setText("Lista de Pontos:");
+        jLabelLocaldaLeitura.setBounds(460, 50, 120, 20);
         jLayeredPane3.add(jLabelLocaldaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldPonto.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +226,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jTextFieldPontoActionPerformed(evt);
             }
         });
-        jTextFieldPonto.setBounds(90, 400, 280, 30);
+        jTextFieldPonto.setBounds(130, 140, 210, 40);
         jLayeredPane3.add(jTextFieldPonto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarPlanilhadePontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -244,44 +236,26 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jButtonCriarPlanilhadePontosActionPerformed(evt);
             }
         });
-        jButtonCriarPlanilhadePontos.setBounds(60, 440, 510, 25);
+        jButtonCriarPlanilhadePontos.setBounds(180, 360, 480, 40);
         jLayeredPane3.add(jButtonCriarPlanilhadePontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Pontos", jPanel2);
 
         criteriosdeavaliacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         criteriosdeavaliacao.setText("Critérios de avaliação da prova didática");
-        criteriosdeavaliacao.setBounds(10, 10, 240, 17);
+        criteriosdeavaliacao.setBounds(20, 10, 240, 17);
         jLayeredPane4.add(criteriosdeavaliacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        parainserir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        parainserir.setText("Para inserir uma nova linha, basta posicinar o cursor na última linha e pressionar o botão \"seta para baixo\" do teclado.");
-        parainserir.setBounds(20, 480, 716, 20);
-        jLayeredPane4.add(parainserir, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        JBUttonOk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        JBUttonOk.setText("Ok");
-        JBUttonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBUttonOkActionPerformed(evt);
-            }
-        });
-        JBUttonOk.setBounds(400, 450, 50, 25);
-        jLayeredPane4.add(JBUttonOk, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTablePresencaMemorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -333,53 +307,36 @@ public class janProvaDidatica extends javax.swing.JFrame {
         jTablePresencaMemorial.getTableHeader().setReorderingAllowed(false);
         jScrollPaneTabelaCriterios.setViewportView(jTablePresencaMemorial);
 
-        jScrollPaneTabelaCriterios.setBounds(60, 30, 370, 390);
+        jScrollPaneTabelaCriterios.setBounds(20, 40, 370, 380);
         jLayeredPane4.add(jScrollPaneTabelaCriterios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        fechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechar.setText("Fechar");
-        fechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecharActionPerformed(evt);
-            }
-        });
-        fechar.setBounds(600, 510, 164, 25);
-        jLayeredPane4.add(fechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         obs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        obs.setText("Obs.: o somatório dos pesos dos critérios de avaliação deve ser 10. Isto não é conferido pelo programa. ");
-        obs.setBounds(20, 430, 637, 20);
+        obs.setText("Obs.: o somatório dos pesos dos critérios de avaliação deve ser 10.");
+        obs.setBounds(410, 80, 410, 20);
         jLayeredPane4.add(obs, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText(" Isto não é conferido pelo programa. ");
+        jLabel1.setBounds(450, 100, 230, 17);
+        jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Critérios", jPanel3);
 
         localdarealizacaodosorteiodospontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         localdarealizacaodosorteiodospontos.setText("Local da realização do sorteio dos pontos da prova didática:");
-        localdarealizacaodosorteiodospontos.setBounds(10, 10, 450, 17);
+        localdarealizacaodosorteiodospontos.setBounds(210, 140, 450, 30);
         jLayeredPane5.add(localdarealizacaodosorteiodospontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        fechar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechar1.setText("Fechar");
-        fechar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechar1ActionPerformed(evt);
-            }
-        });
-        fechar1.setBounds(620, 495, 164, 25);
-        jLayeredPane5.add(fechar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCriarAtaSorteioPontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldCriarAtaSorteioPontos.addActionListener(new java.awt.event.ActionListener() {
@@ -387,7 +344,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jTextFieldCriarAtaSorteioPontosActionPerformed(evt);
             }
         });
-        jTextFieldCriarAtaSorteioPontos.setBounds(20, 30, 320, 23);
+        jTextFieldCriarAtaSorteioPontos.setBounds(210, 180, 320, 40);
         jLayeredPane5.add(jTextFieldCriarAtaSorteioPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAtaSorteioPontos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -397,19 +354,19 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jButtonCriarAtaSorteioPontosActionPerformed(evt);
             }
         });
-        jButtonCriarAtaSorteioPontos.setBounds(10, 60, 430, 25);
+        jButtonCriarAtaSorteioPontos.setBounds(210, 230, 430, 40);
         jLayeredPane5.add(jButtonCriarAtaSorteioPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLayeredPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLayeredPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -417,7 +374,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
 
         examinador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         examinador.setText("Examinador");
-        examinador.setBounds(340, 10, 80, 17);
+        examinador.setBounds(350, 70, 80, 17);
         jLayeredPane6.add(examinador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CriarTodasasPlanilhas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -427,22 +384,22 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 CriarTodasasPlanilhasActionPerformed(evt);
             }
         });
-        CriarTodasasPlanilhas.setBounds(340, 220, 460, 25);
+        CriarTodasasPlanilhas.setBounds(350, 300, 460, 40);
         jLayeredPane6.add(CriarTodasasPlanilhas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPaneExaminador.setViewportView(jListCandidatos1);
 
-        jScrollPaneExaminador.setBounds(340, 40, 310, 130);
+        jScrollPaneExaminador.setBounds(350, 90, 310, 100);
         jLayeredPane6.add(jScrollPaneExaminador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPaneCandidato.setViewportView(jListCandidatos2);
 
-        jScrollPaneCandidato.setBounds(20, 40, 280, 250);
+        jScrollPaneCandidato.setBounds(30, 90, 280, 250);
         jLayeredPane6.add(jScrollPaneCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         marqueoscadidatos3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         marqueoscadidatos3.setText("Candidato");
-        marqueoscadidatos3.setBounds(20, 10, 70, 17);
+        marqueoscadidatos3.setBounds(30, 70, 70, 17);
         jLayeredPane6.add(marqueoscadidatos3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         CriarPlanilhadeNotas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -452,47 +409,25 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 CriarPlanilhadeNotasActionPerformed(evt);
             }
         });
-        CriarPlanilhadeNotas.setBounds(340, 190, 460, 25);
+        CriarPlanilhadeNotas.setBounds(350, 260, 460, 40);
         jLayeredPane6.add(CriarPlanilhadeNotas, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        fechar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechar2.setText("Fechar");
-        fechar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechar2ActionPerformed(evt);
-            }
-        });
-        fechar2.setBounds(540, 430, 164, 25);
-        jLayeredPane6.add(fechar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jLayeredPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLayeredPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Planilhas", jPanel5);
 
-        jButtonFechar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonFechar1.setText("Fechar");
-        jButtonFechar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFechar1ActionPerformed(evt);
-            }
-        });
-        jButtonFechar1.setBounds(430, 480, 150, 25);
-        jLayeredPane7.add(jButtonFechar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         localdarealizacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         localdarealizacao.setText("Local da realização da prova didática:");
-        localdarealizacao.setBounds(10, 10, 450, 17);
+        localdarealizacao.setBounds(250, 130, 450, 17);
         jLayeredPane7.add(localdarealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCriarAtaSessao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -501,7 +436,7 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jTextFieldCriarAtaSessaoActionPerformed(evt);
             }
         });
-        jTextFieldCriarAtaSessao.setBounds(20, 30, 320, 23);
+        jTextFieldCriarAtaSessao.setBounds(250, 150, 320, 40);
         jLayeredPane7.add(jTextFieldCriarAtaSessao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAta4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -511,18 +446,18 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jButtonCriarAta4ActionPerformed(evt);
             }
         });
-        jButtonCriarAta4.setBounds(10, 60, 430, 25);
+        jButtonCriarAta4.setBounds(250, 200, 360, 40);
         jLayeredPane7.add(jButtonCriarAta4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jLayeredPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(jLayeredPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Ata realização", jPanel6);
@@ -534,56 +469,44 @@ public class janProvaDidatica extends javax.swing.JFrame {
                 jButtonCriarAta2ActionPerformed(evt);
             }
         });
-        jButtonCriarAta2.setBounds(20, 110, 510, 25);
+        jButtonCriarAta2.setBounds(220, 230, 440, 40);
         jLayeredPane8.add(jButtonCriarAta2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonFechar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonFechar2.setText("Fechar");
-        jButtonFechar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFechar2ActionPerformed(evt);
-            }
-        });
-        jButtonFechar2.setBounds(430, 480, 150, 25);
-        jLayeredPane8.add(jButtonFechar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         localderealizacaodaprova.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         localderealizacaodaprova.setText("Local da realização da prova didática:");
-        localderealizacaodaprova.setBounds(10, 10, 450, 17);
+        localderealizacaodaprova.setBounds(220, 100, 450, 17);
         jLayeredPane8.add(localderealizacaodaprova, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTextFieldLocalSessao4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldLocalSessao4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLocalDidatica.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldLocalDidatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLocalSessao4ActionPerformed(evt);
+                jTextFieldLocalDidaticaActionPerformed(evt);
             }
         });
-        jTextFieldLocalSessao4.setBounds(20, 30, 320, 23);
-        jLayeredPane8.add(jTextFieldLocalSessao4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocalDidatica.setBounds(220, 120, 320, 40);
+        jLayeredPane8.add(jTextFieldLocalDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         horadeinicio3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         horadeinicio3.setText("Horário");
-        horadeinicio3.setBounds(10, 60, 50, 17);
+        horadeinicio3.setBounds(220, 160, 50, 17);
         jLayeredPane8.add(horadeinicio3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSpinner2.setBounds(20, 80, 29, 20);
-        jLayeredPane8.add(jSpinner2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jSpinner1.setBounds(50, 80, 29, 20);
-        jLayeredPane8.add(jSpinner1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHoraDidatica.setBounds(220, 180, 80, 40);
+        jLayeredPane8.add(jTextFieldHoraDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jLayeredPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(jLayeredPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Ata resultado", jPanel7);
 
-        jTabbedPane5.setBounds(0, 50, 820, 580);
+        jTabbedPane5.setBounds(0, 0, 840, 470);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu1.setText("Configuração");
@@ -639,55 +562,24 @@ public class janProvaDidatica extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-857)/2, (screenSize.height-543)/2, 857, 543);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFecharActionPerformed
-
-    private void jButtonFechar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFechar4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFechar4ActionPerformed
-
-    private void JBUttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBUttonOkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JBUttonOkActionPerformed
-
-    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecharActionPerformed
-
-    private void fechar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechar1ActionPerformed
 
     private void CriarTodasasPlanilhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarTodasasPlanilhasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CriarTodasasPlanilhasActionPerformed
 
-    private void fechar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechar2ActionPerformed
-
-    private void jButtonFechar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFechar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFechar1ActionPerformed
-
     private void jButtonCriarAta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarAta2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCriarAta2ActionPerformed
-
-    private void jButtonFechar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFechar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFechar2ActionPerformed
 
     private void jButtonCriarPlanilhadePontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarPlanilhadePontosActionPerformed
         // TODO add your handling code here:
@@ -713,13 +605,21 @@ public class janProvaDidatica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCriarAta4ActionPerformed
 
-    private void jTextFieldLocalSessao4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalSessao4ActionPerformed
+    private void jTextFieldLocalDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalDidaticaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLocalSessao4ActionPerformed
+    }//GEN-LAST:event_jTextFieldLocalDidaticaActionPerformed
 
     private void jTextFieldPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPontoActionPerformed
+
+    private void jButtonAtaResultado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtaResultado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAtaResultado1ActionPerformed
+
+    private void jButtonEditarResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -758,16 +658,12 @@ public class janProvaDidatica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CriarPlanilhadeNotas;
     private javax.swing.JButton CriarTodasasPlanilhas;
-    private javax.swing.JButton JBUttonOk;
     private javax.swing.JLabel compareceu;
     private javax.swing.JLabel compareceu1;
     private javax.swing.JLabel criteriosdeavaliacao;
     private javax.swing.JLabel data;
     private javax.swing.JLabel data1;
     private javax.swing.JLabel examinador;
-    private javax.swing.JButton fechar;
-    private javax.swing.JButton fechar1;
-    private javax.swing.JButton fechar2;
     private javax.swing.JLabel horadeinicio3;
     private javax.swing.JLabel horadeinicio6;
     private javax.swing.JLabel horario;
@@ -779,11 +675,8 @@ public class janProvaDidatica extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCriarAtaSorteioPontos;
     private javax.swing.JButton jButtonCriarPlanilhadePontos;
     private javax.swing.JButton jButtonEditarResultado;
-    private javax.swing.JButton jButtonFechar;
-    private javax.swing.JButton jButtonFechar1;
-    private javax.swing.JButton jButtonFechar2;
-    private javax.swing.JButton jButtonFechar4;
     private javax.swing.JButton jButtonRemoverPonto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelLocaldaLeitura;
     private javax.swing.JLabel jLabelPonto;
     private javax.swing.JLayeredPane jLayeredPane1;
@@ -823,13 +716,13 @@ public class janProvaDidatica extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneCandidato;
     private javax.swing.JScrollPane jScrollPaneExaminador;
     private javax.swing.JScrollPane jScrollPaneTabelaCriterios;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTablePresencaMemorial;
     private javax.swing.JTextField jTextFieldCriarAtaSessao;
     private javax.swing.JTextField jTextFieldCriarAtaSorteioPontos;
-    private javax.swing.JTextField jTextFieldLocalSessao4;
+    private javax.swing.JTextField jTextFieldHoraDidatica;
+    private javax.swing.JTextField jTextFieldLocalDidatica;
     private javax.swing.JTextField jTextFieldPonto;
     private javax.swing.JLabel localdarealizacao;
     private javax.swing.JLabel localdarealizacaodosorteiodospontos;
@@ -837,7 +730,6 @@ public class janProvaDidatica extends javax.swing.JFrame {
     private javax.swing.JLabel marqueoscadidatos3;
     private javax.swing.JLabel nomedocandidato;
     private javax.swing.JLabel obs;
-    private javax.swing.JLabel parainserir;
     private javax.swing.JLabel pontosorteado;
     private javax.swing.JLabel sorteiodoponto;
     // End of variables declaration//GEN-END:variables
