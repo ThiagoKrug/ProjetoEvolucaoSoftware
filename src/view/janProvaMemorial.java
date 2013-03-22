@@ -331,7 +331,12 @@ public class janProvaMemorial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
-
+        
+        int nextTab = jTabbedPane1.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane1.getTabCount()) {
+            jTabbedPane1.setSelectedIndex(nextTab);
+        }
+        
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -339,7 +344,10 @@ public class janProvaMemorial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-
+        int nextTab = jTabbedPane1.getSelectedIndex() - 1;
+        if (nextTab >= 0) {
+            jTabbedPane1.setSelectedIndex(nextTab);
+        }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void jButtonPlanilhasMemorialTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlanilhasMemorialTodasActionPerformed
