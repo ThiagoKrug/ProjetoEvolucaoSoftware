@@ -70,7 +70,7 @@ public class CandidatoDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
             return candidato;
@@ -134,7 +134,7 @@ public class CandidatoDao implements IDao {
                 }
             
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
         }
@@ -164,7 +164,7 @@ public class CandidatoDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
         }

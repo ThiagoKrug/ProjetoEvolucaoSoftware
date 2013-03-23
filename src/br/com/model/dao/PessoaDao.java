@@ -52,7 +52,7 @@ public class PessoaDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
             return pessoa;
