@@ -12,7 +12,7 @@ CREATE  TABLE IF NOT EXISTS `pessoa` (
   `id_pessoa` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(255) NOT NULL ,
   `sexo` VARCHAR(1) NOT NULL ,
-  `data_nascimento` DATETIME NOT NULL ,
+  `data_nascimento` DATE NOT NULL ,
   PRIMARY KEY (`id_pessoa`) )
 ENGINE = InnoDB;
 
@@ -48,17 +48,17 @@ DROP TABLE IF EXISTS `concurso` ;
 
 CREATE  TABLE IF NOT EXISTS `concurso` (
   `id_concurso` INT NOT NULL AUTO_INCREMENT ,
-  `ministerio` VARCHAR(45) NULL ,
-  `instituicao` VARCHAR(45) NULL ,
-  `id_campus` INT NULL ,
-  `area` VARCHAR(45) NULL ,
-  `edital` VARCHAR(45) NULL ,
-  `id_classe_concurso` INT NULL ,
-  `data_inicio` DATETIME NULL ,
-  `tem_prova_escrita` TINYINT(1) NULL ,
-  `tem_prova_titulo` TINYINT(1) NULL ,
-  `tem_prova_didatica` TINYINT(1) NULL ,
-  `tem_prova_memorial` TINYINT(1) NULL ,
+  `ministerio` VARCHAR(45) NULL DEFAULT NULL ,
+  `instituicao` VARCHAR(45) NULL DEFAULT NULL ,
+  `id_campus` INT NULL DEFAULT NULL ,
+  `area` VARCHAR(45) NULL DEFAULT NULL ,
+  `edital` VARCHAR(45) NULL DEFAULT NULL ,
+  `id_classe_concurso` INT NULL DEFAULT NULL ,
+  `data_inicio` DATE NULL DEFAULT NULL ,
+  `tem_prova_escrita` TINYINT(1) NULL DEFAULT NULL ,
+  `tem_prova_titulo` TINYINT(1) NULL DEFAULT NULL ,
+  `tem_prova_didatica` TINYINT(1) NULL DEFAULT NULL ,
+  `tem_prova_memorial` TINYINT(1) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_concurso`) ,
   INDEX `fk_concurso_classe1_idx` (`id_classe_concurso` ASC) ,
   INDEX `fk_concurso_campus1_idx` (`id_campus` ASC) ,
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_didatica` (
   `id_prova_didatica` INT NOT NULL ,
-  `nota` VARCHAR(45) NULL ,
+  `nota` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_prova_didatica`) ,
   INDEX `fk_prova_didatica_concurso1_idx` (`id_concurso` ASC) ,
@@ -102,11 +102,11 @@ DROP TABLE IF EXISTS `candidato` ;
 CREATE  TABLE IF NOT EXISTS `candidato` (
   `id_candidato` INT NOT NULL AUTO_INCREMENT ,
   `id_pessoa` INT NOT NULL ,
-  `id_concurso` INT NULL ,
-  `apto_prova_escrita` TINYINT(1) NULL ,
-  `apto_prova_didatica` TINYINT(1) NULL ,
-  `id_prova_didatica` INT NULL ,
-  `id_prova_escrita` INT NULL ,
+  `id_concurso` INT NULL DEFAULT NULL ,
+  `apto_prova_escrita` TINYINT(1) NULL DEFAULT NULL ,
+  `apto_prova_didatica` TINYINT(1) NULL DEFAULT NULL ,
+  `id_prova_didatica` INT NULL DEFAULT NULL ,
+  `id_prova_escrita` INT NULL DEFAULT NULL ,
   PRIMARY KEY (`id_candidato`) ,
   INDEX `fk_candidato_concurso_idx` (`id_concurso` ASC) ,
   INDEX `fk_candidato_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
@@ -137,7 +137,7 @@ DROP TABLE IF EXISTS `prova_memorial` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_memorial` (
   `id_prova_memorial` INT NOT NULL AUTO_INCREMENT ,
-  `local` VARCHAR(45) NULL ,
+  `local` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_prova_memorial`) ,
   INDEX `fk_prova_memorial_concurso1_idx` (`id_concurso` ASC) ,
@@ -156,10 +156,10 @@ DROP TABLE IF EXISTS `abertura` ;
 
 CREATE  TABLE IF NOT EXISTS `abertura` (
   `id_abertura` INT NOT NULL AUTO_INCREMENT ,
-  `hora_inicio` DATETIME NULL ,
-  `local` VARCHAR(45) NULL ,
-  `portaria` VARCHAR(45) NULL ,
-  `emissor` VARCHAR(45) NULL ,
+  `hora_inicio` TIME NULL DEFAULT NULL ,
+  `local` VARCHAR(45) NULL DEFAULT NULL ,
+  `portaria` VARCHAR(45) NULL DEFAULT NULL ,
+  `emissor` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_abertura`) ,
   INDEX `fk_abertura_concurso1_idx` (`id_concurso` ASC) ,
@@ -178,9 +178,9 @@ DROP TABLE IF EXISTS `cronograma` ;
 
 CREATE  TABLE IF NOT EXISTS `cronograma` (
   `id_cronograma` INT NOT NULL AUTO_INCREMENT ,
-  `atividade` TEXT NULL ,
-  `data` DATETIME NULL ,
-  `local` VARCHAR(45) NULL ,
+  `atividade` TEXT NULL DEFAULT NULL ,
+  `data` DATE NULL DEFAULT NULL ,
+  `local` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_cronograma`) ,
   INDEX `fk_cronograma_concurso1_idx` (`id_concurso` ASC) ,
@@ -236,7 +236,7 @@ DROP TABLE IF EXISTS `notas_prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `notas_prova_didatica` (
   `id_notas_prova_didatica` INT NOT NULL ,
-  `descricao` VARCHAR(45) NULL ,
+  `descricao` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_notas_prova_didatica`) ,
   INDEX `fk_notas_prova_didatica_concurso1_idx` (`id_concurso` ASC) ,
@@ -255,10 +255,10 @@ DROP TABLE IF EXISTS `sorteio_ponto_prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prova_didatica` (
   `id_sorteio_ponto_prova_didatica` INT NOT NULL ,
-  `data_sorteio` DATETIME NULL ,
-  `data_realizacao` DATETIME NULL ,
-  `compareceu_sorteio` TINYINT(1) NULL ,
-  `compareceu_realizacao_prova` TINYINT(1) NULL ,
+  `data_sorteio` DATE NULL DEFAULT NULL ,
+  `data_realizacao` DATE NULL DEFAULT NULL ,
+  `compareceu_sorteio` TINYINT(1) NULL DEFAULT NULL ,
+  `compareceu_realizacao_prova` TINYINT(1) NULL DEFAULT NULL ,
   `id_pessoa` INT NOT NULL ,
   `id_notas_prova_didatica` INT NOT NULL ,
   PRIMARY KEY (`id_sorteio_ponto_prova_didatica`) ,
@@ -284,9 +284,9 @@ DROP TABLE IF EXISTS `classe` ;
 
 CREATE  TABLE IF NOT EXISTS `classe` (
   `id_classe` INT NOT NULL AUTO_INCREMENT ,
-  `nome_classe` VARCHAR(255) NULL ,
-  `peso_classe` FLOAT NULL ,
-  `nota_referencia_classe` FLOAT NULL ,
+  `nome_classe` VARCHAR(255) NULL DEFAULT NULL ,
+  `peso_classe` FLOAT NULL DEFAULT NULL ,
+  `nota_referencia_classe` FLOAT NULL DEFAULT NULL ,
   PRIMARY KEY (`id_classe`) )
 ENGINE = InnoDB;
 
@@ -298,7 +298,7 @@ DROP TABLE IF EXISTS `prova_titulo` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_titulo` (
   `id_prova_titulo` INT NOT NULL AUTO_INCREMENT ,
-  `local` VARCHAR(45) NULL ,
+  `local` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   `classe_1` INT NOT NULL ,
   `classe_2` INT NOT NULL ,
@@ -363,8 +363,8 @@ DROP TABLE IF EXISTS `item_classe` ;
 
 CREATE  TABLE IF NOT EXISTS `item_classe` (
   `id_item_classe` INT NOT NULL AUTO_INCREMENT ,
-  `discriminacao` LONGTEXT NULL ,
-  `pontuacao` FLOAT NULL ,
+  `discriminacao` LONGTEXT NULL DEFAULT NULL ,
+  `pontuacao` FLOAT NULL DEFAULT NULL ,
   `id_classe` INT NOT NULL ,
   PRIMARY KEY (`id_item_classe`) ,
   INDEX `fk_item_classe_classe1_idx` (`id_classe` ASC) ,
@@ -385,7 +385,7 @@ CREATE  TABLE IF NOT EXISTS `avaliacao_item` (
   `id_avaliacao_item` INT NOT NULL AUTO_INCREMENT ,
   `id_item_classe` INT NOT NULL ,
   `id_avaliacao_prova_titulo` INT NOT NULL ,
-  `quantidade` INT NULL ,
+  `quantidade` INT NULL DEFAULT NULL ,
   INDEX `fk_item_classe_has_avaliacao_prova_titulo_avaliacao_prova_t_idx` (`id_avaliacao_prova_titulo` ASC) ,
   INDEX `fk_item_classe_has_avaliacao_prova_titulo_item_classe1_idx` (`id_item_classe` ASC) ,
   PRIMARY KEY (`id_avaliacao_item`) ,
@@ -428,44 +428,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ponto_prova_escrita`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ponto_prova_escrita` ;
-
-CREATE  TABLE IF NOT EXISTS `ponto_prova_escrita` (
-  `id_ponto_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
-  `descricao` VARCHAR(255) NULL ,
-  `id_prova_escrita` INT NULL ,
-  PRIMARY KEY (`id_ponto_prova_escrita`) ,
-  INDEX `fk_pontos_prova_escrita_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
-  CONSTRAINT `fk_pontos_prova_escrita_prova_escrita1`
-    FOREIGN KEY (`id_prova_escrita` )
-    REFERENCES `prova_escrita` (`id_prova_escrita` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `prova_escrita`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `prova_escrita` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_escrita` (
   `id_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
-  `id_concurso` INT NULL ,
-  `id_ponto_sorteado_prova_escrita` INT NULL ,
-  `data_ponto_sorteado` DATETIME NULL ,
-  `hora_inicio_prova` DATETIME NULL ,
-  `hora_fim_prova` DATETIME NULL ,
-  `local_realizacao` VARCHAR(255) NULL ,
-  `hora_inicio_leitura` DATETIME NULL ,
-  `hora_fim_leitura` DATETIME NULL ,
-  `local_leitura` VARCHAR(255) NULL ,
-  `hora_inicio_julgamento` DATETIME NULL ,
-  `local_julgamento` VARCHAR(255) NULL ,
-  `hora_inicio_resultado` DATETIME NULL ,
-  `local_resultado` VARCHAR(255) NULL ,
+  `id_concurso` INT NULL DEFAULT NULL ,
+  `id_ponto_sorteado_prova_escrita` INT NULL DEFAULT NULL ,
+  `data_ponto_sorteado` DATE NULL DEFAULT NULL ,
+  `hora_inicio_prova` TIME NULL DEFAULT NULL ,
+  `hora_fim_prova` TIME NULL DEFAULT NULL ,
+  `local_realizacao` VARCHAR(255) NULL DEFAULT NULL ,
+  `hora_inicio_leitura` TIME NULL DEFAULT NULL ,
+  `hora_fim_leitura` TIME NULL DEFAULT NULL ,
+  `local_leitura` VARCHAR(255) NULL DEFAULT NULL ,
+  `hora_inicio_julgamento` TIME NULL DEFAULT NULL ,
+  `local_julgamento` VARCHAR(255) NULL DEFAULT NULL ,
+  `hora_inicio_resultado` TIME NULL DEFAULT NULL ,
+  `local_resultado` VARCHAR(255) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_prova_escrita`) ,
   INDEX `fk_prova_escrita_concurso2_idx` (`id_concurso` ASC) ,
   INDEX `fk_prova_escrita_pontos_prova_escrita1_idx` (`id_ponto_sorteado_prova_escrita` ASC) ,
@@ -483,16 +464,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `ponto_prova_escrita`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ponto_prova_escrita` ;
+
+CREATE  TABLE IF NOT EXISTS `ponto_prova_escrita` (
+  `id_ponto_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(255) NULL DEFAULT NULL ,
+  `id_prova_escrita` INT NULL DEFAULT NULL ,
+  PRIMARY KEY (`id_ponto_prova_escrita`) ,
+  INDEX `fk_pontos_prova_escrita_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
+  CONSTRAINT `fk_pontos_prova_escrita_prova_escrita1`
+    FOREIGN KEY (`id_prova_escrita` )
+    REFERENCES `prova_escrita` (`id_prova_escrita` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `criterio_avaliacao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `criterio_avaliacao` ;
 
 CREATE  TABLE IF NOT EXISTS `criterio_avaliacao` (
   `id_criterio_avaliacao` INT NOT NULL AUTO_INCREMENT ,
-  `criterio` VARCHAR(45) NULL ,
-  `peso` FLOAT NULL ,
-  `id_prova_memorial` INT NULL ,
-  `id_prova_escrita` INT NULL ,
+  `criterio` VARCHAR(45) NULL DEFAULT NULL ,
+  `peso` FLOAT NULL DEFAULT NULL ,
+  `id_prova_memorial` INT NULL DEFAULT NULL ,
+  `id_prova_escrita` INT NULL DEFAULT NULL ,
   PRIMARY KEY (`id_criterio_avaliacao`) ,
   INDEX `fk_criterio_avaliacao_prova_memorial_prova_memorial1_idx` (`id_prova_memorial` ASC) ,
   INDEX `fk_criterio_avaliacao_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
@@ -516,7 +516,7 @@ DROP TABLE IF EXISTS `avaliacao_examinador_criterio` ;
 
 CREATE  TABLE IF NOT EXISTS `avaliacao_examinador_criterio` (
   `id_avaliacao_examinador_criterio` INT NOT NULL AUTO_INCREMENT ,
-  `ponto` FLOAT NULL ,
+  `ponto` FLOAT NULL DEFAULT NULL ,
   `id_criterio_avaliacao_prova_memorial` INT NOT NULL ,
   `id_avaliacao_prova_memorial` INT NOT NULL ,
   `id_examinador` INT NOT NULL ,
