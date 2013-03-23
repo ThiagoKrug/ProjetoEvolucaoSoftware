@@ -28,11 +28,11 @@ public class ConcursoDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
             
             String sql  = " INSERT INTO concurso ( ";
-                   sql += "   ministerio,instituicao,id_campus,area,edital, ";
-                   sql += "   id_classe_concurso,data_inicio,tem_prova_escrita, ";
-                   sql += "   tem_prova_titulo,tem_prova_didatica,tem_prova_memorial ";
+                   sql += "   ministerio, instituicao, id_campus, area, edital, ";
+                   sql += "   id_classe_concurso, data_inicio, tem_prova_escrita, ";
+                   sql += "   tem_prova_titulo, tem_prova_didatica, tem_prova_memorial ";
                    sql += " ) VALUES ( ";
-                   sql += "   ?,?,?,?,?,?,?,?,?,?,? ";
+                   sql += "   ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ";
                    sql += " ) ";
                    
             try {
@@ -127,7 +127,7 @@ public class ConcursoDao implements IDao {
                     stmt.setString(6, null);
                 }
                 
-                stmt.setDate(7, new java.sql.Date(concurso.getHoraInicio().getTime()));
+                stmt.setDate(7, new java.sql.Date(concurso.getDataInicio().getTime()));
                 stmt.setBoolean(8, concurso.isTemProvaEscrita());
                 stmt.setBoolean(9, concurso.isTemProvaTitulos());
                 stmt.setBoolean(10, concurso.isTemProvaDidática());
@@ -198,7 +198,6 @@ public class ConcursoDao implements IDao {
             concurso.setArea( rs.getString( "area" ) );
             concurso.setEdital( rs.getString( "edital" ) );
             concurso.setDataInicio( rs.getDate("data_inicio") );
-            concurso.setHoraInicio( rs.getDate("data_inicio") );
             concurso.setTemProvaEscrita( rs.getBoolean( "tem_prova_escrita" ) );
             concurso.setTemProvaTitulos( rs.getBoolean( "tem_prova_titulo" ) );
             concurso.setTemProvaDidática( rs.getBoolean( "tem_prova_didatica" ) );
@@ -253,7 +252,6 @@ public class ConcursoDao implements IDao {
             concurso.setArea( rs.getString( "area" ) );
             concurso.setEdital( rs.getString( "edital" ) );
             concurso.setDataInicio( rs.getDate("data_inicio") );
-            concurso.setHoraInicio( rs.getDate("data_inicio") );
             concurso.setTemProvaEscrita( rs.getBoolean( "tem_prova_escrita" ) );
             concurso.setTemProvaTitulos( rs.getBoolean( "tem_prova_titulo" ) );
             concurso.setTemProvaDidática( rs.getBoolean( "tem_prova_didatica" ) );
