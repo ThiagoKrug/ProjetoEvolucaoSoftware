@@ -113,7 +113,7 @@ public class CampusDao implements IDao {
     }
 
     @Override
-    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
+    public List<Campus> pesquisarTodos() throws SQLException {
         String sql = "SELECT * from campus";
         List<Campus> listCampus = pesquisar(sql);
         return listCampus;

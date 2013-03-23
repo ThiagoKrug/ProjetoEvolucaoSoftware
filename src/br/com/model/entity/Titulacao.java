@@ -1,24 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Bruno
  */
 public class Titulacao implements IEntidade {
+
     private HashMap<String, Method[]> tablemap;
-    
-    @NotNull 
+    //@NotNull
     private Integer idTitulacao;
-    @NotBlank
+    //@NotBlank
     private String titulacao;
 
     public Titulacao(String titulacao) {
@@ -28,18 +22,19 @@ public class Titulacao implements IEntidade {
     public Titulacao() {
         this.tablemap = new HashMap<String, Method[]>();
         try {
-        Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdTitulacao", new Class<?>[] {}),
-            this.getClass().getMethod("setIdTitulacao", new Class<?>[] {this.idTitulacao.getClass()})
-        };
-        this.tablemap.put("id_titulacao", ids);
-        
-        this.tablemap.put("titulacao", new Method[] {
-            this.getClass().getMethod("getTitulacao", new Class<?>[] {}),
-            this.getClass().getMethod("setTitulacao", new Class<?>[] {this.titulacao.getClass()})
-        });
+            Method[] ids;
+            ids = new Method[]{
+                this.getClass().getMethod("getIdTitulacao", new Class<?>[]{}),
+                this.getClass().getMethod("setIdTitulacao", new Class<?>[]{this.idTitulacao.getClass()})
+            };
+            this.tablemap.put("id_titulacao", ids);
 
-        
+            this.tablemap.put("titulacao", new Method[]{
+                this.getClass().getMethod("getTitulacao", new Class<?>[]{}),
+                this.getClass().getMethod("setTitulacao", new Class<?>[]{this.titulacao.getClass()})
+            });
+
+
         } catch (NoSuchMethodException e) {
             System.out.println("Erro na reflection.");
             e.printStackTrace();
@@ -75,6 +70,4 @@ public class Titulacao implements IEntidade {
     public void setTablemap(HashMap<String, Method[]> tablemap) {
         this.tablemap = tablemap;
     }
-    
-    
 }

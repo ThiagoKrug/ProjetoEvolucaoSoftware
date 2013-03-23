@@ -116,7 +116,7 @@ public class ClasseConcursoDao implements IDao {
     }
 
     @Override
-    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
+    public List<ClasseConcurso> pesquisarTodos() throws SQLException {
         String sql = "SELECT * from classe_concurso";
         List<ClasseConcurso> listClasseConcurso = pesquisar(sql);
         return listClasseConcurso;

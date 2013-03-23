@@ -1,6 +1,7 @@
 package br.com.model.entity;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Concurso implements IEntidade {
     private ClasseConcurso classeConcurso;
     private String area;
     private String edital;
+    @NotNull
     private Date dataInicio;
     private CategoriaConcurso categoria;
     private String portaria;
