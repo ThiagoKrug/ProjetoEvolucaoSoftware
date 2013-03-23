@@ -71,7 +71,7 @@ public class ConcursoDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+               e.printStackTrace(); 
             }
             
             return concurso;
@@ -140,7 +140,7 @@ public class ConcursoDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
         }
@@ -170,7 +170,7 @@ public class ConcursoDao implements IDao {
                 }
                 
             } catch (Exception e) {
-                
+                e.printStackTrace();
             }
             
         }
