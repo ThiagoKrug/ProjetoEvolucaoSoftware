@@ -44,7 +44,8 @@ public class ProvaEscritaDao implements IDao {
                     + "local_resultado"
                     + ") values(?,?,?,?,?,?,?,?,?,?,?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
                 this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
                 stmt.setDate(3, (Date) provaEscrita.getDataPontoSorteado());
@@ -79,7 +80,7 @@ public class ProvaEscritaDao implements IDao {
                 if (rs.next()) {
                     provaEscrita.setIdProvaEscrita(rs.getInt(1));
                 }
-            }
+//            }
             return provaEscrita;
         }
         return null;

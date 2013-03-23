@@ -14,6 +14,7 @@ public class janProvaMemorial extends javax.swing.JFrame {
      * Creates new form janProvaMemorial
      */
     public janProvaMemorial() {
+        super("Prova de Memorial");
         initComponents();
     }
 
@@ -26,21 +27,332 @@ public class janProvaMemorial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePresencaMemorial = new javax.swing.JTable();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel2 = new javax.swing.JPanel();
+        jLayeredPane3 = new javax.swing.JLayeredPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableCriteriosMemorial = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLayeredPane4 = new javax.swing.JLayeredPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListExaminadores = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListCandidatos = new javax.swing.JList();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonPlanilhaMemorial = new javax.swing.JButton();
+        jButtonPlanilhasMemorialTodas = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLayeredPane5 = new javax.swing.JLayeredPane();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldLocalProvaMemorial = new javax.swing.JTextField();
+        jButtonAtaMemorial = new javax.swing.JButton();
+        btnProximo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Prova de Memorial");
+        setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Prova de Memorial");
+        jLabel1.setBounds(200, 10, 300, 29);
+        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setText("Informe a Data e o Horário das Apresentações de Defesa do Memorial ");
+        jLabel2.setBounds(10, 50, 420, 16);
+        jLayeredPane2.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTablePresencaMemorial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Candidato ", "Data", "Horário", "Compareceu"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTablePresencaMemorial.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTablePresencaMemorial);
+        jTablePresencaMemorial.getColumnModel().getColumn(0).setResizable(false);
+        jTablePresencaMemorial.getColumnModel().getColumn(0).setPreferredWidth(100);
+        jTablePresencaMemorial.getColumnModel().getColumn(1).setResizable(false);
+        jTablePresencaMemorial.getColumnModel().getColumn(2).setResizable(false);
+        jTablePresencaMemorial.getColumnModel().getColumn(3).setResizable(false);
+
+        jScrollPane1.setBounds(10, 80, 610, 190);
+        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setBounds(250, 160, 93, 25);
+        jLayeredPane2.add(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Realização", jPanel1);
+
+        jTableCriteriosMemorial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Critério", "Peso"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableCriteriosMemorial.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTableCriteriosMemorial);
+        jTableCriteriosMemorial.getColumnModel().getColumn(0).setResizable(false);
+        jTableCriteriosMemorial.getColumnModel().getColumn(1).setResizable(false);
+
+        jScrollPane3.setBounds(50, 60, 530, 210);
+        jLayeredPane3.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Critérios", jPanel2);
+
+        jScrollPane4.setViewportView(jListExaminadores);
+
+        jScrollPane4.setBounds(360, 40, 240, 130);
+        jLayeredPane4.add(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListCandidatos.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListCandidatos);
+
+        jScrollPane5.setBounds(20, 40, 320, 180);
+        jLayeredPane4.add(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText("Candidatos Aptos a Realizar a Prova:");
+        jLabel3.setBounds(30, 20, 212, 16);
+        jLayeredPane4.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel4.setText("Examinador:");
+        jLabel4.setBounds(360, 20, 72, 16);
+        jLayeredPane4.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonPlanilhaMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
+        jButtonPlanilhaMemorial.setText("Gerar Planilha de Avaliação do Candidato e Examinador Selecionado");
+        jButtonPlanilhaMemorial.setBounds(20, 230, 450, 40);
+        jLayeredPane4.add(jButtonPlanilhaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonPlanilhasMemorialTodas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
+        jButtonPlanilhasMemorialTodas.setText("Gerar Todas as Planilhas");
+        jButtonPlanilhasMemorialTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlanilhasMemorialTodasActionPerformed(evt);
+            }
+        });
+        jButtonPlanilhasMemorialTodas.setBounds(20, 270, 210, 40);
+        jLayeredPane4.add(jButtonPlanilhasMemorialTodas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel6.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel6.setText("Atenção: para gera a planilha para um ");
+        jLabel6.setBounds(360, 170, 230, 20);
+        jLayeredPane4.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel7.setText("no candidato e no examinador!");
+        jLabel7.setBounds(360, 210, 250, 20);
+        jLayeredPane4.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel8.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel8.setText("candidato pressione a tecla Ctrl e clique ");
+        jLabel8.setBounds(360, 190, 250, 20);
+        jLayeredPane4.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Planilhas", jPanel3);
+
+        jLabel5.setText("Local de Realização da Prova de Memorial:");
+        jLabel5.setBounds(180, 100, 280, 16);
+        jLayeredPane5.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocalProvaMemorial.setBounds(150, 122, 330, 40);
+        jLayeredPane5.add(jTextFieldLocalProvaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAtaMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
+        jButtonAtaMemorial.setText("Criar Ata de Realização da Prova de Memorial");
+        jButtonAtaMemorial.setBounds(150, 170, 330, 40);
+        jLayeredPane5.add(jButtonAtaMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Atas", jPanel4);
+
+        jTabbedPane1.setBounds(0, 60, 630, 350);
+        jLayeredPane1.add(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        btnProximo.setMnemonic('p');
+        btnProximo.setText("Próximo");
+        btnProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
+        btnProximo.setBounds(500, 420, 120, 40);
+        jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
+        btnCancelar.setMnemonic('c');
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        btnCancelar.setBounds(380, 420, 120, 40);
+        jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        btnVoltar.setMnemonic('v');
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        btnVoltar.setBounds(260, 420, 120, 40);
+        jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 749, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-652)/2, (screenSize.height-526)/2, 652, 526);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        
+        int nextTab = jTabbedPane1.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane1.getTabCount()) {
+            jTabbedPane1.setSelectedIndex(nextTab);
+        }
+        
+    }//GEN-LAST:event_btnProximoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        int nextTab = jTabbedPane1.getSelectedIndex() - 1;
+        if (nextTab >= 0) {
+            jTabbedPane1.setSelectedIndex(nextTab);
+        }
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void jButtonPlanilhasMemorialTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlanilhasMemorialTodasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPlanilhasMemorialTodasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +389,39 @@ public class janProvaMemorial extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnProximo;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButtonAtaMemorial;
+    private javax.swing.JButton jButtonPlanilhaMemorial;
+    private javax.swing.JButton jButtonPlanilhasMemorialTodas;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane jLayeredPane3;
+    private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JLayeredPane jLayeredPane5;
+    private javax.swing.JList jListCandidatos;
+    private javax.swing.JList jListExaminadores;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableCriteriosMemorial;
+    private javax.swing.JTable jTablePresencaMemorial;
+    private javax.swing.JTextField jTextFieldLocalProvaMemorial;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,7 +31,9 @@ public class CandidatoDao implements IDao {
                    sql += " ) VALUES (?,?,?,?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();       
             
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 
                 if (candidato.getIdPessoa() != 0) {
                     stmt.setInt(1, candidato.getIdPessoa());
@@ -67,6 +69,8 @@ public class CandidatoDao implements IDao {
                     candidato.setIdCandidato(rs.getInt(1));
                 }
                 
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             
             return candidato;
@@ -94,8 +98,10 @@ public class CandidatoDao implements IDao {
                     sql += "     id_prova_escrita = ? ";
                     sql += " WHERE id_candidato = ? ";
                     
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
                 
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                        
                 if ( candidato.getIdPessoa() != 0 ) {
                     stmt.setInt(1, candidato.getIdPessoa());
                 } else {
@@ -127,6 +133,8 @@ public class CandidatoDao implements IDao {
                     return candidato;
                 }
             
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             
         }
@@ -145,7 +153,9 @@ public class CandidatoDao implements IDao {
             
             String sql  = " DELETE FROM `candidato` WHERE id_candidato = ? ";
             
-            try ( PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ) {
+            try {
+                
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 
                 stmt.setInt(1, candidato.getIdCandidato());
                 
@@ -153,6 +163,8 @@ public class CandidatoDao implements IDao {
                     return candidato;
                 }
                 
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             
         }

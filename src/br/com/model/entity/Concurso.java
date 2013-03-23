@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -18,8 +15,8 @@ public class Concurso implements IEntidade {
     private ClasseConcurso classeConcurso;
     private String area;
     private String edital;
+    @NotNull
     private Date dataInicio;
-    private Date horaInicio;
     private CategoriaConcurso categoria;
     private String portaria;
     private String orgaoEmissor;
@@ -34,14 +31,13 @@ public class Concurso implements IEntidade {
         
     }
 
-    public Concurso(int idConcurso, String instituicao, Campus campus, String area, String edital, Date dataInicio, Date horaInicio, CategoriaConcurso categoria, String portaria, String orgaoEmissor, boolean temProvaEscrita, boolean temProvaTitulos, boolean temProvaDidática, boolean temProvaMemorial) {
+    public Concurso(int idConcurso, String instituicao, Campus campus, String area, String edital, Date dataInicio, CategoriaConcurso categoria, String portaria, String orgaoEmissor, boolean temProvaEscrita, boolean temProvaTitulos, boolean temProvaDidática, boolean temProvaMemorial) {
         this.idConcurso = idConcurso;
         this.instituicao = instituicao;
         this.campus = campus;
         this.area = area;
         this.edital = edital;
         this.dataInicio = dataInicio;
-        this.horaInicio = horaInicio;
         this.categoria = categoria;
         this.portaria = portaria;
         this.orgaoEmissor = orgaoEmissor;
@@ -134,20 +130,6 @@ public class Concurso implements IEntidade {
      */
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    /**
-     * @return the horaInicio
-     */
-    public Date getHoraInicio() {
-        return horaInicio;
-    }
-
-    /**
-     * @param horaInicio the horaInicio to set
-     */
-    public void setHoraInicio(Date horaInicio) {
-        this.horaInicio = horaInicio;
     }
 
     /**

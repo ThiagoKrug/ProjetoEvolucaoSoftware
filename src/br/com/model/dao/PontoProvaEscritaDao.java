@@ -28,7 +28,8 @@ public class PontoProvaEscritaDao implements IDao {
 
             String sql = "insert into ponto_prova_escrita (id_prova_escrita, descricao) values(?,?) ";
             Connection connection = ConnectionFactory.getConnection();
-            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 if(pontoProvaEscrita.getProvaEscrita().getIdProvaEscrita() != 0)
                     stmt.setInt(1, pontoProvaEscrita.getProvaEscrita().getIdProvaEscrita());
                 else
@@ -40,7 +41,7 @@ public class PontoProvaEscritaDao implements IDao {
                 if (rs.next()) {
                     pontoProvaEscrita.setIdPontoProvaEscrita(rs.getInt(1));
                 }
-            }
+//            }
             return pontoProvaEscrita;
         }
         return null;
@@ -121,7 +122,7 @@ public class PontoProvaEscritaDao implements IDao {
     }
 
     private List<PontoProvaEscrita> pesquisar(String sql) throws SQLException {
-        List<PontoProvaEscrita> listPontoProvaEscrita = new ArrayList<>();
+        List<PontoProvaEscrita> listPontoProvaEscrita = new ArrayList<PontoProvaEscrita>();
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
