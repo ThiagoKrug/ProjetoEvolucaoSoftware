@@ -6,6 +6,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Table `pessoa`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `pessoa` ;
+
 CREATE  TABLE IF NOT EXISTS `pessoa` (
   `id_pessoa` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(255) NOT NULL ,
@@ -18,6 +20,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `classe_concurso`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `classe_concurso` ;
+
 CREATE  TABLE IF NOT EXISTS `classe_concurso` (
   `id_classe` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
@@ -28,6 +32,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `campus`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `campus` ;
+
 CREATE  TABLE IF NOT EXISTS `campus` (
   `id_campus` INT NOT NULL AUTO_INCREMENT ,
   `cidade_campus` VARCHAR(45) NOT NULL ,
@@ -38,6 +44,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `concurso`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `concurso` ;
+
 CREATE  TABLE IF NOT EXISTS `concurso` (
   `id_concurso` INT NOT NULL AUTO_INCREMENT ,
   `ministerio` VARCHAR(45) NULL ,
@@ -70,6 +78,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `prova_didatica`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `prova_didatica` ;
+
 CREATE  TABLE IF NOT EXISTS `prova_didatica` (
   `id_prova_didatica` INT NOT NULL ,
   `nota` VARCHAR(45) NULL ,
@@ -87,6 +97,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `candidato`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `candidato` ;
+
 CREATE  TABLE IF NOT EXISTS `candidato` (
   `id_candidato` INT NOT NULL AUTO_INCREMENT ,
   `id_pessoa` INT NOT NULL ,
@@ -121,6 +133,8 @@ COMMENT = '			';
 -- -----------------------------------------------------
 -- Table `prova_memorial`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `prova_memorial` ;
+
 CREATE  TABLE IF NOT EXISTS `prova_memorial` (
   `id_prova_memorial` INT NOT NULL AUTO_INCREMENT ,
   `local` VARCHAR(45) NULL ,
@@ -138,6 +152,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `abertura`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `abertura` ;
+
 CREATE  TABLE IF NOT EXISTS `abertura` (
   `id_abertura` INT NOT NULL AUTO_INCREMENT ,
   `hora_inicio` DATETIME NULL ,
@@ -158,6 +174,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cronograma`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `cronograma` ;
+
 CREATE  TABLE IF NOT EXISTS `cronograma` (
   `id_cronograma` INT NOT NULL AUTO_INCREMENT ,
   `atividade` TEXT NULL ,
@@ -175,70 +193,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tipo_cargo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `tipo_cargo` (
-  `id_tipo_cargo` INT NOT NULL ,
-  PRIMARY KEY (`id_tipo_cargo`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cargos`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cargos` (
-  `id_cargos` INT NOT NULL ,
-  `id_tipo_cargo` INT NOT NULL ,
-  PRIMARY KEY (`id_cargos`) ,
-  INDEX `fk_cargos_tipo_cargo1_idx` (`id_tipo_cargo` ASC) ,
-  CONSTRAINT `fk_cargos_tipo_cargo1`
-    FOREIGN KEY (`id_tipo_cargo` )
-    REFERENCES `tipo_cargo` (`id_tipo_cargo` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `banca_examinadora`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `banca_examinadora` (
-  `id_banca_examinadora` INT NOT NULL AUTO_INCREMENT ,
-  `examinador_1` INT NOT NULL ,
-  `examinador_2` INT NOT NULL ,
-  `examinador_3` INT NOT NULL ,
-  `id_concurso` INT NOT NULL ,
-  PRIMARY KEY (`id_banca_examinadora`) ,
-  INDEX `fk_banca_examinadora_examinador1_idx` (`examinador_1` ASC) ,
-  INDEX `fk_banca_examinadora_examinador2_idx` (`examinador_2` ASC) ,
-  INDEX `fk_banca_examinadora_examinador3_idx` (`examinador_3` ASC) ,
-  INDEX `fk_banca_examinadora_concurso1_idx` (`id_concurso` ASC) ,
-  CONSTRAINT `fk_banca_examinadora_examinador1`
-    FOREIGN KEY (`examinador_1` )
-    REFERENCES `examinador` (`id_examinador` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_banca_examinadora_examinador2`
-    FOREIGN KEY (`examinador_2` )
-    REFERENCES `examinador` (`id_examinador` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_banca_examinadora_examinador3`
-    FOREIGN KEY (`examinador_3` )
-    REFERENCES `examinador` (`id_examinador` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_banca_examinadora_concurso1`
-    FOREIGN KEY (`id_concurso` )
-    REFERENCES `concurso` (`id_concurso` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `titulacao`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `titulacao` ;
+
 CREATE  TABLE IF NOT EXISTS `titulacao` (
   `id_titulacao` INT NOT NULL AUTO_INCREMENT ,
   `titulacao` VARCHAR(255) NOT NULL ,
@@ -249,6 +207,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `examinador`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `examinador` ;
+
 CREATE  TABLE IF NOT EXISTS `examinador` (
   `id_examinador` INT NOT NULL AUTO_INCREMENT ,
   `id_titulacao` INT NOT NULL ,
@@ -270,31 +230,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `banca_exami_examindores`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `banca_exami_examindores` (
-  `id_banca_exami_examindores` INT NOT NULL ,
-  `id_banca_examinadora` INT NOT NULL ,
-  `id_examinador` INT NOT NULL ,
-  PRIMARY KEY (`id_banca_exami_examindores`, `id_banca_examinadora`, `id_examinador`) ,
-  INDEX `fk_banca_exami_examindores_banca_examinadora1_idx` (`id_banca_examinadora` ASC) ,
-  INDEX `fk_banca_exami_examindores_examinador1_idx` (`id_examinador` ASC) ,
-  CONSTRAINT `fk_banca_exami_examindores_banca_examinadora1`
-    FOREIGN KEY (`id_banca_examinadora` )
-    REFERENCES `banca_examinadora` (`id_banca_examinadora` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_banca_exami_examindores_examinador1`
-    FOREIGN KEY (`id_examinador` )
-    REFERENCES `examinador` (`id_examinador` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `notas_prova_didatica`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `notas_prova_didatica` ;
+
 CREATE  TABLE IF NOT EXISTS `notas_prova_didatica` (
   `id_notas_prova_didatica` INT NOT NULL ,
   `descricao` VARCHAR(45) NULL ,
@@ -310,17 +249,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sorteio_ponto_prov_didatica`
+-- Table `sorteio_ponto_prova_didatica`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prov_didatica` (
-  `id_sorteio_ponto_prov_didatica` INT NOT NULL ,
+DROP TABLE IF EXISTS `sorteio_ponto_prova_didatica` ;
+
+CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prova_didatica` (
+  `id_sorteio_ponto_prova_didatica` INT NOT NULL ,
   `data_sorteio` DATETIME NULL ,
   `data_realizacao` DATETIME NULL ,
   `compareceu_sorteio` TINYINT(1) NULL ,
   `compareceu_realizacao_prova` TINYINT(1) NULL ,
   `id_pessoa` INT NOT NULL ,
   `id_notas_prova_didatica` INT NOT NULL ,
-  PRIMARY KEY (`id_sorteio_ponto_prov_didatica`) ,
+  PRIMARY KEY (`id_sorteio_ponto_prova_didatica`) ,
   INDEX `fk_sorteio_ponto_prov_didatica_usuario1_idx` (`id_pessoa` ASC) ,
   INDEX `fk_sorteio_ponto_prov_didatica_notas_prova_didatica1_idx` (`id_notas_prova_didatica` ASC) ,
   CONSTRAINT `fk_sorteio_ponto_prov_didatica_usuario1`
@@ -339,6 +280,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `classe`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `classe` ;
+
 CREATE  TABLE IF NOT EXISTS `classe` (
   `id_classe` INT NOT NULL AUTO_INCREMENT ,
   `nome_classe` VARCHAR(255) NULL ,
@@ -351,6 +294,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `prova_titulo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `prova_titulo` ;
+
 CREATE  TABLE IF NOT EXISTS `prova_titulo` (
   `id_prova_titulo` INT NOT NULL AUTO_INCREMENT ,
   `local` VARCHAR(45) NULL ,
@@ -389,6 +334,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `avaliacao_prova_titulo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `avaliacao_prova_titulo` ;
+
 CREATE  TABLE IF NOT EXISTS `avaliacao_prova_titulo` (
   `id_avaliacao_prova_titulo` INT NOT NULL AUTO_INCREMENT ,
   `id_candidato` INT NOT NULL ,
@@ -412,6 +359,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `item_classe`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `item_classe` ;
+
 CREATE  TABLE IF NOT EXISTS `item_classe` (
   `id_item_classe` INT NOT NULL AUTO_INCREMENT ,
   `discriminacao` LONGTEXT NULL ,
@@ -428,36 +377,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `item_classe_has_classe`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `item_classe_has_classe` (
-  `classe_id_classe` INT NOT NULL ,
-  `item_classe_id_item_classe` INT NOT NULL ,
-  PRIMARY KEY (`classe_id_classe`, `item_classe_id_item_classe`) ,
-  INDEX `fk_item_classe_has_classe_classe1_idx` (`classe_id_classe` ASC) ,
-  INDEX `fk_item_classe_has_classe_item_classe1_idx` (`item_classe_id_item_classe` ASC) ,
-  CONSTRAINT `fk_item_classe_has_classe_item_classe1`
-    FOREIGN KEY (`item_classe_id_item_classe` )
-    REFERENCES `item_classe` (`id_item_classe` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_item_classe_has_classe_classe1`
-    FOREIGN KEY (`classe_id_classe` )
-    REFERENCES `classe` (`id_classe` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `avaliacao_item`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `avaliacao_item` ;
+
 CREATE  TABLE IF NOT EXISTS `avaliacao_item` (
+  `id_avaliacao_item` INT NOT NULL AUTO_INCREMENT ,
   `id_item_classe` INT NOT NULL ,
   `id_avaliacao_prova_titulo` INT NOT NULL ,
   `quantidade` INT NULL ,
   INDEX `fk_item_classe_has_avaliacao_prova_titulo_avaliacao_prova_t_idx` (`id_avaliacao_prova_titulo` ASC) ,
   INDEX `fk_item_classe_has_avaliacao_prova_titulo_item_classe1_idx` (`id_item_classe` ASC) ,
+  PRIMARY KEY (`id_avaliacao_item`) ,
   CONSTRAINT `fk_item_classe_has_avaliacao_prova_titulo_item_classe1`
     FOREIGN KEY (`id_item_classe` )
     REFERENCES `item_classe` (`id_item_classe` )
@@ -466,14 +397,16 @@ CREATE  TABLE IF NOT EXISTS `avaliacao_item` (
   CONSTRAINT `fk_item_classe_has_avaliacao_prova_titulo_avaliacao_prova_tit1`
     FOREIGN KEY (`id_avaliacao_prova_titulo` )
     REFERENCES `avaliacao_prova_titulo` (`id_avaliacao_prova_titulo` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `avaliacao_prova_memorial`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `avaliacao_prova_memorial` ;
+
 CREATE  TABLE IF NOT EXISTS `avaliacao_prova_memorial` (
   `id_avaliacao_prova_memorial` INT NOT NULL AUTO_INCREMENT ,
   `candidato_id_candidato` INT NOT NULL ,
@@ -497,6 +430,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `ponto_prova_escrita`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ponto_prova_escrita` ;
+
 CREATE  TABLE IF NOT EXISTS `ponto_prova_escrita` (
   `id_ponto_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
   `descricao` VARCHAR(255) NULL ,
@@ -514,6 +449,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `prova_escrita`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `prova_escrita` ;
+
 CREATE  TABLE IF NOT EXISTS `prova_escrita` (
   `id_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
   `id_concurso` INT NULL ,
@@ -548,6 +485,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `criterio_avaliacao`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `criterio_avaliacao` ;
+
 CREATE  TABLE IF NOT EXISTS `criterio_avaliacao` (
   `id_criterio_avaliacao` INT NOT NULL AUTO_INCREMENT ,
   `criterio` VARCHAR(45) NULL ,
@@ -573,6 +512,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `avaliacao_examinador_criterio`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `avaliacao_examinador_criterio` ;
+
 CREATE  TABLE IF NOT EXISTS `avaliacao_examinador_criterio` (
   `id_avaliacao_examinador_criterio` INT NOT NULL AUTO_INCREMENT ,
   `ponto` FLOAT NULL ,
@@ -604,6 +545,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `banca_examinadora`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `banca_examinadora` ;
+
 CREATE  TABLE IF NOT EXISTS `banca_examinadora` (
   `id_banca_examinadora` INT NOT NULL AUTO_INCREMENT ,
   `examinador_1` INT NOT NULL ,
@@ -641,6 +584,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `candidato_aptos_prova_escrita`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `candidato_aptos_prova_escrita` ;
+
 CREATE  TABLE IF NOT EXISTS `candidato_aptos_prova_escrita` (
   `id_candidato` INT NOT NULL ,
   `id_prova_escrita` INT NOT NULL ,
@@ -663,6 +608,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `candidato_aptos_leitura_prova_escrita`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `candidato_aptos_leitura_prova_escrita` ;
+
 CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
   `id_prova_escrita` INT NOT NULL ,
   `id_candidato` INT NOT NULL ,
