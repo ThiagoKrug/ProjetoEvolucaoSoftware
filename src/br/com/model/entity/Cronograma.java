@@ -27,7 +27,6 @@ public class Cronograma implements IEntidade {
     
     private Date data, horario;
     
-    private Date horario;
     
     @NotNull(message="O concurso não pode ser nulo.")
     private Integer idConcurso;
