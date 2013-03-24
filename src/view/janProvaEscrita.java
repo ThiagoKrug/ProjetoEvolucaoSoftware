@@ -124,6 +124,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jComboBoxPontos = new javax.swing.JComboBox();
+        jButtonIniciarRealizacaoGerarAta = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLayeredPane6 = new javax.swing.JLayeredPane();
@@ -243,13 +244,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel4.setBounds(420, 50, 240, 14);
         jLayeredPane2.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonGerarListaCandidatos.setText("Gerar Lista de Candidatos");
+        jButtonGerarListaCandidatos.setText("Gerar Lista de Candidatos Aptos");
         jButtonGerarListaCandidatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerarListaCandidatosActionPerformed(evt);
             }
         });
-        jButtonGerarListaCandidatos.setBounds(553, 330, 180, 23);
+        jButtonGerarListaCandidatos.setBounds(503, 330, 230, 23);
         jLayeredPane2.add(jButtonGerarListaCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -421,6 +422,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jComboBoxPontos.setBounds(160, 40, 70, 30);
         jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonIniciarRealizacaoGerarAta.setText("Iniciar Realização e Gerar Ata");
+        jButtonIniciarRealizacaoGerarAta.setBounds(160, 320, 220, 30);
+        jLayeredPane5.add(jButtonIniciarRealizacaoGerarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -608,6 +613,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
         this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAdicionarTodosCandidatosActionPerformed
 
     private void jButtonAdicionarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPontoActionPerformed
@@ -720,7 +730,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             // mapa de parâmetros do relatório (ainda vamos aprender a usar)
             Map parametros = new HashMap();
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
-            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()) );
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
             // abre o relatório
             ReportUtils.openReport("Lista de Pontos", inputStream, parametros, ConnectionFactory.getConnection());
@@ -776,6 +786,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGerarListaCandidatos;
     private javax.swing.JButton jButtonGerarRelCriterios;
     private javax.swing.JButton jButtonGerarRelacaoPontos;
+    private javax.swing.JButton jButtonIniciarRealizacaoGerarAta;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonRemoverCandidato;
     private javax.swing.JButton jButtonRemoverCriterio;
