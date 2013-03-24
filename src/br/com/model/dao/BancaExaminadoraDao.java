@@ -30,17 +30,13 @@ public class BancaExaminadoraDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
 
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            int i = 1;
-            for (Examinador examinador : bancaExaminadora.getExaminadores()) {
-                if (i <= 3) {
-                    this.setInt(stmt, i, examinador.getIdExaminador());
-                    i++;
-                } else {
-                    break;
-                }
-            }
+            
+            this.setInt(stmt, 1, bancaExaminadora.getExaminadores().get(0).getIdExaminador());
+            this.setInt(stmt, 2, bancaExaminadora.getExaminadores().get(1).getIdExaminador());
+            this.setInt(stmt, 3, bancaExaminadora.getExaminadores().get(2).getIdExaminador());
             this.setInt(stmt, 4, bancaExaminadora.getIdConcurso());
-
+            
+            System.out.println(stmt.toString());
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();

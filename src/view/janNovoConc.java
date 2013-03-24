@@ -18,11 +18,8 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -47,48 +44,15 @@ public class janNovoConc extends javax.swing.JFrame {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
+        ListCellRenderer lcr = new ListCellRenderer();
+
         concurso = new Concurso();
         initComponents();
 
-        jComboBoxClasse.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(
-                    JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof ClasseConcurso) {
-                    ClasseConcurso classeConcurso = (ClasseConcurso) value;
-                    setText(classeConcurso.getNome());
-                }
-                return this;
-            }
-        });
+        jComboBoxClasse.setRenderer(lcr.createListCellRenderer(ClasseConcurso.class, "getNome"));
+        jComboBoxCampus.setRenderer(lcr.createListCellRenderer(Campus.class, "getCidadeCampus"));
 
-        jComboBoxCampus.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(
-                    JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof Campus) {
-                    Campus campus = (Campus) value;
-                    setText(campus.getCidadeCampus());
-                }
-                return this;
-            }
-        });
-
-        DefaultListCellRenderer dfcrTitulacao = new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(
-                    JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof Titulacao) {
-                    Titulacao titulacao = (Titulacao) value;
-                    setText(titulacao.getTitulacao());
-                }
-                return this;
-            }
-        };
-
+        DefaultListCellRenderer dfcrTitulacao = lcr.createListCellRenderer(Titulacao.class, "getTitulacao");
         jComboBoxPresidenteTitulo.setRenderer(dfcrTitulacao);
         jComboBoxExaminador1Titulo.setRenderer(dfcrTitulacao);
         jComboBoxExaminador2Titulo.setRenderer(dfcrTitulacao);

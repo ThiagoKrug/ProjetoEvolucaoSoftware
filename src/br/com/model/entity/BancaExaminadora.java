@@ -23,7 +23,7 @@ public class BancaExaminadora implements IEntidade {
      * @param examinador 
      */
     public void adicionaExaminador(Examinador examinador) {
-        if (this.examinadores.size() < 2) {
+        if (this.examinadores.size() < 3) {
             this.examinadores.add(examinador);
         }
     }

@@ -164,6 +164,11 @@ public class janMenu extends javax.swing.JFrame {
 
         jButtonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/folder.png"))); // NOI18N
         jButtonAbrir.setToolTipText("Abrir Concurso");
+        jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbrirActionPerformed(evt);
+            }
+        });
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -335,6 +340,10 @@ public class janMenu extends javax.swing.JFrame {
     private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
         janSobre.main(null);
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
+
+    private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
+        janAbrir.main(null);
+    }//GEN-LAST:event_jButtonAbrirActionPerformed
 
     /**
      * @param args the command line arguments
