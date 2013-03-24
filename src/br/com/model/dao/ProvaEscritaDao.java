@@ -90,25 +90,44 @@ public class ProvaEscritaDao implements IDao {
     public ProvaEscrita alterar(IEntidade entidade) throws SQLException {
 
         if (entidade instanceof ProvaEscrita) {
+            Connection connection = ConnectionFactory.getConnection();
 
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
-            String sql = "UPDATE prova_escrita SET "
-                    + "id_concurso = ?,"
-                    + "id_ponto_sorteado_prova_escrita = ?,"
-                    + "data_ponto_sorteado = ? ,"
-                    + "hora_inicio_prova = ?,"
-                    + "hora_fim_prova = ?,"
-                    + "local_realizacao = ?,"
-                    + "hora_inicio_leitura = ?,"
-                    + "hora_fim_leitura = ?,"
-                    + "local_leitura = ?,"
-                    + "hora_inicio_julgamento = ?,"
-                    + "local_julgamento = ?,"
-                    + "hora_inicio_resultado = ?,"
-                    + "local_resultado = ?"
-                    + "WHERE id_prova_escrita = ? ";
 
-            Connection connection = ConnectionFactory.getConnection();
+            if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
+                ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
+                Iterator<Candidato> iterator = listaAptos.iterator();
+                /*remove todos os candidadtos aptos*/
+                String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
+                PreparedStatement stmt2 = connection.prepareStatement(sql2);
+                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
+                stmt2.executeUpdate();
+                while (iterator.hasNext()) {
+                    Candidato object = iterator.next();
+                    String sql3 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
+                    PreparedStatement stmt3 = connection.prepareStatement(sql3, Statement.RETURN_GENERATED_KEYS);
+                    stmt3.setInt(1, object.getIdCandidato());
+                    stmt3.setInt(2, provaEscrita.getIdProvaEscrita());
+                    stmt3.executeUpdate();
+                }
+            }
+            
+            String sql = " UPDATE prova_escrita SET "
+                    + " id_concurso = ?,"
+                    + " id_ponto_sorteado_prova_escrita = ?,"
+                    + " data_ponto_sorteado = ? ,"
+                    + " hora_inicio_prova = ?,"
+                    + " hora_fim_prova = ?,"
+                    + " local_realizacao = ?,"
+                    + " hora_inicio_leitura = ?,"
+                    + " hora_fim_leitura = ?,"
+                    + " local_leitura = ?,"
+                    + " hora_inicio_julgamento = ?,"
+                    + " local_julgamento = ?,"
+                    + " hora_inicio_resultado = ?,"
+                    + " local_resultado = ?"
+                    + " WHERE id_prova_escrita = ? ";
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
             this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
@@ -125,26 +144,7 @@ public class ProvaEscritaDao implements IDao {
             stmt.setString(13, provaEscrita.getLocalResultado());
             stmt.setInt(14, provaEscrita.getIdProvaEscrita());
 
-
-            if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
-                ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
-                Iterator<Candidato> iterator = listaAptos.iterator();
-                /*remove todos os candidadtos aptos*/
-                String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
-                PreparedStatement stmt2 = connection.prepareStatement(sql2);
-                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
-                stmt2.executeUpdate();
-             System.out.println(stmt2.toString());
-                while (iterator.hasNext()) {
-                    Candidato object = iterator.next();
-                    String sql3 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
-                    PreparedStatement stmt3 = connection.prepareStatement(sql3, Statement.RETURN_GENERATED_KEYS);
-                    stmt3.setInt(1, object.getIdCandidato());
-                    stmt3.setInt(2, provaEscrita.getIdProvaEscrita());
-                    stmt3.executeUpdate();
-                }
-            }
-
+            System.out.println(stmt.toString());
             if (stmt.executeUpdate() == 1) {
                 return provaEscrita;
             }
