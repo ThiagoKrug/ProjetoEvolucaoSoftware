@@ -130,6 +130,17 @@ public class ProvaEscrita implements IEntidade {
         }
         this.candidatosAptosProva.add(c);
     }
+    
+    public void removerCandidatoApto(Candidato c){
+        Iterator<Candidato> iterator = this.candidatosAptosProva.iterator();
+        while (iterator.hasNext()){
+            Candidato object = iterator.next();
+            if (object.getIdCandidato() == c.getIdCandidato()){
+                this.candidatosAptosProva.remove(c);
+                return;
+            }
+        }
+    }
 
     public void adicionarCriterioAvaliacao(CriterioAvaliacao c) {
         Iterator<CriterioAvaliacao> iterator = this.criterios.iterator();
@@ -140,6 +151,15 @@ public class ProvaEscrita implements IEntidade {
             }
         }
         this.criterios.add(c);
+    }
+    public float getSomaPontosCriterioAvaliacao() {
+        float soma = 0f;
+        Iterator<CriterioAvaliacao> iterator = this.criterios.iterator();
+        while (iterator.hasNext()) {
+            CriterioAvaliacao object = iterator.next();
+            soma += object.getPeso();
+        }
+        return soma;
     }
 
     public void removerCriterioAvaliacao(CriterioAvaliacao c) {

@@ -225,10 +225,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCandidato.setText("<");
+        jButtonRemoverCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCandidatoActionPerformed(evt);
+            }
+        });
         jButtonRemoverCandidato.setBounds(350, 150, 50, 23);
         jLayeredPane2.add(jButtonRemoverCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCandidatos.setText("<<");
+        jButtonRemoverTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverTodosCandidatosActionPerformed(evt);
+            }
+        });
         jButtonRemoverTodosCandidatos.setBounds(350, 180, 49, 23);
         jLayeredPane2.add(jButtonRemoverTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -366,6 +376,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jButtonGerarRelCriterios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarRelCriterios.setText("Gerar Relação de Critérios");
+        jButtonGerarRelCriterios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarRelCriteriosActionPerformed(evt);
+            }
+        });
         jButtonGerarRelCriterios.setBounds(10, 330, 220, 30);
         jLayeredPane4.add(jButtonGerarRelCriterios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -597,6 +612,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
         if (selected != -1) {
             Candidato c = this.listCandidatos.get(selected);
             this.provaEscrita.adicionarCandidatoApto(c);
+            this.listCandidatos.remove(c);
+            this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
             try {
                 this.pdao.alterar(this.provaEscrita);
@@ -611,8 +628,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     private void jButtonAdicionarTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCandidatosActionPerformed
         // TODO add your handling code here:
+        ArrayList<Candidato> vazio = new ArrayList();
         this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
         this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
+        this.jListCandidatosConcurso.setListData(vazio.toArray());
         try {
             this.pdao.alterar(this.provaEscrita);
         } catch (SQLException ex) {
@@ -659,6 +678,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
             }
             this.provaEscrita.removerPonto(p);
             this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+            DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+            lista.removeAllElements();
+            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                lista.addElement(i + 1);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
         }
@@ -667,6 +691,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void jButtonAdicionarCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCriterioActionPerformed
         // TODO add your handling code here:
         if (this.jTextFieldTextoCriterio.getText().isEmpty() == false && this.jTextFieldCriterioPeso.getText().isEmpty() == false) {
+
+
+            if ((this.provaEscrita.getSomaPontosCriterioAvaliacao() + Float.parseFloat(this.jTextFieldCriterioPeso.getText())) > 10) {
+                JOptionPane.showMessageDialog(this, "A soma do número de pontos não pode ser superior a 10 pontos!", null, JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             CriterioAvaliacao c = new CriterioAvaliacao();
             c.setCriterio(this.jTextFieldTextoCriterio.getText());
             c.setPeso(Float.parseFloat(this.jTextFieldCriterioPeso.getText()));
@@ -739,6 +770,62 @@ public class janProvaEscrita extends javax.swing.JFrame {
         }
         jButtonGerarRelacaoPontos.setEnabled(true);
     }//GEN-LAST:event_jButtonGerarRelacaoPontosActionPerformed
+
+    private void jButtonRemoverCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCandidatoActionPerformed
+        int selected = this.jListCandidatosAptos.getSelectedIndex();
+        if (selected != -1) {
+            Candidato c = this.provaEscrita.getCandidatosAptosProva().get(selected);
+            this.provaEscrita.removerCandidatoApto(c);
+            this.listCandidatos.add(c);
+            this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
+            this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+            try {
+                this.pdao.alterar(this.provaEscrita);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonRemoverCandidatoActionPerformed
+
+    private void jButtonRemoverTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverTodosCandidatosActionPerformed
+        try {
+            this.carregarCandidatos();
+            this.provaEscrita.setCandidatosAptosProva(new ArrayList<Candidato>());
+            this.jListCandidatosAptos.setListData(new ArrayList<Candidato>().toArray());
+
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRemoverTodosCandidatosActionPerformed
+
+    private void jButtonGerarRelCriteriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelCriteriosActionPerformed
+        // TODO add your handling code here:
+
+        if (this.provaEscrita.getSomaPontosCriterioAvaliacao() != 10) {
+            JOptionPane.showMessageDialog(this, "A soma do número de pontos deve ser igual a 10 pontos!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        jButtonGerarRelacaoPontos.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportListaCriteriosProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Lista de Critérios", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        jButtonGerarRelacaoPontos.setEnabled(true);
+    }//GEN-LAST:event_jButtonGerarRelCriteriosActionPerformed
 
     /**
      * @param args the command line arguments

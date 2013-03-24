@@ -15,7 +15,7 @@ public class BancaExaminadora implements IEntidade {
     private ArrayList<Examinador> examinadores;
     
     public BancaExaminadora() {
-        
+        this.examinadores = new ArrayList<>();
     }
     
     /**
@@ -23,11 +23,9 @@ public class BancaExaminadora implements IEntidade {
      * @param examinador 
      */
     public void adicionaExaminador(Examinador examinador) {
-        
         if (this.examinadores.size() < 2) {
             this.examinadores.add(examinador);
         }
-        
     }
     
     /**

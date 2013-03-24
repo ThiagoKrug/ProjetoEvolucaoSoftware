@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
 import br.com.model.dao.PessoaDao;
@@ -29,18 +25,18 @@ public class Examinador implements IEntidade {
         try {
         Method[] ids = new Method[] {
             Examinador.class.getMethod("getIdExaminador", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdExaminador", new Class<?>[] {this.idExaminador.getClass()})
+            Examinador.class.getMethod("setIdExaminador", new Class<?>[] {Integer.class})
         };
         this.tablemap.put("id_examinador", ids);
         
         this.tablemap.put("id_pessoa", new Method[] {
             Examinador.class.getMethod("getIdPessoa", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdPessoa", new Class<?>[] {this.idPessoa.getClass()})
+            Examinador.class.getMethod("setIdPessoa", new Class<?>[] {Integer.class})
         });
         
         this.tablemap.put("id_titulacao", new Method[] {
             Examinador.class.getMethod("getIdTitulacao", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdTitulacao", new Class<?>[] {this.idTitulacao.getClass()})
+            Examinador.class.getMethod("setIdTitulacao", new Class<?>[] {Integer.class})
         });
 
         
@@ -54,7 +50,7 @@ public class Examinador implements IEntidade {
         return idExaminador;
     }
 
-    public void setIdExaminador(int idExaminador) {
+    public void setIdExaminador(Integer idExaminador) {
         this.idExaminador = idExaminador;
     }
 
