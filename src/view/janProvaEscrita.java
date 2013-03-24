@@ -873,6 +873,22 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+       
+       this.jButtonIniciarRealizacaoGerarAta.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaRealizacaoProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Realização", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonIniciarRealizacaoGerarAta.setEnabled(true);
         
     }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
 
