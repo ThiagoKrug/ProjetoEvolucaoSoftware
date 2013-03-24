@@ -678,6 +678,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
             }
             this.provaEscrita.removerPonto(p);
             this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+            DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+            lista.removeAllElements();
+            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                lista.addElement(i + 1);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
         }

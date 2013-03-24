@@ -81,7 +81,7 @@ public class CriterioAvaliacaoDao implements IDao{
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, criterio.getIdCriterioAvaliacao());
-
+            
             if (stmt.executeUpdate() == 1) {
                 return criterio;
             }
