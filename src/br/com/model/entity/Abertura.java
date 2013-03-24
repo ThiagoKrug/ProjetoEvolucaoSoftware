@@ -35,33 +35,33 @@ public class Abertura implements IEntidade {
         try {
         Method[] ids = new Method[] {
             Abertura.class.getMethod("getIdAbertura", new Class<?>[] {}),
-            Abertura.class.getMethod("setIdAbertura", new Class<?>[] {this.idAbertura.getClass()})
+            Abertura.class.getMethod("setIdAbertura", new Class<?>[] {Integer.class})
         };
         this.tablemap.put("id_abertura", ids);
         
         this.tablemap.put("hora_inicio", new Method[] {
             Abertura.class.getMethod("getHoraInicio", new Class<?>[] {}),
-            Abertura.class.getMethod("setHoraInicio", new Class<?>[] {this.horaInicio.getClass()})
+            Abertura.class.getMethod("setHoraInicio", new Class<?>[] {Date.class})
         });
         
         this.tablemap.put("local", new Method[] {
             Abertura.class.getMethod("getLocal", new Class<?>[] {}),
-            Abertura.class.getMethod("setLocal", new Class<?>[] {this.local.getClass()})
+            Abertura.class.getMethod("setLocal", new Class<?>[] {String.class})
         });
         
         this.tablemap.put("portaria", new Method[] {
             Abertura.class.getMethod("getPortaria", new Class<?>[] {}),
-            Abertura.class.getMethod("setPortaria", new Class<?>[] {this.portaria.getClass()})
+            Abertura.class.getMethod("setPortaria", new Class<?>[] {String.class})
         });
         
         this.tablemap.put("emissor", new Method[] {
             Abertura.class.getMethod("getEmissor", new Class<?>[] {}),
-            Abertura.class.getMethod("setEmissor", new Class<?>[] {this.emissor.getClass()})
+            Abertura.class.getMethod("setEmissor", new Class<?>[] {String.class})
         });
         
         this.tablemap.put("id_concurso", new Method[] {
             Abertura.class.getMethod("getIdConcurso", new Class<?>[] {}),
-            Abertura.class.getMethod("setIdConcurso", new Class<?>[] {this.idConcurso.getClass()})
+            Abertura.class.getMethod("setIdConcurso", new Class<?>[] {Integer.class})
         });
         
 
