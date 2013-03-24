@@ -436,7 +436,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalRealizacao.setBounds(160, 260, 350, 30);
         jLayeredPane5.add(jTextFieldLocalRealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBoxPontos.setBounds(160, 40, 70, 30);
+        jComboBoxPontos.setBounds(160, 40, 560, 30);
         jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonIniciarRealizacaoGerarAta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
@@ -665,7 +665,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
             lista.removeAllElements();
             for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-                lista.addElement(i + 1);
+                lista.addElement(this.provaEscrita.getPontos().get(i));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Escreva o ponto!", null, JOptionPane.ERROR_MESSAGE);
@@ -688,7 +688,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
             lista.removeAllElements();
             for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-                lista.addElement(i + 1);
+                lista.addElement(this.provaEscrita.getPontos().get(i));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
@@ -856,8 +856,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Informe o local da realização da prova!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if(this.jComboBoxPontos.getModel().getSize() <= 0){
+            JOptionPane.showMessageDialog(this, "Você deve criar os pontos antes de inciar a realização do concurso", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
        
-       this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
+       this.provaEscrita.setPontoSorteado((PontoProvaEscrita) this.jComboBoxPontos.getSelectedItem());
        this.provaEscrita.setHoraPontoSorteado(Datas.convertStringToTime(this.jFormattedTextFieldHoraSorteio.getText()));
        this.provaEscrita.setHoraInicioProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraInicioProva.getText()));
        this.provaEscrita.setHoraFimProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraFimProva.getText()));
