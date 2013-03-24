@@ -24,14 +24,14 @@ public class Titulacao implements IEntidade {
         try {
             Method[] ids;
             ids = new Method[]{
-                this.getClass().getMethod("getIdTitulacao", new Class<?>[]{}),
-                this.getClass().getMethod("setIdTitulacao", new Class<?>[]{this.idTitulacao.getClass()})
+                Titulacao.class.getMethod("getIdTitulacao", new Class<?>[]{}),
+                Titulacao.class.getMethod("setIdTitulacao", new Class<?>[]{Integer.class})
             };
             this.tablemap.put("id_titulacao", ids);
 
             this.tablemap.put("titulacao", new Method[]{
-                this.getClass().getMethod("getTitulacao", new Class<?>[]{}),
-                this.getClass().getMethod("setTitulacao", new Class<?>[]{this.titulacao.getClass()})
+                Titulacao.class.getMethod("getTitulacao", new Class<?>[]{}),
+                Titulacao.class.getMethod("setTitulacao", new Class<?>[]{String.class})
             });
 
 
@@ -45,7 +45,7 @@ public class Titulacao implements IEntidade {
         return idTitulacao;
     }
 
-    public void setIdTitulacao(int idTitulacao) {
+    public void setIdTitulacao(Integer idTitulacao) {
         this.idTitulacao = idTitulacao;
     }
 

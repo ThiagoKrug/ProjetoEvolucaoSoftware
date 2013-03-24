@@ -28,19 +28,19 @@ public class Examinador implements IEntidade {
         this.tablemap = new HashMap<String, Method[]>();
         try {
         Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdExaminador", new Class<?>[] {}),
-            this.getClass().getMethod("setIdExaminador", new Class<?>[] {this.idExaminador.getClass()})
+            Examinador.class.getMethod("getIdExaminador", new Class<?>[] {}),
+            Examinador.class.getMethod("setIdExaminador", new Class<?>[] {Integer.class})
         };
         this.tablemap.put("id_examinador", ids);
         
         this.tablemap.put("id_pessoa", new Method[] {
-            this.getClass().getMethod("getIdPessoa", new Class<?>[] {}),
-            this.getClass().getMethod("setIdPessoa", new Class<?>[] {this.idPessoa.getClass()})
+            Examinador.class.getMethod("getIdPessoa", new Class<?>[] {}),
+            Examinador.class.getMethod("setIdPessoa", new Class<?>[] {Integer.class})
         });
         
         this.tablemap.put("id_titulacao", new Method[] {
-            this.getClass().getMethod("getIdTitulacao", new Class<?>[] {}),
-            this.getClass().getMethod("setIdTitulacao", new Class<?>[] {this.idTitulacao.getClass()})
+            Examinador.class.getMethod("getIdTitulacao", new Class<?>[] {}),
+            Examinador.class.getMethod("setIdTitulacao", new Class<?>[] {Integer.class})
         });
 
         
@@ -54,7 +54,7 @@ public class Examinador implements IEntidade {
         return idExaminador;
     }
 
-    public void setIdExaminador(int idExaminador) {
+    public void setIdExaminador(Integer idExaminador) {
         this.idExaminador = idExaminador;
     }
 
