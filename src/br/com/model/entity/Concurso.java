@@ -1,6 +1,10 @@
 package br.com.model.entity;
 
+import br.com.model.dao.ClasseConcursoDao;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -8,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author Bruno
  */
 public class Concurso implements IEntidade {
-    
+
     private int idConcurso;
     private String instituicao;
     private Campus campus;
@@ -24,11 +28,9 @@ public class Concurso implements IEntidade {
     private boolean temProvaTitulos;
     private boolean temProvaDidática;
     private boolean temProvaMemorial;
-    
     private String ministerio;
 
     public Concurso() {
-        
     }
 
     public Concurso(int idConcurso, String instituicao, Campus campus, String area, String edital, Date dataInicio, CategoriaConcurso categoria, String portaria, String orgaoEmissor, boolean temProvaEscrita, boolean temProvaTitulos, boolean temProvaDidática, boolean temProvaMemorial) {
@@ -239,11 +241,22 @@ public class Concurso implements IEntidade {
     }
 
     public ClasseConcurso getClasseConcurso() {
+        if (classeConcurso.getNome() == null) {
+            ClasseConcursoDao ccdao = new ClasseConcursoDao();
+            try {
+                return ccdao.pesquisarPorId(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         return classeConcurso;
+    }
+
+    public int getIdClasseConcurso() {
+        return classeConcurso.getIdClasseConcurso();
     }
 
     public void setClasseConcurso(ClasseConcurso classeConcurso) {
         this.classeConcurso = classeConcurso;
     }
-    
 }

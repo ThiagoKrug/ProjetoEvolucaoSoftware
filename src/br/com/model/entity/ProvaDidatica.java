@@ -8,6 +8,6 @@ import java.util.ArrayList;
  */
 public class ProvaDidatica {
     
-    private ArrayList<Candidato> candidatosAptosProva;
+    private ArrayList<CriterioAvaliacaoDidatica> candidatosAptosProva;
     
 }
