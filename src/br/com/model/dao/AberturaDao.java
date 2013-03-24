@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class AberturaDao implements IDao {
         private String[][] campos =
         {
             {"id_abertura", "Integer"},
-            {"hora_inicio", "Date"},
+            {"hora_inicio", "Time"},
             {"local", "String"},
             {"portaria", "String"},
             {"emissor", "String"},
@@ -58,7 +59,14 @@ public class AberturaDao implements IDao {
                 int i = 1;
                 while (i < this.campos.length - 1) {
                     Method method = map.get(this.campos[i][0])[0];
-                    this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
+                    //this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
+                    Object obj = method.invoke(abertura, new Object[] {});
+                    System.out.println(obj);
+                    this.setStatement(i, stmt, obj);
+                    
+                    
+                    
+                    
                     i++;
                 }
             } catch (IllegalAccessException e) {
@@ -80,7 +88,7 @@ public class AberturaDao implements IDao {
             if (s.equals("String")) {
                 return 1;
             }
-            if (s.equals("Date")) {
+            if (s.equals("Time")) {
                 return 2;
             }
             if (s.equals("Boolean")) {
@@ -98,8 +106,9 @@ public class AberturaDao implements IDao {
                     stmt.setString(i, (String)stuff);
                     break;
                 case 2:
-                    java.util.Date date = (java.util.Date)stuff;
-                    stmt.setDate(i, new java.sql.Date(date.getTime()));
+                    /*java.util.Date date = (java.util.Date)stuff;
+                    stmt.setDate(i, new java.sql.Date(date.getTime()));*/
+                    stmt.setTime(i, new java.sql.Time(((Date)stuff).getTime()));
                     break;
                 case 3:
                     stmt.setBoolean(i, (Boolean)stuff);

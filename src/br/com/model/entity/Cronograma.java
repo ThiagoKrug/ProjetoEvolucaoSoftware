@@ -38,34 +38,34 @@ public class Cronograma implements IEntidade {
         this.tablemap = new HashMap<String, Method[]>();
         try {
         Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdCronograma", new Class<?>[] {}),
-            this.getClass().getMethod("setIdCronograma", new Class<?>[] {this.idCronograma.getClass()})
+            Cronograma.class.getMethod("getIdCronograma", new Class<?>[] {}),
+            Cronograma.class.getMethod("setIdCronograma", new Class<?>[] {Integer.class})
         };
         this.tablemap.put("id_abertura", ids);
         
         this.tablemap.put("local", new Method[] {
-            this.getClass().getMethod("getLocal", new Class<?>[] {}),
-            this.getClass().getMethod("setLocal", new Class<?>[] {this.local.getClass()})
+            Cronograma.class.getMethod("getLocal", new Class<?>[] {}),
+            Cronograma.class.getMethod("setLocal", new Class<?>[] {String.class})
         });
         
         this.tablemap.put("atividade", new Method[] {
-            this.getClass().getMethod("getAtividade", new Class<?>[] {}),
-            this.getClass().getMethod("setAtividade", new Class<?>[] {this.atividade.getClass()})
+            Cronograma.class.getMethod("getAtividade", new Class<?>[] {}),
+            Cronograma.class.getMethod("setAtividade", new Class<?>[] {String.class})
         });
         
         this.tablemap.put("data", new Method[] {
-            this.getClass().getMethod("getData", new Class<?>[] {}),
-            this.getClass().getMethod("setData", new Class<?>[] {this.data.getClass()})
+            Cronograma.class.getMethod("getData", new Class<?>[] {}),
+            Cronograma.class.getMethod("setData", new Class<?>[] {Date.class})
         });
         
         this.tablemap.put("id_concurso", new Method[] {
-            this.getClass().getMethod("getIdConcurso", new Class<?>[] {}),
-            this.getClass().getMethod("setIdConcurso", new Class<?>[] {this.idConcurso.getClass()})
+            Cronograma.class.getMethod("getIdConcurso", new Class<?>[] {}),
+            Cronograma.class.getMethod("setIdConcurso", new Class<?>[] {Integer.class})
         });
         
         this.tablemap.put("horario", new Method[] {
-            this.getClass().getMethod("horario", new Class<?>[] {}),
-            this.getClass().getMethod("horario", new Class<?>[] {this.horario.getClass()})
+            Cronograma.class.getMethod("getHorario", new Class<?>[] {}),
+            Cronograma.class.getMethod("setHorario", new Class<?>[] {Date.class})
         });
 
         
