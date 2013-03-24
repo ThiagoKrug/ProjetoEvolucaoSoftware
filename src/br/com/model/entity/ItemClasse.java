@@ -36,24 +36,24 @@ public class ItemClasse implements IEntidade {
         this.tablemap = new HashMap<String, Method[]>();
         try {
         Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdItemClasse", new Class<?>[] {}),
-            this.getClass().getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
+            ItemClasse.class.getMethod("getIdItemClasse", new Class<?>[] {}),
+            ItemClasse.class.getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
         };
         this.tablemap.put("id_item_classe", ids);
         
         this.tablemap.put("discriminacao", new Method[] {
-            this.getClass().getMethod("getDiscriminacao", new Class<?>[] {}),
-            this.getClass().getMethod("setDiscriminacao", new Class<?>[] {this.discriminacao.getClass()})
+            ItemClasse.class.getMethod("getDiscriminacao", new Class<?>[] {}),
+            ItemClasse.class.getMethod("setDiscriminacao", new Class<?>[] {this.discriminacao.getClass()})
         });
         
         this.tablemap.put("pontuacao", new Method[] {
-            this.getClass().getMethod("getPontuacao", new Class<?>[] {}),
-            this.getClass().getMethod("setPontuacao", new Class<?>[] {this.pontuacao.getClass()})
+            ItemClasse.class.getMethod("getPontuacao", new Class<?>[] {}),
+            ItemClasse.class.getMethod("setPontuacao", new Class<?>[] {this.pontuacao.getClass()})
         });
         
         this.tablemap.put("id_classe", new Method[] {
-            this.getClass().getMethod("getIdClasse", new Class<?>[] {}),
-            this.getClass().getMethod("setIdClasse", new Class<?>[] {this.idClasse.getClass()})
+            ItemClasse.class.getMethod("getIdClasse", new Class<?>[] {}),
+            ItemClasse.class.getMethod("setIdClasse", new Class<?>[] {this.idClasse.getClass()})
         });
         
 
