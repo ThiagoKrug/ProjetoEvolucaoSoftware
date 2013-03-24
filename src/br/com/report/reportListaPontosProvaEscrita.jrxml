@@ -22,7 +22,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="95" splitType="Stretch">
+		<band height="134" splitType="Stretch">
 			<image>
 				<reportElement uuid="c659380f-3166-4b38-bb86-5d8e18a1d9ea" x="28" y="10" width="82" height="50"/>
 				<imageExpression><![CDATA["C:\\Users\\Rafael\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\src\\util\\img\\logo.jpg"]]></imageExpression>
@@ -40,7 +40,7 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c16a37c6-e7de-4e26-ab9a-e10c8c8b2a13" x="10" y="70" width="528" height="20"/>
+				<reportElement uuid="c16a37c6-e7de-4e26-ab9a-e10c8c8b2a13" x="16" y="88" width="528" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -80,15 +80,50 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="51" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="169" splitType="Stretch">
 			<textField>
 				<reportElement uuid="72b9c09f-707e-42f8-9357-b4e7b7a3900c" x="377" y="0" width="178" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="7110d5e5-f91b-42c9-ab46-9df888bd8b0c" x="0" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="414e6e89-b6cb-48c7-bfca-67d79e33debb" x="0" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ca9fb2f-4117-468b-bec0-b6a8700edf1a" x="193" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3af1ceea-940c-4e11-85ab-6c7ec510c70e" x="193" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8524aa12-b7f1-4b60-afa8-9b2ab944b671" x="395" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad0c5fa4-cbd1-4f1e-b960-24044853677a" x="395" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="69ac07a4-494d-499c-b1c0-1ce3eb5d1d62" x="265" y="0" width="112" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Alegrete, ]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>

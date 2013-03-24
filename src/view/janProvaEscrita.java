@@ -593,6 +593,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Candidato c = this.listCandidatos.get(selected);
             this.provaEscrita.adicionarCandidatoApto(c);
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+            try {
+                this.pdao.alterar(this.provaEscrita);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }

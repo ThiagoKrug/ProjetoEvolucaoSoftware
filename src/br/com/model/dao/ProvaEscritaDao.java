@@ -45,41 +45,41 @@ public class ProvaEscritaDao implements IDao {
                     + ") values(?,?,?,?,?,?,?,?,?,?,?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();
 //            try {
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
-                this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
-                stmt.setDate(3, (Date) provaEscrita.getDataPontoSorteado());
-                stmt.setDate(4, (Date) provaEscrita.getHoraInicioProva());
-                stmt.setDate(5, (Date) provaEscrita.getHoraFimProva());
-                stmt.setString(6, provaEscrita.getLocalRealizacao());
-                stmt.setDate(7, (Date) provaEscrita.getHoraInicioLeitura());
-                stmt.setDate(8, (Date) provaEscrita.getHoraFimLeitura());
-                stmt.setString(9, provaEscrita.getLocalLeitura());
-                stmt.setDate(10, (Date) provaEscrita.getHoraInicioJulgamento());
-                stmt.setString(11, provaEscrita.getLocalJulgamento());
-                stmt.setDate(12, (Date) provaEscrita.getHoraInicioResultado());
-                stmt.setString(13, provaEscrita.getLocalResultado());
-                stmt.executeUpdate();
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
+            this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
+            stmt.setDate(3, (Date) provaEscrita.getDataPontoSorteado());
+            stmt.setDate(4, (Date) provaEscrita.getHoraInicioProva());
+            stmt.setDate(5, (Date) provaEscrita.getHoraFimProva());
+            stmt.setString(6, provaEscrita.getLocalRealizacao());
+            stmt.setDate(7, (Date) provaEscrita.getHoraInicioLeitura());
+            stmt.setDate(8, (Date) provaEscrita.getHoraFimLeitura());
+            stmt.setString(9, provaEscrita.getLocalLeitura());
+            stmt.setDate(10, (Date) provaEscrita.getHoraInicioJulgamento());
+            stmt.setString(11, provaEscrita.getLocalJulgamento());
+            stmt.setDate(12, (Date) provaEscrita.getHoraInicioResultado());
+            stmt.setString(13, provaEscrita.getLocalResultado());
+            stmt.executeUpdate();
 
-                if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
-                    ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
-                    Iterator<Candidato> iterator = listaAptos.iterator();
-                    while (iterator.hasNext()) {
-                        Candidato object = iterator.next();
-                        String sql2 = "insert into candidatos_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
-                        PreparedStatement stmt2 = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
-                        stmt2.setInt(1, object.getIdCandidato());
-                        stmt2.setInt(2, provaEscrita.getIdProvaEscrita());
-                        stmt2.executeUpdate();
-                    }
+            if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
+                ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
+                Iterator<Candidato> iterator = listaAptos.iterator();
+                while (iterator.hasNext()) {
+                    Candidato object = iterator.next();
+                    String sql2 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
+                    PreparedStatement stmt2 = connection.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+                    stmt2.setInt(1, object.getIdCandidato());
+                    stmt2.setInt(2, provaEscrita.getIdProvaEscrita());
+                    stmt2.executeUpdate();
                 }
+            }
 
 
-                ResultSet rs = stmt.getGeneratedKeys();
+            ResultSet rs = stmt.getGeneratedKeys();
 
-                if (rs.next()) {
-                    provaEscrita.setIdProvaEscrita(rs.getInt(1));
-                }
+            if (rs.next()) {
+                provaEscrita.setIdProvaEscrita(rs.getInt(1));
+            }
 //            }
             return provaEscrita;
         }
@@ -124,6 +124,26 @@ public class ProvaEscritaDao implements IDao {
             stmt.setDate(12, (Date) provaEscrita.getHoraInicioResultado());
             stmt.setString(13, provaEscrita.getLocalResultado());
             stmt.setInt(14, provaEscrita.getIdProvaEscrita());
+
+
+            if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
+                ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
+                Iterator<Candidato> iterator = listaAptos.iterator();
+                /*remove todos os candidadtos aptos*/
+                String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
+                PreparedStatement stmt2 = connection.prepareStatement(sql2);
+                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
+                stmt2.executeUpdate();
+             System.out.println(stmt2.toString());
+                while (iterator.hasNext()) {
+                    Candidato object = iterator.next();
+                    String sql3 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
+                    PreparedStatement stmt3 = connection.prepareStatement(sql3, Statement.RETURN_GENERATED_KEYS);
+                    stmt3.setInt(1, object.getIdCandidato());
+                    stmt3.setInt(2, provaEscrita.getIdProvaEscrita());
+                    stmt3.executeUpdate();
+                }
+            }
 
             if (stmt.executeUpdate() == 1) {
                 return provaEscrita;
