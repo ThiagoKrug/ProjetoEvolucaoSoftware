@@ -93,15 +93,17 @@ public class ProvaEscritaDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
 
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
-
+            
+            String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
+                PreparedStatement stmt2 = connection.prepareStatement(sql2);
+                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
+                stmt2.executeUpdate();
+                
             if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
                 ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
                 Iterator<Candidato> iterator = listaAptos.iterator();
                 /*remove todos os candidadtos aptos*/
-                String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
-                PreparedStatement stmt2 = connection.prepareStatement(sql2);
-                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
-                stmt2.executeUpdate();
+                
                 while (iterator.hasNext()) {
                     Candidato object = iterator.next();
                     String sql3 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";

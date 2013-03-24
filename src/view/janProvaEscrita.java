@@ -225,10 +225,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCandidato.setText("<");
+        jButtonRemoverCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCandidatoActionPerformed(evt);
+            }
+        });
         jButtonRemoverCandidato.setBounds(350, 150, 50, 23);
         jLayeredPane2.add(jButtonRemoverCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCandidatos.setText("<<");
+        jButtonRemoverTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverTodosCandidatosActionPerformed(evt);
+            }
+        });
         jButtonRemoverTodosCandidatos.setBounds(350, 180, 49, 23);
         jLayeredPane2.add(jButtonRemoverTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -562,11 +572,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(791, 571));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-791)/2, (screenSize.height-571)/2, 791, 571);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
@@ -597,6 +607,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
         if (selected != -1) {
             Candidato c = this.listCandidatos.get(selected);
             this.provaEscrita.adicionarCandidatoApto(c);
+            this.listCandidatos.remove(c);
+            this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
             try {
                 this.pdao.alterar(this.provaEscrita);
@@ -611,8 +623,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     private void jButtonAdicionarTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCandidatosActionPerformed
         // TODO add your handling code here:
+        ArrayList <Candidato> vazio = new ArrayList();
         this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
         this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
+        this.jListCandidatosConcurso.setListData(vazio.toArray());
         try {
             this.pdao.alterar(this.provaEscrita);
         } catch (SQLException ex) {
@@ -739,6 +753,38 @@ public class janProvaEscrita extends javax.swing.JFrame {
         }
         jButtonGerarRelacaoPontos.setEnabled(true);
     }//GEN-LAST:event_jButtonGerarRelacaoPontosActionPerformed
+
+    private void jButtonRemoverCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCandidatoActionPerformed
+        int selected = this.jListCandidatosAptos.getSelectedIndex();
+        if (selected != -1){
+            Candidato c = this.provaEscrita.getCandidatosAptosProva().get(selected);
+            this.provaEscrita.removerCandidatoApto(c);
+            this.listCandidatos.add(c);
+            this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
+            this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+            try {
+                this.pdao.alterar(this.provaEscrita);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonRemoverCandidatoActionPerformed
+
+    private void jButtonRemoverTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverTodosCandidatosActionPerformed
+        ArrayList <Candidato> vazio = new ArrayList();
+        this.jListCandidatosConcurso.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        this.provaEscrita.setCandidatosAptosProva(vazio);
+        this.jListCandidatosAptos.setListData(vazio.toArray());
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRemoverTodosCandidatosActionPerformed
 
     /**
      * @param args the command line arguments
