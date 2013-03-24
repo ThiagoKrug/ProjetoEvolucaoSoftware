@@ -4,7 +4,9 @@
  */
 package br.com.model.entity;
 
+import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.HashMap;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,13 +15,16 @@ import javax.validation.constraints.NotNull;
  */
 public class Candidato extends Pessoa implements IEntidade {
 
-    private int idCandidato;
+    private Integer idCandidato;
+    
+    private HashMap<String, Method[]> tablemap;
     
     @NotNull(message="O Valor não pode ser nulo!")
-    private int idConcurso;
+    private Integer idConcurso;
+    private Integer idPessoa;
     
-    private int idProvaDidatica;
-    private int idProvaEscrita;
+    private Integer idProvaDidatica;
+    private Integer idProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
     private boolean aptoProvaEscrita;
@@ -45,23 +50,63 @@ public class Candidato extends Pessoa implements IEntidade {
     @NotNull(message="O valor não pode ser nulo!")
     private boolean presenteProvaMemorial;
 
-    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
-        super(nome, sexo, dataNascimento);
-        this.aptoProvaEscrita = aptoProvaEscrita;
-        this.presenteProvaEscrita = presenteProvaEscrita;
-        this.aptoProvaTitulos = aptoProvaTitulos;
-        this.presenteProvaTitulos = presenteProvaTitulos;
-        this.aptoProvaDidatica = aptoProvaDidatica;
-        this.presenteProvaDidatica = presenteProvaDidatica;
-        this.aptoProvaMemorial = aptoProvaMemorial;
-        this.presenteProvaMemorial = presenteProvaMemorial;
-    }
+//    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
+//        super(nome, sexo, dataNascimento);
+//        this.aptoProvaEscrita = aptoProvaEscrita;
+//        this.presenteProvaEscrita = presenteProvaEscrita;
+//        this.aptoProvaTitulos = aptoProvaTitulos;
+//        this.presenteProvaTitulos = presenteProvaTitulos;
+//        this.aptoProvaDidatica = aptoProvaDidatica;
+//        this.presenteProvaDidatica = presenteProvaDidatica;
+//        this.aptoProvaMemorial = aptoProvaMemorial;
+//        this.presenteProvaMemorial = presenteProvaMemorial;
+//    }
 
     public Candidato() {
-        this.aptoProvaDidatica = false;
-        this.aptoProvaEscrita  = false;
-        this.aptoProvaMemorial = false;
-        this.aptoProvaTitulos  = false;
+        this.tablemap = new HashMap<String, Method[]>();
+        try {
+        Method[] ids = new Method[] {
+            Candidato.class.getMethod("getIdCandidato", new Class<?>[] {}),
+            Candidato.class.getMethod("setIdCandidato", new Class<?>[] {Integer.class})
+        };
+        this.tablemap.put("id_candidato", ids);
+        
+        this.tablemap.put("id_prova_didatica", new Method[] {
+            Candidato.class.getMethod("getIdProvaDidatica", new Class<?>[] {}),
+            Candidato.class.getMethod("setIdProvaDidatica", new Class<?>[] {Integer.class})
+        });
+        
+        this.tablemap.put("id_prova_escrita", new Method[] {
+            Candidato.class.getMethod("getIdProvaEscrita", new Class<?>[] {}),
+            Candidato.class.getMethod("setIdProvaEscrita", new Class<?>[] {Integer.class})
+        });
+        
+        this.tablemap.put("apto_prova_escrita", new Method[] {
+            Candidato.class.getMethod("getAptoProvaEscrita", new Class<?>[] {}),
+            Candidato.class.getMethod("setAptoProvaEscrita", new Class<?>[] {Boolean.class})
+        });
+        
+        this.tablemap.put("apto_prova_didatica", new Method[] {
+            Candidato.class.getMethod("getAptoProvaDidatica", new Class<?>[] {}),
+            Candidato.class.getMethod("setAptoProvaDidatica", new Class<?>[] {Boolean.class})
+        });
+        
+        this.tablemap.put("id_concurso", new Method[] {
+            Candidato.class.getMethod("getIdConcurso", new Class<?>[] {}),
+            Candidato.class.getMethod("setIdConcurso", new Class<?>[] {Integer.class})
+        });
+        
+        this.tablemap.put("id_pessoa", new Method[] {
+            Candidato.class.getMethod("getIdPessoa", new Class<?>[] {}),
+            Candidato.class.getMethod("setIdPessoa", new Class<?>[] {Integer.class})
+        });
+        
+
+        
+        } catch (NoSuchMethodException e) {
+            System.out.println("Erro na reflection.");
+            e.printStackTrace();
+        }
     }
 
     public int getIdConcurso() {
@@ -69,7 +114,7 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public void setIdConcurso(int idConcurso) {
-        this.idConcurso = idConcurso;
+        this.setIdConcurso((Integer) idConcurso);
     }
 
     public boolean isAptoProvaEscrita() {
@@ -109,11 +154,11 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public void setIdProvaDidatica(int idProvaDidatica) {
-        this.idProvaDidatica = idProvaDidatica;
+        this.setIdProvaDidatica((Integer) idProvaDidatica);
     }
 
     public void setIdProvaEscrita(int idProvaEscrita) {
-        this.idProvaEscrita = idProvaEscrita;
+        this.setIdProvaEscrita((Integer) idProvaEscrita);
     }
 
     public void setPresenteProvaTitulos(boolean presenteProvaTitulos) {
@@ -157,11 +202,60 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public void setIdCandidato(int idCandidato) {
-        this.idCandidato = idCandidato;
+        this.setIdCandidato((Integer) idCandidato);
     }
     
     @Override
     public String toString(){
         return this.getNome();
+    }
+
+    /**
+     * @param idCandidato the idCandidato to set
+     */
+    public void setIdCandidato(Integer idCandidato) {
+        this.idCandidato = idCandidato;
+    }
+
+    /**
+     * @return the tablemap
+     */
+    public HashMap<String, Method[]> getTablemap() {
+        return tablemap;
+    }
+
+    /**
+     * @param tablemap the tablemap to set
+     */
+    public void setTablemap(HashMap<String, Method[]> tablemap) {
+        this.tablemap = tablemap;
+    }
+
+    /**
+     * @param idConcurso the idConcurso to set
+     */
+    public void setIdConcurso(Integer idConcurso) {
+        this.idConcurso = idConcurso;
+    }
+
+    /**
+     * @param idPessoa the idPessoa to set
+     */
+    public void setIdPessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    /**
+     * @param idProvaDidatica the idProvaDidatica to set
+     */
+    public void setIdProvaDidatica(Integer idProvaDidatica) {
+        this.idProvaDidatica = idProvaDidatica;
+    }
+
+    /**
+     * @param idProvaEscrita the idProvaEscrita to set
+     */
+    public void setIdProvaEscrita(Integer idProvaEscrita) {
+        this.idProvaEscrita = idProvaEscrita;
     }
 }

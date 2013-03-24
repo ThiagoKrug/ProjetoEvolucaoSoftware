@@ -57,7 +57,7 @@ public class AberturaDao implements IDao {
             try {
                 HashMap<String, Method[]> map = abertura.getTablemap();
                 int i = 1;
-                while (i < this.campos.length - 1) {
+                while (i < this.campos.length) {
                     Method method = map.get(this.campos[i][0])[0];
                     //this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
                     Object obj = method.invoke(abertura, new Object[] {});
