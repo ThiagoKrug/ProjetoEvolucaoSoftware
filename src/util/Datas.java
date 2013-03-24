@@ -28,6 +28,7 @@ public class Datas {
     private static String TIME = "HHH:mm:ss";
     private static String HOUR = "H";
     private static String MINUTE = "m";
+    private static String TIME_NO_SECOND = "HH:mm";
     private static String DATE_DATABASE = "yyyy-MM-dd";
 
     /**
@@ -41,11 +42,12 @@ public class Datas {
         DateFormat date = new SimpleDateFormat(DATE);
         return date.format(data);
     }
-    
+
     /**
      * Retorna data por extenso(formato ata)
+     *
      * @param data
-     * @return 
+     * @return
      */
     public static String getDataExtenso(Date data) {
         DateFormat date = new SimpleDateFormat(DATE_EXTENSO);
@@ -189,6 +191,18 @@ public class Datas {
         }
     }
 
+    public static Date convertStringToTime(String time) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(TIME_NO_SECOND);
+            Date d = sdf.parse(time);
+            return d;
+            //System.out.println(d.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Recebe uma String de uma data no seguinte formato: "dd/MM/yyyy" e
      * converte para os números da data. O resultado será um vetor com o dia,
@@ -223,16 +237,15 @@ public class Datas {
             return null;
         }
     }
-    
+
     public Date extractDate(Date data) {
-        
-        String dia   = getDate(data);
+
+        String dia = getDate(data);
         String[] pos = dia.split("/");
-        
+
         GregorianCalendar gc = new GregorianCalendar(Integer.parseInt(pos[2]), Integer.parseInt(pos[1]) - 1, Integer.parseInt(pos[0]));
-        
+
         return gc.getTime();
-        
+
     }
-    
 }

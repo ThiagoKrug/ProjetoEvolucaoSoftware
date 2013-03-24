@@ -41,7 +41,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLayeredPane1" alignment="0" pref="595" max="32767" attributes="0"/>
+          <Component id="jLayeredPane1" alignment="0" pref="603" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -123,7 +123,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="jPanelInstalacao">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Instala&#xe7;&#xe3;o">
@@ -143,7 +143,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane2" alignment="0" pref="470" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane2" alignment="0" pref="472" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -312,7 +312,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="jPanelCronograma">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Cronograma">
@@ -329,7 +329,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane3" alignment="0" pref="470" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane3" alignment="0" pref="472" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -350,14 +350,14 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTablePresencaMemorial">
+                        <Component class="javax.swing.JTable" name="jTableCronogramaAbertura">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="25">
-                                <Column editable="false" title="Atividade" type="java.lang.String"/>
-                                <Column editable="false" title="Data" type="java.lang.String"/>
-                                <Column editable="false" title="Hor&#xe1;rio" type="java.lang.String"/>
-                                <Column editable="false" title="Local" type="java.lang.String"/>
+                                <Column editable="true" title="Atividade" type="java.lang.String"/>
+                                <Column editable="true" title="Data" type="java.lang.String"/>
+                                <Column editable="true" title="Hor&#xe1;rio" type="java.lang.String"/>
+                                <Column editable="true" title="Local" type="java.lang.String"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -431,7 +431,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLayeredPane4" alignment="0" pref="470" max="32767" attributes="0"/>
+                      <Component id="jLayeredPane4" alignment="0" pref="472" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
