@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportListaPontosProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c816dce3-a489-441d-9a52-bb6bf95c33d4">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_prova_escrita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ponto_prova_escrita.`descricao` AS ponto_prova_escrita_descricao,
+     ponto_prova_escrita.`id_ponto_prova_escrita` AS ponto_prova_escrita_id_ponto_prova_escrita
+FROM
+     `ponto_prova_escrita` ponto_prova_escrita
+WHERE
+     id_prova_escrita = $P{id_prova_escrita}]]>
+	</queryString>
+	<field name="ponto_prova_escrita_descricao" class="java.lang.String"/>
+	<field name="ponto_prova_escrita_id_ponto_prova_escrita" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<image>
+				<reportElement uuid="c659380f-3166-4b38-bb86-5d8e18a1d9ea" x="28" y="10" width="82" height="50"/>
+				<imageExpression><![CDATA["C:\\Users\\Rafael\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\src\\util\\img\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="62133085-61fc-43a7-a613-69dbdfeb3dd5" x="283" y="11" width="247" height="49"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
+FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
+CAMPUS: ALEGRETE
+CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
+ÁREA: ENGENHARIA DE SOFTWARE
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c16a37c6-e7de-4e26-ab9a-e10c8c8b2a13" x="10" y="70" width="528" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELAÇÃO DE PONTOS PARA A PROVA ESCRITA ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c2e6c5ca-f487-48e3-b9aa-0ab392568982" x="135" y="2" width="130" height="20"/>
+				<textElement/>
+				<text><![CDATA[Descrição do Ponto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68b3ecc4-8aa7-4974-9c62-c29e140bfca5" x="0" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nro Candidato]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3282d7b7-2e4d-42f9-b8e3-6868b65aa3ba" x="135" y="0" width="420" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ponto_prova_escrita_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9124c32c-f346-4c60-8823-62a910059b6f" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ponto_prova_escrita_id_ponto_prova_escrita}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="72b9c09f-707e-42f8-9357-b4e7b7a3900c" x="377" y="0" width="178" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

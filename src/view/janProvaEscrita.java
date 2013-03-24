@@ -1,5 +1,6 @@
 package view;
 
+import br.com.jdbc.ConnectionFactory;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.CriterioAvaliacaoDao;
 import br.com.model.dao.PontoProvaEscritaDao;
@@ -9,13 +10,22 @@ import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacao;
 import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
+import br.com.report.ReportUtils;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import util.Datas;
 
 /*
  * To change this template, choose Tools | Templates
@@ -38,7 +48,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         super("Configurações do Concurso");
         initComponents();
         this.provaEscrita = new ProvaEscrita();
-        this.pdao =new ProvaEscritaDao();
+        this.pdao = new ProvaEscritaDao();
         this.provaEscrita.setConcurso(new Concurso());
         this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
         try {
@@ -79,6 +89,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButtonGerarListaCandidatos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -103,7 +114,6 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -113,6 +123,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jComboBoxPontos = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLayeredPane6 = new javax.swing.JLayeredPane();
@@ -186,12 +197,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListCandidatosConcurso);
 
-        jScrollPane1.setBounds(30, 110, 300, 240);
+        jScrollPane1.setBounds(30, 70, 300, 240);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane2.setViewportView(jListCandidatosAptos);
 
-        jScrollPane2.setBounds(420, 110, 310, 240);
+        jScrollPane2.setBounds(420, 70, 310, 240);
         jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarCandidato.setText(">");
@@ -200,7 +211,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonAdicionarCandidatoActionPerformed(evt);
             }
         });
-        jButtonAdicionarCandidato.setBounds(350, 130, 50, 23);
+        jButtonAdicionarCandidato.setBounds(350, 90, 50, 23);
         jLayeredPane2.add(jButtonAdicionarCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCandidatos.setText(">>");
@@ -209,28 +220,37 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonAdicionarTodosCandidatosActionPerformed(evt);
             }
         });
-        jButtonAdicionarTodosCandidatos.setBounds(350, 160, 49, 23);
+        jButtonAdicionarTodosCandidatos.setBounds(350, 120, 49, 23);
         jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCandidato.setText("<");
-        jButtonRemoverCandidato.setBounds(350, 190, 50, 23);
+        jButtonRemoverCandidato.setBounds(350, 150, 50, 23);
         jLayeredPane2.add(jButtonRemoverCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCandidatos.setText("<<");
-        jButtonRemoverTodosCandidatos.setBounds(350, 220, 49, 23);
+        jButtonRemoverTodosCandidatos.setBounds(350, 180, 49, 23);
         jLayeredPane2.add(jButtonRemoverTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText("Selecione os candidadtos aptos a realização da prova escrita.");
-        jLabel2.setBounds(30, 30, 710, 40);
+        jLabel2.setBounds(30, 10, 710, 40);
         jLayeredPane2.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText("Candidatos do concurso:");
-        jLabel3.setBounds(30, 90, 150, 14);
+        jLabel3.setBounds(30, 50, 150, 14);
         jLayeredPane2.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setText("Candidatos aptos a realização da prova:");
-        jLabel4.setBounds(420, 90, 240, 14);
+        jLabel4.setBounds(420, 50, 240, 14);
         jLayeredPane2.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonGerarListaCandidatos.setText("Gerar Lista de Candidatos");
+        jButtonGerarListaCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarListaCandidatosActionPerformed(evt);
+            }
+        });
+        jButtonGerarListaCandidatos.setBounds(553, 330, 180, 23);
+        jLayeredPane2.add(jButtonGerarListaCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -284,6 +304,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jButtonGerarRelacaoPontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarRelacaoPontos.setText("Gerar Relação de Pontos");
+        jButtonGerarRelacaoPontos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarRelacaoPontosActionPerformed(evt);
+            }
+        });
         jButtonGerarRelacaoPontos.setBounds(20, 335, 220, 30);
         jLayeredPane3.add(jButtonGerarRelacaoPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -361,8 +386,6 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel9.setText("Ponto Sorteado:");
         jLabel9.setBounds(10, 40, 100, 30);
         jLayeredPane5.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextField1.setBounds(160, 40, 70, 30);
-        jLayeredPane5.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setBounds(160, 80, 70, 30);
@@ -396,6 +419,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextField2.setBounds(160, 260, 350, 30);
         jLayeredPane5.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jComboBoxPontos.setBounds(160, 40, 70, 30);
+        jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -414,7 +440,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTabbedPane5.addTab("Realização", jPanel4);
 
         jLabel14.setText("Local da Leitura:");
-        jLabel14.setBounds(70, 70, 79, 14);
+        jLabel14.setBounds(70, 70, 100, 30);
         jLayeredPane6.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel16.setText("Candidatos Presentes:");
@@ -422,7 +448,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane6.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel17.setText("Hora de Início da Leitura:");
-        jLabel17.setBounds(470, 70, 160, 14);
+        jLabel17.setBounds(470, 70, 160, 30);
         jLayeredPane6.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane5.setViewportView(jListCandidatos);
@@ -461,11 +487,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTabbedPane5.addTab("Leitura", jPanel5);
 
         jLabel18.setText("Local do Julgamento:");
-        jLabel18.setBounds(160, 120, 101, 14);
+        jLabel18.setBounds(160, 120, 130, 20);
         jLayeredPane7.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel19.setText("Horário do Julgamento:");
-        jLabel19.setBounds(160, 150, 140, 14);
+        jLabel19.setBounds(160, 150, 140, 20);
         jLayeredPane7.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraJulgamento.setBounds(300, 150, 70, 30);
         jLayeredPane7.add(jTextFieldHoraJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -595,11 +621,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
             this.provaEscrita.adicionarPonto(p);
             this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
-//            DefaultComboBoxModel lista =  (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
-//            lista.removeAllElements();
-//            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-//                lista.addElement(i+1);
-//            }
+            DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+            lista.removeAllElements();
+            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                lista.addElement(i + 1);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Escreva o ponto!", null, JOptionPane.ERROR_MESSAGE);
         }
@@ -665,6 +691,40 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRemoverCriterioActionPerformed
 
+    private void jButtonGerarListaCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarListaCandidatosActionPerformed
+        // TODO add your handling code here:
+        jButtonGerarListaCandidatos.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportCandidatosAptosProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            // abre o relatório
+            ReportUtils.openReport("Lista de Presença - Prova Escrita", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        jButtonGerarListaCandidatos.setEnabled(true);
+    }//GEN-LAST:event_jButtonGerarListaCandidatosActionPerformed
+
+    private void jButtonGerarRelacaoPontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelacaoPontosActionPerformed
+        // TODO add your handling code here:
+        jButtonGerarRelacaoPontos.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportListaPontosProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()) );
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Lista de Pontos", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        jButtonGerarRelacaoPontos.setEnabled(true);
+    }//GEN-LAST:event_jButtonGerarRelacaoPontosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -708,6 +768,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtaResultado;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAtaLeitura;
+    private javax.swing.JButton jButtonGerarListaCandidatos;
     private javax.swing.JButton jButtonGerarRelCriterios;
     private javax.swing.JButton jButtonGerarRelacaoPontos;
     private javax.swing.JButton jButtonProximo;
@@ -716,6 +777,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemoverPonto;
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox jComboBoxPontos;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
@@ -767,7 +829,6 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldCriterioPeso;
     private javax.swing.JTextField jTextFieldHoraDivulgacaoResultado;

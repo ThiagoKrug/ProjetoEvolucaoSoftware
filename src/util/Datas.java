@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class Datas {
 
     private static String DATE = "dd/MM/yyyy";
+    public static String DATE_EXTENSO = "dd 'de' MMMMM 'de' yyyy";
     private static String DIA = "dd";
     private static String MES = "MM";
     private static String ANO = "yyyy";
@@ -38,6 +39,16 @@ public class Datas {
      */
     public static String getDate(Date data) {
         DateFormat date = new SimpleDateFormat(DATE);
+        return date.format(data);
+    }
+    
+    /**
+     * Retorna data por extenso(formato ata)
+     * @param data
+     * @return 
+     */
+    public static String getDataExtenso(Date data) {
+        DateFormat date = new SimpleDateFormat(DATE_EXTENSO);
         return date.format(data);
     }
 
