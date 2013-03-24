@@ -27,6 +27,8 @@ public class Cronograma implements IEntidade {
     
     private Date data;
     
+    private Date horario;
+    
     @NotNull(message="O concurso não pode ser nulo.")
     private Integer idConcurso;
     
@@ -62,6 +64,10 @@ public class Cronograma implements IEntidade {
             this.getClass().getMethod("setIdConcurso", new Class<?>[] {this.idConcurso.getClass()})
         });
         
+        this.tablemap.put("horario", new Method[] {
+            this.getClass().getMethod("horario", new Class<?>[] {}),
+            this.getClass().getMethod("horario", new Class<?>[] {this.horario.getClass()})
+        });
 
         
         } catch (NoSuchMethodException e) {

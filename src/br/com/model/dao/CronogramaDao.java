@@ -33,7 +33,8 @@ public class CronogramaDao implements IDao {
             {"local", "String"},
             {"atividade", "String"},
             {"data", "Date"},
-            {"id_concurso", "Integer"}
+            {"id_concurso", "Integer"},
+            {"horario", "Date"}
         };
         
         public String getInsertSql() {
