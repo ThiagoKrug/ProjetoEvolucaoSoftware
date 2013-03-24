@@ -51,8 +51,8 @@ public class ConcursoDao implements IDao {
                 stmt.setString(4, concurso.getArea());
                 stmt.setString(5, concurso.getEdital());
                 
-                if ( concurso.getClasseConcurso().getIdClasseConcurso() != 0 ) {
-                    stmt.setInt(6, concurso.getClasseConcurso().getIdClasseConcurso());
+                if ( concurso.getIdClasseConcurso() != 0 ) {
+                    stmt.setInt(6, concurso.getIdClasseConcurso());
                 } else {
                     stmt.setString(6, null);
                 }
@@ -121,8 +121,8 @@ public class ConcursoDao implements IDao {
                 stmt.setString(4, concurso.getArea());
                 stmt.setString(5, concurso.getEdital());
                 
-                if ( concurso.getClasseConcurso().getIdClasseConcurso() != 0 ) {
-                    stmt.setInt(6, concurso.getClasseConcurso().getIdClasseConcurso());
+                if ( concurso.getIdClasseConcurso() != 0 ) {
+                    stmt.setInt(6, concurso.getIdClasseConcurso());
                 } else {
                     stmt.setString(6, null);
                 }

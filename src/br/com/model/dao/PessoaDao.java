@@ -42,7 +42,11 @@ public class PessoaDao implements IDao {
                 }
                 stmt.setString(2, pessoa.getNome());
                 stmt.setString(3, pessoa.getSexo());
-                stmt.setDate(4, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+                if (pessoa.getDataNascimento() != null) {
+                    stmt.setDate(4, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+                } else {
+                    stmt.setString(4, null);
+                }
 
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();

@@ -1,10 +1,19 @@
 package view;
 
+import br.com.model.dao.AberturaDao;
+import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.Cronograma;
 import java.awt.Component;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import util.Datas;
 
 /**
@@ -13,7 +22,7 @@ import util.Datas;
  */
 public class janAbertura extends javax.swing.JFrame {
 
-    private Abertura abertura;
+    private Abertura abertura = new Abertura();
 
     /**
      * Creates new form janAbertura
@@ -56,10 +65,10 @@ public class janAbertura extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCronogramaAbertura = new javax.swing.JTable();
         jButtonCronograma = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jPanelCandidato = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jListListaPontos = new javax.swing.JList();
+        jListCandidatoAbertura = new javax.swing.JList();
         marqueoscadidatos = new javax.swing.JLabel();
         horadeinicio2 = new javax.swing.JLabel();
         CriarAtaAbertura = new javax.swing.JButton();
@@ -261,7 +270,7 @@ public class janAbertura extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Cronograma", jPanelCronograma);
 
-        jScrollPane3.setViewportView(jListListaPontos);
+        jScrollPane3.setViewportView(jListCandidatoAbertura);
 
         jScrollPane3.setBounds(50, 40, 430, 310);
         jLayeredPane4.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -289,18 +298,18 @@ public class janAbertura extends javax.swing.JFrame {
         jTextFieldHoraInstalacao1.setBounds(50, 380, 70, 30);
         jLayeredPane4.add(jTextFieldHoraInstalacao1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelCandidatoLayout = new javax.swing.GroupLayout(jPanelCandidato);
+        jPanelCandidato.setLayout(jPanelCandidatoLayout);
+        jPanelCandidatoLayout.setHorizontalGroup(
+            jPanelCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelCandidatoLayout.setVerticalGroup(
+            jPanelCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
-        jTabbedPane5.addTab("Abertura", jPanel3);
+        jTabbedPane5.addTab("Abertura", jPanelCandidato);
 
         jTabbedPane5.setBounds(0, 50, 520, 500);
         jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -341,17 +350,29 @@ public class janAbertura extends javax.swing.JFrame {
             Cronograma cronograma = new Cronograma();
             cronograma.setAtividade(atividade);
 
-            Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
+            Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
+            //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
             cronograma.setData(data);
 
-            Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
+            Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
+            //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
             cronograma.setHorario(hora);
+            //System.out.println("Horas: " + hora.toString() + " Cron: " + cronograma.getHorario().toString());
 
             String local = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 3);
             cronograma.setLocal(local);
+
+            cronograma.setIdConcurso(1);
+
+            CronogramaDao cronogramaDao = new CronogramaDao();
+            try {
+                cronogramaDao.inserir(cronograma);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-        
+
+
 
 
 
@@ -363,24 +384,6 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-
-        Component component = jTabbedPane5.getSelectedComponent();
-        if (component == jPanelInstalacao) {
-            //concurso.setMinisterio(jTextFieldMinisterio.getText());
-            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
-            abertura.setHoraInicio(HoraInicio);
-            abertura.setLocal(jTextFieldLocalSessao.getText());
-            abertura.setPortaria(jTextPortariaNomeacao.getText());
-            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
-        } else if (component == jPanelCronograma) {
-//            jcom
-//            pres.setSexo(null);
-//            Examinador presidente = new Examinador();
-//            presidente.set
-//            
-//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
-//            bancaExaminadora.
-        }
         // TODO add your handling code here:
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
@@ -393,11 +396,55 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
+        Component component = jTabbedPane5.getSelectedComponent();
+        if (component == jPanelInstalacao) {
+            //concurso.setMinisterio(jTextFieldMinisterio.getText());
+            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+            abertura.setHoraInicio(HoraInicio);
+            abertura.setLocal(jTextFieldLocalSessao.getText());
+            abertura.setPortaria(jTextPortariaNomeacao.getText());
+            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+            abertura.setIdConcurso(1);
 
-        // TODO add your handling code here:
-        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
-            jTabbedPane5.setSelectedIndex(nextTab);
+
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                aberturaDao.inserir(abertura);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (component == jPanelCronograma) {
+//            jcom
+//            pres.setSexo(null);
+//            Examinador presidente = new Examinador();
+//            presidente.set
+//            
+//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
+//            bancaExaminadora.
+        } else if (component == jPanelCandidato) {
+            CandidatoDao cdao = new CandidatoDao();
+            List<Candidato> candidato = null;
+            try {
+                candidato = cdao.pesquisarTodos();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
+            DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+            System.out.println("Antes");
+            for (Candidato candi : candidato) {
+                System.out.println("Dentro do for");
+                candiModel.addElement(candi);
+            }
+            //jComboBoxCampus.setModel(campiModel);
+            jListCandidatoAbertura.setModel(candiModel);
+        } else {
+
+            int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+            if (nextTab < jTabbedPane5.getTabCount()) {
+                jTabbedPane5.setSelectedIndex(nextTab);
+            }
         }
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
@@ -452,8 +499,8 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JList jListListaPontos;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JList jListCandidatoAbertura;
+    private javax.swing.JPanel jPanelCandidato;
     private javax.swing.JPanel jPanelCronograma;
     private javax.swing.JPanel jPanelInstalacao;
     private javax.swing.JScrollPane jScrollPane2;

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportListaPontosProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c816dce3-a489-441d-9a52-bb6bf95c33d4">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="71"/>
+	<property name="ireport.y" value="220"/>
+	<parameter name="id_prova_escrita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     criterio_avaliacao.`id_criterio_avaliacao` AS criterio_avaliacao_id_criterio_avaliacao,
+     criterio_avaliacao.`criterio` AS criterio_avaliacao_criterio,
+     criterio_avaliacao.`peso` AS criterio_avaliacao_peso
+FROM
+     `criterio_avaliacao` criterio_avaliacao
+WHERE
+     id_prova_escrita = $P{id_prova_escrita}]]>
+	</queryString>
+	<field name="criterio_avaliacao_id_criterio_avaliacao" class="java.lang.Integer"/>
+	<field name="criterio_avaliacao_criterio" class="java.lang.String"/>
+	<field name="criterio_avaliacao_peso" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="62133085-61fc-43a7-a613-69dbdfeb3dd5" x="283" y="11" width="247" height="49"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
+FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
+CAMPUS: ALEGRETE
+CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
+ÁREA: ENGENHARIA DE SOFTWARE
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c16a37c6-e7de-4e26-ab9a-e10c8c8b2a13" x="16" y="88" width="528" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRITÉRIOS DE AVALIAÇÃO DA PROVA ESCRITA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1bdde9c5-a880-4bb6-ae52-511f6b73aef8" x="85" y="1" width="329" height="20"/>
+				<textElement/>
+				<text><![CDATA[Critério]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d341669-dbd6-4daa-8d5d-9bb2cbead14a" x="430" y="1" width="114" height="20"/>
+				<textElement/>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="588fb34e-8c8b-4667-97f0-313898d914e6" x="15" y="1" width="38" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nro.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement uuid="06a566ef-82c0-43ae-ba86-0c3592e977fe" x="85" y="3" width="329" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{criterio_avaliacao_criterio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="043ce4cd-9e31-48bd-b148-9a48330d2864" x="430" y="3" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{criterio_avaliacao_peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2ebbfdb5-cb5d-4641-bc9a-eae1f163b9ba" x="15" y="3" width="38" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{criterio_avaliacao_id_criterio_avaliacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f49a02ae-89dd-4274-afb7-a879695ea76b" x="314" y="12" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total de Pontos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc26f2df-ed25-4f67-819c-d2f05c31ef48" x="430" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[10 ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="169" splitType="Stretch">
+			<textField>
+				<reportElement uuid="72b9c09f-707e-42f8-9357-b4e7b7a3900c" x="377" y="0" width="178" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7110d5e5-f91b-42c9-ab46-9df888bd8b0c" x="0" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="414e6e89-b6cb-48c7-bfca-67d79e33debb" x="0" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ca9fb2f-4117-468b-bec0-b6a8700edf1a" x="193" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3af1ceea-940c-4e11-85ab-6c7ec510c70e" x="193" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8524aa12-b7f1-4b60-afa8-9b2ab944b671" x="395" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad0c5fa4-cbd1-4f1e-b960-24044853677a" x="395" y="63" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="69ac07a4-494d-499c-b1c0-1ce3eb5d1d62" x="265" y="0" width="112" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Alegrete, ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

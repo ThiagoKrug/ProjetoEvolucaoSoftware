@@ -47,7 +47,7 @@ public class janMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItemSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu- GCP");
@@ -164,6 +164,11 @@ public class janMenu extends javax.swing.JFrame {
 
         jButtonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/folder.png"))); // NOI18N
         jButtonAbrir.setToolTipText("Abrir Concurso");
+        jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbrirActionPerformed(evt);
+            }
+        });
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -226,9 +231,14 @@ public class janMenu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem7.setText("Sobre");
-        jMenu3.add(jMenuItem7);
+        jMenuItemSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItemSobre.setText("Sobre");
+        jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSobreActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemSobre);
 
         jMenuBar1.add(jMenu3);
 
@@ -327,6 +337,14 @@ public class janMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonTitulosActionPerformed
 
+    private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
+        janSobre.main(null);
+    }//GEN-LAST:event_jMenuItemSobreActionPerformed
+
+    private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
+        janAbrir.main(null);
+    }//GEN-LAST:event_jButtonAbrirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,11 +396,11 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemAbrir;
     private javax.swing.JMenuItem jMenuItemNovo;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSalvar;
+    private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
