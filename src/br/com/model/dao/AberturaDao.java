@@ -48,7 +48,7 @@ public class AberturaDao implements IDao {
                 qms += "?, ";
                 i++;
             }
-            qms += ")";
+            qms += "?)";
             sql += this.campos[i][0] + ") VALUES " + qms;
             return sql;
         }
@@ -88,11 +88,14 @@ public class AberturaDao implements IDao {
             if (s.equals("String")) {
                 return 1;
             }
-            if (s.equals("Time")) {
+            if (s.equals("Date")) {
                 return 2;
             }
             if (s.equals("Boolean")) {
                 return 3;
+            }
+            if (s.equals("Time")) {
+                return 4;
             }
             return -1;
         }
@@ -106,12 +109,14 @@ public class AberturaDao implements IDao {
                     stmt.setString(i, (String)stuff);
                     break;
                 case 2:
-                    /*java.util.Date date = (java.util.Date)stuff;
-                    stmt.setDate(i, new java.sql.Date(date.getTime()));*/
-                    stmt.setTime(i, new java.sql.Time(((Date)stuff).getTime()));
+                    java.util.Date date = (java.util.Date)stuff;
+                    stmt.setDate(i, new java.sql.Date(date.getTime()));
                     break;
                 case 3:
                     stmt.setBoolean(i, (Boolean)stuff);
+                    break;
+                case 4:
+                    stmt.setTime(i, new java.sql.Time(((Date)stuff).getTime()));
                     break;
             }
         }
