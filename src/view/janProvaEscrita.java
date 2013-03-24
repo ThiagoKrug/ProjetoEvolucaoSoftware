@@ -136,6 +136,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalLeitura = new javax.swing.JTextField();
         jTextFieldHoraLeitura = new javax.swing.JTextField();
         jButtonCriarAtaLeitura = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jLabel22 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLayeredPane7 = new javax.swing.JLayeredPane();
         jLabel18 = new javax.swing.JLabel();
@@ -196,11 +203,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jButtonVoltar.setBounds(370, 470, 130, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jListCandidatosConcurso.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListCandidatosConcurso);
 
         jScrollPane1.setBounds(30, 70, 300, 240);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jListCandidatosAptos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListCandidatosAptos);
 
         jScrollPane2.setBounds(420, 70, 310, 240);
@@ -277,6 +286,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Candidatos Aptos A Realização", jPanel1);
 
+        jListListaPontos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jListListaPontos);
 
         jScrollPane3.setBounds(20, 90, 730, 230);
@@ -337,6 +347,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Pontos", jPanel2);
 
+        jListCriterios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(jListCriterios);
 
         jScrollPane4.setBounds(10, 110, 740, 210);
@@ -467,30 +478,68 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTabbedPane5.addTab("Realização", jPanel4);
 
         jLabel14.setText("Local da Leitura:");
-        jLabel14.setBounds(70, 70, 100, 30);
+        jLabel14.setBounds(20, 70, 100, 30);
         jLayeredPane6.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel16.setText("Candidatos Presentes:");
-        jLabel16.setBounds(70, 120, 150, 14);
+        jLabel16.setBounds(430, 120, 150, 14);
         jLayeredPane6.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel17.setText("Hora de Início da Leitura:");
-        jLabel17.setBounds(470, 70, 160, 30);
+        jLabel17.setBounds(430, 70, 160, 30);
         jLayeredPane6.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jListCandidatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(jListCandidatos);
 
-        jScrollPane5.setBounds(70, 150, 380, 146);
+        jScrollPane5.setBounds(430, 140, 320, 150);
         jLayeredPane6.add(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalLeitura.setBounds(170, 70, 280, 30);
+        jTextFieldLocalLeitura.setBounds(120, 70, 220, 30);
         jLayeredPane6.add(jTextFieldLocalLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraLeitura.setBounds(620, 70, 80, 30);
+
+        jTextFieldHoraLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHoraLeituraActionPerformed(evt);
+            }
+        });
+        jTextFieldHoraLeitura.setBounds(580, 70, 80, 30);
         jLayeredPane6.add(jTextFieldHoraLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCriarAtaLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
-        jButtonCriarAtaLeitura.setText("Criar Ata de Leitura");
-        jButtonCriarAtaLeitura.setBounds(470, 150, 180, 33);
+        jButtonCriarAtaLeitura.setText("Gerar de Ata de Leitura");
+        jButtonCriarAtaLeitura.setBounds(520, 320, 200, 33);
         jLayeredPane6.add(jButtonCriarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(jList1);
+
+        jScrollPane6.setBounds(20, 140, 320, 150);
+        jLayeredPane6.add(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel22.setText("Candidatos Aptos:");
+        jLabel22.setBounds(20, 120, 110, 14);
+        jLayeredPane6.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton1.setText(">");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.setBounds(350, 150, 41, 23);
+        jLayeredPane6.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton2.setText(">>");
+        jButton2.setBounds(350, 180, 49, 23);
+        jLayeredPane6.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton3.setText("<");
+        jButton3.setBounds(350, 210, 41, 23);
+        jLayeredPane6.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton4.setText("<<");
+        jButton4.setBounds(350, 240, 49, 23);
+        jLayeredPane6.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -892,6 +941,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldHoraLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraLeituraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldHoraLeituraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -927,6 +984,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAdicionarCandidato;
     private javax.swing.JButton jButtonAdicionarCriterio;
     private javax.swing.JButton jButtonAdicionarPonto;
@@ -963,6 +1024,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -978,6 +1040,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane6;
     private javax.swing.JLayeredPane jLayeredPane7;
     private javax.swing.JLayeredPane jLayeredPane8;
+    private javax.swing.JList jList1;
     private javax.swing.JList jListCandidatos;
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosConcurso;
@@ -995,6 +1058,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextFieldCriterioPeso;
