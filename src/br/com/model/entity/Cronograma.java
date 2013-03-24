@@ -25,7 +25,7 @@ public class Cronograma implements IEntidade {
     //atividade, data, local, concurso
     private String atividade, local;
     
-    private Date data;
+    private Date data, horario;
     
     @NotNull(message="O concurso não pode ser nulo.")
     private Integer idConcurso;
@@ -177,6 +177,20 @@ public class Cronograma implements IEntidade {
      */
     public HashMap<String, Method[]> getTablemap() {
         return tablemap;
+    }
+
+    /**
+     * @return the horario
+     */
+    public Date getHorario() {
+        return horario;
+    }
+
+    /**
+     * @param horario the horario to set
+     */
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     /**
