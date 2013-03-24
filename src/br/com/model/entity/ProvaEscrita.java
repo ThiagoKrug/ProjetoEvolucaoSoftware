@@ -152,6 +152,15 @@ public class ProvaEscrita implements IEntidade {
         }
         this.criterios.add(c);
     }
+    public float getSomaPontosCriterioAvaliacao() {
+        float soma = 0f;
+        Iterator<CriterioAvaliacao> iterator = this.criterios.iterator();
+        while (iterator.hasNext()) {
+            CriterioAvaliacao object = iterator.next();
+            soma += object.getPeso();
+        }
+        return soma;
+    }
 
     public void removerCriterioAvaliacao(CriterioAvaliacao c) {
         Iterator<CriterioAvaliacao> iterator = this.criterios.iterator();
