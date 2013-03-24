@@ -23,10 +23,6 @@ WHERE
 	</background>
 	<title>
 		<band height="134" splitType="Stretch">
-			<image>
-				<reportElement uuid="c659380f-3166-4b38-bb86-5d8e18a1d9ea" x="28" y="10" width="82" height="50"/>
-				<imageExpression><![CDATA["C:\\Users\\Rafael\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\src\\util\\img\\logo.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement uuid="62133085-61fc-43a7-a613-69dbdfeb3dd5" x="283" y="11" width="247" height="49"/>
 				<textElement>

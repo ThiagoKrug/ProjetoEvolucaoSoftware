@@ -130,6 +130,17 @@ public class ProvaEscrita implements IEntidade {
         }
         this.candidatosAptosProva.add(c);
     }
+    
+    public void removerCandidatoApto(Candidato c){
+        Iterator<Candidato> iterator = this.candidatosAptosProva.iterator();
+        while (iterator.hasNext()){
+            Candidato object = iterator.next();
+            if (object.getIdCandidato() == c.getIdCandidato()){
+                this.candidatosAptosProva.remove(c);
+                return;
+            }
+        }
+    }
 
     public void adicionarCriterioAvaliacao(CriterioAvaliacao c) {
         Iterator<CriterioAvaliacao> iterator = this.criterios.iterator();

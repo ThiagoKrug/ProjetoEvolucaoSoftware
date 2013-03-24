@@ -36,7 +36,7 @@ FROM
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="c836b073-a6bb-4211-a2da-701c802c004b" x="211" y="30" width="235" height="20"/>
+				<reportElement uuid="c836b073-a6bb-4211-a2da-701c802c004b" x="13" y="33" width="235" height="20"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
