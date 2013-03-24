@@ -114,15 +114,15 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraSorteio = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraInicioProva = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraFimProva = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldLocalRealizacao = new javax.swing.JTextField();
         jComboBoxPontos = new javax.swing.JComboBox();
         jButtonIniciarRealizacaoGerarAta = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -404,9 +404,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel9.setBounds(10, 40, 100, 30);
         jLayeredPane5.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField1.setBounds(160, 80, 70, 30);
-        jLayeredPane5.add(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraSorteio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraSorteio.setBounds(160, 80, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraSorteio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Hora do Sorteio:");
         jLabel10.setBounds(10, 80, 110, 30);
@@ -418,23 +418,23 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel11.setBounds(10, 170, 140, 30);
         jLayeredPane5.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.setBounds(160, 170, 70, 30);
-        jLayeredPane5.add(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraInicioProva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraInicioProva.setBounds(160, 170, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraInicioProva, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText("Hora do Fim da Prova:");
         jLabel12.setBounds(10, 210, 130, 30);
         jLayeredPane5.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField3.setBounds(160, 210, 70, 30);
-        jLayeredPane5.add(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraFimProva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraFimProva.setBounds(160, 210, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraFimProva, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText("Local da Realização:");
         jLabel13.setBounds(10, 260, 130, 30);
         jLayeredPane5.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextField2.setBounds(160, 260, 350, 30);
-        jLayeredPane5.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocalRealizacao.setBounds(160, 260, 350, 30);
+        jLayeredPane5.add(jTextFieldLocalRealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxPontos.setBounds(160, 40, 70, 30);
         jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -836,7 +836,38 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     private void jButtonIniciarRealizacaoGerarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
         // TODO add your handling code here:
+        if(this.jFormattedTextFieldHoraSorteio.getText().equalsIgnoreCase("") == true ||
+           this.jFormattedTextFieldHoraSorteio.getText() == null    ){
+            JOptionPane.showMessageDialog(this, "Informe a hora do sorteio do ponto!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(this.jFormattedTextFieldHoraInicioProva.getText().equalsIgnoreCase("") == true ||
+           this.jFormattedTextFieldHoraInicioProva.getText() == null    ){
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(this.jFormattedTextFieldHoraFimProva.getText().equalsIgnoreCase("") == true ||
+           this.jFormattedTextFieldHoraFimProva.getText() == null    ){
+            JOptionPane.showMessageDialog(this, "Informe a hora de dfim da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(this.jTextFieldLocalRealizacao.getText().equalsIgnoreCase("") == true ||
+           this.jTextFieldLocalRealizacao.getText() == null    ){
+            JOptionPane.showMessageDialog(this, "Informe o local da realização da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+       this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
+       this.provaEscrita.setHoraPontoSorteado(Datas.convertStringToTime(this.jFormattedTextFieldHoraSorteio.getText()));
+       this.provaEscrita.setHoraInicioProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraInicioProva.getText()));
+       this.provaEscrita.setHoraFimProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraFimProva.getText()));
+       this.provaEscrita.setLocalRealizacao(this.jTextFieldLocalRealizacao.getText());
         
+       try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
 
@@ -894,9 +925,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox jComboBoxPontos;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraFimProva;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraInicioProva;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraSorteio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -945,7 +976,6 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldCriterioPeso;
     private javax.swing.JTextField jTextFieldHoraDivulgacaoResultado;
     private javax.swing.JTextField jTextFieldHoraJulgamento;
@@ -953,6 +983,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldLocalDivulgacaoResultado;
     private javax.swing.JTextField jTextFieldLocalJulgamento;
     private javax.swing.JTextField jTextFieldLocalLeitura;
+    private javax.swing.JTextField jTextFieldLocalRealizacao;
     private javax.swing.JTextField jTextFieldTextoCriterio;
     private javax.swing.JTextField jTextFieldTextoPonto;
     // End of variables declaration//GEN-END:variables
