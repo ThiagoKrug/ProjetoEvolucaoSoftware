@@ -34,34 +34,34 @@ public class Abertura implements IEntidade {
         this.tablemap = new HashMap<String, Method[]>();
         try {
         Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdAbertura", new Class<?>[] {}),
-            this.getClass().getMethod("setIdAbertura", new Class<?>[] {this.idAbertura.getClass()})
+            Abertura.class.getMethod("getIdAbertura", new Class<?>[] {}),
+            Abertura.class.getMethod("setIdAbertura", new Class<?>[] {this.idAbertura.getClass()})
         };
         this.tablemap.put("id_abertura", ids);
         
         this.tablemap.put("hora_inicio", new Method[] {
-            this.getClass().getMethod("getHoraInicio", new Class<?>[] {}),
-            this.getClass().getMethod("setHoraInicio", new Class<?>[] {this.horaInicio.getClass()})
+            Abertura.class.getMethod("getHoraInicio", new Class<?>[] {}),
+            Abertura.class.getMethod("setHoraInicio", new Class<?>[] {this.horaInicio.getClass()})
         });
         
         this.tablemap.put("local", new Method[] {
-            this.getClass().getMethod("getLocal", new Class<?>[] {}),
-            this.getClass().getMethod("setLocal", new Class<?>[] {this.local.getClass()})
+            Abertura.class.getMethod("getLocal", new Class<?>[] {}),
+            Abertura.class.getMethod("setLocal", new Class<?>[] {this.local.getClass()})
         });
         
         this.tablemap.put("portaria", new Method[] {
-            this.getClass().getMethod("getPortaria", new Class<?>[] {}),
-            this.getClass().getMethod("setPortaria", new Class<?>[] {this.portaria.getClass()})
+            Abertura.class.getMethod("getPortaria", new Class<?>[] {}),
+            Abertura.class.getMethod("setPortaria", new Class<?>[] {this.portaria.getClass()})
         });
         
         this.tablemap.put("emissor", new Method[] {
-            this.getClass().getMethod("getEmissor", new Class<?>[] {}),
-            this.getClass().getMethod("setEmissor", new Class<?>[] {this.emissor.getClass()})
+            Abertura.class.getMethod("getEmissor", new Class<?>[] {}),
+            Abertura.class.getMethod("setEmissor", new Class<?>[] {this.emissor.getClass()})
         });
         
         this.tablemap.put("id_concurso", new Method[] {
-            this.getClass().getMethod("getIdConcurso", new Class<?>[] {}),
-            this.getClass().getMethod("setIdConcurso", new Class<?>[] {this.idConcurso.getClass()})
+            Abertura.class.getMethod("getIdConcurso", new Class<?>[] {}),
+            Abertura.class.getMethod("setIdConcurso", new Class<?>[] {this.idConcurso.getClass()})
         });
         
 

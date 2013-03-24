@@ -1,10 +1,14 @@
 package view;
 
+import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.Cronograma;
 import java.awt.Component;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Datas;
 
 /**
@@ -13,7 +17,7 @@ import util.Datas;
  */
 public class janAbertura extends javax.swing.JFrame {
 
-    private Abertura abertura;
+    private Abertura abertura = new Abertura();
 
     /**
      * Creates new form janAbertura
@@ -341,14 +345,26 @@ public class janAbertura extends javax.swing.JFrame {
             Cronograma cronograma = new Cronograma();
             cronograma.setAtividade(atividade);
 
-            Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
+            Date data = Datas.getData((String)jTableCronogramaAbertura.getModel().getValueAt(i, 1));
+            //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
             cronograma.setData(data);
 
-            Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
+            Date hora = Datas.convertStringToTime((String)jTableCronogramaAbertura.getModel().getValueAt(i, 2));
+            //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
             cronograma.setHorario(hora);
+            //System.out.println("Horas: " + hora.toString() + " Cron: " + cronograma.getHorario().toString());
 
             String local = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 3);
             cronograma.setLocal(local);
+            
+            cronograma.setIdConcurso(1);
+            
+            CronogramaDao cronogramaDao = new CronogramaDao();
+            try {
+                cronogramaDao.inserir(cronograma);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         
@@ -363,24 +379,6 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-
-        Component component = jTabbedPane5.getSelectedComponent();
-        if (component == jPanelInstalacao) {
-            //concurso.setMinisterio(jTextFieldMinisterio.getText());
-            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
-            abertura.setHoraInicio(HoraInicio);
-            abertura.setLocal(jTextFieldLocalSessao.getText());
-            abertura.setPortaria(jTextPortariaNomeacao.getText());
-            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
-        } else if (component == jPanelCronograma) {
-//            jcom
-//            pres.setSexo(null);
-//            Examinador presidente = new Examinador();
-//            presidente.set
-//            
-//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
-//            bancaExaminadora.
-        }
         // TODO add your handling code here:
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
@@ -393,7 +391,32 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-
+        Component component = jTabbedPane5.getSelectedComponent();
+        if (component == jPanelInstalacao) {
+            //concurso.setMinisterio(jTextFieldMinisterio.getText());
+            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+            abertura.setHoraInicio(HoraInicio);
+            abertura.setLocal(jTextFieldLocalSessao.getText());
+            abertura.setPortaria(jTextPortariaNomeacao.getText());
+            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+            abertura.setIdConcurso(1);
+            
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                aberturaDao.inserir(abertura);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } else if (component == jPanelCronograma) {
+//            jcom
+//            pres.setSexo(null);
+//            Examinador presidente = new Examinador();
+//            presidente.set
+//            
+//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
+//            bancaExaminadora.
+        }
         // TODO add your handling code here:
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
         if (nextTab < jTabbedPane5.getTabCount()) {

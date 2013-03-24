@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CronogramaDao implements IDao {
             {"atividade", "String"},
             {"data", "Date"},
             {"id_concurso", "Integer"},
-            {"horario", "Date"}
+            {"horario", "Time"}
         };
         
         public String getInsertSql() {
@@ -46,7 +47,7 @@ public class CronogramaDao implements IDao {
                 qms += "?, ";
                 i++;
             }
-            qms += ")";
+            qms += "?)";
             sql += this.campos[i][0] + ") VALUES " + qms;
             return sql;
         }
@@ -55,9 +56,11 @@ public class CronogramaDao implements IDao {
             try {
                 HashMap<String, Method[]> map = cronograma.getTablemap();
                 int i = 1;
-                while (i < this.campos.length - 1) {
+                while (i < this.campos.length) {
                     Method method = map.get(this.campos[i][0])[0];
-                    this.setStatement(i, stmt, method.invoke(cronograma, new Object[] {}));
+                    Object obj = method.invoke(cronograma, new Object[] {});
+                    System.out.println(obj);
+                    this.setStatement(i, stmt, obj);
                     i++;
                 }
             } catch (IllegalAccessException e) {
@@ -85,6 +88,10 @@ public class CronogramaDao implements IDao {
             if (s.equals("Boolean")) {
                 return 3;
             }
+            
+            if (s.equals("Time")) {
+                return 4;
+            }
             return -1;
         }
         
@@ -102,6 +109,9 @@ public class CronogramaDao implements IDao {
                     break;
                 case 3:
                     stmt.setBoolean(i, (Boolean)stuff);
+                    break;
+                case 4:
+                    stmt.setTime(i, new java.sql.Time(((Date)stuff).getTime()));
                     break;
             }
         }
@@ -188,6 +198,7 @@ public class CronogramaDao implements IDao {
 //            try {
                 PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 fields.prepare(stmt, cronograma);
+                //System.out.println(stmt.toString());
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
 

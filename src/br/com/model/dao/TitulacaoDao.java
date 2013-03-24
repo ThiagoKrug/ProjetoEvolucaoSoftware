@@ -42,7 +42,7 @@ public class TitulacaoDao implements IDao {
                 qms += "?, ";
                 i++;
             }
-            qms += ")";
+            qms += "?)";
             sql += this.campos[i][0] + ") VALUES " + qms;
             return sql;
         }

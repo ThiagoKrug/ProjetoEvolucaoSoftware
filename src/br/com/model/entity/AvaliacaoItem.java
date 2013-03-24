@@ -38,24 +38,24 @@ public class AvaliacaoItem implements IEntidade {
         this.tablemap = new HashMap<String, Method[]>();
         try {
         Method[] ids = new Method[] {
-            this.getClass().getMethod("getIdAvaliacaoItem", new Class<?>[] {}),
-            this.getClass().getMethod("setIdAvaliacaoItem", new Class<?>[] {this.idAvaliacaoItem.getClass()})
+            AvaliacaoItem.class.getMethod("getIdAvaliacaoItem", new Class<?>[] {}),
+            AvaliacaoItem.class.getMethod("setIdAvaliacaoItem", new Class<?>[] {this.idAvaliacaoItem.getClass()})
         };
         this.tablemap.put("id_avaliacao_item", ids);
         
         this.tablemap.put("id_avaliacao_prova_titulo", new Method[] {
-            this.getClass().getMethod("getIdAvaliacaoPT", new Class<?>[] {}),
-            this.getClass().getMethod("setIdAvaliacaoPT", new Class<?>[] {this.idAvaliacaoPT.getClass()})
+            AvaliacaoItem.class.getMethod("getIdAvaliacaoPT", new Class<?>[] {}),
+            AvaliacaoItem.class.getMethod("setIdAvaliacaoPT", new Class<?>[] {this.idAvaliacaoPT.getClass()})
         });
         
         this.tablemap.put("id_item_classe", new Method[] {
-            this.getClass().getMethod("getIdItemClasse", new Class<?>[] {}),
-            this.getClass().getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
+            AvaliacaoItem.class.getMethod("getIdItemClasse", new Class<?>[] {}),
+            AvaliacaoItem.class.getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
         });
         
         this.tablemap.put("quantidade", new Method[] {
-            this.getClass().getMethod("getQuantidade", new Class<?>[] {}),
-            this.getClass().getMethod("setQuantidade", new Class<?>[] {this.quantidade.getClass()})
+            AvaliacaoItem.class.getMethod("getQuantidade", new Class<?>[] {}),
+            AvaliacaoItem.class.getMethod("setQuantidade", new Class<?>[] {this.quantidade.getClass()})
         });
         
 
