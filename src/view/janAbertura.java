@@ -1,14 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import br.com.model.dao.CronogramaDao;
+import br.com.model.entity.Abertura;
+import br.com.model.entity.Cronograma;
+import java.awt.Component;
+import java.util.Date;
+import util.Datas;
 
 /**
  *
  * @author Jader
  */
 public class janAbertura extends javax.swing.JFrame {
+
+    private Abertura abertura;
 
     /**
      * Creates new form janAbertura
@@ -32,7 +37,7 @@ public class janAbertura extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
         jButtonProximo = new javax.swing.JButton();
         jTabbedPane5 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelInstalacao = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         horadeinicio = new javax.swing.JLabel();
         textoajudaemissor = new javax.swing.JLabel();
@@ -46,10 +51,10 @@ public class janAbertura extends javax.swing.JFrame {
         jTextPortariaNomeacao = new javax.swing.JTextField();
         jButtonCriarAta = new javax.swing.JButton();
         jTextFieldHoraInstalacao = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelCronograma = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTablePresencaMemorial = new javax.swing.JTable();
+        jTableCronogramaAbertura = new javax.swing.JTable();
         jButtonCronograma = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
@@ -171,22 +176,22 @@ public class janAbertura extends javax.swing.JFrame {
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
+        jPanelInstalacao.setLayout(jPanelInstalacaoLayout);
+        jPanelInstalacaoLayout.setHorizontalGroup(
+            jPanelInstalacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInstalacaoLayout.createSequentialGroup()
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+        jPanelInstalacaoLayout.setVerticalGroup(
+            jPanelInstalacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
-        jTabbedPane5.addTab("Instalação", jPanel1);
+        jTabbedPane5.addTab("Instalação", jPanelInstalacao);
 
-        jTablePresencaMemorial.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCronogramaAbertura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -221,20 +226,13 @@ public class janAbertura extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
-        jTablePresencaMemorial.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTablePresencaMemorial);
+        jTableCronogramaAbertura.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTableCronogramaAbertura);
 
         jScrollPane2.setBounds(30, 30, 460, 370);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -250,18 +248,18 @@ public class janAbertura extends javax.swing.JFrame {
         jButtonCronograma.setBounds(70, 410, 370, 40);
         jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelCronogramaLayout = new javax.swing.GroupLayout(jPanelCronograma);
+        jPanelCronograma.setLayout(jPanelCronogramaLayout);
+        jPanelCronogramaLayout.setHorizontalGroup(
+            jPanelCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+        jPanelCronogramaLayout.setVerticalGroup(
+            jPanelCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
-        jTabbedPane5.addTab("Cronograma", jPanel2);
+        jTabbedPane5.addTab("Cronograma", jPanelCronograma);
 
         jScrollPane3.setViewportView(jListListaPontos);
 
@@ -299,7 +297,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Abertura", jPanel3);
@@ -320,7 +318,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -336,7 +334,28 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLocalSessaoActionPerformed
 
     private void jButtonCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronogramaActionPerformed
-        // TODO add your handling code here:
+
+        for (int i = 0; i < 10; i++) {
+
+            String atividade = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 0);
+            Cronograma cronograma = new Cronograma();
+            cronograma.setAtividade(atividade);
+
+            Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
+            cronograma.setData(data);
+
+            Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
+            cronograma.setHorario(hora);
+
+            String local = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 3);
+            cronograma.setLocal(local);
+        }
+        
+        
+
+
+
+
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
@@ -344,6 +363,24 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+
+        Component component = jTabbedPane5.getSelectedComponent();
+        if (component == jPanelInstalacao) {
+            //concurso.setMinisterio(jTextFieldMinisterio.getText());
+            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+            abertura.setHoraInicio(HoraInicio);
+            abertura.setLocal(jTextFieldLocalSessao.getText());
+            abertura.setPortaria(jTextPortariaNomeacao.getText());
+            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+        } else if (component == jPanelCronograma) {
+//            jcom
+//            pres.setSexo(null);
+//            Examinador presidente = new Examinador();
+//            presidente.set
+//            
+//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
+//            bancaExaminadora.
+        }
         // TODO add your handling code here:
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
@@ -416,13 +453,13 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JList jListListaPontos;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelCronograma;
+    private javax.swing.JPanel jPanelInstalacao;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTablePresencaMemorial;
+    private javax.swing.JTable jTableCronogramaAbertura;
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldEmissorPortaria;
     private javax.swing.JTextField jTextFieldHoraInstalacao;
