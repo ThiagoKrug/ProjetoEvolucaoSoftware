@@ -254,13 +254,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel4.setBounds(420, 50, 240, 14);
         jLayeredPane2.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonGerarListaCandidatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarListaCandidatos.setText("Gerar Lista de Candidatos Aptos");
         jButtonGerarListaCandidatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerarListaCandidatosActionPerformed(evt);
             }
         });
-        jButtonGerarListaCandidatos.setBounds(503, 330, 230, 23);
+        jButtonGerarListaCandidatos.setBounds(483, 330, 250, 33);
         jLayeredPane2.add(jButtonGerarListaCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -438,7 +439,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jComboBoxPontos.setBounds(160, 40, 70, 30);
         jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonIniciarRealizacaoGerarAta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonIniciarRealizacaoGerarAta.setText("Iniciar Realização e Gerar Ata");
+        jButtonIniciarRealizacaoGerarAta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarRealizacaoGerarAtaActionPerformed(evt);
+            }
+        });
         jButtonIniciarRealizacaoGerarAta.setBounds(160, 320, 220, 30);
         jLayeredPane5.add(jButtonIniciarRealizacaoGerarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -826,6 +833,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
         }
         jButtonGerarRelacaoPontos.setEnabled(true);
     }//GEN-LAST:event_jButtonGerarRelCriteriosActionPerformed
+
+    private void jButtonIniciarRealizacaoGerarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
 
     /**
      * @param args the command line arguments

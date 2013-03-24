@@ -275,6 +275,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonGerarListaCandidatos">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/rel.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Gerar Lista de Candidatos Aptos"/>
                       </Properties>
                       <Events>
@@ -282,7 +285,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="503" y="330" width="230" height="-1" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="483" y="330" width="250" height="-1" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -703,8 +706,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonIniciarRealizacaoGerarAta">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/view/icones/rel.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Iniciar Realiza&#xe7;&#xe3;o e Gerar Ata"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIniciarRealizacaoGerarAtaActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                           <JLayeredPaneConstraints x="160" y="320" width="220" height="30" layer="0" position="-1"/>
