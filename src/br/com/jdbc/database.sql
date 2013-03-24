@@ -180,6 +180,7 @@ CREATE  TABLE IF NOT EXISTS `cronograma` (
   `id_cronograma` INT NOT NULL AUTO_INCREMENT ,
   `atividade` TEXT NULL DEFAULT NULL ,
   `data` DATE NULL DEFAULT NULL ,
+  `horario` TIME NULL ,
   `local` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
   PRIMARY KEY (`id_cronograma`) ,
