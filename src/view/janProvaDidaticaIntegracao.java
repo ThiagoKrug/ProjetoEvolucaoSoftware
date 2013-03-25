@@ -332,11 +332,11 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jListExaminadoresPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(jListExaminadoresPlanilhas);
 
-        jScrollPane7.setBounds(430, 70, 270, 150);
+        jScrollPane7.setBounds(400, 70, 330, 150);
         jLayeredPane6.add(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Selecione o Examinador:");
-        jLabel10.setBounds(430, 40, 140, 30);
+        jLabel10.setBounds(400, 40, 140, 30);
         jLayeredPane6.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel11.setText("Selecione o Candidato:");
@@ -346,17 +346,17 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton1.setText("Gerar Planilha");
-        jButton1.setBounds(450, 240, 240, 40);
+        jButton1.setBounds(440, 240, 240, 40);
         jLayeredPane6.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton2.setText("Gerar todas as Planilhas");
-        jButton2.setBounds(450, 290, 240, 40);
+        jButton2.setBounds(440, 290, 240, 40);
         jLayeredPane6.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         separador.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        separador.setBounds(370, 50, 10, 280);
+        separador.setBounds(350, 70, 10, 260);
         jLayeredPane6.add(separador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -488,8 +488,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-791)/2, (screenSize.height-571)/2, 791, 571);
+        setSize(new java.awt.Dimension(791, 571));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdicionarCriterioDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCriterioDidaticaActionPerformed
