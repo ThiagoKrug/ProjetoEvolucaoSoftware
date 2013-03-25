@@ -530,14 +530,29 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane6.add(jButtonAdicionarCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCadidatosPresenteLeitura.setText(">>");
+        jButtonAdicionarTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(evt);
+            }
+        });
         jButtonAdicionarTodosCadidatosPresenteLeitura.setBounds(360, 180, 49, 23);
         jLayeredPane6.add(jButtonAdicionarTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCadidatoPresenteLeitura.setText("<");
+        jButtonRemoverCadidatoPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCadidatoPresenteLeituraActionPerformed(evt);
+            }
+        });
         jButtonRemoverCadidatoPresenteLeitura.setBounds(360, 210, 41, 23);
         jLayeredPane6.add(jButtonRemoverCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCadidatosPresenteLeitura.setText("<<");
+        jButtonRemoverTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(evt);
+            }
+        });
         jButtonRemoverTodosCadidatosPresenteLeitura.setBounds(360, 240, 49, 23);
         jLayeredPane6.add(jButtonRemoverTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -889,46 +904,46 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
     private void jButtonIniciarRealizacaoGerarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
         // TODO add your handling code here:
-        if(this.jFormattedTextFieldHoraSorteio.getText().equalsIgnoreCase("") == true ||
-           this.jFormattedTextFieldHoraSorteio.getText() == null    ){
+        if (this.jFormattedTextFieldHoraSorteio.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraSorteio.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe a hora do sorteio do ponto!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(this.jFormattedTextFieldHoraInicioProva.getText().equalsIgnoreCase("") == true ||
-           this.jFormattedTextFieldHoraInicioProva.getText() == null    ){
+        if (this.jFormattedTextFieldHoraInicioProva.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraInicioProva.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe a hora de inicio da prova!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(this.jFormattedTextFieldHoraFimProva.getText().equalsIgnoreCase("") == true ||
-           this.jFormattedTextFieldHoraFimProva.getText() == null    ){
+        if (this.jFormattedTextFieldHoraFimProva.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraFimProva.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe a hora de dfim da prova!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(this.jTextFieldLocalRealizacao.getText().equalsIgnoreCase("") == true ||
-           this.jTextFieldLocalRealizacao.getText() == null    ){
+        if (this.jTextFieldLocalRealizacao.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalRealizacao.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe o local da realização da prova!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if(this.jComboBoxPontos.getModel().getSize() <= 0){
+
+        if (this.jComboBoxPontos.getModel().getSize() <= 0) {
             JOptionPane.showMessageDialog(this, "Você deve criar os pontos antes de inciar a realização do concurso", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-       
-       this.provaEscrita.setPontoSorteado((PontoProvaEscrita) this.jComboBoxPontos.getSelectedItem());
-       this.provaEscrita.setHoraPontoSorteado(Datas.convertStringToTime(this.jFormattedTextFieldHoraSorteio.getText()));
-       this.provaEscrita.setHoraInicioProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraInicioProva.getText()));
-       this.provaEscrita.setHoraFimProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraFimProva.getText()));
-       this.provaEscrita.setLocalRealizacao(this.jTextFieldLocalRealizacao.getText());
-        
-       try {
+
+        this.provaEscrita.setPontoSorteado((PontoProvaEscrita) this.jComboBoxPontos.getSelectedItem());
+        this.provaEscrita.setHoraPontoSorteado(Datas.convertStringToTime(this.jFormattedTextFieldHoraSorteio.getText()));
+        this.provaEscrita.setHoraInicioProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraInicioProva.getText()));
+        this.provaEscrita.setHoraFimProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraFimProva.getText()));
+        this.provaEscrita.setLocalRealizacao(this.jTextFieldLocalRealizacao.getText());
+
+        try {
             this.pdao.alterar(this.provaEscrita);
         } catch (SQLException ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
-       this.jButtonIniciarRealizacaoGerarAta.setEnabled(false);
+
+
+        this.jButtonIniciarRealizacaoGerarAta.setEnabled(false);
         try {
             InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaRealizacaoProvaEscrita.jasper");
             // mapa de parâmetros do relatório (ainda vamos aprender a usar)
@@ -942,16 +957,51 @@ public class janProvaEscrita extends javax.swing.JFrame {
             exc.printStackTrace();
         }
         this.jButtonIniciarRealizacaoGerarAta.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
 
     private void jButtonAdicionarCadidatoPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
         // TODO add your handling code here:
+        int selected = this.jListCandidatosAptos2.getSelectedIndex();
+        if (this.jListCandidatosAptos2.getSelectedValue() != null) {
+            Candidato c = (Candidato) this.jListCandidatosAptos2.getSelectedValue();
+            this.provaEscrita.adicionarCandidatoAptoLeitura(c);
+            this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
 
     private void jTextFieldHoraLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraLeituraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldHoraLeituraActionPerformed
+
+    private void jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        this.provaEscrita.setCandidatosAptosLeitura(this.provaEscrita.getCandidatosAptosProva());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        
+    }//GEN-LAST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
+
+    private void jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        this.provaEscrita.setCandidatosAptosLeitura(new ArrayList<Candidato>());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+    }//GEN-LAST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
+
+    private void jButtonRemoverCadidatoPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        int selected = this.jListCandidatosPresentesLeitura.getSelectedIndex();
+        if (this.jListCandidatosPresentesLeitura.getSelectedValue() != null) {
+            Candidato c = (Candidato) this.jListCandidatosPresentesLeitura.getSelectedValue();
+            this.provaEscrita.removerCandidatoAptoLeitura(c);
+            this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
 
     /**
      * @param args the command line arguments
