@@ -6,6 +6,7 @@ package view;
 
 import br.com.model.entity.CriterioAvaliacaoDidatica;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +14,8 @@ import java.util.ArrayList;
  */
 public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
-    public ArrayList <CriterioAvaliacaoDidatica> listaCriterios = new ArrayList();
+    public ArrayList<CriterioAvaliacaoDidatica> listaCriterios = new ArrayList();
+
     /**
      * Creates new form janProvaDidaticaIntegracao
      */
@@ -40,6 +42,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPontoDidaticaCadastrado = new javax.swing.JList();
         jButtonRemoverPontoDidatica = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
@@ -49,7 +52,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListCriteriosProvaDidatica = new javax.swing.JList();
         jTextFieldPeso = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jButtonRemoverCriteriosDidatica = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -60,6 +64,9 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jButtonAddTodosCandidatos = new javax.swing.JButton();
         jButtonRemoveCandidato = new javax.swing.JButton();
         jButtonRemoveTodosCandidatos = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -124,19 +131,23 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jListPontoDidaticaCadastrado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListPontoDidaticaCadastrado);
 
-        jScrollPane1.setBounds(20, 120, 610, 130);
+        jScrollPane1.setBounds(20, 130, 610, 130);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
         jButtonRemoverPontoDidatica.setText("Remover");
-        jButtonRemoverPontoDidatica.setBounds(510, 270, 120, 33);
+        jButtonRemoverPontoDidatica.setBounds(510, 280, 120, 33);
         jLayeredPane2.add(jButtonRemoverPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel20.setText("Lista de pontos Cadastrados:");
+        jLabel20.setBounds(20, 100, 260, 30);
+        jLayeredPane2.add(jLabel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,21 +179,30 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jListCriteriosProvaDidatica.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListCriteriosProvaDidatica);
 
-        jScrollPane2.setBounds(20, 120, 610, 130);
+        jScrollPane2.setBounds(20, 130, 610, 130);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldPeso.setBounds(80, 70, 80, 30);
         jLayeredPane3.add(jTextFieldPeso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
-        jButton3.setText("Remover");
-        jButton3.setBounds(510, 270, 120, 33);
-        jLayeredPane3.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonRemoverCriteriosDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
+        jButtonRemoverCriteriosDidatica.setText("Remover");
+        jButtonRemoverCriteriosDidatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCriteriosDidaticaActionPerformed(evt);
+            }
+        });
+        jButtonRemoverCriteriosDidatica.setBounds(510, 280, 120, 33);
+        jLayeredPane3.add(jButtonRemoverCriteriosDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel19.setText("Critérios Cadastrados");
+        jLabel19.setBounds(20, 100, 260, 30);
+        jLayeredPane3.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,11 +239,23 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jButtonRemoveTodosCandidatos.setBounds(330, 220, 50, 25);
         jLayeredPane4.add(jButtonRemoveTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel16.setText("Candidatos do concurso:");
+        jLabel16.setBounds(20, 50, 150, 14);
+        jLayeredPane4.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel17.setText("Candidatos aptos a realização da prova:");
+        jLabel17.setBounds(430, 50, 240, 14);
+        jLayeredPane4.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel18.setText("Selecione os candidadtos aptos a realização da prova didática.");
+        jLabel18.setBounds(20, 10, 600, 40);
+        jLayeredPane4.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +313,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +331,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jListExaminadoresPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(jListExaminadoresPlanilhas);
 
-        jScrollPane7.setBounds(350, 70, 190, 130);
+        jScrollPane7.setBounds(350, 70, 220, 130);
         jLayeredPane6.add(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Selecione o Examinador:");
@@ -312,19 +344,19 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton1.setText("Gerar Planilha");
-        jButton1.setBounds(350, 220, 190, 40);
+        jButton1.setBounds(350, 220, 220, 40);
         jLayeredPane6.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton2.setText("Gerar todas as Planilhas");
-        jButton2.setBounds(350, 270, 190, 40);
+        jButton2.setBounds(350, 270, 220, 40);
         jLayeredPane6.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +404,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +417,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jLayeredPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,7 +426,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Atas", jPanel7);
 
-        jTabbedPane1.setBounds(30, 70, 730, 390);
+        jTabbedPane1.setBounds(10, 70, 760, 390);
         jLayeredPane1.add(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -449,21 +481,31 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-791)/2, (screenSize.height-571)/2, 791, 571);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdicionarCriterioDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCriterioDidaticaActionPerformed
         CriterioAvaliacaoDidatica cad = new CriterioAvaliacaoDidatica();
         cad.setCriterio(this.jTextFieldCriterioDidatica.getText());
-        cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
-        listaCriterios.add(cad);
-        
-        jListCriteriosProvaDidatica.removeAll();
-        jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
-        
-        
-        
-        
+        try {
+            cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
+            listaCriterios.add(cad);
+            jListCriteriosProvaDidatica.removeAll();
+            jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
+            this.jTextFieldCriterioDidatica.setText("");
+            this.jTextFieldPeso.setText("");
+
+        } catch (NumberFormatException | NullPointerException nfe) {
+            JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+
+        }
+
+
+
+
+
+
     }//GEN-LAST:event_jButtonAdicionarCriterioDidaticaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -489,8 +531,21 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
     private void jButtonAdicionarPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPontoDidaticaActionPerformed
         
-        
+
+
     }//GEN-LAST:event_jButtonAdicionarPontoDidaticaActionPerformed
+
+    private void jButtonRemoverCriteriosDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCriteriosDidaticaActionPerformed
+        
+        if(jListCriteriosProvaDidatica.getSelectedIndex() != -1){
+            listaCriterios.remove(jListCriteriosProvaDidatica.getSelectedIndex());
+            jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um Critério!", null, JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButtonRemoverCriteriosDidaticaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -529,7 +584,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAddCandidatos;
     private javax.swing.JButton jButtonAddTodosCandidatos;
     private javax.swing.JButton jButtonAdicionarCriterioDidatica;
@@ -540,6 +594,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonRemoveCandidato;
     private javax.swing.JButton jButtonRemoveTodosCandidatos;
+    private javax.swing.JButton jButtonRemoverCriteriosDidatica;
     private javax.swing.JButton jButtonRemoverPontoDidatica;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox jComboBoxCompareceuRealizacao;
@@ -556,7 +611,12 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
