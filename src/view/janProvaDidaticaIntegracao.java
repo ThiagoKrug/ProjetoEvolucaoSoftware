@@ -5,7 +5,10 @@
 package view;
 
 import br.com.model.entity.CriterioAvaliacaoDidatica;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +24,11 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
      */
     public janProvaDidaticaIntegracao() {
         initComponents();
+
+        botao_AdicionarPontoDidatica.setEnabled(false);
+        //botao_AdicionarPontoDidatica.setBackground(Color.lightGray);
+
+
     }
 
     /**
@@ -38,7 +46,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldPontoDidatica = new javax.swing.JTextField();
-        jButtonAdicionarPontoDidatica = new javax.swing.JButton();
+        botao_AdicionarPontoDidatica = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPontoDidaticaCadastrado = new javax.swing.JList();
         jButtonRemoverPontoDidatica = new javax.swing.JButton();
@@ -116,28 +124,41 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLabel2.setText("Ponto:");
         jLabel2.setBounds(20, 30, 60, 30);
         jLayeredPane2.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTextFieldPontoDidatica.setToolTipText("<html>\n<body>\n<strong>\nDigite um Ponto para a Prova Didatica.\n<strong>\n</body>\n</html>");
+        jTextFieldPontoDidatica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldPontoDidaticaMouseClicked(evt);
+            }
+        });
         jTextFieldPontoDidatica.setBounds(80, 30, 340, 30);
         jLayeredPane2.add(jTextFieldPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAdicionarPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
-        jButtonAdicionarPontoDidatica.setText("Adicionar");
-        jButtonAdicionarPontoDidatica.addActionListener(new java.awt.event.ActionListener() {
+        botao_AdicionarPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        botao_AdicionarPontoDidatica.setText("Adicionar");
+        botao_AdicionarPontoDidatica.setToolTipText("<html>\n<body>\n<strong>\nClique aqui para Adicionar um Ponto a Prova Didatica.\n<strong>\n</body>\n</html>");
+        botao_AdicionarPontoDidatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdicionarPontoDidaticaActionPerformed(evt);
+                botao_AdicionarPontoDidaticaActionPerformed(evt);
             }
         });
-        jButtonAdicionarPontoDidatica.setBounds(510, 30, 120, 33);
-        jLayeredPane2.add(jButtonAdicionarPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_AdicionarPontoDidatica.setBounds(510, 30, 120, 33);
+        jLayeredPane2.add(botao_AdicionarPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jListPontoDidaticaCadastrado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListPontoDidaticaCadastrado);
 
-        jScrollPane1.setBounds(20, 130, 610, 130);
+        jScrollPane1.setBounds(20, 130, 610, 180);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
         jButtonRemoverPontoDidatica.setText("Remover");
-        jButtonRemoverPontoDidatica.setBounds(510, 280, 120, 33);
+        jButtonRemoverPontoDidatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverPontoDidaticaActionPerformed(evt);
+            }
+        });
+        jButtonRemoverPontoDidatica.setBounds(510, 320, 120, 33);
         jLayeredPane2.add(jButtonRemoverPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel20.setText("Lista de pontos Cadastrados:");
@@ -346,12 +367,22 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton1.setText("Gerar Planilha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jButton1.setBounds(440, 240, 240, 40);
         jLayeredPane6.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton2.setText("Gerar todas as Planilhas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jButton2.setBounds(440, 290, 240, 40);
         jLayeredPane6.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -536,23 +567,59 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
-    private void jButtonAdicionarPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPontoDidaticaActionPerformed
-        
+    @SuppressWarnings("CallToThreadDumpStack")
+    private void botao_AdicionarPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AdicionarPontoDidaticaActionPerformed
 
+        try {
+            String vaiSeFuderKrug = this.jTextFieldPontoDidatica.getText();
 
-    }//GEN-LAST:event_jButtonAdicionarPontoDidaticaActionPerformed
+            if (!vaiSeFuderKrug.isEmpty()) {
+                /**
+                 * Só u Ouro!
+                 */
+            } else {
+                JOptionPane.showMessageDialog(this, "Digite um Ponto!", null, JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception exceptError) {
+            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
+            exceptError.printStackTrace();
+        }
+    }//GEN-LAST:event_botao_AdicionarPontoDidaticaActionPerformed
 
     private void jButtonRemoverCriteriosDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCriteriosDidaticaActionPerformed
-        
-        if(jListCriteriosProvaDidatica.getSelectedIndex() != -1){
+
+        if (jListCriteriosProvaDidatica.getSelectedIndex() != -1) {
             listaCriterios.remove(jListCriteriosProvaDidatica.getSelectedIndex());
             jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione um Critério!", null, JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButtonRemoverCriteriosDidaticaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonRemoverPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPontoDidaticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRemoverPontoDidaticaActionPerformed
+
+    private void jTextFieldPontoDidaticaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPontoDidaticaMouseClicked
+
+        
+        try {
+                botao_AdicionarPontoDidatica.setEnabled(true);
+        } catch (Exception exceptError) {
+            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
+            exceptError.printStackTrace();
+            }
+    }//GEN-LAST:event_jTextFieldPontoDidaticaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -589,12 +656,12 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botao_AdicionarPontoDidatica;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddCandidatos;
     private javax.swing.JButton jButtonAddTodosCandidatos;
     private javax.swing.JButton jButtonAdicionarCriterioDidatica;
-    private javax.swing.JButton jButtonAdicionarPontoDidatica;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGravarRealizacao;
     private javax.swing.JButton jButtonGravarSorteio;
