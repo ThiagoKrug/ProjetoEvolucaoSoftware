@@ -151,6 +151,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalJulgamento = new javax.swing.JTextField();
         jButtonGerarAtaJulgamento = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
+        jLayeredPane9 = new javax.swing.JLayeredPane();
+        jButtonGerarPlanilhaAvaliacao = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLayeredPane8 = new javax.swing.JLayeredPane();
         jLabel20 = new javax.swing.JLabel();
@@ -603,15 +605,30 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Julgamento", jPanel6);
 
+        jButtonGerarPlanilhaAvaliacao.setText("Gerar Planilhas para Avaliação");
+        jButtonGerarPlanilhaAvaliacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarPlanilhaAvaliacaoActionPerformed(evt);
+            }
+        });
+        jButtonGerarPlanilhaAvaliacao.setBounds(510, 300, 200, 23);
+        jLayeredPane9.add(jButtonGerarPlanilhaAvaliacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 765, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane5.addTab("Planilhas", jPanel8);
@@ -1159,6 +1176,27 @@ public class janProvaEscrita extends javax.swing.JFrame {
         this.jButtonGerarAtaResultado.setEnabled(true); 
     }//GEN-LAST:event_jButtonGerarAtaResultadoActionPerformed
 
+    private void jButtonGerarPlanilhaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
+        // TODO add your handling code here:
+        
+        this.jButtonGerarPlanilhaAvaliacao.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportPlanilhasAvaliacaoProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Planilhas para Avaliação", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonGerarPlanilhaAvaliacao.setEnabled(true); 
+        
+        
+    }//GEN-LAST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1205,6 +1243,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGerarAtaLeitura;
     private javax.swing.JButton jButtonGerarAtaResultado;
     private javax.swing.JButton jButtonGerarListaCandidatos;
+    private javax.swing.JButton jButtonGerarPlanilhaAvaliacao;
     private javax.swing.JButton jButtonGerarRelCriterios;
     private javax.swing.JButton jButtonGerarRelacaoPontos;
     private javax.swing.JButton jButtonIniciarRealizacaoGerarAta;
@@ -1250,6 +1289,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane6;
     private javax.swing.JLayeredPane jLayeredPane7;
     private javax.swing.JLayeredPane jLayeredPane8;
+    private javax.swing.JLayeredPane jLayeredPane9;
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosAptos2;
     private javax.swing.JList jListCandidatosConcurso;

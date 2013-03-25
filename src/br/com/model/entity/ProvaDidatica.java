@@ -10,4 +10,11 @@ public class ProvaDidatica {
     
     private ArrayList<CriterioAvaliacaoDidatica> candidatosAptosProva;
     
+    public ProvaDidatica(){
+    
+    
+    
+    }
+    
+    
 }
