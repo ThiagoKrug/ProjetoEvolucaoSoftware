@@ -962,21 +962,21 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="160" y="120" width="130" height="20" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="120" y="120" width="170" height="20" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel19">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Hor&#xe1;rio do Julgamento:"/>
+                        <Property name="text" type="java.lang.String" value="Hor&#xe1;rio Inicio do Julgamento:"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="160" y="150" width="140" height="20" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="120" y="150" width="180" height="20" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldHoraJulgamento">
+                    <Component class="javax.swing.JTextField" name="jTextFieldHoraInicioJulgamento">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                           <JLayeredPaneConstraints x="300" y="150" width="70" height="30" layer="0" position="-1"/>
@@ -990,13 +990,16 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButtonAtaJulgamento">
+                    <Component class="javax.swing.JButton" name="jButtonGerarAtaJulgamento">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/view/icones/ataa.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Criar Ata de Julgamento"/>
+                        <Property name="text" type="java.lang.String" value="Gerar Ata de Julgamento"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerarAtaJulgamentoActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                           <JLayeredPaneConstraints x="380" y="150" width="200" height="30" layer="0" position="-1"/>
@@ -1053,7 +1056,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldHoraDivulgacaoResultado">
+                    <Component class="javax.swing.JTextField" name="jTextFieldHoraInicioDivulgacaoResultado">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                           <JLayeredPaneConstraints x="300" y="150" width="70" height="30" layer="0" position="-1"/>
@@ -1067,13 +1070,16 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButtonAtaResultado">
+                    <Component class="javax.swing.JButton" name="jButtonGerarAtaResultado">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/view/icones/ataa.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Criar Ata do Resultado"/>
+                        <Property name="text" type="java.lang.String" value="Gerar Ata do Resultado"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerarAtaResultadoActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                           <JLayeredPaneConstraints x="380" y="150" width="200" height="30" layer="0" position="-1"/>

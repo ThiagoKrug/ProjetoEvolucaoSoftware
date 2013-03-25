@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAtaJulgamentoProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e4d158a-38d5-4642-8984-d4944b4e1178">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_prova_escrita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     prova_escrita.`hora_inicio_julgamento` AS prova_escrita_hora_inicio_julgamento,
+     prova_escrita.`local_julgamento` AS prova_escrita_local_julgamento
+FROM
+     `prova_escrita` prova_escrita
+WHERE
+     id_prova_escrita = $P{id_prova_escrita}]]>
+	</queryString>
+	<field name="prova_escrita_hora_inicio_julgamento" class="java.sql.Time"/>
+	<field name="prova_escrita_local_julgamento" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3c868e25-deff-427f-a711-3759ee41cb42" x="10" y="87" width="528" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ata Nro 1 - Julgamento da prova escrita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4ce3e45-a10e-4037-a7db-44b66a6c0fcb" x="277" y="10" width="247" height="49"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
+FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
+CAMPUS: ALEGRETE
+CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
+ÁREA: ENGENHARIA DE SOFTWARE
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="157" splitType="Stretch">
+			<textField>
+				<reportElement uuid="cc129f81-cff7-4340-bcb4-4e1b8953469e" x="73" y="12" width="429" height="102"/>
+				<textElement/>
+				<textFieldExpression><![CDATA['Aos '+$P{data}+', às '+$F{prova_escrita_hora_inicio_julgamento}+', na '+$F{prova_escrita_local_julgamento}+', reuniu-se a Comissão Examinadora do Concurso Público de Títulos e Provas para Professor Adjunto para o campus Alegrete na área de Engenharia de Software para realizar o Julgamento da Prova Escrita do referido concurso. As notas da prova de cada candidato, concedidas por cada um dos examinadores, foram acondicionadas em envelopes lacrados, para serem abertas somente na Sessão Pública para Divulgação dos Resultados. Encerrados os trabalhos e nada mais havendo a tratar, lavrou-se a presente ata.']]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="162" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="67d496c8-b2bc-4902-ae21-1d5c568700d8" x="203" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="14d609be-3078-42e8-a645-1bdf44887b8f" x="10" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2b4a580-c6f5-4972-9296-4c60178332a6" x="405" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32762059-f9d7-4be3-85f3-d81ef4b30435" x="10" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b14a2ef8-e56a-494a-91a1-8c350c162a70" x="405" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="78c39a6d-a5e8-4c68-88a9-3d097b2f4efa" x="435" y="10" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d616a62f-8a1c-490e-8a4c-08892a13ee0d" x="323" y="10" width="112" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Alegrete, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5d60001a-f027-4b76-9368-6a88a5544706" x="203" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
