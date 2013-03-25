@@ -84,6 +84,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        separador = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
         jLayeredPane7 = new javax.swing.JLayeredPane();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -293,32 +294,38 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jListCandidatosPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane6.setViewportView(jListCandidatosPlanilhas);
 
-        jScrollPane6.setBounds(20, 70, 240, 260);
+        jScrollPane6.setBounds(20, 70, 300, 260);
         jLayeredPane6.add(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jListExaminadoresPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(jListExaminadoresPlanilhas);
 
-        jScrollPane7.setBounds(350, 70, 190, 130);
+        jScrollPane7.setBounds(430, 70, 270, 150);
         jLayeredPane6.add(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Selecione o Examinador:");
-        jLabel10.setBounds(350, 40, 140, 30);
+        jLabel10.setBounds(430, 40, 140, 30);
         jLayeredPane6.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel11.setText("Selecione o Candidato:");
-        jLabel11.setBounds(20, 30, 140, 30);
+        jLabel11.setBounds(20, 50, 140, 10);
         jLayeredPane6.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton1.setText("Gerar Planilha");
-        jButton1.setBounds(350, 220, 190, 40);
+        jButton1.setBounds(450, 240, 240, 40);
         jLayeredPane6.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/planilha.png"))); // NOI18N
         jButton2.setText("Gerar todas as Planilhas");
-        jButton2.setBounds(350, 270, 190, 40);
+        jButton2.setBounds(450, 290, 240, 40);
         jLayeredPane6.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        separador.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        separador.setBounds(370, 50, 10, 280);
+        jLayeredPane6.add(separador, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -599,5 +606,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCriterioDidatica;
     private javax.swing.JTextField jTextFieldPeso;
     private javax.swing.JTextField jTextFieldPontoDidatica;
+    private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }
