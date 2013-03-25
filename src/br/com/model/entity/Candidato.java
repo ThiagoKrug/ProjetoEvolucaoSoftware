@@ -27,28 +27,28 @@ public class Candidato extends Pessoa implements IEntidade {
     private Integer idProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaEscrita;
+    private Boolean aptoProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaEscrita;
+    private Boolean presenteProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaTitulos;
+    private Boolean aptoProvaTitulos;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaTitulos;
+    private Boolean presenteProvaTitulos;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaDidatica;
+    private Boolean aptoProvaDidatica;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaDidatica;
+    private Boolean presenteProvaDidatica;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaMemorial;
+    private Boolean aptoProvaMemorial;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaMemorial;
+    private Boolean presenteProvaMemorial;
 
 //    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
 //        super(nome, sexo, dataNascimento);
@@ -118,31 +118,31 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public boolean isAptoProvaEscrita() {
-        return aptoProvaEscrita;
+        return getAptoProvaEscrita();
     }
 
     public void setAptoProvaEscrita(boolean aptoProvaEscrita) {
-        this.aptoProvaEscrita = aptoProvaEscrita;
+        this.setAptoProvaEscrita((Boolean) aptoProvaEscrita);
     }
 
     public boolean isPresenteProvaEscrita() {
-        return presenteProvaEscrita;
+        return getPresenteProvaEscrita();
     }
 
     public void setPresenteProvaEscrita(boolean presenteProvaEscrita) {
-        this.presenteProvaEscrita = presenteProvaEscrita;
+        this.setPresenteProvaEscrita((Boolean) presenteProvaEscrita);
     }
 
     public boolean isAptoProvaTitulos() {
-        return aptoProvaTitulos;
+        return getAptoProvaTitulos();
     }
 
     public void setAptoProvaTitulos(boolean aptoProvaTitulos) {
-        this.aptoProvaTitulos = aptoProvaTitulos;
+        this.setAptoProvaTitulos((Boolean) aptoProvaTitulos);
     }
 
     public boolean isPresenteProvaTitulos() {
-        return presenteProvaTitulos;
+        return getPresenteProvaTitulos();
     }
 
     public int getIdProvaDidatica() {
@@ -162,39 +162,39 @@ public class Candidato extends Pessoa implements IEntidade {
     }
 
     public void setPresenteProvaTitulos(boolean presenteProvaTitulos) {
-        this.presenteProvaTitulos = presenteProvaTitulos;
+        this.setPresenteProvaTitulos((Boolean) presenteProvaTitulos);
     }
 
     public boolean isAptoProvaDidatica() {
-        return aptoProvaDidatica;
+        return getAptoProvaDidatica();
     }
 
     public void setAptoProvaDidatica(boolean aptoProvaDidatica) {
-        this.aptoProvaDidatica = aptoProvaDidatica;
+        this.setAptoProvaDidatica((Boolean) aptoProvaDidatica);
     }
 
     public boolean isPresenteProvaDidatica() {
-        return presenteProvaDidatica;
+        return getPresenteProvaDidatica();
     }
 
     public void setPresenteProvaDidatica(boolean presenteProvaDidatica) {
-        this.presenteProvaDidatica = presenteProvaDidatica;
+        this.setPresenteProvaDidatica((Boolean) presenteProvaDidatica);
     }
 
     public boolean isAptoProvaMemorial() {
-        return aptoProvaMemorial;
+        return getAptoProvaMemorial();
     }
 
     public void setAptoProvaMemorial(boolean aptoProvaMemorial) {
-        this.aptoProvaMemorial = aptoProvaMemorial;
+        this.setAptoProvaMemorial((Boolean) aptoProvaMemorial);
     }
 
     public boolean isPresenteProvaMemorial() {
-        return presenteProvaMemorial;
+        return getPresenteProvaMemorial();
     }
 
     public void setPresenteProvaMemorial(boolean presenteProvaMemorial) {
-        this.presenteProvaMemorial = presenteProvaMemorial;
+        this.setPresenteProvaMemorial((Boolean) presenteProvaMemorial);
     }
 
     public int getIdCandidato() {
@@ -257,5 +257,117 @@ public class Candidato extends Pessoa implements IEntidade {
      */
     public void setIdProvaEscrita(Integer idProvaEscrita) {
         this.idProvaEscrita = idProvaEscrita;
+    }
+
+    /**
+     * @return the aptoProvaEscrita
+     */
+    public Boolean getAptoProvaEscrita() {
+        return aptoProvaEscrita;
+    }
+
+    /**
+     * @param aptoProvaEscrita the aptoProvaEscrita to set
+     */
+    public void setAptoProvaEscrita(Boolean aptoProvaEscrita) {
+        this.aptoProvaEscrita = aptoProvaEscrita;
+    }
+
+    /**
+     * @return the presenteProvaEscrita
+     */
+    public Boolean getPresenteProvaEscrita() {
+        return presenteProvaEscrita;
+    }
+
+    /**
+     * @param presenteProvaEscrita the presenteProvaEscrita to set
+     */
+    public void setPresenteProvaEscrita(Boolean presenteProvaEscrita) {
+        this.presenteProvaEscrita = presenteProvaEscrita;
+    }
+
+    /**
+     * @return the aptoProvaTitulos
+     */
+    public Boolean getAptoProvaTitulos() {
+        return aptoProvaTitulos;
+    }
+
+    /**
+     * @param aptoProvaTitulos the aptoProvaTitulos to set
+     */
+    public void setAptoProvaTitulos(Boolean aptoProvaTitulos) {
+        this.aptoProvaTitulos = aptoProvaTitulos;
+    }
+
+    /**
+     * @return the presenteProvaTitulos
+     */
+    public Boolean getPresenteProvaTitulos() {
+        return presenteProvaTitulos;
+    }
+
+    /**
+     * @param presenteProvaTitulos the presenteProvaTitulos to set
+     */
+    public void setPresenteProvaTitulos(Boolean presenteProvaTitulos) {
+        this.presenteProvaTitulos = presenteProvaTitulos;
+    }
+
+    /**
+     * @return the aptoProvaDidatica
+     */
+    public Boolean getAptoProvaDidatica() {
+        return aptoProvaDidatica;
+    }
+
+    /**
+     * @param aptoProvaDidatica the aptoProvaDidatica to set
+     */
+    public void setAptoProvaDidatica(Boolean aptoProvaDidatica) {
+        this.aptoProvaDidatica = aptoProvaDidatica;
+    }
+
+    /**
+     * @return the presenteProvaDidatica
+     */
+    public Boolean getPresenteProvaDidatica() {
+        return presenteProvaDidatica;
+    }
+
+    /**
+     * @param presenteProvaDidatica the presenteProvaDidatica to set
+     */
+    public void setPresenteProvaDidatica(Boolean presenteProvaDidatica) {
+        this.presenteProvaDidatica = presenteProvaDidatica;
+    }
+
+    /**
+     * @return the aptoProvaMemorial
+     */
+    public Boolean getAptoProvaMemorial() {
+        return aptoProvaMemorial;
+    }
+
+    /**
+     * @param aptoProvaMemorial the aptoProvaMemorial to set
+     */
+    public void setAptoProvaMemorial(Boolean aptoProvaMemorial) {
+        this.aptoProvaMemorial = aptoProvaMemorial;
+    }
+
+    /**
+     * @return the presenteProvaMemorial
+     */
+    public Boolean getPresenteProvaMemorial() {
+        return presenteProvaMemorial;
+    }
+
+    /**
+     * @param presenteProvaMemorial the presenteProvaMemorial to set
+     */
+    public void setPresenteProvaMemorial(Boolean presenteProvaMemorial) {
+        this.presenteProvaMemorial = presenteProvaMemorial;
     }
 }

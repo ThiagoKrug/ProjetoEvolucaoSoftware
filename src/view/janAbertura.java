@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 import util.Datas;
 
 /**
@@ -42,7 +43,6 @@ public class janAbertura extends javax.swing.JFrame {
 
         jTextFieldEdital = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jButtonVoltar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonProximo = new javax.swing.JButton();
         jTabbedPane5 = new javax.swing.JTabbedPane();
@@ -60,6 +60,7 @@ public class janAbertura extends javax.swing.JFrame {
         jTextPortariaNomeacao = new javax.swing.JTextField();
         jButtonCriarAta = new javax.swing.JButton();
         jTextFieldHoraInstalacao = new javax.swing.JTextField();
+        jButtonGravar = new javax.swing.JButton();
         jPanelCronograma = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -74,24 +75,13 @@ public class janAbertura extends javax.swing.JFrame {
         CriarAtaAbertura = new javax.swing.JButton();
         jTextFieldHoraInstalacao1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
 
         jTextFieldEdital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Abertura");
         setResizable(false);
-
-        jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
-        jButtonVoltar.setMnemonic('v');
-        jButtonVoltar.setText("Voltar");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
-            }
-        });
-        jButtonVoltar.setBounds(90, 550, 120, 40);
-        jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
@@ -119,6 +109,11 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
+        jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane5FocusGained(evt);
+            }
+        });
 
         horadeinicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         horadeinicio.setText("Hora de início da sessão de instalação da comissão examinadora:");
@@ -184,6 +179,18 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonGravar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonGravar.setMnemonic('v');
+        jButtonGravar.setText("Gravar");
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
+        jButtonGravar.setBounds(200, 430, 120, 40);
+        jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
         jPanelInstalacao.setLayout(jPanelInstalacaoLayout);
@@ -319,6 +326,18 @@ public class janAbertura extends javax.swing.JFrame {
         jLabel1.setBounds(220, 10, 100, 29);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        jButtonVoltar.setBounds(90, 550, 120, 40);
+        jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -383,13 +402,22 @@ public class janAbertura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
-        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-        if (nextTab >= 0) {
-            jTabbedPane5.setSelectedIndex(nextTab);
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+        abertura.setHoraInicio(HoraInicio);
+        abertura.setLocal(jTextFieldLocalSessao.getText());
+        abertura.setPortaria(jTextPortariaNomeacao.getText());
+        abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+        abertura.setIdConcurso(1);
+
+        AberturaDao aberturaDao = new AberturaDao();
+        try {
+            aberturaDao.inserir(abertura);
+        } catch (SQLException ex) {
+            Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
@@ -399,21 +427,6 @@ public class janAbertura extends javax.swing.JFrame {
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelInstalacao) {
             //concurso.setMinisterio(jTextFieldMinisterio.getText());
-            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
-            abertura.setHoraInicio(HoraInicio);
-            abertura.setLocal(jTextFieldLocalSessao.getText());
-            abertura.setPortaria(jTextPortariaNomeacao.getText());
-            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
-            abertura.setIdConcurso(1);
-
-
-            AberturaDao aberturaDao = new AberturaDao();
-            try {
-                aberturaDao.inserir(abertura);
-            } catch (SQLException ex) {
-                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         } else if (component == jPanelCronograma) {
 //            jcom
 //            pres.setSexo(null);
@@ -448,6 +461,49 @@ public class janAbertura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
+            if (nextTab < jTabbedPane5.getTabCount()) {
+                jTabbedPane5.setSelectedIndex(nextTab);
+            }
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
+        CronogramaDao cronogramaDao = new CronogramaDao();
+        List<Cronograma> cronogramas = null;
+        try {
+            cronogramas = cronogramaDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+            "Atividade", "Data", "Horário", "Local"
+        }) {
+            Class[] types = new Class[]{
+                String.class, Date.class, Date.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        for (Cronograma cronograma : cronogramas) {
+            dtm.addRow(new Object[]{
+                cronograma.getAtividade(),
+                Datas.getDate(cronograma.getData()),
+                Datas.getTime(cronograma.getHorario()),
+                //Datas.getDate(concurso.getDataInicio())
+                cronograma.getLocal()
+            });
+    }//GEN-LAST:event_jTabbedPane5FocusGained
+}
     /**
      * @param args the command line arguments
      */
@@ -492,6 +548,7 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAta;
     private javax.swing.JButton jButtonCronograma;
+    private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
