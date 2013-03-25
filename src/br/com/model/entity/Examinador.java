@@ -11,9 +11,8 @@ import java.util.HashMap;
  * @author Bruno
  */
 public class Examinador implements IEntidade {
-    
-    private HashMap<String, Method[]> tablemap;
 
+    private HashMap<String, Method[]> tablemap;
     private Integer idExaminador;
     private Integer idPessoa;
     private Pessoa pessoa;
@@ -23,23 +22,23 @@ public class Examinador implements IEntidade {
     public Examinador() {
         this.tablemap = new HashMap<String, Method[]>();
         try {
-        Method[] ids = new Method[] {
-            Examinador.class.getMethod("getIdExaminador", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdExaminador", new Class<?>[] {Integer.class})
-        };
-        this.tablemap.put("id_examinador", ids);
-        
-        this.tablemap.put("id_pessoa", new Method[] {
-            Examinador.class.getMethod("getIdPessoa", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdPessoa", new Class<?>[] {Integer.class})
-        });
-        
-        this.tablemap.put("id_titulacao", new Method[] {
-            Examinador.class.getMethod("getIdTitulacao", new Class<?>[] {}),
-            Examinador.class.getMethod("setIdTitulacao", new Class<?>[] {Integer.class})
-        });
+            Method[] ids = new Method[]{
+                Examinador.class.getMethod("getIdExaminador", new Class<?>[]{}),
+                Examinador.class.getMethod("setIdExaminador", new Class<?>[]{Integer.class})
+            };
+            this.tablemap.put("id_examinador", ids);
 
-        
+            this.tablemap.put("id_pessoa", new Method[]{
+                Examinador.class.getMethod("getIdPessoa", new Class<?>[]{}),
+                Examinador.class.getMethod("setIdPessoa", new Class<?>[]{Integer.class})
+            });
+
+            this.tablemap.put("id_titulacao", new Method[]{
+                Examinador.class.getMethod("getIdTitulacao", new Class<?>[]{}),
+                Examinador.class.getMethod("setIdTitulacao", new Class<?>[]{Integer.class})
+            });
+
+
         } catch (NoSuchMethodException e) {
             System.out.println("Erro na reflection.");
             e.printStackTrace();
@@ -54,9 +53,13 @@ public class Examinador implements IEntidade {
         this.idExaminador = idExaminador;
     }
 
-    public Pessoa getPessoa() throws SQLException {
+    public Pessoa getPessoa() {
         if (pessoa == null) {
-            pessoa = new PessoaDao().pesquisarPorId(getIdPessoa());
+            try {
+                pessoa = new PessoaDao().pesquisarPorId(getIdPessoa());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return pessoa;
     }
@@ -65,9 +68,13 @@ public class Examinador implements IEntidade {
         this.pessoa = pessoa;
     }
 
-    public Titulacao getTitulacao() throws SQLException {
-        if (titulacao == null) {
-            titulacao = (Titulacao)new TitulacaoDao().pesquisarPorId(getIdTitulacao());
+    public Titulacao getTitulacao() {
+        if (titulacao.getTitulacao() == null) {
+            try {
+                titulacao = new TitulacaoDao().pesquisarPorId(getIdTitulacao());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return titulacao;
     }

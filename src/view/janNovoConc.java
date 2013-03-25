@@ -18,6 +18,8 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
@@ -58,7 +60,7 @@ public class janNovoConc extends javax.swing.JFrame {
             jTextFieldMinisterio.setText(concurso.getMinisterio());
             jTextFieldInstituicao.setText(concurso.getInstituicao());
             for (int i = 0; i < jComboBoxCampus.getModel().getSize(); i++) {
-                Campus campus = (Campus)jComboBoxCampus.getModel().getElementAt(i);
+                Campus campus = (Campus) jComboBoxCampus.getModel().getElementAt(i);
                 if (campus.getIdCampus() == concurso.getCampus().getIdCampus()) {
                     jComboBoxCampus.getModel().setSelectedItem(campus);
                     break;
@@ -68,22 +70,93 @@ public class janNovoConc extends javax.swing.JFrame {
             jTextFieldEdital.setText(concurso.getEdital());
             jDateChooserDataInicio.setDate(concurso.getDataInicio());
             for (int i = 0; i < jComboBoxClasse.getModel().getSize(); i++) {
-                ClasseConcurso classeConcurso = (ClasseConcurso)jComboBoxClasse.getModel().getElementAt(i);
-                if (classeConcurso.getIdClasseConcurso()== concurso.getClasseConcurso().getIdClasseConcurso()) {
+                ClasseConcurso classeConcurso = (ClasseConcurso) jComboBoxClasse.getModel().getElementAt(i);
+                if (classeConcurso.getIdClasseConcurso() == concurso.getClasseConcurso().getIdClasseConcurso()) {
                     jComboBoxClasse.getModel().setSelectedItem(classeConcurso);
                     break;
                 }
             }
-            
+
             // banca examinadora
-            
-            
+            BancaExaminadora bancaExaminadora = concurso.getBancaExaminadora();
+            if (bancaExaminadora != null) {
+                Examinador presidente = bancaExaminadora.getPresidenteDoBanco();
+                if (presidente != null) {
+                    jTextFieldPresidente.setText(presidente.getPessoa().getNome());
+
+                    for (int i = 0; i < jComboBoxPresidenteTitulo.getModel().getSize(); i++) {
+                        Titulacao titulacao = (Titulacao) jComboBoxPresidenteTitulo.getModel().getElementAt(i);
+                        if (titulacao.getIdTitulacao() == presidente.getIdTitulacao()) {
+                            jComboBoxPresidenteTitulo.getModel().setSelectedItem(titulacao);
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < jComboBoxPresidenteSexo.getModel().getSize(); i++) {
+                        String sexo = (String) jComboBoxPresidenteSexo.getModel().getElementAt(i);
+                        String s = sexo.substring(0, 1);
+                        // se M de masculino do combobox é igual a M de masculino do examinador
+                        if (s.equalsIgnoreCase(presidente.getPessoa().getSexo().substring(0, 1))) {
+                            jComboBoxPresidenteSexo.getModel().setSelectedItem(sexo);
+                            break;
+                        }
+                    }
+                }
+
+                Examinador examinador2 = bancaExaminadora.getExaminador2DoBanco();
+                if (examinador2 != null) {
+                    jTextFieldExaminador1Nome.setText(examinador2.getPessoa().getNome());
+
+                    for (int i = 0; i < jComboBoxExaminador1Titulo.getModel().getSize(); i++) {
+                        Titulacao titulacao = (Titulacao) jComboBoxExaminador1Titulo.getModel().getElementAt(i);
+                        if (titulacao.getIdTitulacao() == examinador2.getIdTitulacao()) {
+                            jComboBoxExaminador1Titulo.getModel().setSelectedItem(titulacao);
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < jComboBoxExaminador1Sexo.getModel().getSize(); i++) {
+                        String sexo = (String) jComboBoxExaminador1Sexo.getModel().getElementAt(i);
+                        String s = sexo.substring(0, 1);
+                        // se M de masculino do combobox é igual a M de masculino do examinador
+                        if (s.equalsIgnoreCase(examinador2.getPessoa().getSexo().substring(0, 1))) {
+                            jComboBoxExaminador1Sexo.getModel().setSelectedItem(sexo);
+                            break;
+                        }
+                    }
+                }
+
+
+                Examinador examinador3 = bancaExaminadora.getExaminador3DoBanco();
+                if (examinador3 != null) {
+                    jTextFieldExaminador2Nome.setText(examinador3.getPessoa().getNome());
+
+                    for (int i = 0; i < jComboBoxExaminador2Titulo.getModel().getSize(); i++) {
+                        Titulacao titulacao = (Titulacao) jComboBoxExaminador2Titulo.getModel().getElementAt(i);
+                        if (titulacao.getIdTitulacao() == examinador3.getIdTitulacao()) {
+                            jComboBoxExaminador2Titulo.getModel().setSelectedItem(titulacao);
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < jComboBoxExaminador2Sexo.getModel().getSize(); i++) {
+                        String sexo = (String) jComboBoxExaminador2Sexo.getModel().getElementAt(i);
+                        String s = sexo.substring(0, 1);
+                        // se M de masculino do combobox é igual a M de masculino do examinador
+                        if (s.equalsIgnoreCase(examinador3.getPessoa().getSexo().substring(0, 1))) {
+                            jComboBoxExaminador2Sexo.getModel().setSelectedItem(sexo);
+                            break;
+                        }
+                    }
+                }
+            }
+
             // candidatos
-            
-            
+
+
             // provas do concurso
-            
-            
+
+
         }
     }
 
@@ -735,33 +808,33 @@ public class janNovoConc extends javax.swing.JFrame {
             presidente.setPessoa(pres);
             presidente.setTitulacao(titulacaoPresidente);
 
-            Examinador examinador1 = new Examinador();
-            examinador1.setIdPessoa(exam1.getIdPessoa());
-            Titulacao titulacaoExaminador1 = (Titulacao) jComboBoxExaminador1Titulo.getSelectedItem();
-            examinador1.setIdTitulacao(titulacaoExaminador1.getIdTitulacao());
-            examinador1.setPessoa(exam1);
-            examinador1.setTitulacao(titulacaoExaminador1);
-
             Examinador examinador2 = new Examinador();
-            examinador2.setIdPessoa(exam2.getIdPessoa());
+            examinador2.setIdPessoa(exam1.getIdPessoa());
+            Titulacao titulacaoExaminador1 = (Titulacao) jComboBoxExaminador1Titulo.getSelectedItem();
+            examinador2.setIdTitulacao(titulacaoExaminador1.getIdTitulacao());
+            examinador2.setPessoa(exam1);
+            examinador2.setTitulacao(titulacaoExaminador1);
+
+            Examinador examinador3 = new Examinador();
+            examinador3.setIdPessoa(exam2.getIdPessoa());
             Titulacao titulacaoExaminador2 = (Titulacao) jComboBoxExaminador2Titulo.getSelectedItem();
-            examinador2.setIdTitulacao(titulacaoExaminador2.getIdTitulacao());
-            examinador2.setPessoa(exam2);
-            examinador2.setTitulacao(titulacaoExaminador2);
+            examinador3.setIdTitulacao(titulacaoExaminador2.getIdTitulacao());
+            examinador3.setPessoa(exam2);
+            examinador3.setTitulacao(titulacaoExaminador2);
 
             try {
                 edao.inserir(presidente);
-                edao.inserir(examinador1);
                 edao.inserir(examinador2);
+                edao.inserir(examinador3);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
             BancaExaminadora bancaExaminadora = new BancaExaminadora();
             bancaExaminadora.setIdConcurso(concurso.getIdConcurso());
-            bancaExaminadora.adicionaExaminador(presidente);
-            bancaExaminadora.adicionaExaminador(examinador1);
-            bancaExaminadora.adicionaExaminador(examinador2);
+            bancaExaminadora.setPresidente(presidente);
+            bancaExaminadora.setExaminador2(examinador2);
+            bancaExaminadora.setExaminador3(examinador3);
 
             BancaExaminadoraDao bedao = new BancaExaminadoraDao();
             try {

@@ -7,6 +7,7 @@ package view;
 import br.com.model.dao.ConcursoDao;
 import br.com.model.entity.Concurso;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import util.Datas;
  * @author thiago
  */
 public class janAbrir extends javax.swing.JFrame {
+
     private JLabel status;
 
     /**
@@ -35,12 +37,23 @@ public class janAbrir extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm.addColumn("ID");
-        dtm.addColumn("Edital");
-        dtm.addColumn("Área");
-        dtm.addColumn("Classe do Concurso");
-        dtm.addColumn("Data de Início");
+        DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+            "ID", "Edital", "Área", "Classe do Concurso", "Data de Início"
+        }) {
+            Class[] types = new Class[]{
+                int.class, String.class, String.class, String.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
         for (Concurso concurso : concursos) {
             dtm.addRow(new Object[]{
                 concurso.getIdConcurso(),
@@ -50,7 +63,13 @@ public class janAbrir extends javax.swing.JFrame {
                 Datas.getDate(concurso.getDataInicio())
             });
         }
+
         jTableConcursos.setModel(dtm);
+        jTableConcursos.getColumnModel().getColumn(0).setResizable(false);
+        jTableConcursos.getColumnModel().getColumn(1).setResizable(false);
+        jTableConcursos.getColumnModel().getColumn(2).setResizable(false);
+        jTableConcursos.getColumnModel().getColumn(3).setResizable(false);
+        jTableConcursos.getColumnModel().getColumn(4).setResizable(false);
     }
 
     /**
@@ -101,6 +120,8 @@ public class janAbrir extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableConcursos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableConcursos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableConcursos);
         jTableConcursos.getColumnModel().getColumn(0).setResizable(false);
         jTableConcursos.getColumnModel().getColumn(1).setResizable(false);
@@ -162,9 +183,9 @@ public class janAbrir extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             this.status.setText(
-                    " Edital: " + janMenu.CONCURSO.getEdital() + 
-                    " | Área: " + janMenu.CONCURSO.getArea() + 
-                    " | Classe do Concurso: " + janMenu.CONCURSO.getClasseConcurso().getNome());
+                    " Edital: " + janMenu.CONCURSO.getEdital()
+                    + " | Área: " + janMenu.CONCURSO.getArea()
+                    + " | Classe do Concurso: " + janMenu.CONCURSO.getClasseConcurso().getNome());
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Concurso");
@@ -174,7 +195,6 @@ public class janAbrir extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrirConcurso;
     private javax.swing.JButton jButtonCancelar;

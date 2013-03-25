@@ -136,7 +136,7 @@ public class ExaminadorDao implements IDao {
         }
 
         public String getGetIdSql() {
-            String sql = "SELECT * FROM " + this.table_name + " "
+            String sql = "SELECT * FROM " + this.table_name + " WHERE "
                     + this.campos[0][0] + " = ?";
             return sql;
         }
@@ -233,16 +233,17 @@ public class ExaminadorDao implements IDao {
     }
 
     @Override
-    public IEntidade pesquisarPorId(int id) throws SQLException {
+    public Examinador pesquisarPorId(int id) throws SQLException {
         ExaminadorDao.Fields fields = new ExaminadorDao.Fields();
         String sql = fields.getGetIdSql();
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
+        System.out.println(stmt.toString());
         ResultSet rs = stmt.executeQuery();
 
-        Examinador examinador = null;
+        Examinador examinador = new Examinador();
         if (rs.next()) {
             fields.setsFromDatabase(examinador, rs);
         }
