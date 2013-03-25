@@ -82,8 +82,8 @@ DROP TABLE IF EXISTS `prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_didatica` (
   `id_prova_didatica` INT NOT NULL ,
-  `nota` VARCHAR(45) NULL DEFAULT NULL ,
   `id_concurso` INT NOT NULL ,
+  `local` VARCHAR(45) NULL ,
   PRIMARY KEY (`id_prova_didatica`) ,
   INDEX `fk_prova_didatica_concurso1_idx` (`id_concurso` ASC) ,
   CONSTRAINT `fk_prova_didatica_concurso1`
@@ -105,20 +105,13 @@ CREATE  TABLE IF NOT EXISTS `candidato` (
   `id_concurso` INT NULL DEFAULT NULL ,
   `apto_prova_escrita` TINYINT(1) NULL DEFAULT NULL ,
   `apto_prova_didatica` TINYINT(1) NULL DEFAULT NULL ,
-  `id_prova_didatica` INT NULL DEFAULT NULL ,
-  `id_prova_escrita` INT NULL DEFAULT NULL ,
+  `id_prova_escrita` INT NULL ,
   PRIMARY KEY (`id_candidato`) ,
   INDEX `fk_candidato_concurso_idx` (`id_concurso` ASC) ,
-  INDEX `fk_candidato_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
   INDEX `fk_candidato_usuario1_idx` (`id_pessoa` ASC) ,
   CONSTRAINT `fk_candidato_concurso`
     FOREIGN KEY (`id_concurso` )
     REFERENCES `concurso` (`id_concurso` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_candidato_prova_didatica1`
-    FOREIGN KEY (`id_prova_didatica` )
-    REFERENCES `prova_didatica` (`id_prova_didatica` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_candidato_usuario1`
@@ -237,13 +230,46 @@ DROP TABLE IF EXISTS `notas_prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `notas_prova_didatica` (
   `id_notas_prova_didatica` INT NOT NULL ,
-  `descricao` VARCHAR(45) NULL DEFAULT NULL ,
-  `id_concurso` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
+  `id_examinador` INT NOT NULL ,
+  `id_prova_didatica` INT NOT NULL ,
+  `notas_prova` FLOAT NULL ,
   PRIMARY KEY (`id_notas_prova_didatica`) ,
-  INDEX `fk_notas_prova_didatica_concurso1_idx` (`id_concurso` ASC) ,
-  CONSTRAINT `fk_notas_prova_didatica_concurso1`
-    FOREIGN KEY (`id_concurso` )
-    REFERENCES `concurso` (`id_concurso` )
+  INDEX `fk_notas_prova_didatica_candidato1_idx` (`id_candidato` ASC) ,
+  INDEX `fk_notas_prova_didatica_examinador1_idx` (`id_examinador` ASC) ,
+  INDEX `fk_notas_prova_didatica_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
+  CONSTRAINT `fk_notas_prova_didatica_candidato1`
+    FOREIGN KEY (`id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_notas_prova_didatica_examinador1`
+    FOREIGN KEY (`id_examinador` )
+    REFERENCES `examinador` (`id_examinador` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_notas_prova_didatica_prova_didatica1`
+    FOREIGN KEY (`id_prova_didatica` )
+    REFERENCES `prova_didatica` (`id_prova_didatica` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ponto_prova_didatica`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ponto_prova_didatica` ;
+
+CREATE  TABLE IF NOT EXISTS `ponto_prova_didatica` (
+  `id_ponto_prova_didatica` INT NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(255) NULL ,
+  `id_prova_didatica` INT NOT NULL ,
+  PRIMARY KEY (`id_ponto_prova_didatica`) ,
+  INDEX `fk_ponto_prova_didatica_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
+  CONSTRAINT `fk_ponto_prova_didatica_prova_didatica1`
+    FOREIGN KEY (`id_prova_didatica` )
+    REFERENCES `prova_didatica` (`id_prova_didatica` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -256,23 +282,22 @@ DROP TABLE IF EXISTS `sorteio_ponto_prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prova_didatica` (
   `id_sorteio_ponto_prova_didatica` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
   `data_sorteio` DATE NULL DEFAULT NULL ,
-  `data_realizacao` DATE NULL DEFAULT NULL ,
-  `compareceu_sorteio` TINYINT(1) NULL DEFAULT NULL ,
-  `compareceu_realizacao_prova` TINYINT(1) NULL DEFAULT NULL ,
-  `id_notas_prova_didatica` INT NOT NULL ,
-  `candidato_id_candidato` INT NOT NULL ,
+  `hora_sorteio` TIME NULL ,
+  `compareceu_sorteio` TINYINT(1) NULL ,
+  `id_ponto_prova_didatica` INT NOT NULL ,
   PRIMARY KEY (`id_sorteio_ponto_prova_didatica`) ,
-  INDEX `fk_sorteio_ponto_prov_didatica_notas_prova_didatica1_idx` (`id_notas_prova_didatica` ASC) ,
-  INDEX `fk_sorteio_ponto_prova_didatica_candidato1_idx` (`candidato_id_candidato` ASC) ,
-  CONSTRAINT `fk_sorteio_ponto_prov_didatica_notas_prova_didatica1`
-    FOREIGN KEY (`id_notas_prova_didatica` )
-    REFERENCES `notas_prova_didatica` (`id_notas_prova_didatica` )
+  INDEX `fk_sorteio_ponto_prova_didatica_candidato1_idx` (`id_candidato` ASC) ,
+  INDEX `fk_sorteio_ponto_prova_didatica_ponto_prova_didatica1_idx` (`id_ponto_prova_didatica` ASC) ,
+  CONSTRAINT `fk_sorteio_ponto_prova_didatica_candidato1`
+    FOREIGN KEY (`id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_sorteio_ponto_prova_didatica_candidato1`
-    FOREIGN KEY (`candidato_id_candidato` )
-    REFERENCES `candidato` (`id_candidato` )
+  CONSTRAINT `fk_sorteio_ponto_prova_didatica_ponto_prova_didatica1`
+    FOREIGN KEY (`id_ponto_prova_didatica` )
+    REFERENCES `ponto_prova_didatica` (`id_ponto_prova_didatica` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -404,31 +429,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `avaliacao_prova_memorial`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `avaliacao_prova_memorial` ;
-
-CREATE  TABLE IF NOT EXISTS `avaliacao_prova_memorial` (
-  `id_avaliacao_prova_memorial` INT NOT NULL AUTO_INCREMENT ,
-  `candidato_id_candidato` INT NOT NULL ,
-  `id_prova_memorial` INT NOT NULL ,
-  PRIMARY KEY (`id_avaliacao_prova_memorial`) ,
-  INDEX `fk_avaliacao_prova_memorial_candidato1_idx` (`candidato_id_candidato` ASC) ,
-  INDEX `fk_avaliacao_prova_memorial_prova_memorial1_idx` (`id_prova_memorial` ASC) ,
-  CONSTRAINT `fk_avaliacao_prova_memorial_candidato1`
-    FOREIGN KEY (`candidato_id_candidato` )
-    REFERENCES `candidato` (`id_candidato` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_avaliacao_prova_memorial_prova_memorial1`
-    FOREIGN KEY (`id_prova_memorial` )
-    REFERENCES `prova_memorial` (`id_prova_memorial` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `prova_escrita`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `prova_escrita` ;
@@ -490,13 +490,15 @@ DROP TABLE IF EXISTS `criterio_avaliacao` ;
 
 CREATE  TABLE IF NOT EXISTS `criterio_avaliacao` (
   `id_criterio_avaliacao` INT NOT NULL AUTO_INCREMENT ,
-  `criterio` VARCHAR(45) NULL DEFAULT NULL ,
+  `criterio` VARCHAR(45) NULL ,
   `peso` FLOAT NULL DEFAULT NULL ,
   `id_prova_memorial` INT NULL DEFAULT NULL ,
   `id_prova_escrita` INT NULL DEFAULT NULL ,
+  `id_prova_didatica` INT NULL DEFAULT NULL ,
   PRIMARY KEY (`id_criterio_avaliacao`) ,
   INDEX `fk_criterio_avaliacao_prova_memorial_prova_memorial1_idx` (`id_prova_memorial` ASC) ,
   INDEX `fk_criterio_avaliacao_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
+  INDEX `fk_criterio_avaliacao_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
   CONSTRAINT `fk_criterio_avaliacao_prova_memorial_prova_memorial1`
     FOREIGN KEY (`id_prova_memorial` )
     REFERENCES `prova_memorial` (`id_prova_memorial` )
@@ -506,38 +508,43 @@ CREATE  TABLE IF NOT EXISTS `criterio_avaliacao` (
     FOREIGN KEY (`id_prova_escrita` )
     REFERENCES `prova_escrita` (`id_prova_escrita` )
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_criterio_avaliacao_prova_didatica1`
+    FOREIGN KEY (`id_prova_didatica` )
+    REFERENCES `prova_didatica` (`id_prova_didatica` )
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `avaliacao_examinador_criterio`
+-- Table `nota_memorial`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `avaliacao_examinador_criterio` ;
+DROP TABLE IF EXISTS `nota_memorial` ;
 
-CREATE  TABLE IF NOT EXISTS `avaliacao_examinador_criterio` (
-  `id_avaliacao_examinador_criterio` INT NOT NULL AUTO_INCREMENT ,
-  `ponto` FLOAT NULL DEFAULT NULL ,
-  `id_criterio_avaliacao_prova_memorial` INT NOT NULL ,
-  `id_avaliacao_prova_memorial` INT NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `nota_memorial` (
+  `id_nota_memorial` INT NOT NULL AUTO_INCREMENT ,
   `id_examinador` INT NOT NULL ,
-  PRIMARY KEY (`id_avaliacao_examinador_criterio`) ,
-  INDEX `fk_avaliacao_examinador_criterio_criterio_avaliacao_prova_m_idx` (`id_criterio_avaliacao_prova_memorial` ASC) ,
-  INDEX `fk_avaliacao_examinador_criterio_avaliacao_prova_memorial1_idx` (`id_avaliacao_prova_memorial` ASC) ,
+  `id_candidato` INT NOT NULL ,
+  `id_prova_memorial` INT NOT NULL ,
+  `nota_memorial` FLOAT NULL ,
+  PRIMARY KEY (`id_nota_memorial`) ,
   INDEX `fk_avaliacao_examinador_criterio_examinador1_idx` (`id_examinador` ASC) ,
-  CONSTRAINT `fk_avaliacao_examinador_criterio_criterio_avaliacao_prova_mem1`
-    FOREIGN KEY (`id_criterio_avaliacao_prova_memorial` )
-    REFERENCES `criterio_avaliacao` (`id_criterio_avaliacao` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_avaliacao_examinador_criterio_avaliacao_prova_memorial1`
-    FOREIGN KEY (`id_avaliacao_prova_memorial` )
-    REFERENCES `avaliacao_prova_memorial` (`id_avaliacao_prova_memorial` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_nota_memorial_candidato1_idx` (`id_candidato` ASC) ,
+  INDEX `fk_nota_memorial_prova_memorial1_idx` (`id_prova_memorial` ASC) ,
   CONSTRAINT `fk_avaliacao_examinador_criterio_examinador1`
     FOREIGN KEY (`id_examinador` )
     REFERENCES `examinador` (`id_examinador` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_memorial_candidato1`
+    FOREIGN KEY (`id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_memorial_prova_memorial1`
+    FOREIGN KEY (`id_prova_memorial` )
+    REFERENCES `prova_memorial` (`id_prova_memorial` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -612,43 +619,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `candidato_aptos_leitura_prova_escrita` ;
 
 CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
-  `id_candidato` INT NOT NULL ,
   `id_prova_escrita` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
   PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,
-  INDEX `fk_candidato_has_prova_escrita_prova_escrita2_idx` (`id_prova_escrita` ASC) ,
-  INDEX `fk_candidato_has_prova_escrita_candidato2_idx` (`id_candidato` ASC) ,
-  CONSTRAINT `fk_candidato_has_prova_escrita_candidato2`
-    FOREIGN KEY (`id_candidato` )
-    REFERENCES `candidato` (`id_candidato` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_candidato_has_prova_escrita_prova_escrita2`
+  INDEX `fk_prova_escrita_has_candidato_candidato1_idx` (`id_candidato` ASC) ,
+  INDEX `fk_prova_escrita_has_candidato_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
+  CONSTRAINT `fk_prova_escrita_has_candidato_prova_escrita1`
     FOREIGN KEY (`id_prova_escrita` )
     REFERENCES `prova_escrita` (`id_prova_escrita` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `candidato_aptos_leitura_prova_escrita`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `candidato_aptos_leitura_prova_escrita` ;
-
-CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
-  `id_candidato` INT NOT NULL ,
-  `id_prova_escrita` INT NOT NULL ,
-  PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,
-  INDEX `fk_candidato_has_prova_escrita_prova_escrita2_idx` (`id_prova_escrita` ASC) ,
-  INDEX `fk_candidato_has_prova_escrita_candidato2_idx` (`id_candidato` ASC) ,
-  CONSTRAINT `fk_candidato_has_prova_escrita_candidato2`
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_prova_escrita_has_candidato_candidato1`
     FOREIGN KEY (`id_candidato` )
     REFERENCES `candidato` (`id_candidato` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_candidato_has_prova_escrita_prova_escrita2`
-    FOREIGN KEY (`id_prova_escrita` )
-    REFERENCES `prova_escrita` (`id_prova_escrita` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -777,6 +777,13 @@ public class janNovoConc extends javax.swing.JFrame {
             }
 
         } else if (component == jPanelBancaExaminadora) {
+            BancaExaminadora bExaminadora = concurso.getBancaExaminadora();
+            if (bExaminadora != null) {
+                Examinador presidente = bExaminadora.getPresidente();
+                if (presidente != null) {
+                    System.out.println("Você parou aqui");
+                }
+            }
             PessoaDao pdao = new PessoaDao();
 
             Pessoa pres = new Pessoa();
