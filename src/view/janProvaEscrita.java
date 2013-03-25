@@ -114,15 +114,15 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraSorteio = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraInicioProva = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraFimProva = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldLocalRealizacao = new javax.swing.JTextField();
         jComboBoxPontos = new javax.swing.JComboBox();
         jButtonIniciarRealizacaoGerarAta = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -132,10 +132,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCandidatos = new javax.swing.JList();
+        jListCandidatosPresentesLeitura = new javax.swing.JList();
         jTextFieldLocalLeitura = new javax.swing.JTextField();
-        jTextFieldHoraLeitura = new javax.swing.JTextField();
-        jButtonCriarAtaLeitura = new javax.swing.JButton();
+        jTextFieldHoraInicioLeitura = new javax.swing.JTextField();
+        jButtonGerarAtaLeitura = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jListCandidatosAptos2 = new javax.swing.JList();
+        jLabel22 = new javax.swing.JLabel();
+        jButtonAdicionarCadidatoPresenteLeitura = new javax.swing.JButton();
+        jButtonAdicionarTodosCadidatosPresenteLeitura = new javax.swing.JButton();
+        jButtonRemoverCadidatoPresenteLeitura = new javax.swing.JButton();
+        jButtonRemoverTodosCadidatosPresenteLeitura = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLayeredPane7 = new javax.swing.JLayeredPane();
         jLabel18 = new javax.swing.JLabel();
@@ -196,11 +203,13 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jButtonVoltar.setBounds(370, 470, 130, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jListCandidatosConcurso.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListCandidatosConcurso);
 
         jScrollPane1.setBounds(30, 70, 300, 240);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jListCandidatosAptos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListCandidatosAptos);
 
         jScrollPane2.setBounds(420, 70, 310, 240);
@@ -254,13 +263,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel4.setBounds(420, 50, 240, 14);
         jLayeredPane2.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonGerarListaCandidatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonGerarListaCandidatos.setText("Gerar Lista de Candidatos Aptos");
         jButtonGerarListaCandidatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerarListaCandidatosActionPerformed(evt);
             }
         });
-        jButtonGerarListaCandidatos.setBounds(503, 330, 230, 23);
+        jButtonGerarListaCandidatos.setBounds(483, 330, 250, 33);
         jLayeredPane2.add(jButtonGerarListaCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -276,6 +286,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Candidatos Aptos A Realização", jPanel1);
 
+        jListListaPontos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jListListaPontos);
 
         jScrollPane3.setBounds(20, 90, 730, 230);
@@ -336,6 +347,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Pontos", jPanel2);
 
+        jListCriterios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(jListCriterios);
 
         jScrollPane4.setBounds(10, 110, 740, 210);
@@ -403,9 +415,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel9.setBounds(10, 40, 100, 30);
         jLayeredPane5.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField1.setBounds(160, 80, 70, 30);
-        jLayeredPane5.add(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraSorteio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraSorteio.setBounds(160, 80, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraSorteio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText("Hora do Sorteio:");
         jLabel10.setBounds(10, 80, 110, 30);
@@ -417,28 +429,34 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel11.setBounds(10, 170, 140, 30);
         jLayeredPane5.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.setBounds(160, 170, 70, 30);
-        jLayeredPane5.add(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraInicioProva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraInicioProva.setBounds(160, 170, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraInicioProva, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText("Hora do Fim da Prova:");
         jLabel12.setBounds(10, 210, 130, 30);
         jLayeredPane5.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField3.setBounds(160, 210, 70, 30);
-        jLayeredPane5.add(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextFieldHoraFimProva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHoraFimProva.setBounds(160, 210, 70, 30);
+        jLayeredPane5.add(jFormattedTextFieldHoraFimProva, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText("Local da Realização:");
         jLabel13.setBounds(10, 260, 130, 30);
         jLayeredPane5.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextField2.setBounds(160, 260, 350, 30);
-        jLayeredPane5.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocalRealizacao.setBounds(160, 260, 350, 30);
+        jLayeredPane5.add(jTextFieldLocalRealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBoxPontos.setBounds(160, 40, 70, 30);
+        jComboBoxPontos.setBounds(160, 40, 560, 30);
         jLayeredPane5.add(jComboBoxPontos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonIniciarRealizacaoGerarAta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
         jButtonIniciarRealizacaoGerarAta.setText("Iniciar Realização e Gerar Ata");
+        jButtonIniciarRealizacaoGerarAta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarRealizacaoGerarAtaActionPerformed(evt);
+            }
+        });
         jButtonIniciarRealizacaoGerarAta.setBounds(160, 320, 220, 30);
         jLayeredPane5.add(jButtonIniciarRealizacaoGerarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -460,30 +478,88 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTabbedPane5.addTab("Realização", jPanel4);
 
         jLabel14.setText("Local da Leitura:");
-        jLabel14.setBounds(70, 70, 100, 30);
+        jLabel14.setBounds(20, 70, 100, 30);
         jLayeredPane6.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel16.setText("Candidatos Presentes:");
-        jLabel16.setBounds(70, 120, 150, 14);
+        jLabel16.setBounds(430, 120, 150, 14);
         jLayeredPane6.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel17.setText("Hora de Início da Leitura:");
-        jLabel17.setBounds(470, 70, 160, 30);
+        jLabel17.setBounds(430, 70, 160, 30);
         jLayeredPane6.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jScrollPane5.setViewportView(jListCandidatos);
+        jListCandidatosPresentesLeitura.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(jListCandidatosPresentesLeitura);
 
-        jScrollPane5.setBounds(70, 150, 380, 146);
+        jScrollPane5.setBounds(430, 140, 320, 150);
         jLayeredPane6.add(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocalLeitura.setBounds(170, 70, 280, 30);
+        jTextFieldLocalLeitura.setBounds(120, 70, 220, 30);
         jLayeredPane6.add(jTextFieldLocalLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraLeitura.setBounds(620, 70, 80, 30);
-        jLayeredPane6.add(jTextFieldHoraLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonCriarAtaLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
-        jButtonCriarAtaLeitura.setText("Criar Ata de Leitura");
-        jButtonCriarAtaLeitura.setBounds(470, 150, 180, 33);
-        jLayeredPane6.add(jButtonCriarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHoraInicioLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHoraInicioLeituraActionPerformed(evt);
+            }
+        });
+        jTextFieldHoraInicioLeitura.setBounds(580, 70, 80, 30);
+        jLayeredPane6.add(jTextFieldHoraInicioLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonGerarAtaLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
+        jButtonGerarAtaLeitura.setText("Gerar de Ata de Leitura");
+        jButtonGerarAtaLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarAtaLeituraActionPerformed(evt);
+            }
+        });
+        jButtonGerarAtaLeitura.setBounds(520, 320, 200, 33);
+        jLayeredPane6.add(jButtonGerarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListCandidatosAptos2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(jListCandidatosAptos2);
+
+        jScrollPane6.setBounds(20, 140, 320, 150);
+        jLayeredPane6.add(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel22.setText("Candidatos Aptos:");
+        jLabel22.setBounds(20, 120, 110, 14);
+        jLayeredPane6.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionarCadidatoPresenteLeitura.setText(">");
+        jButtonAdicionarCadidatoPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarCadidatoPresenteLeituraActionPerformed(evt);
+            }
+        });
+        jButtonAdicionarCadidatoPresenteLeitura.setBounds(360, 150, 41, 23);
+        jLayeredPane6.add(jButtonAdicionarCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionarTodosCadidatosPresenteLeitura.setText(">>");
+        jButtonAdicionarTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(evt);
+            }
+        });
+        jButtonAdicionarTodosCadidatosPresenteLeitura.setBounds(360, 180, 49, 23);
+        jLayeredPane6.add(jButtonAdicionarTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoverCadidatoPresenteLeitura.setText("<");
+        jButtonRemoverCadidatoPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverCadidatoPresenteLeituraActionPerformed(evt);
+            }
+        });
+        jButtonRemoverCadidatoPresenteLeitura.setBounds(360, 210, 41, 23);
+        jLayeredPane6.add(jButtonRemoverCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoverTodosCadidatosPresenteLeitura.setText("<<");
+        jButtonRemoverTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(evt);
+            }
+        });
+        jButtonRemoverTodosCadidatosPresenteLeitura.setBounds(360, 240, 49, 23);
+        jLayeredPane6.add(jButtonRemoverTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -615,6 +691,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.listCandidatos.remove(c);
             this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+            this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
             try {
                 this.pdao.alterar(this.provaEscrita);
             } catch (SQLException ex) {
@@ -631,6 +708,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         ArrayList<Candidato> vazio = new ArrayList();
         this.provaEscrita.setCandidatosAptosProva((ArrayList<Candidato>) this.listCandidatos);
         this.jListCandidatosAptos.setListData(this.listCandidatos.toArray());
+        this.jListCandidatosAptos2.setListData(this.listCandidatos.toArray());
         this.jListCandidatosConcurso.setListData(vazio.toArray());
         try {
             this.pdao.alterar(this.provaEscrita);
@@ -658,7 +736,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
             lista.removeAllElements();
             for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-                lista.addElement(i + 1);
+                lista.addElement(this.provaEscrita.getPontos().get(i));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Escreva o ponto!", null, JOptionPane.ERROR_MESSAGE);
@@ -681,7 +759,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
             lista.removeAllElements();
             for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-                lista.addElement(i + 1);
+                lista.addElement(this.provaEscrita.getPontos().get(i));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
@@ -779,6 +857,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.listCandidatos.add(c);
             this.jListCandidatosConcurso.setListData(this.listCandidatos.toArray());
             this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+            this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
             try {
                 this.pdao.alterar(this.provaEscrita);
             } catch (SQLException ex) {
@@ -796,6 +875,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.carregarCandidatos();
             this.provaEscrita.setCandidatosAptosProva(new ArrayList<Candidato>());
             this.jListCandidatosAptos.setListData(new ArrayList<Candidato>().toArray());
+            this.jListCandidatosAptos2.setListData(new ArrayList<Candidato>().toArray());
 
             this.pdao.alterar(this.provaEscrita);
         } catch (SQLException ex) {
@@ -826,6 +906,168 @@ public class janProvaEscrita extends javax.swing.JFrame {
         }
         jButtonGerarRelacaoPontos.setEnabled(true);
     }//GEN-LAST:event_jButtonGerarRelCriteriosActionPerformed
+
+    private void jButtonIniciarRealizacaoGerarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
+        // TODO add your handling code here:
+        if (this.jFormattedTextFieldHoraSorteio.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraSorteio.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora do sorteio do ponto!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jFormattedTextFieldHoraInicioProva.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraInicioProva.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jFormattedTextFieldHoraFimProva.getText().equalsIgnoreCase("") == true
+                || this.jFormattedTextFieldHoraFimProva.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de dfim da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jTextFieldLocalRealizacao.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalRealizacao.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe o local da realização da prova!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (this.jComboBoxPontos.getModel().getSize() <= 0) {
+            JOptionPane.showMessageDialog(this, "Você deve criar os pontos antes de inciar a realização do concurso", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        this.provaEscrita.setPontoSorteado((PontoProvaEscrita) this.jComboBoxPontos.getSelectedItem());
+        this.provaEscrita.setHoraPontoSorteado(Datas.convertStringToTime(this.jFormattedTextFieldHoraSorteio.getText()));
+        this.provaEscrita.setHoraInicioProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraInicioProva.getText()));
+        this.provaEscrita.setHoraFimProva(Datas.convertStringToTime(this.jFormattedTextFieldHoraFimProva.getText()));
+        this.provaEscrita.setLocalRealizacao(this.jTextFieldLocalRealizacao.getText());
+
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        this.jButtonIniciarRealizacaoGerarAta.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaRealizacaoProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Realização", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonIniciarRealizacaoGerarAta.setEnabled(true);
+
+    }//GEN-LAST:event_jButtonIniciarRealizacaoGerarAtaActionPerformed
+
+    private void jButtonAdicionarCadidatoPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        int selected = this.jListCandidatosAptos2.getSelectedIndex();
+        if (this.jListCandidatosAptos2.getSelectedValue() != null) {
+            Candidato c = (Candidato) this.jListCandidatosAptos2.getSelectedValue();
+            this.provaEscrita.adicionarCandidatoAptoLeitura(c);
+            this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+            try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
+
+    private void jTextFieldHoraInicioLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraInicioLeituraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldHoraInicioLeituraActionPerformed
+
+    private void jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        this.provaEscrita.setCandidatosAptosLeitura(this.provaEscrita.getCandidatosAptosProva());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
+
+    private void jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        this.provaEscrita.setCandidatosAptosLeitura(new ArrayList<Candidato>());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
+
+    private void jButtonRemoverCadidatoPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
+        // TODO add your handling code here:
+        int selected = this.jListCandidatosPresentesLeitura.getSelectedIndex();
+        if (this.jListCandidatosPresentesLeitura.getSelectedValue() != null) {
+            Candidato c = (Candidato) this.jListCandidatosPresentesLeitura.getSelectedValue();
+            this.provaEscrita.removerCandidatoAptoLeitura(c);
+            this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+            try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
+
+    private void jButtonGerarAtaLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaLeituraActionPerformed
+        // TODO add your handling code here:
+        
+        if (this.jTextFieldLocalLeitura.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalLeitura.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe o local da leitura!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jTextFieldHoraInicioLeitura.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldHoraInicioLeitura.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio da leitura!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        this.provaEscrita.setHoraInicioLeitura(Datas.convertStringToTime(this.jTextFieldHoraInicioLeitura.getText()));
+        this.provaEscrita.setLocalLeitura(this.jTextFieldLocalLeitura.getText());
+
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        this.jButtonGerarAtaLeitura.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaLeituraProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Leitura", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonGerarAtaLeitura.setEnabled(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonGerarAtaLeituraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -862,28 +1104,32 @@ public class janProvaEscrita extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdicionarCadidatoPresenteLeitura;
     private javax.swing.JButton jButtonAdicionarCandidato;
     private javax.swing.JButton jButtonAdicionarCriterio;
     private javax.swing.JButton jButtonAdicionarPonto;
+    private javax.swing.JButton jButtonAdicionarTodosCadidatosPresenteLeitura;
     private javax.swing.JButton jButtonAdicionarTodosCandidatos;
     private javax.swing.JButton jButtonAtaJulgamento;
     private javax.swing.JButton jButtonAtaResultado;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCriarAtaLeitura;
+    private javax.swing.JButton jButtonGerarAtaLeitura;
     private javax.swing.JButton jButtonGerarListaCandidatos;
     private javax.swing.JButton jButtonGerarRelCriterios;
     private javax.swing.JButton jButtonGerarRelacaoPontos;
     private javax.swing.JButton jButtonIniciarRealizacaoGerarAta;
     private javax.swing.JButton jButtonProximo;
+    private javax.swing.JButton jButtonRemoverCadidatoPresenteLeitura;
     private javax.swing.JButton jButtonRemoverCandidato;
     private javax.swing.JButton jButtonRemoverCriterio;
     private javax.swing.JButton jButtonRemoverPonto;
+    private javax.swing.JButton jButtonRemoverTodosCadidatosPresenteLeitura;
     private javax.swing.JButton jButtonRemoverTodosCandidatos;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox jComboBoxPontos;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraFimProva;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraInicioProva;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraSorteio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -898,6 +1144,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -913,9 +1160,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane6;
     private javax.swing.JLayeredPane jLayeredPane7;
     private javax.swing.JLayeredPane jLayeredPane8;
-    private javax.swing.JList jListCandidatos;
     private javax.swing.JList jListCandidatosAptos;
+    private javax.swing.JList jListCandidatosAptos2;
     private javax.swing.JList jListCandidatosConcurso;
+    private javax.swing.JList jListCandidatosPresentesLeitura;
     private javax.swing.JList jListCriterios;
     private javax.swing.JList jListListaPontos;
     private javax.swing.JPanel jPanel1;
@@ -930,16 +1178,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldCriterioPeso;
     private javax.swing.JTextField jTextFieldHoraDivulgacaoResultado;
+    private javax.swing.JTextField jTextFieldHoraInicioLeitura;
     private javax.swing.JTextField jTextFieldHoraJulgamento;
-    private javax.swing.JTextField jTextFieldHoraLeitura;
     private javax.swing.JTextField jTextFieldLocalDivulgacaoResultado;
     private javax.swing.JTextField jTextFieldLocalJulgamento;
     private javax.swing.JTextField jTextFieldLocalLeitura;
+    private javax.swing.JTextField jTextFieldLocalRealizacao;
     private javax.swing.JTextField jTextFieldTextoCriterio;
     private javax.swing.JTextField jTextFieldTextoPonto;
     // End of variables declaration//GEN-END:variables
