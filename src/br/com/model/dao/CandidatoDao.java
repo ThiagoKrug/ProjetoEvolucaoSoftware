@@ -195,62 +195,80 @@ public class CandidatoDao implements IDao {
     @Override
     public Candidato inserir(IEntidade entidade) throws SQLException {
         
-        if ( entidade instanceof Candidato ) {
-            
+//        if ( entidade instanceof Candidato ) {
+//            
+//            Candidato candidato = (Candidato) entidade;
+//            
+//            String sql  = " INSERT INTO `candidato` (";
+//                   sql += "   id_pessoa,id_concurso,apto_prova_escrita,apto_prova_didatica,";
+//                   sql += "   id_prova_didatica,id_prova_escrita";
+//                   sql += " ) VALUES (?,?,?,?,?,?) ";
+//            Connection connection = ConnectionFactory.getConnection();       
+//            
+//            try {
+//                
+//                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//                
+//                if (candidato.getIdPessoa() != 0) {
+//                    stmt.setInt(1, candidato.getIdPessoa());
+//                } else {
+//                    stmt.setString(1, null);
+//                }
+//                
+//                if (candidato.getIdConcurso() != 0) {
+//                    stmt.setInt(2, candidato.getIdConcurso());
+//                } else {
+//                    stmt.setString(2, null);
+//                }
+//                
+//                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
+//                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
+//                
+//                if (candidato.getIdProvaDidatica() != 0) {
+//                    stmt.setInt(5, candidato.getIdProvaDidatica());
+//                } else {
+//                    stmt.setString(5, null);
+//                }
+//                
+//                if (candidato.getIdProvaEscrita() != 0) {
+//                    stmt.setInt(6, candidato.getIdProvaEscrita());
+//                } else {
+//                    stmt.setString(6, null);
+//                }
+//                
+//                stmt.executeUpdate();
+//                ResultSet rs = stmt.getGeneratedKeys();
+//                
+//                if (rs.next()) {
+//                    candidato.setIdCandidato(rs.getInt(1));
+//                }
+//                
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            
+//            return candidato;
+//            
+//        }
+//        
+//        return null;
+        if (entidade instanceof Candidato) {
             Candidato candidato = (Candidato) entidade;
-            
-            String sql  = " INSERT INTO `candidato` (";
-                   sql += "   id_pessoa,id_concurso,apto_prova_escrita,apto_prova_didatica,";
-                   sql += "   id_prova_didatica,id_prova_escrita";
-                   sql += " ) VALUES (?,?,?,?,?,?) ";
-            Connection connection = ConnectionFactory.getConnection();       
-            
-            try {
-                
+            Fields fields = new Fields();
+            String sql = fields.getInsertSql();
+            Connection connection = ConnectionFactory.getConnection();
+//            try {
                 PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                
-                if (candidato.getIdPessoa() != 0) {
-                    stmt.setInt(1, candidato.getIdPessoa());
-                } else {
-                    stmt.setString(1, null);
-                }
-                
-                if (candidato.getIdConcurso() != 0) {
-                    stmt.setInt(2, candidato.getIdConcurso());
-                } else {
-                    stmt.setString(2, null);
-                }
-                
-                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
-                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
-                
-                if (candidato.getIdProvaDidatica() != 0) {
-                    stmt.setInt(5, candidato.getIdProvaDidatica());
-                } else {
-                    stmt.setString(5, null);
-                }
-                
-                if (candidato.getIdProvaEscrita() != 0) {
-                    stmt.setInt(6, candidato.getIdProvaEscrita());
-                } else {
-                    stmt.setString(6, null);
-                }
-                
+                fields.prepare(stmt, candidato);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
-                
+
                 if (rs.next()) {
                     candidato.setIdCandidato(rs.getInt(1));
                 }
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
+//            }
             return candidato;
-            
         }
-        
         return null;
         
     }
@@ -258,61 +276,77 @@ public class CandidatoDao implements IDao {
     @Override
     public Candidato alterar(IEntidade entidade) throws SQLException {
         
-        if ( entidade instanceof Candidato ) {
-            
-            Candidato candidato   = (Candidato) entidade;
-            Connection connection = ConnectionFactory.getConnection();
-            
-            String  sql  = " UPDATE `candidato` SET ";
-                    sql += "     id_pessoa = ?, ";
-                    sql += "     id_concurso = ?, ";
-                    sql += "     apto_prova_escrita = ?, ";
-                    sql += "     apto_prova_didatica = ?, ";
-                    sql += "     id_prova_didatica = ?, ";
-                    sql += "     id_prova_escrita = ? ";
-                    sql += " WHERE id_candidato = ? ";
-                    
-            try {
-                
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                        
-                if ( candidato.getIdPessoa() != 0 ) {
-                    stmt.setInt(1, candidato.getIdPessoa());
-                } else {
-                    stmt.setString(1, null);
-                }
-                
-                if ( candidato.getIdConcurso() != 0 ) {
-                    stmt.setInt(2, candidato.getIdConcurso());
-                } else {
-                    stmt.setString(2, null);
-                }
-                
-                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
-                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
-                
-                if ( candidato.getIdProvaDidatica() != 0 ) {
-                    stmt.setInt(5, candidato.getIdProvaDidatica());
-                } else {
-                    stmt.setString(5, null);
-                }
-                
-                if (candidato.getIdProvaEscrita() != 0) {
-                    stmt.setInt(6, candidato.getIdProvaEscrita());
-                } else {
-                    stmt.setString(6, null);
-                }
-                
-                if ( stmt.executeUpdate() == 1 ) {
-                    return candidato;
-                }
-            
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-        }
+//        if ( entidade instanceof Candidato ) {
+//            
+//            Candidato candidato   = (Candidato) entidade;
+//            Connection connection = ConnectionFactory.getConnection();
+//            
+//            String  sql  = " UPDATE `candidato` SET ";
+//                    sql += "     id_pessoa = ?, ";
+//                    sql += "     id_concurso = ?, ";
+//                    sql += "     apto_prova_escrita = ?, ";
+//                    sql += "     apto_prova_didatica = ?, ";
+//                    sql += "     id_prova_didatica = ?, ";
+//                    sql += "     id_prova_escrita = ? ";
+//                    sql += " WHERE id_candidato = ? ";
+//                    
+//            try {
+//                
+//                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//                        
+//                if ( candidato.getIdPessoa() != 0 ) {
+//                    stmt.setInt(1, candidato.getIdPessoa());
+//                } else {
+//                    stmt.setString(1, null);
+//                }
+//                
+//                if ( candidato.getIdConcurso() != 0 ) {
+//                    stmt.setInt(2, candidato.getIdConcurso());
+//                } else {
+//                    stmt.setString(2, null);
+//                }
+//                
+//                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
+//                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
+//                
+//                if ( candidato.getIdProvaDidatica() != 0 ) {
+//                    stmt.setInt(5, candidato.getIdProvaDidatica());
+//                } else {
+//                    stmt.setString(5, null);
+//                }
+//                
+//                if (candidato.getIdProvaEscrita() != 0) {
+//                    stmt.setInt(6, candidato.getIdProvaEscrita());
+//                } else {
+//                    stmt.setString(6, null);
+//                }
+//                
+//                if ( stmt.executeUpdate() == 1 ) {
+//                    return candidato;
+//                }
+//            
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            
+//        }
+//        
+//        return null;
         
+        if (entidade instanceof Candidato) {
+
+            Candidato candidato = (Candidato) entidade;
+            Fields fields = new Fields();
+            String sql = fields.getUpdateSql();
+
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            fields.prepareUpdate(stmt, candidato);
+
+            if (stmt.executeUpdate() == 1) {
+                return candidato;
+            }
+        }
         return null;
         
     }
@@ -320,29 +354,44 @@ public class CandidatoDao implements IDao {
     @Override
     public Candidato excluir(IEntidade entidade) throws SQLException {
         
-        if ( entidade instanceof Candidato ) {
-            
-            Candidato candidato   = (Candidato) entidade;
-            Connection connection = ConnectionFactory.getConnection();
-            
-            String sql  = " DELETE FROM `candidato` WHERE id_candidato = ? ";
-            
-            try {
-                
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                
-                stmt.setInt(1, candidato.getIdCandidato());
-                
-                if ( stmt.executeUpdate() == 1 ) {
-                    return candidato;
-                }
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-        }
+//        if ( entidade instanceof Candidato ) {
+//            
+//            Candidato candidato   = (Candidato) entidade;
+//            Connection connection = ConnectionFactory.getConnection();
+//            
+//            String sql  = " DELETE FROM `candidato` WHERE id_candidato = ? ";
+//            
+//            try {
+//                
+//                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//                
+//                stmt.setInt(1, candidato.getIdCandidato());
+//                
+//                if ( stmt.executeUpdate() == 1 ) {
+//                    return candidato;
+//                }
+//                
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            
+//        }
+//        
+//        return null;
         
+        if (entidade instanceof Candidato) {
+            Candidato candidato = (Candidato) entidade;
+            Fields fields = new Fields();
+            String sql = fields.getDeleteSql();
+
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, candidato.getIdCandidato());
+
+            if (stmt.executeUpdate() == 1) {
+                return candidato;
+            }
+        }
         return null;
         
     }
@@ -350,38 +399,51 @@ public class CandidatoDao implements IDao {
     @Override
     public Candidato pesquisarPorId(int id) throws SQLException {
         
-        Candidato candidato    = new Candidato();
-        String sql             = " SELECT * FROM candidato WHERE id_candidato = ? ";
-        
-        Connection connection  = ConnectionFactory.getConnection();
+//        Candidato candidato    = new Candidato();
+//        String sql             = " SELECT * FROM candidato WHERE id_candidato = ? ";
+//        
+//        Connection connection  = ConnectionFactory.getConnection();
+//        PreparedStatement stmt = connection.prepareStatement(sql);
+//        stmt.setInt(1, id);
+//        ResultSet rs = stmt.executeQuery();
+//        
+//        while ( rs.next() ) {
+//            
+//            candidato.setIdCandidato( rs.getInt( "id_candidato" ) );
+//            candidato.setIdPessoa( rs.getInt( "id_pessoa" ) );
+//            candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
+//            candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
+//            candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
+//            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+//            candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
+//            
+//            PessoaDao pessoaDao = new PessoaDao();
+//            Pessoa pessoa       = pessoaDao.pesquisarPorId( candidato.getIdPessoa() );
+//            
+//            candidato.setNome( pessoa.getNome() );
+//            candidato.setSexo( pessoa.getSexo() );
+//            candidato.setDataNascimento( pessoa.getDataNascimento() );
+//            
+//        }
+//        
+//        if ( candidato.getIdCandidato() != 0 ) {
+//            return candidato;
+//        } else {
+//            return null;
+//        }
+        Fields fields = new Fields();
+        String sql = fields.getGetIdSql();
+
+        Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        
-        while ( rs.next() ) {
-            
-            candidato.setIdCandidato( rs.getInt( "id_candidato" ) );
-            candidato.setIdPessoa( rs.getInt( "id_pessoa" ) );
-            candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
-            candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
-            candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
-            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
-            candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
-            
-            PessoaDao pessoaDao = new PessoaDao();
-            Pessoa pessoa       = pessoaDao.pesquisarPorId( candidato.getIdPessoa() );
-            
-            candidato.setNome( pessoa.getNome() );
-            candidato.setSexo( pessoa.getSexo() );
-            candidato.setDataNascimento( pessoa.getDataNascimento() );
-            
+
+        Candidato candidato = null;
+        if (rs.next()) {
+            fields.setsFromDatabase(candidato, rs);
         }
-        
-        if ( candidato.getIdCandidato() != 0 ) {
-            return candidato;
-        } else {
-            return null;
-        }
+        return candidato;
         
     }
 
@@ -420,7 +482,7 @@ public class CandidatoDao implements IDao {
             candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
             candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
             candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
-            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+//            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
             candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
             
             candidato.setNome( rs.getString( "nome" ) );
