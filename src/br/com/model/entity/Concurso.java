@@ -1,5 +1,6 @@
 package br.com.model.entity;
 
+import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.ClasseConcursoDao;
 import java.sql.SQLException;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class Concurso implements IEntidade {
     private boolean temProvaDidática;
     private boolean temProvaMemorial;
     private String ministerio;
+    private BancaExaminadora bancaExaminadora;
 
     public Concurso() {
     }
@@ -258,5 +260,24 @@ public class Concurso implements IEntidade {
 
     public void setClasseConcurso(ClasseConcurso classeConcurso) {
         this.classeConcurso = classeConcurso;
+    }
+
+    public BancaExaminadora getBancaExaminadora() {
+        if (bancaExaminadora == null) {
+            BancaExaminadoraDao bedao = new BancaExaminadoraDao();
+            try {
+                bancaExaminadora = bedao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else if (bancaExaminadora.getPresidente() == null) {
+            BancaExaminadoraDao bedao = new BancaExaminadoraDao();
+            try {
+                bancaExaminadora = bedao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return bancaExaminadora;
     }
 }

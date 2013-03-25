@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAtaResultadoProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de29b16b-2f12-4bc2-8cb2-1fcd3846e9f1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="128"/>
+	<parameter name="id_prova_escrita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     prova_escrita.`hora_inicio_resultado` AS prova_escrita_hora_inicio_resultado,
+     prova_escrita.`local_resultado` AS prova_escrita_local_resultado
+FROM
+     `prova_escrita` prova_escrita
+WHERE
+     id_prova_escrita = $P{id_prova_escrita}]]>
+	</queryString>
+	<field name="prova_escrita_hora_inicio_resultado" class="java.sql.Time"/>
+	<field name="prova_escrita_local_resultado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="23f46514-3b8e-488f-a2bf-6d6cbb238130" x="277" y="10" width="247" height="49"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
+FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
+CAMPUS: ALEGRETE
+CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
+ÁREA: ENGENHARIA DE SOFTWARE
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fd125fc7-b1de-4624-b015-8244ab01b8ed" x="10" y="87" width="528" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ata Nro 4 - Sessão pública de divulgação da nota da prova escrita ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="236" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5a229573-5cd6-4723-935c-08533674983e" x="74" y="35" width="430" height="190"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA['Aos '+$P{data}+', às '+$F{prova_escrita_hora_inicio_resultado}+', na '+$F{prova_escrita_local_resultado}+', reuniu-se a Comissão Examinadora do Concurso Público de Títulos e Provas para Professor Adjunto para o campus Alegrete na área de Engenharia de Software para a sessão pública de divulgação da nota da prova escrita do concurso. Iniciada a Sessão, o presidente da Comissão Examinadora explicou os procedimentos que seriam adotados para a divulgação das notas. A seguir, cada examinador fez a abertura dos envelopes lacrados e rubricados que continham as notas de cada candidato. As notas dos candidatos foram lidas e lançadas em uma planilha eletrônica demonstrativa. Essa planilha podia ser vista por todos os presentes através de equipamento áudio-visual. O cálculo das médias obedeceu a Resolução 01/CONSUNI de 30 de março de 2010. Completadas todas as planilhas demonstrativas, constatou-se que nenhum candidato foi aprovado. Após o encerramento dos trabalhos, que transcorreram sem anormalidades, lavrou-se a presente ata.'
+
+]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="153" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="600aa36a-891a-47c7-ad1d-58c89ca5d6a8" x="323" y="10" width="112" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Alegrete, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c2980fff-2223-4787-8761-2e6379a482f8" x="435" y="10" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bf70aba3-3295-435d-a8f1-e65abcdba633" x="10" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7cddebe8-3280-4da2-b792-39b05b1c273c" x="203" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55e0b7fc-5e3d-4bbf-b6cb-42a164a37e90" x="405" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d3ca3578-e4f6-44a6-a148-dddc52c5f4f3" x="405" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="221a3b1f-8f58-4c98-a690-9ebcd0548b96" x="203" y="93" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prof. Adj 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e8be272b-1ece-4177-b6e2-94c596786cf5" x="10" y="73" width="135" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[____________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

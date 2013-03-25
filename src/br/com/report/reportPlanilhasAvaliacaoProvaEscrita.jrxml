@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPlanilhasAvaliacaoProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3cbc18b-d4db-4a5a-af5f-859eaeccea7e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     pessoa.`nome` AS pessoa_nome
+FROM
+     `candidato` candidato INNER JOIN `candidato_aptos_leitura_prova_escrita` candidato_aptos_leitura_prova_escrita ON candidato.`id_candidato` = candidato_aptos_leitura_prova_escrita.`id_candidato`
+     INNER JOIN `prova_escrita` prova_escrita ON candidato_aptos_leitura_prova_escrita.`id_prova_escrita` = prova_escrita.`id_prova_escrita`
+     INNER JOIN `pessoa` pessoa ON candidato.`id_pessoa` = pessoa.`id_pessoa`]]>
+	</queryString>
+	<field name="pessoa_nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f4fe1dc8-00d2-4ed9-9801-9c94cd6ed0dc" x="47" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement uuid="cff7ed1c-fa73-4fa5-bbe6-2a8b2af8e916" x="47" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pessoa_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
