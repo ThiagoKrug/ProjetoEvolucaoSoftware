@@ -4,7 +4,9 @@
  */
 package view;
 
+import br.com.model.entity.CriterioAvaliacao;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class janProvaMemorialIntegracao extends javax.swing.JFrame {
 
+    ArrayList<CriterioAvaliacao> criteriosMemorial = new ArrayList();
     /**
      * Creates new form janProvaMemorial
      */
@@ -164,6 +167,11 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
 
         jButtonRemoveCriterioMemorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
         jButtonRemoveCriterioMemorial.setText("Remover");
+        jButtonRemoveCriterioMemorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveCriterioMemorialActionPerformed(evt);
+            }
+        });
         jButtonRemoveCriterioMemorial.setBounds(480, 280, 120, 30);
         jLayeredPane3.add(jButtonRemoveCriterioMemorial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -372,15 +380,15 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCriterioMemorialActionPerformed
 
     private void jButtonAddCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCriterioMemorialActionPerformed
-         CriterioAvaliacaoMemorial cam = new CriterioAvaliacaoDidatica();
-        cad.setCriterio(this.jTextFieldCriterioDidatica.getText());
+         CriterioAvaliacao ca = new CriterioAvaliacao();
+        ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
         try {
-            cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
-            listaCriterios.add(cad);
-            jListCriteriosProvaDidatica.removeAll();
-            jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
-            this.jTextFieldCriterioDidatica.setText("");
-            this.jTextFieldPeso.setText("");
+            ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
+            criteriosMemorial.add(ca);
+            jListCriteriosMemorial.removeAll();
+            jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
+            this.jTextFieldCriterioMemorial.setText("");
+            this.jTextFieldPesoMemorial.setText("");
 
         } catch (NumberFormatException | NullPointerException nfe) {
             JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
@@ -388,6 +396,15 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonAddCriterioMemorialActionPerformed
+
+    private void jButtonRemoveCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCriterioMemorialActionPerformed
+        if(jListCriteriosMemorial.getSelectedIndex() != -1){
+            criteriosMemorial.remove(jListCriteriosMemorial.getSelectedIndex());
+            jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um Critério!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoveCriterioMemorialActionPerformed
 
     /**
      * @param args the command line arguments
