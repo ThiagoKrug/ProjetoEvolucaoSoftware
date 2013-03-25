@@ -260,19 +260,19 @@ CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prova_didatica` (
   `data_realizacao` DATE NULL DEFAULT NULL ,
   `compareceu_sorteio` TINYINT(1) NULL DEFAULT NULL ,
   `compareceu_realizacao_prova` TINYINT(1) NULL DEFAULT NULL ,
-  `id_pessoa` INT NOT NULL ,
   `id_notas_prova_didatica` INT NOT NULL ,
+  `candidato_id_candidato` INT NOT NULL ,
   PRIMARY KEY (`id_sorteio_ponto_prova_didatica`) ,
-  INDEX `fk_sorteio_ponto_prov_didatica_usuario1_idx` (`id_pessoa` ASC) ,
   INDEX `fk_sorteio_ponto_prov_didatica_notas_prova_didatica1_idx` (`id_notas_prova_didatica` ASC) ,
-  CONSTRAINT `fk_sorteio_ponto_prov_didatica_usuario1`
-    FOREIGN KEY (`id_pessoa` )
-    REFERENCES `pessoa` (`id_pessoa` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_sorteio_ponto_prova_didatica_candidato1_idx` (`candidato_id_candidato` ASC) ,
   CONSTRAINT `fk_sorteio_ponto_prov_didatica_notas_prova_didatica1`
     FOREIGN KEY (`id_notas_prova_didatica` )
     REFERENCES `notas_prova_didatica` (`id_notas_prova_didatica` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sorteio_ponto_prova_didatica_candidato1`
+    FOREIGN KEY (`candidato_id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -437,7 +437,7 @@ CREATE  TABLE IF NOT EXISTS `prova_escrita` (
   `id_prova_escrita` INT NOT NULL AUTO_INCREMENT ,
   `id_concurso` INT NULL DEFAULT NULL ,
   `id_ponto_sorteado_prova_escrita` INT NULL DEFAULT NULL ,
-  `data_ponto_sorteado` DATE NULL DEFAULT NULL ,
+  `hora_ponto_sorteado` TIME NULL DEFAULT NULL ,
   `hora_inicio_prova` TIME NULL DEFAULT NULL ,
   `hora_fim_prova` TIME NULL DEFAULT NULL ,
   `local_realizacao` VARCHAR(255) NULL DEFAULT NULL ,
