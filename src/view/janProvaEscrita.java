@@ -150,6 +150,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldHoraInicioJulgamento = new javax.swing.JTextField();
         jTextFieldLocalJulgamento = new javax.swing.JTextField();
         jButtonGerarAtaJulgamento = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLayeredPane8 = new javax.swing.JLayeredPane();
         jLabel20 = new javax.swing.JLabel();
@@ -601,6 +602,19 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
 
         jTabbedPane5.addTab("Julgamento", jPanel6);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 765, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+        );
+
+        jTabbedPane5.addTab("Planilhas", jPanel8);
 
         jLabel20.setText("Local de Divulgação do Resultado:");
         jLabel20.setBounds(81, 120, 200, 14);
@@ -1249,6 +1263,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
