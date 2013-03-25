@@ -27,28 +27,28 @@ public class Candidato extends Pessoa implements IEntidade {
     private Integer idProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaEscrita;
+    private Boolean aptoProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaEscrita;
+    private Boolean presenteProvaEscrita;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaTitulos;
+    private Boolean aptoProvaTitulos;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaTitulos;
+    private Boolean presenteProvaTitulos;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaDidatica;
+    private Boolean aptoProvaDidatica;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaDidatica;
+    private Boolean presenteProvaDidatica;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean aptoProvaMemorial;
+    private Boolean aptoProvaMemorial;
     
     @NotNull(message="O valor não pode ser nulo!")
-    private boolean presenteProvaMemorial;
+    private Boolean presenteProvaMemorial;
 
 //    public Candidato(boolean aptoProvaEscrita, boolean presenteProvaEscrita, boolean aptoProvaTitulos, boolean presenteProvaTitulos, boolean aptoProvaDidatica, boolean presenteProvaDidatica, boolean aptoProvaMemorial, boolean presenteProvaMemorial, String nome, String sexo, Date dataNascimento) {
 //        super(nome, sexo, dataNascimento);
