@@ -9,6 +9,7 @@ import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacao;
+import br.com.model.entity.Examinador;
 import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
 import br.com.report.ReportUtils;
@@ -632,7 +633,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jListExaminadorPlanilha.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane8.setViewportView(jListExaminadorPlanilha);
 
-        jScrollPane8.setBounds(390, 40, 340, 230);
+        jScrollPane8.setBounds(390, 40, 320, 230);
         jLayeredPane9.add(jScrollPane8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText("Candidato");
@@ -660,7 +661,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane5.addTab("Planilhas", jPanel8);
+        jTabbedPane5.addTab("Planilhas de Avaliação", jPanel8);
 
         jLabel20.setText("Local de Divulgação do Resultado:");
         jLabel20.setBounds(81, 120, 200, 14);
@@ -1208,6 +1209,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void jButtonGerarPlanilhaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
         // TODO add your handling code here:
         
+        if(this.jListCandidatosPlanilha.getSelectedValue() == null ){
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(this.jListExaminadorPlanilha.getSelectedValue() == null ){
+            JOptionPane.showMessageDialog(this, "Selecione um examinador!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Candidato c = (Candidato) this.jListCandidatosPlanilha.getSelectedValue();
+        Examinador e = (Examinador) this.jListExaminadorPlanilha.getSelectedValue();
         this.jButtonGerarPlanilhaAvaliacao.setEnabled(false);
         try {
             InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportPlanilhasAvaliacaoProvaEscrita.jasper");
@@ -1216,6 +1228,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            parametros.put("candidato", c.getNome());
+            parametros.put("examinador", e.getPessoa().getNome());
             // abre o relatório
             ReportUtils.openReport("Planilhas para Avaliação", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {

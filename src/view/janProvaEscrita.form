@@ -1013,8 +1013,8 @@
             <Container class="javax.swing.JPanel" name="jPanel8">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Planilhas">
-                    <Property name="tabTitle" type="java.lang.String" value="Planilhas"/>
+                  <JTabbedPaneConstraints tabName="Planilhas de Avalia&#xe7;&#xe3;o">
+                    <Property name="tabTitle" type="java.lang.String" value="Planilhas de Avalia&#xe7;&#xe3;o"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1088,7 +1088,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="390" y="40" width="340" height="230" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="390" y="40" width="320" height="230" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
 
