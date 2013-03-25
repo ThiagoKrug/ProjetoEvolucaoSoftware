@@ -13,7 +13,6 @@ public class ProvaEscrita implements IEntidade {
     private int idProvaEscrita;
     private Concurso concurso;
     private PontoProvaEscrita pontoSorteado;
-    private Date dataPontoSorteado;
     private Date horaPontoSorteado;
     private Date horaInicioProva;
     private Date horaFimProva;
@@ -295,14 +294,6 @@ public class ProvaEscrita implements IEntidade {
 
     public void setLocalResultado(String localResultado) {
         this.localResultado = localResultado;
-    }
-
-    public Date getDataPontoSorteado() {
-        return dataPontoSorteado;
-    }
-
-    public void setDataPontoSorteado(Date dataPontoSorteado) {
-        this.dataPontoSorteado = dataPontoSorteado;
     }
 
     public Date getHoraFimLeitura() {

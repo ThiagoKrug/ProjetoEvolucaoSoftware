@@ -266,7 +266,7 @@ public class CronogramaDao implements IDao {
     }
 
     @Override
-    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
+    public List<Cronograma> pesquisarTodos() throws SQLException {
         List<Cronograma> cronogramas = new ArrayList<Cronograma>();
         Fields fields = new Fields();
         String sql = fields.getAllSql();
