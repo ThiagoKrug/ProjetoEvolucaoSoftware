@@ -1,20 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import br.com.model.entity.Concurso;
 
 /**
  *
  * @author Gaattuso
  */
 public class janMenu extends javax.swing.JFrame {
+    public static Concurso CONCURSO;
 
     /**
      * Creates new form janMenu
      */
     public janMenu() {
         initComponents();
+        jLabelStatus.setText("");
     }
 
     /**
@@ -36,6 +36,7 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbertura = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonAbrir = new javax.swing.JButton();
+        jLabelStatus = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemNovo = new javax.swing.JMenuItem();
@@ -172,6 +173,10 @@ public class janMenu extends javax.swing.JFrame {
         jButtonAbrir.setBounds(40, 0, 40, 40);
         jLayeredPane1.add(jButtonAbrir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabelStatus.setText("Status");
+        jLabelStatus.setBounds(0, 290, 560, 20);
+        jLayeredPane1.add(jLabelStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         jMenu1.setText("Arquivo");
 
         jMenuItemNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -252,7 +257,7 @@ public class janMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(579, 372));
@@ -278,7 +283,7 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEscritaActionPerformed
 
     private void jMenuItemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirActionPerformed
-        // TODO add your handling code here:
+        jButtonAbrirActionPerformed(evt);
     }//GEN-LAST:event_jMenuItemAbrirActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -342,9 +347,10 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
-        janAbrir.main(null);
+        janAbrir abrir = new janAbrir(jLabelStatus);
+        abrir.setVisible(true);
     }//GEN-LAST:event_jButtonAbrirActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -389,6 +395,7 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonResultado;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTitulos;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

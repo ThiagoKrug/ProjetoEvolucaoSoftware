@@ -612,19 +612,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `candidato_aptos_leitura_prova_escrita` ;
 
 CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
-  `id_prova_escrita` INT NOT NULL ,
   `id_candidato` INT NOT NULL ,
+  `id_prova_escrita` INT NOT NULL ,
   PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,
-  INDEX `fk_prova_escrita_has_candidato_candidato1_idx` (`id_candidato` ASC) ,
-  INDEX `fk_prova_escrita_has_candidato_prova_escrita1_idx` (`id_prova_escrita` ASC) ,
-  CONSTRAINT `fk_prova_escrita_has_candidato_prova_escrita1`
-    FOREIGN KEY (`id_prova_escrita` )
-    REFERENCES `prova_escrita` (`id_prova_escrita` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_prova_escrita_has_candidato_candidato1`
+  INDEX `fk_candidato_has_prova_escrita_prova_escrita2_idx` (`id_prova_escrita` ASC) ,
+  INDEX `fk_candidato_has_prova_escrita_candidato2_idx` (`id_candidato` ASC) ,
+  CONSTRAINT `fk_candidato_has_prova_escrita_candidato2`
     FOREIGN KEY (`id_candidato` )
     REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_candidato_has_prova_escrita_prova_escrita2`
+    FOREIGN KEY (`id_prova_escrita` )
+    REFERENCES `prova_escrita` (`id_prova_escrita` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
