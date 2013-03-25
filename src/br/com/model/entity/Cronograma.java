@@ -41,7 +41,7 @@ public class Cronograma implements IEntidade {
             Cronograma.class.getMethod("getIdCronograma", new Class<?>[] {}),
             Cronograma.class.getMethod("setIdCronograma", new Class<?>[] {Integer.class})
         };
-        this.tablemap.put("id_cronograma", ids);
+        this.tablemap.put("id_abertura", ids);
         
         this.tablemap.put("local", new Method[] {
             Cronograma.class.getMethod("getLocal", new Class<?>[] {}),

@@ -134,7 +134,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jListCandidatosPresentesLeitura = new javax.swing.JList();
         jTextFieldLocalLeitura = new javax.swing.JTextField();
-        jTextFieldHoraLeitura = new javax.swing.JTextField();
+        jTextFieldHoraInicioLeitura = new javax.swing.JTextField();
         jButtonGerarAtaLeitura = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jListCandidatosAptos2 = new javax.swing.JList();
@@ -147,16 +147,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane7 = new javax.swing.JLayeredPane();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextFieldHoraJulgamento = new javax.swing.JTextField();
+        jTextFieldHoraInicioJulgamento = new javax.swing.JTextField();
         jTextFieldLocalJulgamento = new javax.swing.JTextField();
-        jButtonAtaJulgamento = new javax.swing.JButton();
+        jButtonGerarAtaJulgamento = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLayeredPane8 = new javax.swing.JLayeredPane();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldHoraDivulgacaoResultado = new javax.swing.JTextField();
+        jTextFieldHoraInicioDivulgacaoResultado = new javax.swing.JTextField();
         jTextFieldLocalDivulgacaoResultado = new javax.swing.JTextField();
-        jButtonAtaResultado = new javax.swing.JButton();
+        jButtonGerarAtaResultado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Prova Escrita");
@@ -497,16 +498,21 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTextFieldLocalLeitura.setBounds(120, 70, 220, 30);
         jLayeredPane6.add(jTextFieldLocalLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTextFieldHoraLeitura.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldHoraInicioLeitura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHoraLeituraActionPerformed(evt);
+                jTextFieldHoraInicioLeituraActionPerformed(evt);
             }
         });
-        jTextFieldHoraLeitura.setBounds(580, 70, 80, 30);
-        jLayeredPane6.add(jTextFieldHoraLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHoraInicioLeitura.setBounds(580, 70, 80, 30);
+        jLayeredPane6.add(jTextFieldHoraInicioLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonGerarAtaLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
         jButtonGerarAtaLeitura.setText("Gerar de Ata de Leitura");
+        jButtonGerarAtaLeitura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarAtaLeituraActionPerformed(evt);
+            }
+        });
         jButtonGerarAtaLeitura.setBounds(520, 320, 200, 33);
         jLayeredPane6.add(jButtonGerarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -530,29 +536,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLayeredPane6.add(jButtonAdicionarCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCadidatosPresenteLeitura.setText(">>");
-        jButtonAdicionarTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(evt);
-            }
-        });
         jButtonAdicionarTodosCadidatosPresenteLeitura.setBounds(360, 180, 49, 23);
         jLayeredPane6.add(jButtonAdicionarTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCadidatoPresenteLeitura.setText("<");
-        jButtonRemoverCadidatoPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverCadidatoPresenteLeituraActionPerformed(evt);
-            }
-        });
         jButtonRemoverCadidatoPresenteLeitura.setBounds(360, 210, 41, 23);
         jLayeredPane6.add(jButtonRemoverCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCadidatosPresenteLeitura.setText("<<");
-        jButtonRemoverTodosCadidatosPresenteLeitura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(evt);
-            }
-        });
         jButtonRemoverTodosCadidatosPresenteLeitura.setBounds(360, 240, 49, 23);
         jLayeredPane6.add(jButtonRemoverTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -578,21 +569,26 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jTabbedPane5.addTab("Leitura", jPanel5);
 
         jLabel18.setText("Local do Julgamento:");
-        jLabel18.setBounds(160, 120, 130, 20);
+        jLabel18.setBounds(120, 120, 170, 20);
         jLayeredPane7.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel19.setText("Horário do Julgamento:");
-        jLabel19.setBounds(160, 150, 140, 20);
+        jLabel19.setText("Horário Inicio do Julgamento:");
+        jLabel19.setBounds(120, 150, 180, 20);
         jLayeredPane7.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraJulgamento.setBounds(300, 150, 70, 30);
-        jLayeredPane7.add(jTextFieldHoraJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHoraInicioJulgamento.setBounds(300, 150, 70, 30);
+        jLayeredPane7.add(jTextFieldHoraInicioJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldLocalJulgamento.setBounds(300, 112, 280, 30);
         jLayeredPane7.add(jTextFieldLocalJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAtaJulgamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
-        jButtonAtaJulgamento.setText("Criar Ata de Julgamento");
-        jButtonAtaJulgamento.setBounds(380, 150, 200, 30);
-        jLayeredPane7.add(jButtonAtaJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonGerarAtaJulgamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
+        jButtonGerarAtaJulgamento.setText("Gerar Ata de Julgamento");
+        jButtonGerarAtaJulgamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarAtaJulgamentoActionPerformed(evt);
+            }
+        });
+        jButtonGerarAtaJulgamento.setBounds(380, 150, 200, 30);
+        jLayeredPane7.add(jButtonGerarAtaJulgamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -607,6 +603,19 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Julgamento", jPanel6);
 
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 765, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+        );
+
+        jTabbedPane5.addTab("Planilhas", jPanel8);
+
         jLabel20.setText("Local de Divulgação do Resultado:");
         jLabel20.setBounds(81, 120, 200, 14);
         jLayeredPane8.add(jLabel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -614,15 +623,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jLabel21.setText("Horário de Divulgação do Resultado:");
         jLabel21.setBounds(80, 150, 220, 14);
         jLayeredPane8.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraDivulgacaoResultado.setBounds(300, 150, 70, 30);
-        jLayeredPane8.add(jTextFieldHoraDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldHoraInicioDivulgacaoResultado.setBounds(300, 150, 70, 30);
+        jLayeredPane8.add(jTextFieldHoraInicioDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldLocalDivulgacaoResultado.setBounds(300, 112, 280, 30);
         jLayeredPane8.add(jTextFieldLocalDivulgacaoResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAtaResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
-        jButtonAtaResultado.setText("Criar Ata do Resultado");
-        jButtonAtaResultado.setBounds(380, 150, 200, 30);
-        jLayeredPane8.add(jButtonAtaResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonGerarAtaResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/ataa.png"))); // NOI18N
+        jButtonGerarAtaResultado.setText("Gerar Ata do Resultado");
+        jButtonGerarAtaResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGerarAtaResultadoActionPerformed(evt);
+            }
+        });
+        jButtonGerarAtaResultado.setBounds(380, 150, 200, 30);
+        jLayeredPane8.add(jButtonGerarAtaResultado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -967,27 +981,40 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Candidato c = (Candidato) this.jListCandidatosAptos2.getSelectedValue();
             this.provaEscrita.adicionarCandidatoAptoLeitura(c);
             this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
-            
+            try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }else {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
 
-    private void jTextFieldHoraLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraLeituraActionPerformed
+    private void jTextFieldHoraInicioLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraInicioLeituraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldHoraLeituraActionPerformed
+    }//GEN-LAST:event_jTextFieldHoraInicioLeituraActionPerformed
 
     private void jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
         // TODO add your handling code here:
         this.provaEscrita.setCandidatosAptosLeitura(this.provaEscrita.getCandidatosAptosProva());
         this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
-        
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAdicionarTodosCadidatosPresenteLeituraActionPerformed
 
     private void jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
         // TODO add your handling code here:
         this.provaEscrita.setCandidatosAptosLeitura(new ArrayList<Candidato>());
         this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonRemoverTodosCadidatosPresenteLeituraActionPerformed
 
     private void jButtonRemoverCadidatoPresenteLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
@@ -997,11 +1024,140 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Candidato c = (Candidato) this.jListCandidatosPresentesLeitura.getSelectedValue();
             this.provaEscrita.removerCandidatoAptoLeitura(c);
             this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
-            
+            try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }else {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
+
+    private void jButtonGerarAtaLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaLeituraActionPerformed
+        // TODO add your handling code here:
+        
+        if (this.jTextFieldLocalLeitura.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalLeitura.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe o local da leitura!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jTextFieldHoraInicioLeitura.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldHoraInicioLeitura.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio da leitura!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        this.provaEscrita.setHoraInicioLeitura(Datas.convertStringToTime(this.jTextFieldHoraInicioLeitura.getText()));
+        this.provaEscrita.setLocalLeitura(this.jTextFieldLocalLeitura.getText());
+
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        this.jButtonGerarAtaLeitura.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaLeituraProva.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Leitura", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonGerarAtaLeitura.setEnabled(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonGerarAtaLeituraActionPerformed
+
+    private void jButtonGerarAtaJulgamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaJulgamentoActionPerformed
+        // TODO add your handling code here:
+        
+       if (this.jTextFieldLocalJulgamento.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalJulgamento.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe o local da julgamento!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jTextFieldHoraInicioJulgamento.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldHoraInicioJulgamento.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio da julgamento!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        this.provaEscrita.setHoraInicioJulgamento(Datas.convertStringToTime(this.jTextFieldHoraInicioJulgamento.getText()));
+        this.provaEscrita.setLocalJulgamento(this.jTextFieldLocalJulgamento.getText());
+
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        this.jButtonGerarAtaJulgamento.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaJulgamentoProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Julgamento", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonGerarAtaJulgamento.setEnabled(true); 
+        
+    }//GEN-LAST:event_jButtonGerarAtaJulgamentoActionPerformed
+
+    private void jButtonGerarAtaResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaResultadoActionPerformed
+        // TODO add your handling code here:
+        
+         if (this.jTextFieldLocalDivulgacaoResultado.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldLocalDivulgacaoResultado.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe o local do resultado!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.jTextFieldHoraInicioDivulgacaoResultado.getText().equalsIgnoreCase("") == true
+                || this.jTextFieldHoraInicioDivulgacaoResultado.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a hora de inicio do resultado!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        this.provaEscrita.setHoraInicioJulgamento(Datas.convertStringToTime(this.jTextFieldHoraInicioDivulgacaoResultado.getText()));
+        this.provaEscrita.setLocalJulgamento(this.jTextFieldLocalDivulgacaoResultado.getText());
+
+        try {
+            this.pdao.alterar(this.provaEscrita);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        this.jButtonGerarAtaResultado.setEnabled(false);
+        try {
+            InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportAtaResultadoProvaEscrita.jasper");
+            // mapa de parâmetros do relatório (ainda vamos aprender a usar)
+            Map parametros = new HashMap();
+            parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            // abre o relatório
+            ReportUtils.openReport("Ata de Resultado", inputStream, parametros, ConnectionFactory.getConnection());
+        } catch (JRException exc) {
+            exc.printStackTrace();
+        }
+        this.jButtonGerarAtaResultado.setEnabled(true); 
+    }//GEN-LAST:event_jButtonGerarAtaResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1044,10 +1200,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdicionarPonto;
     private javax.swing.JButton jButtonAdicionarTodosCadidatosPresenteLeitura;
     private javax.swing.JButton jButtonAdicionarTodosCandidatos;
-    private javax.swing.JButton jButtonAtaJulgamento;
-    private javax.swing.JButton jButtonAtaResultado;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonGerarAtaJulgamento;
     private javax.swing.JButton jButtonGerarAtaLeitura;
+    private javax.swing.JButton jButtonGerarAtaResultado;
     private javax.swing.JButton jButtonGerarListaCandidatos;
     private javax.swing.JButton jButtonGerarRelCriterios;
     private javax.swing.JButton jButtonGerarRelacaoPontos;
@@ -1107,6 +1263,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1116,9 +1273,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextFieldCriterioPeso;
-    private javax.swing.JTextField jTextFieldHoraDivulgacaoResultado;
-    private javax.swing.JTextField jTextFieldHoraJulgamento;
-    private javax.swing.JTextField jTextFieldHoraLeitura;
+    private javax.swing.JTextField jTextFieldHoraInicioDivulgacaoResultado;
+    private javax.swing.JTextField jTextFieldHoraInicioJulgamento;
+    private javax.swing.JTextField jTextFieldHoraInicioLeitura;
     private javax.swing.JTextField jTextFieldLocalDivulgacaoResultado;
     private javax.swing.JTextField jTextFieldLocalJulgamento;
     private javax.swing.JTextField jTextFieldLocalLeitura;

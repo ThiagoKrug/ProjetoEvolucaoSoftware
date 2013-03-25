@@ -2,14 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b75cffa2-347d-4334-aae8-afae03b78431">
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="16"/>
+	<property name="ireport.y" value="120"/>
 	<parameter name="id_prova_escrita" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      pessoa.`nome` AS pessoa_nome,
-     pessoa.`data_nascimento` AS pessoa_data_nascimento,
+      DATE_FORMAT( pessoa.`data_nascimento` ,  '%d/%m/%Y' ) AS pessoa_data_nascimento,
      candidato.`id_candidato` AS candidato_id_candidato
 FROM
      `candidato` candidato INNER JOIN `candidato_aptos_prova_escrita` candidato_aptos_prova_escrita ON candidato.`id_candidato` = candidato_aptos_prova_escrita.`id_candidato`
@@ -18,7 +18,7 @@ WHERE
      candidato_aptos_prova_escrita.id_prova_escrita = $P{id_prova_escrita}]]>
 	</queryString>
 	<field name="pessoa_nome" class="java.lang.String"/>
-	<field name="pessoa_data_nascimento" class="java.sql.Date"/>
+	<field name="pessoa_data_nascimento" class="java.lang.String"/>
 	<field name="candidato_id_candidato" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -56,7 +56,7 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="7b5710ec-37e2-4dcf-9ab2-b71af9a29dff" x="13" y="2" width="36" height="20"/>
+				<reportElement uuid="7b5710ec-37e2-4dcf-9ab2-b71af9a29dff" x="13" y="0" width="36" height="20"/>
 				<textElement/>
 				<text><![CDATA[Nro]]></text>
 			</staticText>
@@ -66,12 +66,12 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b1d2b73a-eddb-4b69-a63f-3fc236851fbc" x="264" y="2" width="100" height="20"/>
+				<reportElement uuid="b1d2b73a-eddb-4b69-a63f-3fc236851fbc" x="264" y="0" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Data de nascimento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="90594ceb-91ca-4c29-9186-2dca69c32f68" x="389" y="2" width="152" height="27"/>
+				<reportElement uuid="90594ceb-91ca-4c29-9186-2dca69c32f68" x="389" y="0" width="152" height="27"/>
 				<textElement/>
 				<text><![CDATA[Assinatura]]></text>
 			</staticText>

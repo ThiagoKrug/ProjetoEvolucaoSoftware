@@ -151,7 +151,7 @@ public class ProvaEscrita implements IEntidade {
         }
         this.candidatosAptosLeitura.add(c);
     }
-    
+
     public void removerCandidatoAptoLeitura(Candidato c){
         Iterator<Candidato> iterator = this.candidatosAptosLeitura.iterator();
         while (iterator.hasNext()){

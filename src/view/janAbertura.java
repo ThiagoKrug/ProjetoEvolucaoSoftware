@@ -2,11 +2,9 @@ package view;
 
 import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CandidatoDao;
-import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.Candidato;
-import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
 import java.awt.Component;
 import java.sql.SQLException;
@@ -16,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
-import javax.swing.table.DefaultTableModel;
 import util.Datas;
 
 /**
@@ -32,38 +29,6 @@ public class janAbertura extends javax.swing.JFrame {
      */
     public janAbertura() {
         initComponents();
-        
-        
-        CronogramaDao cronogramaDao = new CronogramaDao();
-        List<Cronograma> cronogramas = null;
-        try {
-            cronogramas = cronogramaDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm.addColumn("Atividade");
-        dtm.addColumn("Data");
-        dtm.addColumn("Horário");
-        dtm.addColumn("Local");
-        for (Cronograma cronograma : cronogramas) {
-            dtm.addRow(new Object[]{
-                cronograma.getAtividade(),
-                Datas.getDate(cronograma.getData()),
-                Datas.getTime(cronograma.getHorario()),
-                cronograma.getLocal()    
-            });
-        }
-        for (int i = 0; i < 10; i++) {
-            dtm.addRow(new Object[]{
-                null,
-                null,
-                null,
-                null
-            });
-        }
-        jTableCronogramaAbertura.setModel(dtm);
     }
 
     /**
@@ -77,6 +42,7 @@ public class janAbertura extends javax.swing.JFrame {
 
         jTextFieldEdital = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jButtonVoltar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonProximo = new javax.swing.JButton();
         jTabbedPane5 = new javax.swing.JTabbedPane();
@@ -94,8 +60,6 @@ public class janAbertura extends javax.swing.JFrame {
         jTextPortariaNomeacao = new javax.swing.JTextField();
         jButtonCriarAta = new javax.swing.JButton();
         jTextFieldHoraInstalacao = new javax.swing.JTextField();
-        jButtonVoltar1 = new javax.swing.JButton();
-        jButtonGravar = new javax.swing.JButton();
         jPanelCronograma = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -110,13 +74,24 @@ public class janAbertura extends javax.swing.JFrame {
         CriarAtaAbertura = new javax.swing.JButton();
         jTextFieldHoraInstalacao1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButtonVoltar = new javax.swing.JButton();
 
         jTextFieldEdital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Abertura");
         setResizable(false);
+
+        jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+        jButtonVoltar.setBounds(90, 550, 120, 40);
+        jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
@@ -144,11 +119,6 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
-        jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTabbedPane5FocusGained(evt);
-            }
-        });
 
         horadeinicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         horadeinicio.setText("Hora de início da sessão de instalação da comissão examinadora:");
@@ -214,30 +184,6 @@ public class janAbertura extends javax.swing.JFrame {
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonVoltar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonVoltar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
-        jButtonVoltar1.setMnemonic('v');
-        jButtonVoltar1.setText("Voltar");
-        jButtonVoltar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltar1ActionPerformed(evt);
-            }
-        });
-        jButtonVoltar1.setBounds(90, 550, 120, 40);
-        jLayeredPane2.add(jButtonVoltar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonGravar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
-        jButtonGravar.setMnemonic('v');
-        jButtonGravar.setText("Gravar");
-        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGravarActionPerformed(evt);
-            }
-        });
-        jButtonGravar.setBounds(190, 430, 120, 40);
-        jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
         jPanelInstalacao.setLayout(jPanelInstalacaoLayout);
@@ -373,18 +319,6 @@ public class janAbertura extends javax.swing.JFrame {
         jLabel1.setBounds(220, 10, 100, 29);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
-        jButtonVoltar.setMnemonic('v');
-        jButtonVoltar.setText("Voltar");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
-            }
-        });
-        jButtonVoltar.setBounds(90, 550, 120, 40);
-        jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -437,67 +371,82 @@ public class janAbertura extends javax.swing.JFrame {
                 Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+
+
+
+
+
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
-    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
-        abertura.setHoraInicio(HoraInicio);
-        abertura.setLocal(jTextFieldLocalSessao.getText());
-        abertura.setPortaria(jTextPortariaNomeacao.getText());
-        abertura.setEmissor(jTextFieldEmissorPortaria.getText());
-        abertura.setIdConcurso(1);
-        AberturaDao aberturaDao = new AberturaDao();
-        try {
-            aberturaDao.inserir(abertura);
-        } catch (SQLException ex) {
-            Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonGravarActionPerformed
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
-        this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
-            jTabbedPane5.setSelectedIndex(nextTab);
-        }
-
-    }//GEN-LAST:event_jButtonProximoActionPerformed
-
-    private void jButtonVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltar1ActionPerformed
-        
-    }//GEN-LAST:event_jButtonVoltar1ActionPerformed
-
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        // TODO add your handling code here:
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
+        if (nextTab >= 0) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
-        CandidatoDao cdao = new CandidatoDao();
-        List<Candidato> candidato = null;
-        try {
-            candidato = cdao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-        DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
-        for (Candidato candi : candidato) {
-            candiModel.addElement(candi);
+    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
+        Component component = jTabbedPane5.getSelectedComponent();
+        if (component == jPanelInstalacao) {
+            //concurso.setMinisterio(jTextFieldMinisterio.getText());
+            Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+            abertura.setHoraInicio(HoraInicio);
+            abertura.setLocal(jTextFieldLocalSessao.getText());
+            abertura.setPortaria(jTextPortariaNomeacao.getText());
+            abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+            abertura.setIdConcurso(1);
+
+
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                aberturaDao.inserir(abertura);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (component == jPanelCronograma) {
+//            jcom
+//            pres.setSexo(null);
+//            Examinador presidente = new Examinador();
+//            presidente.set
+//            
+//            BancaExaminadora bancaExaminadora = new BancaExaminadora();
+//            bancaExaminadora.
+        } else if (component == jPanelCandidato) {
+            CandidatoDao cdao = new CandidatoDao();
+            List<Candidato> candidato = null;
+            try {
+                candidato = cdao.pesquisarTodos();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
+            DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+            System.out.println("Antes");
+            for (Candidato candi : candidato) {
+                System.out.println("Dentro do for");
+                candiModel.addElement(candi);
+            }
+            //jComboBoxCampus.setModel(campiModel);
+            jListCandidatoAbertura.setModel(candiModel);
+        } else {
+
+            int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+            if (nextTab < jTabbedPane5.getTabCount()) {
+                jTabbedPane5.setSelectedIndex(nextTab);
+            }
         }
-        //jComboBoxCampus.setModel(campiModel);
-        jListCandidatoAbertura.setModel(candiModel);
-    }//GEN-LAST:event_jTabbedPane5FocusGained
+    }//GEN-LAST:event_jButtonProximoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -543,10 +492,8 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAta;
     private javax.swing.JButton jButtonCronograma;
-    private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JButton jButtonVoltar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
