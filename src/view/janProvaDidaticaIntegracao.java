@@ -26,9 +26,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         initComponents();
 
         botao_AdicionarPontoDidatica.setEnabled(false);
-        //botao_AdicionarPontoDidatica.setBackground(Color.lightGray);
-
-
+        botao_RemoverPontoDidatica.setEnabled(false);
     }
 
     /**
@@ -49,7 +47,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         botao_AdicionarPontoDidatica = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPontoDidaticaCadastrado = new javax.swing.JList();
-        jButtonRemoverPontoDidatica = new javax.swing.JButton();
+        botao_RemoverPontoDidatica = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
@@ -151,15 +149,15 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jScrollPane1.setBounds(20, 130, 610, 180);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonRemoverPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
-        jButtonRemoverPontoDidatica.setText("Remover");
-        jButtonRemoverPontoDidatica.addActionListener(new java.awt.event.ActionListener() {
+        botao_RemoverPontoDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
+        botao_RemoverPontoDidatica.setText("Remover");
+        botao_RemoverPontoDidatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverPontoDidaticaActionPerformed(evt);
+                botao_RemoverPontoDidaticaActionPerformed(evt);
             }
         });
-        jButtonRemoverPontoDidatica.setBounds(510, 320, 120, 33);
-        jLayeredPane2.add(jButtonRemoverPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_RemoverPontoDidatica.setBounds(510, 320, 120, 33);
+        jLayeredPane2.add(botao_RemoverPontoDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel20.setText("Lista de pontos Cadastrados:");
         jLabel20.setBounds(20, 100, 260, 30);
@@ -594,8 +592,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Critério!", null, JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_jButtonRemoverCriteriosDidaticaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -606,12 +602,19 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButtonRemoverPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPontoDidaticaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRemoverPontoDidaticaActionPerformed
+    private void botao_RemoverPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoverPontoDidaticaActionPerformed
+
+        try {
+            
+            
+            
+        } catch (Exception exceptError) {
+            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
+            exceptError.printStackTrace();
+            }
+    }//GEN-LAST:event_botao_RemoverPontoDidaticaActionPerformed
 
     private void jTextFieldPontoDidaticaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPontoDidaticaMouseClicked
-
         
         try {
                 botao_AdicionarPontoDidatica.setEnabled(true);
@@ -657,6 +660,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botao_AdicionarPontoDidatica;
+    private javax.swing.JButton botao_RemoverPontoDidatica;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddCandidatos;
@@ -669,7 +673,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemoveCandidato;
     private javax.swing.JButton jButtonRemoveTodosCandidatos;
     private javax.swing.JButton jButtonRemoverCriteriosDidatica;
-    private javax.swing.JButton jButtonRemoverPontoDidatica;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox jComboBoxCompareceuRealizacao;
     private javax.swing.JComboBox jComboBoxCompareceuSorteio;
