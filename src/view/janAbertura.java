@@ -55,12 +55,15 @@ public class janAbertura extends javax.swing.JFrame {
                 cronograma.getLocal()    
             });
         }
+        for (int i = 0; i < 10; i++) {
+            dtm.addRow(new Object[]{
+                null,
+                null,
+                null,
+                null
+            });
+        }
         jTableCronogramaAbertura.setModel(dtm);
-        
-        
-        
-        
-        
     }
 
     /**
@@ -107,7 +110,7 @@ public class janAbertura extends javax.swing.JFrame {
         CriarAtaAbertura = new javax.swing.JButton();
         jTextFieldHoraInstalacao1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButtonVoltar2 = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
 
         jTextFieldEdital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -370,17 +373,17 @@ public class janAbertura extends javax.swing.JFrame {
         jLabel1.setBounds(220, 10, 100, 29);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonVoltar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonVoltar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
-        jButtonVoltar2.setMnemonic('v');
-        jButtonVoltar2.setText("Voltar");
-        jButtonVoltar2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonVoltar.setMnemonic('v');
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltar2ActionPerformed(evt);
+                jButtonVoltarActionPerformed(evt);
             }
         });
-        jButtonVoltar2.setBounds(90, 550, 120, 40);
-        jLayeredPane1.add(jButtonVoltar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonVoltar.setBounds(90, 550, 120, 40);
+        jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -469,12 +472,15 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void jButtonVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltar1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonVoltar1ActionPerformed
 
-    private void jButtonVoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVoltar2ActionPerformed
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         CandidatoDao cdao = new CandidatoDao();
@@ -539,8 +545,8 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JButton jButtonVoltar1;
-    private javax.swing.JButton jButtonVoltar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
