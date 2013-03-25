@@ -5,6 +5,7 @@
 package view;
 
 import br.com.jdbc.Database;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,23 +29,23 @@ public class janSobre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonCriarBanco = new javax.swing.JButton();
-        jButtonPopularBase = new javax.swing.JButton();
+        botao_CriarBanco = new javax.swing.JButton();
+        botao_PopularBase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jButtonCriarBanco.setText("Criar Banco de Dados");
-        jButtonCriarBanco.addActionListener(new java.awt.event.ActionListener() {
+        botao_CriarBanco.setText("Criar Banco de Dados");
+        botao_CriarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCriarBancoActionPerformed(evt);
+                botao_CriarBancoActionPerformed(evt);
             }
         });
 
-        jButtonPopularBase.setText("Popular Base de Dados");
-        jButtonPopularBase.addActionListener(new java.awt.event.ActionListener() {
+        botao_PopularBase.setText("Popular Base de Dados");
+        botao_PopularBase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPopularBaseActionPerformed(evt);
+                botao_PopularBaseActionPerformed(evt);
             }
         });
 
@@ -54,9 +55,9 @@ public class janSobre extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButtonCriarBanco)
+                .addComponent(botao_CriarBanco)
                 .addGap(46, 46, 46)
-                .addComponent(jButtonPopularBase)
+                .addComponent(botao_PopularBase)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -64,8 +65,8 @@ public class janSobre extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(201, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCriarBanco)
-                    .addComponent(jButtonPopularBase))
+                    .addComponent(botao_CriarBanco)
+                    .addComponent(botao_PopularBase))
                 .addGap(76, 76, 76))
         );
 
@@ -73,17 +74,37 @@ public class janSobre extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCriarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarBancoActionPerformed
-        Database database = new Database();
-        database.deletaBanco();
-        database.criarBanco();
-        database.criarTabelas();
-    }//GEN-LAST:event_jButtonCriarBancoActionPerformed
+    private void botao_CriarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_CriarBancoActionPerformed
+        try {
+            Database database = new Database();
 
-    private void jButtonPopularBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPopularBaseActionPerformed
-        Database database = new Database();
-        database.populate();
-    }//GEN-LAST:event_jButtonPopularBaseActionPerformed
+            database.deletaBanco();
+            database.criarBanco();
+            database.criarTabelas();
+            
+            JOptionPane.showMessageDialog(this, "Banco Criado com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+       
+        } catch (Exception exceptError) {
+            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
+            JOptionPane.showMessageDialog(this, "ERRO: Não foi Possível Criar o Banco de Dados! \n Verifique suas dependências [MySQL, etc].", null, JOptionPane.ERROR_MESSAGE);
+            exceptError.printStackTrace();
+        }
+    }//GEN-LAST:event_botao_CriarBancoActionPerformed
+
+    private void botao_PopularBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_PopularBaseActionPerformed
+        try {
+            
+            Database database = new Database();
+            database.populate();
+            
+            JOptionPane.showMessageDialog(this, "Banco Populado com sucesso! \n [ou não kkkkk]", null, JOptionPane.INFORMATION_MESSAGE);
+       
+        } catch (Exception exceptError) {
+            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
+            JOptionPane.showMessageDialog(this, "ERRO: Não foi Possível Popular o Banco de Dados! \n Verifique se o DB já Existe.", null, JOptionPane.ERROR_MESSAGE);
+            exceptError.printStackTrace();
+        }
+    }//GEN-LAST:event_botao_PopularBaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +141,7 @@ public class janSobre extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCriarBanco;
-    private javax.swing.JButton jButtonPopularBase;
+    private javax.swing.JButton botao_CriarBanco;
+    private javax.swing.JButton botao_PopularBase;
     // End of variables declaration//GEN-END:variables
 }
