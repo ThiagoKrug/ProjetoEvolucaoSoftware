@@ -131,9 +131,9 @@ INSERT INTO `examinador` (`id_examinador`, `id_titulacao`, `id_pessoa`) VALUES (
 -- ---------------------------
 -- INSERTS TABELA CANDIDATO
 -- --------------------------
-INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`, `id_prova_didatica`, `id_prova_escrita`) VALUES (NULL, '1', '1', '1', '1', NULL, NULL);
-INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`, `id_prova_didatica`, `id_prova_escrita`) VALUES (NULL, '2', '1', '1', '1', NULL, NULL);
-INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`, `id_prova_didatica`, `id_prova_escrita`) VALUES (NULL, '3', '1', '1', '1', NULL, NULL);
+INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`,  `id_prova_escrita`) VALUES (NULL, '1', '1', '1', '1',  NULL);
+INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`, `id_prova_escrita`) VALUES (NULL, '2', '1', '1', '1',  NULL);
+INSERT INTO `candidato` (`id_candidato`, `id_pessoa`, `id_concurso`, `apto_prova_escrita`, `apto_prova_didatica`,  `id_prova_escrita`) VALUES (NULL, '3', '1', '1', '1',  NULL);
 
 -- -----------------------------
 -- INSERTS TABELA PROVA_TITULO
@@ -178,15 +178,15 @@ INSERT INTO `criterio_avaliacao` (`id_criterio_avaliacao`, `criterio`, `peso`, `
 -- --------------------------------------
 -- INSERTS TABELA AVALIACAO_PROVA_MEMORIAL
 -- --------------------------------------
-INSERT INTO `avaliacao_prova_memorial` (`id_avaliacao_prova_memorial`, `candidato_id_candidato`, `id_prova_memorial`) VALUES (NULL, '1', '1');
+-- INSERT INTO `avaliacao_prova_memorial` (`id_avaliacao_prova_memorial`, `candidato_id_candidato`, `id_prova_memorial`) VALUES (NULL, '1', '1');
 
 
 -- ---------------------------------------------
 -- INSERTS TABELA AVALIACAO_EXAMINADOR_CRITERIO
 -- ---------------------------------------------
-INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
-INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
-INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
+-- INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
+-- INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
+-- INSERT INTO `avaliacao_examinador_criterio` (`id_avaliacao_examinador_criterio`, `ponto`, `id_criterio_avaliacao_prova_memorial`, `id_avaliacao_prova_memorial`, `id_examinador`) VALUES (NULL, '2', '1', '1', '1');
 
 
 

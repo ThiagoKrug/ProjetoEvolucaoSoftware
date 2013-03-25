@@ -33,7 +33,7 @@ public class CandidatoDao implements IDao {
             {"id_pessoa", "Integer"},
             {"id_concurso", "Integer"},
             {"id_prova_escrita", "Integer"},
-            {"id_prova_didatica", "Integer"},
+            //{"id_prova_didatica", "Integer"},
             {"apto_prova_escrita", "Boolean"},
             {"apto_prova_didatica", "Boolean"}
         };
@@ -201,8 +201,8 @@ public class CandidatoDao implements IDao {
             
             String sql  = " INSERT INTO `candidato` (";
                    sql += "   id_pessoa,id_concurso,apto_prova_escrita,apto_prova_didatica,";
-                   sql += "   id_prova_didatica,id_prova_escrita";
-                   sql += " ) VALUES (?,?,?,?,?,?) ";
+                   sql += "   id_prova_escrita";
+                   sql += " ) VALUES (?,?,?,?,?) ";
             Connection connection = ConnectionFactory.getConnection();       
             
             try {
@@ -268,7 +268,6 @@ public class CandidatoDao implements IDao {
                     sql += "     id_concurso = ?, ";
                     sql += "     apto_prova_escrita = ?, ";
                     sql += "     apto_prova_didatica = ?, ";
-                    sql += "     id_prova_didatica = ?, ";
                     sql += "     id_prova_escrita = ? ";
                     sql += " WHERE id_candidato = ? ";
                     
@@ -365,7 +364,7 @@ public class CandidatoDao implements IDao {
             candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
             candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
             candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
-            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+            //candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
             candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
             
             PessoaDao pessoaDao = new PessoaDao();
@@ -420,7 +419,7 @@ public class CandidatoDao implements IDao {
             candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
             candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
             candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
-            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+            //candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
             candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
             
             candidato.setNome( rs.getString( "nome" ) );

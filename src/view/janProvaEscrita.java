@@ -3,11 +3,13 @@ package view;
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.CriterioAvaliacaoDao;
+import br.com.model.dao.ExaminadorDao;
 import br.com.model.dao.PontoProvaEscritaDao;
 import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacao;
+import br.com.model.entity.Examinador;
 import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
 import br.com.report.ReportUtils;
@@ -49,7 +51,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         initComponents();
         this.provaEscrita = new ProvaEscrita();
         this.pdao = new ProvaEscritaDao();
-        this.provaEscrita.setConcurso(new Concurso());
+        this.provaEscrita.setConcurso(new Concurso().setIdConcurso(1));
         this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
         try {
             this.pdao.inserir(this.provaEscrita);
@@ -57,6 +59,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.carregarCandidatos();
+        this.carregarExaminadores();
 
 
     }
@@ -153,6 +156,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLayeredPane9 = new javax.swing.JLayeredPane();
         jButtonGerarPlanilhaAvaliacao = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jListCandidatosPlanilha = new javax.swing.JList();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jListExaminadorPlanilha = new javax.swing.JList();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLayeredPane8 = new javax.swing.JLayeredPane();
         jLabel20 = new javax.swing.JLabel();
@@ -605,14 +614,35 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Julgamento", jPanel6);
 
-        jButtonGerarPlanilhaAvaliacao.setText("Gerar Planilhas para Avaliação");
+        jButtonGerarPlanilhaAvaliacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/rel.png"))); // NOI18N
+        jButtonGerarPlanilhaAvaliacao.setText("Gerar Planilha para Avaliação");
         jButtonGerarPlanilhaAvaliacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerarPlanilhaAvaliacaoActionPerformed(evt);
             }
         });
-        jButtonGerarPlanilhaAvaliacao.setBounds(510, 300, 200, 23);
+        jButtonGerarPlanilhaAvaliacao.setBounds(450, 300, 280, 40);
         jLayeredPane9.add(jButtonGerarPlanilhaAvaliacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListCandidatosPlanilha.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane7.setViewportView(jListCandidatosPlanilha);
+
+        jScrollPane7.setBounds(10, 40, 340, 230);
+        jLayeredPane9.add(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListExaminadorPlanilha.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane8.setViewportView(jListExaminadorPlanilha);
+
+        jScrollPane8.setBounds(390, 40, 320, 230);
+        jLayeredPane9.add(jScrollPane8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel23.setText("Candidato");
+        jLabel23.setBounds(10, 14, 100, 20);
+        jLayeredPane9.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel24.setText("Examinador");
+        jLabel24.setBounds(390, 10, 90, 30);
+        jLayeredPane9.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -631,7 +661,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane5.addTab("Planilhas", jPanel8);
+        jTabbedPane5.addTab("Planilhas de Avaliação", jPanel8);
 
         jLabel20.setText("Local de Divulgação do Resultado:");
         jLabel20.setBounds(81, 120, 200, 14);
@@ -1179,6 +1209,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void jButtonGerarPlanilhaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
         // TODO add your handling code here:
         
+        if(this.jListCandidatosPlanilha.getSelectedValue() == null ){
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(this.jListExaminadorPlanilha.getSelectedValue() == null ){
+            JOptionPane.showMessageDialog(this, "Selecione um examinador!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Candidato c = (Candidato) this.jListCandidatosPlanilha.getSelectedValue();
+        Examinador e = (Examinador) this.jListExaminadorPlanilha.getSelectedValue();
         this.jButtonGerarPlanilhaAvaliacao.setEnabled(false);
         try {
             InputStream inputStream = getClass().getResourceAsStream("../br/com/report/reportPlanilhasAvaliacaoProvaEscrita.jasper");
@@ -1187,6 +1228,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            parametros.put("candidato", c.getNome());
+            parametros.put("examinador", e.getPessoa().getNome());
             // abre o relatório
             ReportUtils.openReport("Planilhas para Avaliação", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1274,6 +1317,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1293,8 +1338,10 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JList jListCandidatosAptos;
     private javax.swing.JList jListCandidatosAptos2;
     private javax.swing.JList jListCandidatosConcurso;
+    private javax.swing.JList jListCandidatosPlanilha;
     private javax.swing.JList jListCandidatosPresentesLeitura;
     private javax.swing.JList jListCriterios;
+    private javax.swing.JList jListExaminadorPlanilha;
     private javax.swing.JList jListListaPontos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1310,6 +1357,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextFieldCriterioPeso;
@@ -1330,6 +1379,16 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
             this.jListCandidatosConcurso.removeAll();
             this.jListCandidatosConcurso.setListData(listCandidatos.toArray());
+            this.jListCandidatosPlanilha.setListData(listCandidatos.toArray());
+        } catch (Exception ex) {
+            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void carregarExaminadores() {
+        ExaminadorDao c = new ExaminadorDao();
+        try {
+            this.jListCandidatosPlanilha.setListData(c.pesquisarTodosOrdenadoPor("nome asc").toArray());
         } catch (Exception ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
