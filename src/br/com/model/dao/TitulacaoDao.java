@@ -234,7 +234,7 @@ public class TitulacaoDao implements IDao {
     }
 
     @Override
-    public IEntidade pesquisarPorId(int id) throws SQLException {
+    public Titulacao pesquisarPorId(int id) throws SQLException {
         TitulacaoDao.Fields fields = new TitulacaoDao.Fields();
         String sql = fields.getGetIdSql();
 

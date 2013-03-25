@@ -30,12 +30,12 @@ public class BancaExaminadoraDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
 
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-            this.setInt(stmt, 1, bancaExaminadora.getExaminadores().get(0).getIdExaminador());
-            this.setInt(stmt, 2, bancaExaminadora.getExaminadores().get(1).getIdExaminador());
-            this.setInt(stmt, 3, bancaExaminadora.getExaminadores().get(2).getIdExaminador());
+
+            this.setInt(stmt, 1, bancaExaminadora.getPresidente().getIdExaminador());
+            this.setInt(stmt, 2, bancaExaminadora.getExaminador2().getIdExaminador());
+            this.setInt(stmt, 3, bancaExaminadora.getExaminador3().getIdExaminador());
             this.setInt(stmt, 4, bancaExaminadora.getIdConcurso());
-            
+
             System.out.println(stmt.toString());
             stmt.executeUpdate();
 
@@ -80,5 +80,35 @@ public class BancaExaminadoraDao implements IDao {
         } else {
             stmt.setString(index, null);
         }
+    }
+
+    public BancaExaminadora pesquisarPorIdConcurso(int idConcurso) throws SQLException {
+        String sql = "SELECT * FROM banca_examinadora where id_concurso = ?";
+
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, idConcurso);
+        System.out.println(stmt.toString());
+        ResultSet rs = stmt.executeQuery();
+
+        BancaExaminadora bancaExaminadora = null;
+        if (rs.next()) {
+            bancaExaminadora = new BancaExaminadora();
+            bancaExaminadora.setIdBanca(rs.getInt("id_banca_examinadora"));
+            bancaExaminadora.setIdConcurso(rs.getInt("id_concurso"));
+
+            Examinador examinador1 = new Examinador();
+            examinador1.setIdExaminador(rs.getInt("examinador_1"));
+            bancaExaminadora.setPresidente(examinador1);
+
+            Examinador examinador2 = new Examinador();
+            examinador2.setIdExaminador(rs.getInt("examinador_2"));
+            bancaExaminadora.setExaminador2(examinador2);
+
+            Examinador examinador3 = new Examinador();
+            examinador3.setIdExaminador(rs.getInt("examinador_3"));
+            bancaExaminadora.setExaminador3(examinador3);
+        }
+        return bancaExaminadora;
     }
 }
