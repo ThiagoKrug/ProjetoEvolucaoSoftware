@@ -630,6 +630,30 @@ CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `candidato_aptos_leitura_prova_escrita`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `candidato_aptos_leitura_prova_escrita` ;
+
+CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
+  `id_candidato` INT NOT NULL ,
+  `id_prova_escrita` INT NOT NULL ,
+  PRIMARY KEY (`id_candidato`, `id_prova_escrita`) ,
+  INDEX `fk_candidato_has_prova_escrita_prova_escrita2_idx` (`id_prova_escrita` ASC) ,
+  INDEX `fk_candidato_has_prova_escrita_candidato2_idx` (`id_candidato` ASC) ,
+  CONSTRAINT `fk_candidato_has_prova_escrita_candidato2`
+    FOREIGN KEY (`id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_candidato_has_prova_escrita_prova_escrita2`
+    FOREIGN KEY (`id_prova_escrita` )
+    REFERENCES `prova_escrita` (`id_prova_escrita` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

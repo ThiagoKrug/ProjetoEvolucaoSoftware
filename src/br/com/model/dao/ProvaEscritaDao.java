@@ -43,16 +43,16 @@ public class ProvaEscritaDao implements IDao {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
             this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
-            this.setTime(stmt,3, provaEscrita.getHoraPontoSorteado());
-            this.setTime(stmt,4, provaEscrita.getHoraInicioProva());
-            this.setTime(stmt,5, provaEscrita.getHoraFimProva());
+            this.setTime(stmt, 3, provaEscrita.getHoraPontoSorteado());
+            this.setTime(stmt, 4, provaEscrita.getHoraInicioProva());
+            this.setTime(stmt, 5, provaEscrita.getHoraFimProva());
             stmt.setString(6, provaEscrita.getLocalRealizacao());
-            this.setTime(stmt,7, provaEscrita.getHoraInicioLeitura());
-            this.setTime(stmt,8, provaEscrita.getHoraFimLeitura());
+            this.setTime(stmt, 7, provaEscrita.getHoraInicioLeitura());
+            this.setTime(stmt, 8, provaEscrita.getHoraFimLeitura());
             stmt.setString(9, provaEscrita.getLocalLeitura());
-            this.setTime(stmt,10, provaEscrita.getHoraInicioJulgamento());
+            this.setTime(stmt, 10, provaEscrita.getHoraInicioJulgamento());
             stmt.setString(11, provaEscrita.getLocalJulgamento());
-            this.setTime(stmt,12, provaEscrita.getHoraInicioResultado());
+            this.setTime(stmt, 12, provaEscrita.getHoraInicioResultado());
             stmt.setString(13, provaEscrita.getLocalResultado());
             stmt.executeUpdate();
 
@@ -87,17 +87,17 @@ public class ProvaEscritaDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
 
             ProvaEscrita provaEscrita = (ProvaEscrita) entidade;
-            
+
             String sql2 = "delete from candidato_aptos_prova_escrita where id_prova_escrita=?";
-                PreparedStatement stmt2 = connection.prepareStatement(sql2);
-                stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
-                stmt2.executeUpdate();
-                
+            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            stmt2.setInt(1, provaEscrita.getIdProvaEscrita());
+            stmt2.executeUpdate();
+
             if (provaEscrita.getCandidatosAptosProva().isEmpty() == false) {
                 ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosProva();
                 Iterator<Candidato> iterator = listaAptos.iterator();
                 /*remove todos os candidadtos aptos*/
-                
+
                 while (iterator.hasNext()) {
                     Candidato object = iterator.next();
                     String sql3 = "insert into candidato_aptos_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
@@ -107,7 +107,28 @@ public class ProvaEscritaDao implements IDao {
                     stmt3.executeUpdate();
                 }
             }
-            
+
+
+            String sql4 = "delete from candidato_aptos_leitura_prova_escrita where id_prova_escrita=?";
+            PreparedStatement stmt4 = connection.prepareStatement(sql4);
+            stmt4.setInt(1, provaEscrita.getIdProvaEscrita());
+            stmt4.executeUpdate();
+
+            if (provaEscrita.getCandidatosAptosLeitura().isEmpty() == false) {
+                ArrayList<Candidato> listaAptos = provaEscrita.getCandidatosAptosLeitura();
+                Iterator<Candidato> iterator = listaAptos.iterator();
+                /*remove todos os candidadtos aptos*/
+
+                while (iterator.hasNext()) {
+                    Candidato object = iterator.next();
+                    String sql5 = "insert into candidato_aptos_leitura_prova_escrita (id_candidato, id_prova_escrita) values(?,?)";
+                    PreparedStatement stmt5 = connection.prepareStatement(sql5, Statement.RETURN_GENERATED_KEYS);
+                    stmt5.setInt(1, object.getIdCandidato());
+                    stmt5.setInt(2, provaEscrita.getIdProvaEscrita());
+                    stmt5.executeUpdate();
+                }
+            }
+
             String sql = " UPDATE prova_escrita SET "
                     + " id_concurso = ?,"
                     + " id_ponto_sorteado_prova_escrita = ?,"
@@ -127,16 +148,16 @@ public class ProvaEscritaDao implements IDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
             this.setInt(stmt, 1, provaEscrita.getConcurso().getIdConcurso());
             this.setInt(stmt, 2, provaEscrita.getPontoSorteado().getIdPontoProvaEscrita());
-            this.setTime(stmt,3, provaEscrita.getHoraPontoSorteado());
-            this.setTime(stmt,4,provaEscrita.getHoraInicioProva());
-            this.setTime(stmt,5, provaEscrita.getHoraFimProva());
+            this.setTime(stmt, 3, provaEscrita.getHoraPontoSorteado());
+            this.setTime(stmt, 4, provaEscrita.getHoraInicioProva());
+            this.setTime(stmt, 5, provaEscrita.getHoraFimProva());
             stmt.setString(6, provaEscrita.getLocalRealizacao());
-            this.setTime(stmt,7, provaEscrita.getHoraInicioLeitura());
-            this.setTime(stmt,8, provaEscrita.getHoraFimLeitura());
+            this.setTime(stmt, 7, provaEscrita.getHoraInicioLeitura());
+            this.setTime(stmt, 8, provaEscrita.getHoraFimLeitura());
             stmt.setString(9, provaEscrita.getLocalLeitura());
-            this.setTime(stmt,10, provaEscrita.getHoraInicioJulgamento());
+            this.setTime(stmt, 10, provaEscrita.getHoraInicioJulgamento());
             stmt.setString(11, provaEscrita.getLocalJulgamento());
-            this.setTime(stmt,12,provaEscrita.getHoraInicioResultado());
+            this.setTime(stmt, 12, provaEscrita.getHoraInicioResultado());
             stmt.setString(13, provaEscrita.getLocalResultado());
             stmt.setInt(14, provaEscrita.getIdProvaEscrita());
 
@@ -267,18 +288,20 @@ public class ProvaEscritaDao implements IDao {
             stmt.setString(index, null);
         }
     }
+
     private void setDate(PreparedStatement stmt, int index, java.util.Date value) throws SQLException {
         if (value != null) {
-            stmt.setDate(index, new java.sql.Date( value.getTime()));
+            stmt.setDate(index, new java.sql.Date(value.getTime()));
         } else {
-             stmt.setDate(index, null);
+            stmt.setDate(index, null);
         }
     }
+
     private void setTime(PreparedStatement stmt, int index, java.util.Date value) throws SQLException {
         if (value != null) {
-            stmt.setTime(index, new java.sql.Time( value.getTime()));
+            stmt.setTime(index, new java.sql.Time(value.getTime()));
         } else {
-             stmt.setDate(index, null);
+            stmt.setDate(index, null);
         }
     }
 }
