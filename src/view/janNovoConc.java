@@ -44,11 +44,51 @@ public class janNovoConc extends javax.swing.JFrame {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-        ListCellRenderer lcr = new ListCellRenderer();
-
-        concurso = new Concurso();
+        concurso = janMenu.CONCURSO;
         initComponents();
 
+        this.preenheDadosDefault();
+        this.setsFields();
+    }
+
+    private void setsFields() {
+        Concurso concurso = janMenu.CONCURSO;
+        if (concurso != null) {
+            // dados gerais
+            jTextFieldMinisterio.setText(concurso.getMinisterio());
+            jTextFieldInstituicao.setText(concurso.getInstituicao());
+            for (int i = 0; i < jComboBoxCampus.getModel().getSize(); i++) {
+                Campus campus = (Campus)jComboBoxCampus.getModel().getElementAt(i);
+                if (campus.getIdCampus() == concurso.getCampus().getIdCampus()) {
+                    jComboBoxCampus.getModel().setSelectedItem(campus);
+                    break;
+                }
+            }
+            jTextFieldArea.setText(concurso.getArea());
+            jTextFieldEdital.setText(concurso.getEdital());
+            jDateChooserDataInicio.setDate(concurso.getDataInicio());
+            for (int i = 0; i < jComboBoxClasse.getModel().getSize(); i++) {
+                ClasseConcurso classeConcurso = (ClasseConcurso)jComboBoxClasse.getModel().getElementAt(i);
+                if (classeConcurso.getIdClasseConcurso()== concurso.getClasseConcurso().getIdClasseConcurso()) {
+                    jComboBoxClasse.getModel().setSelectedItem(classeConcurso);
+                    break;
+                }
+            }
+            
+            // banca examinadora
+            
+            
+            // candidatos
+            
+            
+            // provas do concurso
+            
+            
+        }
+    }
+
+    private void preenheDadosDefault() {
+        ListCellRenderer lcr = new ListCellRenderer();
         jComboBoxClasse.setRenderer(lcr.createListCellRenderer(ClasseConcurso.class, "getNome"));
         jComboBoxCampus.setRenderer(lcr.createListCellRenderer(Campus.class, "getCidadeCampus"));
 
