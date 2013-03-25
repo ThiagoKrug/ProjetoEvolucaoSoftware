@@ -49,7 +49,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
         initComponents();
         this.provaEscrita = new ProvaEscrita();
         this.pdao = new ProvaEscritaDao();
-        this.provaEscrita.setConcurso(new Concurso());
+        this.provaEscrita.setConcurso(new Concurso().setIdConcurso(1));
         this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
         try {
             this.pdao.inserir(this.provaEscrita);

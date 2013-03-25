@@ -7,9 +7,11 @@
 		<![CDATA[SELECT
      pessoa.`nome` AS pessoa_nome
 FROM
-     `candidato` candidato INNER JOIN `candidato_aptos_leitura_prova_escrita` candidato_aptos_leitura_prova_escrita ON candidato.`id_candidato` = candidato_aptos_leitura_prova_escrita.`id_candidato`
-     INNER JOIN `prova_escrita` prova_escrita ON candidato_aptos_leitura_prova_escrita.`id_prova_escrita` = prova_escrita.`id_prova_escrita`
-     INNER JOIN `pessoa` pessoa ON candidato.`id_pessoa` = pessoa.`id_pessoa`]]>
+     `concurso` concurso INNER JOIN `banca_examinadora` banca_examinadora ON concurso.`id_concurso` = banca_examinadora.`id_concurso`
+     INNER JOIN `examinador` examinador ON banca_examinadora.`examinador_1` = examinador.`id_examinador`
+     AND examinador.`id_examinador` = banca_examinadora.`examinador_3`
+     AND examinador.`id_examinador` = banca_examinadora.`examinador_2`
+     INNER JOIN `pessoa` pessoa ON examinador.`id_pessoa` = pessoa.`id_pessoa`]]>
 	</queryString>
 	<field name="pessoa_nome" class="java.lang.String"/>
 	<background>
