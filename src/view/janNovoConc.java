@@ -855,6 +855,10 @@ public class janNovoConc extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        jTextFieldCandidatoNome.setText("");
+        jComboBoxCandidatoSexo.setSelectedIndex(0);
+        jDateChooserCandidatoDataNascimento.setDate(null);
+        
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void salvaDadosGerais() {
