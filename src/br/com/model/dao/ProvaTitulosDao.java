@@ -130,7 +130,7 @@ public class ProvaTitulosDao implements IDao {
     public List<ProvaTitulos> pesquisarTodos() throws SQLException {
         
         String sql = "SELECT * FROM prova_titulo ";
-        List<ProvaTitulos> listProvaTitulos = new ArrayList<IEntidade>();
+        List<ProvaTitulos> listProvaTitulos = new ArrayList<>();
         
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
