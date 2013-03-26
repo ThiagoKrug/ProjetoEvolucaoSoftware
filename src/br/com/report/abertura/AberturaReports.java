@@ -173,4 +173,15 @@ public class AberturaReports {
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml("cronograma.html", html + html2);
     }
+    
+    public void gerarRecibo(Abertura abertura) throws SQLException {
+        String html = this.htmlOpen("reciboTemp.html");
+        Concurso concurso = abertura.getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao());
+        
+    }
 }
