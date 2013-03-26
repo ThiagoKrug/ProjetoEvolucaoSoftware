@@ -2,26 +2,20 @@ package view;
 
 import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CandidatoDao;
-import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
-import br.com.model.entity.Campus;
 import br.com.model.entity.Candidato;
-import br.com.model.entity.ClasseConcurso;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
-import java.awt.Component;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
-import javax.validation.ConstraintViolation;
 import util.Datas;
 
 /**
@@ -32,6 +26,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private Abertura abertura = new Abertura();
     private Concurso concurso;
+    ArrayList <Candidato> candidatosAptos = new ArrayList();
+    List<Candidato> candidato = null;
 
     /**
      * Creates new form janAbertura
@@ -140,12 +136,20 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jButtonRemoveAtividade = new javax.swing.JButton();
         jPanelCandidato = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jListCandidatoAbertura = new javax.swing.JList();
         marqueoscadidatos = new javax.swing.JLabel();
         horadeinicio2 = new javax.swing.JLabel();
         CriarAtaAbertura = new javax.swing.JButton();
-        jTextFieldHoraInstalacao1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCandidatosPresentesAbertura = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListCandidatos = new javax.swing.JList();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jButtonRemoveTodosCandidatos = new javax.swing.JButton();
+        jButtonAdicionaCandidato = new javax.swing.JButton();
+        jButtonAdicionaTodosCandidatos = new javax.swing.JButton();
+        jButtonRemoveCandidato = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
 
@@ -344,8 +348,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jLayeredPane3.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setText("Nome:");
-        jLabel23.setBounds(40, 60, 41, 17);
+        jLabel23.setText("Data:");
+        jLabel23.setBounds(40, 60, 34, 17);
         jLayeredPane3.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -381,13 +385,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Cronograma", jPanelCronograma);
 
-        jScrollPane3.setViewportView(jListCandidatoAbertura);
-
-        jScrollPane3.setBounds(50, 40, 430, 310);
-        jLayeredPane4.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         marqueoscadidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        marqueoscadidatos.setText("Marque os candidatos presentes na sessão de abertura do concurso:");
+        marqueoscadidatos.setText("Selecione os candidatos presentes na sessão de abertura do concurso:");
         marqueoscadidatos.setBounds(50, 10, 450, 17);
         jLayeredPane4.add(marqueoscadidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -406,8 +405,64 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         });
         CriarAtaAbertura.setBounds(80, 420, 360, 40);
         jLayeredPane4.add(CriarAtaAbertura, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldHoraInstalacao1.setBounds(50, 380, 70, 30);
-        jLayeredPane4.add(jTextFieldHoraInstalacao1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListCandidatosPresentesAbertura.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jListCandidatosPresentesAbertura);
+
+        jScrollPane1.setBounds(300, 70, 170, 270);
+        jLayeredPane4.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jListCandidatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(jListCandidatos);
+
+        jScrollPane4.setBounds(20, 70, 170, 270);
+        jLayeredPane4.add(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFormattedTextField1.setBounds(50, 380, 70, 30);
+        jLayeredPane4.add(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoveTodosCandidatos.setText("<<");
+        jButtonRemoveTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveTodosCandidatosActionPerformed(evt);
+            }
+        });
+        jButtonRemoveTodosCandidatos.setBounds(220, 230, 60, 30);
+        jLayeredPane4.add(jButtonRemoveTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionaCandidato.setText(">");
+        jButtonAdicionaCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionaCandidatoActionPerformed(evt);
+            }
+        });
+        jButtonAdicionaCandidato.setBounds(220, 110, 60, 30);
+        jLayeredPane4.add(jButtonAdicionaCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionaTodosCandidatos.setText(">>");
+        jButtonAdicionaTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionaTodosCandidatosActionPerformed(evt);
+            }
+        });
+        jButtonAdicionaTodosCandidatos.setBounds(220, 150, 60, 30);
+        jLayeredPane4.add(jButtonAdicionaTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoveCandidato.setText("<");
+        jButtonRemoveCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveCandidatoActionPerformed(evt);
+            }
+        });
+        jButtonRemoveCandidato.setBounds(220, 190, 60, 30);
+        jLayeredPane4.add(jButtonRemoveCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setText("Candidatos Presentes");
+        jLabel2.setBounds(300, 40, 160, 30);
+        jLayeredPane4.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText("Lista de Candidatos:");
+        jLabel3.setBounds(20, 40, 160, 30);
+        jLayeredPane4.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCandidatoLayout = new javax.swing.GroupLayout(jPanelCandidato);
         jPanelCandidato.setLayout(jPanelCandidatoLayout);
@@ -502,7 +557,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
@@ -557,21 +613,26 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         CandidatoDao cdao = new CandidatoDao();
-        List<Candidato> candidato = null;
+        
         try {
             candidato = cdao.pesquisarTodos();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+        jListCandidatos.setListData(candidato.toArray());
+        
+        /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
         for (Candidato candi : candidato) {
             candiModel.addElement(candi);
         }
-        //jComboBoxCampus.setModel(campiModel);
-        jListCandidatoAbertura.setModel(candiModel);
+        jListCandidatos.setModel(candiModel);*/
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
+    
+    
+    
+    
     private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
         if (jTextFieldAtividade.getText() != null && 
                 jTextFieldLocal.getText() != null && 
@@ -598,6 +659,59 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButtonRemoveAtividadeActionPerformed
+
+    private void jButtonAdicionaCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaCandidatoActionPerformed
+        int selected = jListCandidatos.getSelectedIndex();
+        
+        if (selected != -1){
+            candidatosAptos.add((Candidato)jListCandidatos.getSelectedValue());
+            jListCandidatosPresentesAbertura.removeAll();
+            jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
+            
+            candidato.remove(jListCandidatos.getSelectedValue());
+            jListCandidatos.setListData(candidato.toArray());
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um candidato");
+        }
+
+        
+    }//GEN-LAST:event_jButtonAdicionaCandidatoActionPerformed
+
+    private void jButtonAdicionaTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaTodosCandidatosActionPerformed
+        for (int i = 0; i < candidato.size(); i++){
+            candidatosAptos.add(candidato.get(i));
+        }
+        candidato.clear();
+        jListCandidatosPresentesAbertura.removeAll();
+        jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
+        jListCandidatos.setListData(candidato.toArray());
+        
+    }//GEN-LAST:event_jButtonAdicionaTodosCandidatosActionPerformed
+
+    private void jButtonRemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCandidatoActionPerformed
+        int selected = jListCandidatosPresentesAbertura.getSelectedIndex();
+        
+        if (selected != -1){
+            candidato.add((Candidato)jListCandidatosPresentesAbertura.getSelectedValue());
+            jListCandidatos.removeAll();
+            jListCandidatos.setListData(candidato.toArray());
+            
+            candidatosAptos.remove(jListCandidatosPresentesAbertura.getSelectedValue());
+            jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um candidato");
+        }
+    }//GEN-LAST:event_jButtonRemoveCandidatoActionPerformed
+
+    private void jButtonRemoveTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveTodosCandidatosActionPerformed
+        for (int i = 0; i < candidatosAptos.size(); i++){
+            candidato.add(candidatosAptos.get(i));
+        }
+        candidatosAptos.clear();
+        jListCandidatos.removeAll();
+        jListCandidatos.setListData(candidato.toArray());
+        jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
+    }//GEN-LAST:event_jButtonRemoveTodosCandidatosActionPerformed
 
     private void salvaDadosGerais() {
         if (abertura == null) {
@@ -683,37 +797,45 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLabel horadeinicio;
     private javax.swing.JLabel horadeinicio2;
     private javax.swing.JButton jButtonAdicionaAtividade;
+    private javax.swing.JButton jButtonAdicionaCandidato;
+    private javax.swing.JButton jButtonAdicionaTodosCandidatos;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAta;
     private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonRemoveAtividade;
+    private javax.swing.JButton jButtonRemoveCandidato;
+    private javax.swing.JButton jButtonRemoveTodosCandidatos;
     private javax.swing.JButton jButtonVoltar;
     private com.toedter.calendar.JDateChooser jDateChooserData;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldHora;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JList jListCandidatoAbertura;
+    private javax.swing.JList jListCandidatos;
+    private javax.swing.JList jListCandidatosPresentesAbertura;
     private javax.swing.JPanel jPanelCandidato;
     private javax.swing.JPanel jPanelCronograma;
     private javax.swing.JPanel jPanelInstalacao;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTableCronogramaAbertura;
     private javax.swing.JTextField jTextFieldAtividade;
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldEmissorPortaria;
     private javax.swing.JTextField jTextFieldHoraInstalacao;
-    private javax.swing.JTextField jTextFieldHoraInstalacao1;
     private javax.swing.JTextField jTextFieldLocal;
     private javax.swing.JTextField jTextFieldLocalSessao;
     private javax.swing.JTextField jTextPortariaNomeacao;
