@@ -18,6 +18,7 @@ import br.com.model.entity.ProvaEscrita;
 import br.com.model.entity.ProvaMemorial;
 import br.com.model.entity.ProvaTitulos;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -40,6 +41,14 @@ public class janResultados extends javax.swing.JFrame {
         this.setFields();
         this.preencheTabelaResultadoResumo();
         this.preencherDadosComboCandidato();
+        //this.preencheTabelaResultadoCandidato();
+        ArrayList<Object> nomesCandidatos = new ArrayList<>();
+        
+        
+        for (int i=0; i<jComboBoxCandidatos.getSize().height;i++){
+            nomesCandidatos.add(jComboBoxCandidatos.getItemAt(i));
+        }
+        System.out.println(nomesCandidatos.get(1).toString());
 
     }
 
@@ -418,6 +427,8 @@ public class janResultados extends javax.swing.JFrame {
         jTableResumoResultados.getColumnModel().getColumn(2).setResizable(false);
     }
 
+    
+    
     public void preencheTabelaResultadoCandidato() {
 
         CandidatoDao cdao = new CandidatoDao();
@@ -465,17 +476,30 @@ public class janResultados extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         
-
-
-        Integer media = null;
-        String posicao = null;
+        
+        
+        String  examinador = null;
+        Integer titulos = null;
+        Integer escrita = null;
+        Integer didatica = null;
+        Integer memorial = null;
+        
+        ArrayList<Object> nomesCandidatos = new ArrayList<>();
+        
+        
+        for (int i=0; i<jComboBoxCandidatos.getSize().height;i++){
+            nomesCandidatos.add(jComboBoxCandidatos.getItemAt(i));
+        }
+            
+        
+        
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Nome", "Média", "Posição"
+                    "Examinador", "Títulos", "Escrita","Didática","Memoooorial"
                 }) {
             Class[] types = new Class[]{
-                String.class, int.class, String.class
+                String.class, Integer.class, Integer.class,Integer.class,Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -486,13 +510,16 @@ public class janResultados extends javax.swing.JFrame {
                 return false;
             }
         };
-        for (Candidato candidato : candidatos) {
+        for (int i = 0; i<6; i++) {
             dtm.addRow(new Object[]{
-                        candidato.getNome(),
-                        media,
-                        posicao});
+                        examinador,
+                        titulos,
+                        escrita,
+                        didatica,
+                        memorial});
         }
-
+        jTableCandidatoResulatdos.setModel(dtm);
+        jTableCandidatoResulatdos.getColumnModel().getColumn(0).setResizable(false);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
