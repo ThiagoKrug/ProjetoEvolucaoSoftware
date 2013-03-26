@@ -251,7 +251,7 @@ public class ExaminadorDao implements IDao {
     }
 
     @Override
-    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
+    public List<Examinador> pesquisarTodos() throws SQLException {
         List<Examinador> examinadors = new ArrayList<Examinador>();
         ExaminadorDao.Fields fields = new ExaminadorDao.Fields();
         String sql = fields.getAllSql();

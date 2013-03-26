@@ -5,8 +5,18 @@
 package view;
 
 import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.ExaminadorDao;
+import br.com.model.dao.ProvaDidaticaDao;
+import br.com.model.dao.ProvaEscritaDao;
+import br.com.model.dao.ProvaMemorialDao;
+import br.com.model.dao.ProvaTitulosDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
+import br.com.model.entity.Examinador;
+import br.com.model.entity.ProvaDidatica;
+import br.com.model.entity.ProvaEscrita;
+import br.com.model.entity.ProvaMemorial;
+import br.com.model.entity.ProvaTitulos;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -28,7 +38,7 @@ public class janResultados extends javax.swing.JFrame {
         initComponents();
         this.concurso = janMenu.CONCURSO;
         this.setFields();
-        this.preencheTabela();
+        this.preencheTabelaResultadoResumo();
         this.preencherDadosComboCandidato();
 
     }
@@ -369,7 +379,7 @@ public class janResultados extends javax.swing.JFrame {
 
     }
 
-    public void preencheTabela() {
+    public void preencheTabelaResultadoResumo() {
         CandidatoDao cdao = new CandidatoDao();
         List<Candidato> candidatos = null;
         try {
@@ -396,16 +406,86 @@ public class janResultados extends javax.swing.JFrame {
                 return false;
             }
         };
-        for(Candidato candidato : candidatos){
+        for (Candidato candidato : candidatos) {
             dtm.addRow(new Object[]{
-            candidato.getNome(),
-            media,
-            posicao});
+                        candidato.getNome(),
+                        media,
+                        posicao});
         }
         jTableResumoResultados.setModel(dtm);
         jTableResumoResultados.getColumnModel().getColumn(0).setResizable(false);
         jTableResumoResultados.getColumnModel().getColumn(1).setResizable(false);
         jTableResumoResultados.getColumnModel().getColumn(2).setResizable(false);
+    }
+
+    public void preencheTabelaResultadoCandidato() {
+
+        CandidatoDao cdao = new CandidatoDao();
+        List<Candidato> candidatos = null;
+        try {
+            candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        ExaminadorDao exDao = new ExaminadorDao();
+        List<Examinador> examinadores = null;
+        try {
+            examinadores = exDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        ProvaDidaticaDao didatDao = new ProvaDidaticaDao();
+        List<ProvaDidatica> provasDidaticas = null;
+        try {
+            provasDidaticas = didatDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        ProvaEscritaDao escrDao = new ProvaEscritaDao();
+        List<ProvaEscrita> provasEscrita = null;
+        try {
+            provasEscrita = escrDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        ProvaMemorialDao memDao = new ProvaMemorialDao();
+        List<ProvaMemorial> provasMemorial = null;
+
+        provasMemorial = memDao.pesquisarTodos();
+
+
+        ProvaTitulosDao titDao = new ProvaTitulosDao();
+        List<ProvaTitulos> provasTitulos = null;
+
+
+        Integer media = null;
+        String posicao = null;
+        DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nome", "Média", "Posição"
+                }) {
+            Class[] types = new Class[]{
+                String.class, int.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        for (Candidato candidato : candidatos) {
+            dtm.addRow(new Object[]{
+                        candidato.getNome(),
+                        media,
+                        posicao});
+        }
 
 
     }
