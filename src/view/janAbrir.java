@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import br.com.model.dao.ConcursoDao;
 import br.com.model.entity.Concurso;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

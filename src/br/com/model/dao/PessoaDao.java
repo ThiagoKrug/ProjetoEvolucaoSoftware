@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
@@ -13,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,18 +68,22 @@ public class PessoaDao implements IDao {
         if (entidade instanceof Pessoa) {
             Pessoa pessoa = (Pessoa) entidade;
             String sql = "UPDATE pessoa SET"
-                    + " id_pessoa = ?,"
                     + " nome = ?,"
                     + " sexo = ?,"
-                    + " data_nascimento = ?,"
+                    + " data_nascimento = ?"
                     + " WHERE id_pessoa = ?";
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
 
-            stmt.setInt(1, pessoa.getIdPessoa());
-            stmt.setString(2, pessoa.getNome());
-            stmt.setString(3, pessoa.getSexo());
-            stmt.setDate(4, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+            stmt.setString(1, pessoa.getNome());
+            stmt.setString(2, pessoa.getSexo());
+            Date dataNascimento = pessoa.getDataNascimento();
+            if (dataNascimento != null) {
+                stmt.setDate(3, new java.sql.Date(dataNascimento.getTime()));
+            } else {
+                stmt.setString(3, null);
+            }
+            stmt.setInt(4, pessoa.getIdPessoa());
 
             if (stmt.executeUpdate() == 1) {
                 return pessoa;

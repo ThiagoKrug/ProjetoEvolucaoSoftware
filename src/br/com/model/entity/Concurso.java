@@ -1,9 +1,11 @@
 package br.com.model.entity;
 
 import br.com.model.dao.BancaExaminadoraDao;
+import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ClasseConcursoDao;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.constraints.NotNull;
@@ -31,6 +33,7 @@ public class Concurso implements IEntidade {
     private boolean temProvaMemorial;
     private String ministerio;
     private BancaExaminadora bancaExaminadora;
+    private List<Candidato> candidatos;
 
     public Concurso() {
     }
@@ -279,5 +282,25 @@ public class Concurso implements IEntidade {
             }
         }
         return bancaExaminadora;
+    }
+
+    public void setBancaExaminadora(BancaExaminadora bancaExaminadora) {
+        this.bancaExaminadora = bancaExaminadora;
+    }
+
+    public List<Candidato> getCandidatos() {
+        if (candidatos == null) {
+            CandidatoDao cdao = new CandidatoDao();
+            try {
+                candidatos = cdao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return candidatos;
+    }
+
+    public void setCandidatos(List<Candidato> candidatos) {
+        this.candidatos = candidatos;
     }
 }

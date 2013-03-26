@@ -111,7 +111,7 @@ public class ExaminadorDao implements IDao {
                 sql += this.campos[i][0] + " = ?, ";
                 i++;
             }
-            sql += this.campos[i][0] + "WHERE " + this.campos[0][0] + " = ?";
+            sql += this.campos[i][0] + " = ? WHERE " + this.campos[0][0] + " = ?";
             return sql;
         }
 
@@ -202,7 +202,7 @@ public class ExaminadorDao implements IDao {
             Examinador examinador = (Examinador) entidade;
             ExaminadorDao.Fields fields = new ExaminadorDao.Fields();
             String sql = fields.getUpdateSql();
-
+            System.out.println(sql);
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
             fields.prepareUpdate(stmt, examinador);
