@@ -19,6 +19,9 @@ public class Ponto_ProvaDidatica implements IEntidade {
         this.descricaoPonto = descricaoPonto;
     }
 
+    public Ponto_ProvaDidatica() {
+    }
+
     public int getIdPontoProvaDidatica() {
         return idPontoProvaDidatica;
     }

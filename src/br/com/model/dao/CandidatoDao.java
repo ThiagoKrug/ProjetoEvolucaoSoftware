@@ -187,143 +187,48 @@ public class CandidatoDao implements IDao {
 
     @Override
     public Candidato inserir(IEntidade entidade) throws SQLException {
-
         if (entidade instanceof Candidato) {
 
             Candidato candidato = (Candidato) entidade;
+            Fields fields = new Fields();
+            String sql = fields.getInsertSql();
+            Connection connection = ConnectionFactory.getConnection();
+//            try {
             
             PessoaDao pdao = new PessoaDao();
             pdao.inserir(candidato);
-
-            String sql = " INSERT INTO `candidato` (";
-            sql += "   id_pessoa,id_concurso,apto_prova_escrita,apto_prova_didatica,";
-            sql += "   id_prova_escrita";
-            sql += " ) VALUES (?,?,?,?,?) ";
-            Connection connection = ConnectionFactory.getConnection();
-
-            try {
-
                 PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-                if (candidato.getIdPessoa() != 0) {
-                    stmt.setInt(1, candidato.getIdPessoa());
-                } else {
-                    stmt.setString(1, null);
-                }
-
-                if (candidato.getIdConcurso() != 0) {
-                    stmt.setInt(2, candidato.getIdConcurso());
-                } else {
-                    stmt.setString(2, null);
-                }
-
-                if (candidato.getAptoProvaEscrita() != null) {
-                    stmt.setBoolean(3, candidato.isAptoProvaEscrita());
-                } else {
-                    stmt.setString(3, null);
-                }
-
-                if (candidato.getAptoProvaDidatica() != null) {
-                    stmt.setBoolean(4, candidato.isAptoProvaDidatica());
-                } else {
-                    stmt.setString(4, null);
-                }
-
-                // comentei pq no banco naum tem o campo id_prova_didatica
-//                if (candidato.getIdProvaDidatica() != null) {
-//                    if (candidato.getIdProvaDidatica() != 0) {
-//                        stmt.setInt(5, candidato.getIdProvaDidatica());
-//                    } else {
-//                        stmt.setString(5, null);
-//                    }
-//                } else {
-//                    stmt.setString(5, null);
-//                }
-
-                if (candidato.getIdProvaEscrita() != null) {
-                    if (candidato.getIdProvaEscrita() != 0) {
-                        stmt.setInt(5, candidato.getIdProvaEscrita());
-                    } else {
-                        stmt.setString(5, null);
-                    }
-                } else {
-                    stmt.setString(5, null);
-                }
-
+                fields.prepare(stmt, candidato);
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
 
                 if (rs.next()) {
                     candidato.setIdCandidato(rs.getInt(1));
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+//            }
             return candidato;
-
         }
-
         return null;
-
+        
     }
-
+    
     @Override
     public Candidato alterar(IEntidade entidade) throws SQLException {
-
+        
         if (entidade instanceof Candidato) {
 
             Candidato candidato = (Candidato) entidade;
+            Fields fields = new Fields();
+            String sql = fields.getUpdateSql();
+
             Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            fields.prepareUpdate(stmt, candidato);
 
-            String sql = " UPDATE `candidato` SET ";
-            sql += "     id_pessoa = ?, ";
-            sql += "     id_concurso = ?, ";
-            sql += "     apto_prova_escrita = ?, ";
-            sql += "     apto_prova_didatica = ?, ";
-            sql += "     id_prova_escrita = ? ";
-            sql += " WHERE id_candidato = ? ";
-
-            try {
-
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-                if (candidato.getIdPessoa() != 0) {
-                    stmt.setInt(1, candidato.getIdPessoa());
-                } else {
-                    stmt.setString(1, null);
-                }
-
-                if (candidato.getIdConcurso() != 0) {
-                    stmt.setInt(2, candidato.getIdConcurso());
-                } else {
-                    stmt.setString(2, null);
-                }
-
-                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
-                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
-
-                if (candidato.getIdProvaDidatica() != 0) {
-                    stmt.setInt(5, candidato.getIdProvaDidatica());
-                } else {
-                    stmt.setString(5, null);
-                }
-
-                if (candidato.getIdProvaEscrita() != 0) {
-                    stmt.setInt(6, candidato.getIdProvaEscrita());
-                } else {
-                    stmt.setString(6, null);
-                }
-
-                if (stmt.executeUpdate() == 1) {
-                    return candidato;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (stmt.executeUpdate() == 1) {
+                return candidato;
             }
-
+       
         }
 
         return null;
@@ -332,28 +237,18 @@ public class CandidatoDao implements IDao {
 
     @Override
     public Candidato excluir(IEntidade entidade) throws SQLException {
-
         if (entidade instanceof Candidato) {
-
             Candidato candidato = (Candidato) entidade;
+            Fields fields = new Fields();
+            String sql = fields.getDeleteSql();
+
             Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, candidato.getIdCandidato());
 
-            String sql = " DELETE FROM `candidato` WHERE id_candidato = ? ";
-
-            try {
-
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-                stmt.setInt(1, candidato.getIdCandidato());
-
-                if (stmt.executeUpdate() == 1) {
-                    return candidato;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (stmt.executeUpdate() == 1) {
+                return candidato;
             }
-
         }
 
         return null;
@@ -363,38 +258,20 @@ public class CandidatoDao implements IDao {
     @Override
     public Candidato pesquisarPorId(int id) throws SQLException {
 
+        Fields fields = new Fields();
+        String sql = fields.getGetIdSql();
         Candidato candidato = new Candidato();
-        String sql = " SELECT * FROM candidato WHERE id_candidato = ? ";
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-
-            candidato.setIdCandidato(rs.getInt("id_candidato"));
-            candidato.setIdPessoa(rs.getInt("id_pessoa"));
-            candidato.setIdConcurso(rs.getInt("id_concurso"));
-            candidato.setAptoProvaEscrita(rs.getBoolean("apto_prova_escrita"));
-            candidato.setAptoProvaDidatica(rs.getBoolean("apto_prova_didatica"));
-            //candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
-            candidato.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
-
-            PessoaDao pessoaDao = new PessoaDao();
-            Pessoa pessoa = pessoaDao.pesquisarPorId(candidato.getIdPessoa());
-
-            candidato.setNome(pessoa.getNome());
-            candidato.setSexo(pessoa.getSexo());
-            candidato.setDataNascimento(pessoa.getDataNascimento());
-
+        if (rs.next()) {
+            fields.setsFromDatabase(candidato, rs);
         }
-
-        if (candidato.getIdCandidato() != 0) {
-            return candidato;
-        } else {
-            return null;
-        }
+        return candidato;
+        
 
     }
 
@@ -427,18 +304,18 @@ public class CandidatoDao implements IDao {
         while (rs.next()) {
 
             Candidato candidato = new Candidato();
-
-            candidato.setIdCandidato(rs.getInt("id_candidato"));
-            candidato.setIdPessoa(rs.getInt("id_pessoa"));
-            candidato.setIdConcurso(rs.getInt("id_concurso"));
-            candidato.setAptoProvaEscrita(rs.getBoolean("apto_prova_escrita"));
-            candidato.setAptoProvaDidatica(rs.getBoolean("apto_prova_didatica"));
-            //candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
-            candidato.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
-
-            candidato.setNome(rs.getString("nome"));
-            candidato.setSexo(rs.getString("sexo"));
-            candidato.setDataNascimento(rs.getDate("data_nascimento"));
+            
+            candidato.setIdCandidato( rs.getInt( "id_candidato" ) );
+            candidato.setIdPessoa( rs.getInt( "id_pessoa" ) );
+            candidato.setIdConcurso( rs.getInt( "id_concurso" ) );
+            candidato.setAptoProvaEscrita( rs.getBoolean( "apto_prova_escrita" ) );
+            candidato.setAptoProvaDidatica( rs.getBoolean( "apto_prova_didatica" ) );
+//            candidato.setIdProvaDidatica( rs.getInt( "id_prova_didatica" ) );
+            candidato.setIdProvaEscrita( rs.getInt( "id_prova_escrita" ) );
+            
+            candidato.setNome( rs.getString( "nome" ) );
+            candidato.setSexo( rs.getString( "sexo" ) );
+            candidato.setDataNascimento( rs.getDate( "data_nascimento" ) );
 
             listCandidato.add(candidato);
 

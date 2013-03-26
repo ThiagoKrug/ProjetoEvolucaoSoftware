@@ -4,12 +4,16 @@
  */
 package view;
 
+import br.com.model.dao.Ponto_ProvaDidaticaDao;
+import br.com.model.dao.ProvaDidaticaDao;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
 import br.com.model.entity.Ponto_ProvaDidatica;
+import br.com.model.entity.ProvaDidatica;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
+    private ProvaDidatica obj_provaDidatica;
+    private ProvaDidaticaDao pDidatic_Dao;
     public ArrayList<CriterioAvaliacaoDidatica> listaCriterios = new ArrayList();
 
     /**
@@ -25,7 +31,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
      */
     public janProvaDidaticaIntegracao() {
         initComponents();
-
+        this.obj_provaDidatica = new ProvaDidatica();
+        this.pDidatic_Dao = new ProvaDidaticaDao();
         botao_AdicionarPontoDidatica.setEnabled(false);
         //botao_RemoverPontoDidatica.setEnabled(false);
     }
@@ -569,14 +576,24 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             String pontoProvaDidatica = this.jTextFieldPontoDidatica.getText();
 
             if (!pontoProvaDidatica.isEmpty()) {
-                /**
-                 * AGORA É PROGRAMAR AS CLASSES DAO E GO!
-                 */
+
+                Ponto_ProvaDidaticaDao ponto_dao = new Ponto_ProvaDidaticaDao();
+                Ponto_ProvaDidatica ponto_pDidatica = new Ponto_ProvaDidatica();
+                ponto_pDidatica.setDescricaoPonto(pontoProvaDidatica);
+                ponto_pDidatica.setProvaDidatica(this.obj_provaDidatica);
+                try {
+                    ponto_dao.inserir(ponto_pDidatica);
+                } catch (Exception exceptError) {
+                    JOptionPane.showMessageDialog(this, " ERROR: "+exceptError, null, JOptionPane.ERROR_MESSAGE);
+                    exceptError.printStackTrace();
+                }
+
+                this.obj_provaDidatica.adcionarPontoProvaDidatica(ponto_pDidatica);
+                this.jListPontoDidaticaCadastrado.setListData(this.obj_provaDidatica.getPontos_ProvaDidatica().toArray());
             } else {
                 JOptionPane.showMessageDialog(this, "Digite um Ponto!", null, JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception exceptError) {
-            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
             exceptError.printStackTrace();
         }
     }//GEN-LAST:event_botao_AdicionarPontoDidaticaActionPerformed

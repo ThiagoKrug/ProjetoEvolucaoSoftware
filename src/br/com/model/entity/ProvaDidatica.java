@@ -15,11 +15,11 @@ public class ProvaDidatica implements IEntidade {
     private int idProvaDidatica;
     private Concurso concurso;
     private String localRealizacaoProvaDidatica;
-    private ArrayList<CriterioAvaliacaoDidatica> candidatosAptosProvaDidatica;
+    private ArrayList<Candidato> candidatosAptosProvaDidatica;
     private ArrayList<Ponto_ProvaDidatica> pontos_ProvaDidatica;
 
     public ProvaDidatica() {
-        this.candidatosAptosProvaDidatica = new ArrayList<CriterioAvaliacaoDidatica>();
+        this.candidatosAptosProvaDidatica = new ArrayList<Candidato>();
         this.pontos_ProvaDidatica = new ArrayList<Ponto_ProvaDidatica>();
     }
 
@@ -47,18 +47,26 @@ public class ProvaDidatica implements IEntidade {
         this.localRealizacaoProvaDidatica = localRealizacaoProvaDidatica;
     }
 
-    public ArrayList<CriterioAvaliacaoDidatica> getCandidatosAptosProvaDidatica() {
+    public ArrayList<Candidato> getCandidatosAptosProvaDidatica() {
         return candidatosAptosProvaDidatica;
     }
 
-    public void setCandidatosAptosProvaDidatica(ArrayList<CriterioAvaliacaoDidatica> candidatosAptosProvaDidatica) {
+    public void setCandidatosAptosProvaDidatica(ArrayList<Candidato> candidatosAptosProvaDidatica) {
         this.candidatosAptosProvaDidatica = candidatosAptosProvaDidatica;
+    }
+
+    public ArrayList<Ponto_ProvaDidatica> getPontos_ProvaDidatica() {
+        return pontos_ProvaDidatica;
+    }
+
+    public void setPontos_ProvaDidatica(ArrayList<Ponto_ProvaDidatica> pontos_ProvaDidatica) {
+        this.pontos_ProvaDidatica = pontos_ProvaDidatica;
     }
 
     /**
      * <p>Método que adiciona um Ponto da Prova Didatica</p>
-     * 
-     * @param ponto_ProvaDidatica <E>   O ponto enviado por parâmetro
+     *
+     * @param ponto_ProvaDidatica <E> O ponto enviado por parâmetro
      */
     public void adcionarPontoProvaDidatica(Ponto_ProvaDidatica ponto_ProvaDidatica) {
 
@@ -76,8 +84,8 @@ public class ProvaDidatica implements IEntidade {
 
     /**
      * <p>Método que Remove um Ponto da Prova Didatica</p>
-     * 
-     * @param ponto_ProvaDidatica <E>   O ponto enviado por parâmetro
+     *
+     * @param ponto_ProvaDidatica <E> O ponto enviado por parâmetro
      */
     public void removerPontoProvaDidatica(Ponto_ProvaDidatica ponto_ProvaDidatica) {
 
@@ -92,8 +100,4 @@ public class ProvaDidatica implements IEntidade {
             }
         }
     }
-    
-    
-    
-    
 }
