@@ -6,6 +6,7 @@ package br.com.report.abertura;
 
 import br.com.model.entity.Abertura;
 import br.com.model.entity.Concurso;
+import br.com.model.entity.Cronograma;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,5 +147,30 @@ public class AberturaReports {
                 .replace("{{portaria}}", concurso.getPortaria())
                 .replace("{{dataInicio}}", this.sayDate(abertura.getHoraInicio()));
         this.saveHtml("ata_abertura.html", html);
+    }
+    
+    public void createCronograma(List<Cronograma> cronogramas) throws SQLException {
+        String html = this.htmlOpen("cronograma_begin.html");
+        Concurso concurso = cronogramas.get(0).getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao());
+        for (Cronograma cronograma: cronogramas) {
+            html += "<tr>";
+            html += "<td>" + cronograma.getAtividade() + "</td>";
+            html += "<td>" + cronograma.getData() + "</td>";
+            html += "<td>" + cronograma.getHorario()+ "</td>";
+            html += "<td>" + cronograma.getLocal()+ "</td>";
+            html += "</tr>";
+        }
+        
+        String html2 = this.htmlOpen("cronograma_end.html");
+        html2 = html2.replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+                .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
+        this.saveHtml("cronograma.html", html + html2);
     }
 }
