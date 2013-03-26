@@ -42,13 +42,6 @@ public class janResultados extends javax.swing.JFrame {
         this.preencheTabelaResultadoResumo();
         this.preencherDadosComboCandidato();
         //this.preencheTabelaResultadoCandidato();
-        ArrayList<Object> nomesCandidatos = new ArrayList<>();
-        
-        
-        for (int i=0; i<jComboBoxCandidatos.getSize().height;i++){
-            nomesCandidatos.add(jComboBoxCandidatos.getItemAt(i));
-        }
-        System.out.println(nomesCandidatos.get(1).toString());
 
     }
 
@@ -430,96 +423,6 @@ public class janResultados extends javax.swing.JFrame {
     
     
     public void preencheTabelaResultadoCandidato() {
-
-        CandidatoDao cdao = new CandidatoDao();
-        List<Candidato> candidatos = null;
-        try {
-            candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        ExaminadorDao exDao = new ExaminadorDao();
-        List<Examinador> examinadores = null;
-        try {
-            examinadores = exDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaDidaticaDao didatDao = new ProvaDidaticaDao();
-        List<ProvaDidatica> provasDidaticas = null;
-        try {
-            provasDidaticas = didatDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaEscritaDao escrDao = new ProvaEscritaDao();
-        List<ProvaEscrita> provasEscrita = null;
-        try {
-            provasEscrita = escrDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaMemorialDao memDao = new ProvaMemorialDao();
-        List<ProvaMemorial> provasMemorial = null;
-
-        provasMemorial = memDao.pesquisarTodos();
-
-
-        ProvaTitulosDao titDao = new ProvaTitulosDao();
-        List<ProvaTitulos> provasTitulos = null;
-        try{
-            provasTitulos = titDao.pesquisarTodos();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-        
-        
-        
-        String  examinador = null;
-        Integer titulos = null;
-        Integer escrita = null;
-        Integer didatica = null;
-        Integer memorial = null;
-        
-        ArrayList<Object> nomesCandidatos = new ArrayList<>();
-        
-        
-        for (int i=0; i<jComboBoxCandidatos.getSize().height;i++){
-            nomesCandidatos.add(jComboBoxCandidatos.getItemAt(i));
-        }
-            
-        
-        
-        DefaultTableModel dtm = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "Examinador", "Títulos", "Escrita","Didática","Memoooorial"
-                }) {
-            Class[] types = new Class[]{
-                String.class, Integer.class, Integer.class,Integer.class,Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-        for (int i = 0; i<6; i++) {
-            dtm.addRow(new Object[]{
-                        examinador,
-                        titulos,
-                        escrita,
-                        didatica,
-                        memorial});
-        }
-        jTableCandidatoResulatdos.setModel(dtm);
-        jTableCandidatoResulatdos.getColumnModel().getColumn(0).setResizable(false);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
