@@ -2,6 +2,7 @@ package view;
 
 import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CampusDao;
+import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ClasseConcursoDao;
 import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.ExaminadorDao;
@@ -9,6 +10,7 @@ import br.com.model.dao.PessoaDao;
 import br.com.model.dao.TitulacaoDao;
 import br.com.model.entity.BancaExaminadora;
 import br.com.model.entity.Campus;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.ClasseConcurso;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Examinador;
@@ -23,6 +25,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -56,6 +59,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private void setsFields() {
         Concurso concurso = janMenu.CONCURSO;
         if (concurso != null) {
+
             // dados gerais
             jTextFieldMinisterio.setText(concurso.getMinisterio());
             jTextFieldInstituicao.setText(concurso.getInstituicao());
@@ -152,6 +156,16 @@ public class janNovoConc extends javax.swing.JFrame {
             }
 
             // candidatos
+            List<Candidato> candidatos = concurso.getCandidatos();
+            if (candidatos != null) {
+                DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+                for (Candidato candidato : candidatos) {
+                    dtm.addRow(new Object[]{
+                        candidato.getIdCandidato(),
+                        candidato.getNome()
+                    });
+                }
+            }
 
 
             // provas do concurso
@@ -215,6 +229,29 @@ public class janNovoConc extends javax.swing.JFrame {
             campiModel.addElement(campus);
         }
         jComboBoxCampus.setModel(campiModel);
+
+        DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+            "ID", "Nome do Candidato"
+        }) {
+            Class[] types = new Class[]{
+                int.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+
+        jTableCandidatos.setModel(dtm);
+        jTableCandidatos.getColumnModel().getColumn(0).setWidth(20);
+        jTableCandidatos.getColumnModel().getColumn(0).setResizable(false);
+        jTableCandidatos.getColumnModel().getColumn(1).setResizable(false);
     }
 
     /**
@@ -277,7 +314,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jTextFieldCandidatoNome = new javax.swing.JTextField();
         jComboBoxCandidatoSexo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tCandidatos = new javax.swing.JTable();
+        jTableCandidatos = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
@@ -340,6 +377,11 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
+        jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane5FocusGained(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Área:");
@@ -570,12 +612,12 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jTextFieldCandidatoNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCandidatoSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxCandidatoSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino", " " }));
+        jComboBoxCandidatoSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
         jComboBoxCandidatoSexo.setBounds(260, 110, 110, 30);
         jLayeredPane4.add(jComboBoxCandidatoSexo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        tCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tCandidatos.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableCandidatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -600,8 +642,9 @@ public class janNovoConc extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tCandidatos);
-        tCandidatos.getColumnModel().getColumn(0).setResizable(false);
+        jTableCandidatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jTableCandidatos);
+        jTableCandidatos.getColumnModel().getColumn(0).setResizable(false);
 
         jScrollPane1.setBounds(390, 80, 340, 190);
         jLayeredPane4.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -624,6 +667,11 @@ public class janNovoConc extends javax.swing.JFrame {
         jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
         jButtonAdicionar.setMnemonic('a');
         jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
         jButtonAdicionar.setBounds(10, 200, 120, 33);
         jLayeredPane4.add(jButtonAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -721,8 +769,8 @@ public class janNovoConc extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(756, 545));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-756)/2, (screenSize.height-545)/2, 756, 545);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed
@@ -749,43 +797,144 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
-            concurso.setMinisterio(jTextFieldMinisterio.getText());
-            concurso.setInstituicao(jTextFieldInstituicao.getText());
-            concurso.setCampus((Campus) jComboBoxCampus.getSelectedItem());
-            concurso.setArea(jTextFieldArea.getText());
-            concurso.setEdital(jTextFieldEdital.getText());
-            concurso.setDataInicio(jDateChooserDataInicio.getDate());
-            concurso.setClasseConcurso((ClasseConcurso) jComboBoxClasse.getSelectedItem());
-
-            Set<ConstraintViolation<Concurso>> constraintViolations = validator.validate(concurso);
-            if (constraintViolations.size() > 0) {
-                for (ConstraintViolation<Concurso> constraintViolation : constraintViolations) {
-                    System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
-                    JOptionPane.showMessageDialog(this, "O campo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage(), "", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                ConcursoDao cdao = new ConcursoDao();
-                try {
-                    if (concurso.getIdConcurso() == 0) {
-                        cdao.inserir(concurso);
-                    } else {
-                        cdao.alterar(concurso);
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
+            this.salvaDadosGerais();
         } else if (component == jPanelBancaExaminadora) {
-            BancaExaminadora bExaminadora = concurso.getBancaExaminadora();
-            if (bExaminadora != null) {
-                Examinador presidente = bExaminadora.getPresidente();
-                if (presidente != null) {
-                    System.out.println("Você parou aqui");
-                }
-            }
-            PessoaDao pdao = new PessoaDao();
+            this.salvaBancaExaminadora();
+        } else if (component == jPanelCandidatos) {
+            this.salvaCandidatos();
+        } else if (component == jPanelProvasConcurso) {
+        }
 
+        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+
+    }//GEN-LAST:event_jButtonProximoActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        // TODO add your handling code here:
+        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
+        if (nextTab >= 0) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
+
+    private void jTextFieldExaminador2NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldExaminador2NomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldExaminador2NomeActionPerformed
+
+    private void jComboBoxExaminador2TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxExaminador2TituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxExaminador2TituloActionPerformed
+
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        CandidatoDao cdao = new CandidatoDao();
+
+        Candidato candidato = new Candidato();
+        candidato.setNome(jTextFieldCandidatoNome.getText());
+        candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
+        candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
+        candidato.setIdConcurso(concurso.getIdConcurso());
+        candidato.setIdConcurso(Integer.valueOf(concurso.getIdConcurso()));
+        try {
+            cdao.inserir(candidato);
+            DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+            dtm.addRow(new Object[]{
+                candidato.getIdCandidato(),
+                candidato.getNome()
+            });
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void salvaDadosGerais() {
+        if (concurso == null) {
+            concurso = new Concurso();
+            ConcursoDao cdao = new ConcursoDao();
+            try {
+                cdao.inserir(concurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        concurso.setMinisterio(jTextFieldMinisterio.getText());
+        concurso.setInstituicao(jTextFieldInstituicao.getText());
+        concurso.setCampus((Campus) jComboBoxCampus.getSelectedItem());
+        concurso.setArea(jTextFieldArea.getText());
+        concurso.setEdital(jTextFieldEdital.getText());
+        concurso.setDataInicio(jDateChooserDataInicio.getDate());
+        concurso.setClasseConcurso((ClasseConcurso) jComboBoxClasse.getSelectedItem());
+
+        Set<ConstraintViolation<Concurso>> constraintViolations = validator.validate(concurso);
+        if (constraintViolations.size() > 0) {
+            for (ConstraintViolation<Concurso> constraintViolation : constraintViolations) {
+                System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
+                JOptionPane.showMessageDialog(this, "O campo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage(), "", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            ConcursoDao cdao = new ConcursoDao();
+            try {
+                if (concurso.getIdConcurso() == 0) {
+                    cdao.inserir(concurso);
+                } else {
+                    cdao.alterar(concurso);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void salvaBancaExaminadora() {
+        PessoaDao pdao = new PessoaDao();
+        ExaminadorDao edao = new ExaminadorDao();
+        BancaExaminadoraDao bedao = new BancaExaminadoraDao();
+
+        BancaExaminadora bExaminadora = concurso.getBancaExaminadora();
+        if (bExaminadora != null) {
+            Examinador presidente = bExaminadora.getPresidente();
+            presidente.getPessoa().setNome(jTextFieldPresidente.getText());
+            presidente.getPessoa().setSexo(jComboBoxPresidenteSexo.getSelectedItem().toString().substring(0, 1));
+            Titulacao titulacaoPresidente = (Titulacao) jComboBoxPresidenteTitulo.getSelectedItem();
+            presidente.setTitulacao(titulacaoPresidente);
+            presidente.setIdTitulacao(titulacaoPresidente.getIdTitulacao());
+
+            Examinador examinador2 = bExaminadora.getExaminador2();
+            examinador2.getPessoa().setNome(jTextFieldExaminador1Nome.getText());
+            examinador2.getPessoa().setSexo(jComboBoxExaminador1Sexo.getSelectedItem().toString().substring(0, 1));
+            Titulacao titulacaoExaminador1 = (Titulacao) jComboBoxExaminador1Titulo.getSelectedItem();
+            examinador2.setTitulacao(titulacaoExaminador1);
+            examinador2.setIdTitulacao(titulacaoExaminador1.getIdTitulacao());
+
+            Examinador examinador3 = bExaminadora.getExaminador3();
+            examinador3.getPessoa().setNome(jTextFieldExaminador2Nome.getText());
+            examinador3.getPessoa().setSexo(jComboBoxExaminador2Sexo.getSelectedItem().toString().substring(0, 1));
+            Titulacao titulacaoExaminador2 = (Titulacao) jComboBoxExaminador2Titulo.getSelectedItem();
+            examinador3.setTitulacao(titulacaoExaminador2);
+            examinador3.setIdTitulacao(titulacaoExaminador2.getIdTitulacao());
+
+            try {
+                pdao.alterar(presidente.getPessoa());
+                pdao.alterar(examinador2.getPessoa());
+                pdao.alterar(examinador3.getPessoa());
+
+                edao.alterar(presidente);
+                edao.alterar(examinador2);
+                edao.alterar(examinador3);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
             Pessoa pres = new Pessoa();
             pres.setNome(jTextFieldPresidente.getText());
             pres.setSexo(jComboBoxPresidenteSexo.getSelectedItem().toString().substring(0, 1));
@@ -805,8 +954,6 @@ public class janNovoConc extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-
-            ExaminadorDao edao = new ExaminadorDao();
 
             Examinador presidente = new Examinador();
             presidente.setIdPessoa(pres.getIdPessoa());
@@ -843,47 +990,22 @@ public class janNovoConc extends javax.swing.JFrame {
             bancaExaminadora.setExaminador2(examinador2);
             bancaExaminadora.setExaminador3(examinador3);
 
-            BancaExaminadoraDao bedao = new BancaExaminadoraDao();
             try {
                 bedao.inserir(bancaExaminadora);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
 
-        } else if (component == jPanelCandidatos) {
-        } else if (component == jPanelProvasConcurso) {
+            concurso.setBancaExaminadora(bancaExaminadora);
         }
+    }
 
-        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
-            jTabbedPane5.setSelectedIndex(nextTab);
-        }
+    private void salvaCandidatos() {
+    }
 
-    }//GEN-LAST:event_jButtonProximoActionPerformed
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+    private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
-        int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-        if (nextTab >= 0) {
-            jTabbedPane5.setSelectedIndex(nextTab);
-        }
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
-
-    private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
-
-    private void jTextFieldExaminador2NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldExaminador2NomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldExaminador2NomeActionPerformed
-
-    private void jComboBoxExaminador2TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxExaminador2TituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxExaminador2TituloActionPerformed
+    }//GEN-LAST:event_jTabbedPane5FocusGained
 
     /**
      * @param args the command line arguments
@@ -976,6 +1098,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTable jTableCandidatos;
     private javax.swing.JTextField jTextFieldArea;
     private javax.swing.JTextField jTextFieldCandidatoNome;
     private javax.swing.JTextField jTextFieldEdital;
@@ -985,6 +1108,5 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldMinisterio;
     private javax.swing.JTextField jTextFieldPresidente;
     private javax.swing.JLabel ministerio;
-    private javax.swing.JTable tCandidatos;
     // End of variables declaration//GEN-END:variables
 }

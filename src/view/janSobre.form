@@ -26,9 +26,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="jButtonCriarBanco" min="-2" max="-2" attributes="0"/>
+              <Component id="botao_CriarBanco" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="jButtonPopularBase" min="-2" max="-2" attributes="0"/>
+              <Component id="botao_PopularBase" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -38,8 +38,8 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="201" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonCriarBanco" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonPopularBase" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botao_CriarBanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botao_PopularBase" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
           </Group>
@@ -47,20 +47,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButtonCriarBanco">
+    <Component class="javax.swing.JButton" name="botao_CriarBanco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Criar Banco de Dados"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCriarBancoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_CriarBancoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonPopularBase">
+    <Component class="javax.swing.JButton" name="botao_PopularBase">
       <Properties>
         <Property name="text" type="java.lang.String" value="Popular Base de Dados"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPopularBaseActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_PopularBaseActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -314,7 +314,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        btnVoltar.setBounds(380, 450, 120, 40);
+        btnVoltar.setBounds(380, 460, 120, 40);
         jLayeredPane1.add(btnVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -326,7 +326,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        btnCancelar.setBounds(500, 450, 120, 40);
+        btnCancelar.setBounds(500, 460, 120, 40);
         jLayeredPane1.add(btnCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -339,7 +339,7 @@ public class janProvaTitulos extends javax.swing.JFrame {
                 btnProximoActionPerformed(evt);
             }
         });
-        btnProximo.setBounds(620, 450, 120, 40);
+        btnProximo.setBounds(620, 460, 120, 40);
         jLayeredPane1.add(btnProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCandidato.setBounds(90, 10, 150, 30);
