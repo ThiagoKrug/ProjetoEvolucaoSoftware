@@ -88,15 +88,13 @@ public class ProvaDidatica implements IEntidade {
      * @param ponto_ProvaDidatica <E> O ponto enviado por parâmetro
      */
     public void removerPontoProvaDidatica(Ponto_ProvaDidatica ponto_ProvaDidatica) {
-
         Iterator<Ponto_ProvaDidatica> iteratorPontoDidatica = this.pontos_ProvaDidatica.iterator();
-
         while (iteratorPontoDidatica.hasNext()) {
-
             Ponto_ProvaDidatica obj_PontoDidatica = iteratorPontoDidatica.next();
 
             if (obj_PontoDidatica.getIdPontoProvaDidatica() == ponto_ProvaDidatica.getIdPontoProvaDidatica()) {
                 this.pontos_ProvaDidatica.remove(obj_PontoDidatica);
+                return;
             }
         }
     }

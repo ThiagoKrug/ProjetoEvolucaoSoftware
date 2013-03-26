@@ -6,10 +6,12 @@ package view;
 
 import br.com.model.dao.Ponto_ProvaDidaticaDao;
 import br.com.model.dao.ProvaDidaticaDao;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
 import br.com.model.entity.Ponto_ProvaDidatica;
 import br.com.model.entity.ProvaDidatica;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +25,7 @@ import javax.swing.JOptionPane;
 public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
     private ProvaDidatica obj_provaDidatica;
-    private ProvaDidaticaDao pDidatic_Dao;
+    private ProvaDidaticaDao pDidatica_Dao;
     public ArrayList<CriterioAvaliacaoDidatica> listaCriterios = new ArrayList();
 
     /**
@@ -31,10 +33,17 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
      */
     public janProvaDidaticaIntegracao() {
         initComponents();
-        this.obj_provaDidatica = new ProvaDidatica();
-        this.pDidatic_Dao = new ProvaDidaticaDao();
         botao_AdicionarPontoDidatica.setEnabled(false);
-        //botao_RemoverPontoDidatica.setEnabled(false);
+
+        this.obj_provaDidatica = new ProvaDidatica();
+        this.pDidatica_Dao = new ProvaDidaticaDao();
+        this.obj_provaDidatica.setConcurso(new Concurso().setIdConcurso(1));
+        try {
+
+            this.pDidatica_Dao.inserir(obj_provaDidatica);
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaDidaticaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -544,7 +553,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         } catch (NumberFormatException | NullPointerException nfe) {
             JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_jButtonAdicionarCriterioDidaticaActionPerformed
 
@@ -581,13 +589,14 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
                 Ponto_ProvaDidatica ponto_pDidatica = new Ponto_ProvaDidatica();
                 ponto_pDidatica.setDescricaoPonto(pontoProvaDidatica);
                 ponto_pDidatica.setProvaDidatica(this.obj_provaDidatica);
+
                 try {
                     ponto_dao.inserir(ponto_pDidatica);
+                    JOptionPane.showMessageDialog(this, "Ponto Inserido com Sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception exceptError) {
-                    JOptionPane.showMessageDialog(this, " ERROR: "+exceptError, null, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
                     exceptError.printStackTrace();
                 }
-
                 this.obj_provaDidatica.adcionarPontoProvaDidatica(ponto_pDidatica);
                 this.jListPontoDidaticaCadastrado.setListData(this.obj_provaDidatica.getPontos_ProvaDidatica().toArray());
             } else {
@@ -621,11 +630,20 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             int selecao = jListPontoDidaticaCadastrado.getSelectedIndex();
 
             if (selecao != -1) {
-                /**
-                 *
-                 */
-            } else {
+                Ponto_ProvaDidatica ppd = (Ponto_ProvaDidatica) this.jListPontoDidaticaCadastrado.getSelectedValue();
+                Ponto_ProvaDidaticaDao ppdd = new Ponto_ProvaDidaticaDao();
 
+                try {
+
+                    ppdd.excluir(ppd);
+                    JOptionPane.showMessageDialog(this, "Ponto Removido com Sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.obj_provaDidatica.removerPontoProvaDidatica(ppd);
+                this.jListPontoDidaticaCadastrado.setListData(this.obj_provaDidatica.getPontos_ProvaDidatica().toArray());
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception exceptError) {

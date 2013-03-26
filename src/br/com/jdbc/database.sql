@@ -81,8 +81,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `prova_didatica` (
-  `id_prova_didatica` INT NOT NULL ,
-  `id_concurso` INT NOT NULL ,
+  `id_prova_didatica` INT NOT NULL AUTO_INCREMENT ,
+  `id_concurso` INT NULL ,
   `local` VARCHAR(45) NULL ,
   PRIMARY KEY (`id_prova_didatica`) ,
   INDEX `fk_prova_didatica_concurso1_idx` (`id_concurso` ASC) ,
@@ -264,7 +264,7 @@ DROP TABLE IF EXISTS `ponto_prova_didatica` ;
 CREATE  TABLE IF NOT EXISTS `ponto_prova_didatica` (
   `id_ponto_prova_didatica` INT NOT NULL AUTO_INCREMENT ,
   `descricao` VARCHAR(255) NULL ,
-  `id_prova_didatica` INT NOT NULL ,
+  `id_prova_didatica` INT NULL ,
   PRIMARY KEY (`id_ponto_prova_didatica`) ,
   INDEX `fk_ponto_prova_didatica_prova_didatica1_idx` (`id_prova_didatica` ASC) ,
   CONSTRAINT `fk_ponto_prova_didatica_prova_didatica1`
@@ -281,12 +281,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `sorteio_ponto_prova_didatica` ;
 
 CREATE  TABLE IF NOT EXISTS `sorteio_ponto_prova_didatica` (
-  `id_sorteio_ponto_prova_didatica` INT NOT NULL ,
-  `id_candidato` INT NOT NULL ,
+  `id_sorteio_ponto_prova_didatica` INT NOT NULL AUTO_INCREMENT ,
+  `id_candidato` INT NULL ,
   `data_sorteio` DATE NULL DEFAULT NULL ,
   `hora_sorteio` TIME NULL ,
   `compareceu_sorteio` TINYINT(1) NULL ,
-  `id_ponto_prova_didatica` INT NOT NULL ,
+  `id_ponto_prova_didatica` INT NULL ,
   PRIMARY KEY (`id_sorteio_ponto_prova_didatica`) ,
   INDEX `fk_sorteio_ponto_prova_didatica_candidato1_idx` (`id_candidato` ASC) ,
   INDEX `fk_sorteio_ponto_prova_didatica_ponto_prova_didatica1_idx` (`id_ponto_prova_didatica` ASC) ,
