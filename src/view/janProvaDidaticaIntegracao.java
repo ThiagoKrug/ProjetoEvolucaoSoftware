@@ -5,6 +5,7 @@
 package view;
 
 import br.com.model.entity.CriterioAvaliacaoDidatica;
+import br.com.model.entity.Ponto_ProvaDidatica;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -563,11 +564,11 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private void botao_AdicionarPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AdicionarPontoDidaticaActionPerformed
 
         try {
-            String vaiSeFuderKrug = this.jTextFieldPontoDidatica.getText();
+            String pontoProvaDidatica = this.jTextFieldPontoDidatica.getText();
 
-            if (!vaiSeFuderKrug.isEmpty()) {
+            if (!pontoProvaDidatica.isEmpty()) {
                 /**
-                 * Só u Ouro!
+                 * AGORA É PROGRAMAR AS CLASSES DAO E GO!
                  */
             } else {
                 JOptionPane.showMessageDialog(this, "Digite um Ponto!", null, JOptionPane.ERROR_MESSAGE);
