@@ -101,6 +101,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jTextFieldEdital = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -132,6 +133,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jFormattedTextFieldHora = new javax.swing.JFormattedTextField();
         jTextFieldLocal = new javax.swing.JTextField();
         jButtonAdicionaAtividade = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jButtonRemoveAtividade = new javax.swing.JButton();
         jPanelCandidato = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -275,48 +281,24 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
         jTableCronogramaAbertura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Atividade", "Data", "Horário", "Local"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTableCronogramaAbertura.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableCronogramaAbertura);
 
-        jScrollPane2.setBounds(30, 150, 460, 250);
+        jScrollPane2.setBounds(30, 190, 460, 200);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCronograma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -329,25 +311,62 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         });
         jButtonCronograma.setBounds(70, 410, 370, 40);
         jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldAtividade.setBounds(90, 20, 320, 30);
+        jTextFieldAtividade.setBounds(40, 30, 280, 30);
         jLayeredPane3.add(jTextFieldAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooserData.setBounds(90, 60, 140, 30);
+        jDateChooserData.setBounds(40, 80, 150, 30);
         jLayeredPane3.add(jDateChooserData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextFieldHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextFieldHora.setBounds(300, 60, 110, 30);
+        jFormattedTextFieldHora.setBounds(210, 80, 100, 30);
         jLayeredPane3.add(jFormattedTextFieldHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocal.setBounds(90, 100, 320, 30);
+        jTextFieldLocal.setBounds(40, 130, 280, 30);
         jLayeredPane3.add(jTextFieldLocal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAdicionaAtividade.setText("jButton1");
+        jButtonAdicionaAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        jButtonAdicionaAtividade.setMnemonic('a');
+        jButtonAdicionaAtividade.setText("Adicionar");
         jButtonAdicionaAtividade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdicionaAtividadeActionPerformed(evt);
             }
         });
-        jButtonAdicionaAtividade.setBounds(420, 50, 73, 30);
+        jButtonAdicionaAtividade.setBounds(370, 30, 110, 30);
         jLayeredPane3.add(jButtonAdicionaAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setText("Atividade:");
+        jLabel21.setBounds(40, 10, 120, 17);
+        jLayeredPane3.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setText("Local:");
+        jLabel22.setBounds(40, 110, 41, 17);
+        jLayeredPane3.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setText("Nome:");
+        jLabel23.setBounds(40, 60, 41, 17);
+        jLayeredPane3.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setText("Hora:");
+        jLabel24.setBounds(210, 60, 34, 17);
+        jLayeredPane3.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonRemoveAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
+        jButtonRemoveAtividade.setMnemonic('r');
+        jButtonRemoveAtividade.setText("Remover");
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTableCronogramaAbertura, org.jdesktop.beansbinding.ELProperty.create("${selectedElement !=null}"), jButtonRemoveAtividade, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        jButtonRemoveAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveAtividadeActionPerformed(evt);
+            }
+        });
+        jButtonRemoveAtividade.setBounds(370, 130, 110, 30);
+        jLayeredPane3.add(jButtonRemoveAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCronogramaLayout = new javax.swing.GroupLayout(jPanelCronograma);
         jPanelCronograma.setLayout(jPanelCronogramaLayout);
@@ -434,6 +453,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-536)/2, (screenSize.height-642)/2, 536, 642);
     }// </editor-fold>//GEN-END:initComponents
@@ -448,14 +469,13 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private void jButtonCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronogramaActionPerformed
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < jTableCronogramaAbertura.getRowCount(); i++) {
 
 
             String atividade = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 0);
             Cronograma cronograma = new Cronograma();
             cronograma.setAtividade(atividade);
 
-            try {
                 Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
                 //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
                 cronograma.setData(data);
@@ -464,10 +484,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
                 //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
                 cronograma.setHorario(hora);
-
-            } catch (NullPointerException erro) {
-            }
-
 
 
 
@@ -557,14 +573,31 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
     private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
-        if (jTextFieldAtividade != null && 
-                jTextFieldLocal != null && 
-                jDateChooserData != null 
-                && jFormattedTextFieldHora != null){
+        if (jTextFieldAtividade.getText() != null && 
+                jTextFieldLocal.getText() != null && 
+                jDateChooserData.getDate() != null 
+                && jFormattedTextFieldHora.getText() != null){
             
+          //  try {
+            DefaultTableModel dtm = (DefaultTableModel) jTableCronogramaAbertura.getModel();
+            dtm.addRow(new Object[]{jTextFieldAtividade.getText(),
+                                    jDateChooserData.getDate().toString(),
+                                    jFormattedTextFieldHora.getText(),
+                                    jTextFieldLocal.getText()});
         
         }
+        
+        jTextFieldAtividade.setText(null);
+        jTextFieldLocal.setText(null);
+        jDateChooserData.setDate(null);
+        jFormattedTextFieldHora.setText(null);
     }//GEN-LAST:event_jButtonAdicionaAtividadeActionPerformed
+
+    private void jButtonRemoveAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveAtividadeActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_jButtonRemoveAtividadeActionPerformed
 
     private void salvaDadosGerais() {
         if (abertura == null) {
@@ -655,10 +688,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
+    private javax.swing.JButton jButtonRemoveAtividade;
     private javax.swing.JButton jButtonVoltar;
     private com.toedter.calendar.JDateChooser jDateChooserData;
     private javax.swing.JFormattedTextField jFormattedTextFieldHora;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
@@ -683,5 +721,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLabel textoAjudaLocalSessao;
     private javax.swing.JLabel textoajudaPortaria;
     private javax.swing.JLabel textoajudaemissor;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
