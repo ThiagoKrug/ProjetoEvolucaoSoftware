@@ -377,6 +377,8 @@ public class janResultados extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        Integer media = null;
+        String posicao = null;
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -395,8 +397,15 @@ public class janResultados extends javax.swing.JFrame {
             }
         };
         for(Candidato candidato : candidatos){
-           // dtm.
+            dtm.addRow(new Object[]{
+            candidato.getNome(),
+            media,
+            posicao});
         }
+        jTableResumoResultados.setModel(dtm);
+        jTableResumoResultados.getColumnModel().getColumn(0).setResizable(false);
+        jTableResumoResultados.getColumnModel().getColumn(1).setResizable(false);
+        jTableResumoResultados.getColumnModel().getColumn(2).setResizable(false);
 
 
     }
