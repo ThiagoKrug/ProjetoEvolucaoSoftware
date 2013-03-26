@@ -459,6 +459,12 @@ public class janResultados extends javax.swing.JFrame {
 
         ProvaTitulosDao titDao = new ProvaTitulosDao();
         List<ProvaTitulos> provasTitulos = null;
+        try{
+            provasTitulos = titDao.pesquisarTodos();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
 
 
         Integer media = null;
