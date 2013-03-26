@@ -5,6 +5,7 @@
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
 import br.com.model.entity.ProvaDidatica;
 import java.sql.Connection;
@@ -12,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,5 +91,21 @@ public class ProvaDidaticaDao implements IDao {
         } else {
             stmt.setString(index, null);
         }
+    }
+
+    public int pesquisarPorIdConcurso(int idConcurso) throws SQLException {
+
+        String sql_pesquisaIdConcurso = "SELECT * FROM prova_didatica id_concurso = ?";
+
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt_pesqIdConcurso = connection.prepareStatement(sql_pesquisaIdConcurso);
+        stmt_pesqIdConcurso.setInt(1, idConcurso);
+        ResultSet rs_IdConcurso = stmt_pesqIdConcurso.executeQuery();
+
+        if (rs_IdConcurso.next()) {
+
+            return rs_IdConcurso.getInt("id_concurso");
+        }
+        return -1;
     }
 }

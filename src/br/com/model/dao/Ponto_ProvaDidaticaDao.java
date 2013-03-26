@@ -24,10 +24,10 @@ public class Ponto_ProvaDidaticaDao implements IDao {
     }
 
     /**
-     * 
+     *
      * @param entidade
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     @Override
     public Ponto_ProvaDidatica inserir(IEntidade entidade) throws SQLException {
@@ -38,12 +38,7 @@ public class Ponto_ProvaDidaticaDao implements IDao {
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt_inserir = connection.prepareStatement(sql_InseriPontoDidatica, Statement.RETURN_GENERATED_KEYS);
 
-            if (ponto_ProvaDidatica.getProvaDidatica().getIdProvaDidatica() != 0) {
-                stmt_inserir.setInt(1, ponto_ProvaDidatica.getProvaDidatica().getIdProvaDidatica());
-
-            } else {
-                stmt_inserir.setString(1, null);
-            }
+            stmt_inserir.setInt(1, ponto_ProvaDidatica.getProvaDidatica().getIdProvaDidatica());
 
             stmt_inserir.setString(2, ponto_ProvaDidatica.getDescricaoPonto());
             stmt_inserir.executeUpdate();
@@ -55,7 +50,6 @@ public class Ponto_ProvaDidaticaDao implements IDao {
             return ponto_ProvaDidatica;
         }
         return null;
-
     }
 
     @Override
@@ -64,8 +58,21 @@ public class Ponto_ProvaDidaticaDao implements IDao {
     }
 
     @Override
-    public IEntidade excluir(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Ponto_ProvaDidatica excluir(IEntidade entidade) throws SQLException {
+        if (entidade instanceof Ponto_ProvaDidatica) {
+
+            Ponto_ProvaDidatica excluirPonto = (Ponto_ProvaDidatica) entidade;
+            String sql_Excluir = "DELETE FROM ponto_prova_didatica WHERE id_ponto_prova_didatica = ?";
+
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmtExcluir = connection.prepareStatement(sql_Excluir);
+            stmtExcluir.setInt(1, excluirPonto.getIdPontoProvaDidatica());
+
+            if (stmtExcluir.executeUpdate() == 1) {
+                return excluirPonto;
+            }
+        }
+        return null;
     }
 
     @Override
