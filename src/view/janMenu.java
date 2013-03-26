@@ -330,7 +330,7 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jButtonAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAberturaActionPerformed
         
-        janAbertura Abertura = new janAbertura();
+        janAberturaIntegracao Abertura = new janAberturaIntegracao();
         Abertura.setVisible(true);
         
     }//GEN-LAST:event_jButtonAberturaActionPerformed
