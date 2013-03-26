@@ -18,6 +18,7 @@ import br.com.model.entity.ProvaEscrita;
 import br.com.model.entity.ProvaMemorial;
 import br.com.model.entity.ProvaTitulos;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -40,6 +41,7 @@ public class janResultados extends javax.swing.JFrame {
         this.setFields();
         this.preencheTabelaResultadoResumo();
         this.preencherDadosComboCandidato();
+        //this.preencheTabelaResultadoCandidato();
 
     }
 
@@ -418,81 +420,9 @@ public class janResultados extends javax.swing.JFrame {
         jTableResumoResultados.getColumnModel().getColumn(2).setResizable(false);
     }
 
+    
+    
     public void preencheTabelaResultadoCandidato() {
-
-        CandidatoDao cdao = new CandidatoDao();
-        List<Candidato> candidatos = null;
-        try {
-            candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        ExaminadorDao exDao = new ExaminadorDao();
-        List<Examinador> examinadores = null;
-        try {
-            examinadores = exDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaDidaticaDao didatDao = new ProvaDidaticaDao();
-        List<ProvaDidatica> provasDidaticas = null;
-        try {
-            provasDidaticas = didatDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaEscritaDao escrDao = new ProvaEscritaDao();
-        List<ProvaEscrita> provasEscrita = null;
-        try {
-            provasEscrita = escrDao.pesquisarTodos();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        ProvaMemorialDao memDao = new ProvaMemorialDao();
-        List<ProvaMemorial> provasMemorial = null;
-
-        provasMemorial = memDao.pesquisarTodos();
-
-
-        ProvaTitulosDao titDao = new ProvaTitulosDao();
-        List<ProvaTitulos> provasTitulos = null;
-        try{
-            provasTitulos = titDao.pesquisarTodos();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-        
-
-
-        Integer media = null;
-        String posicao = null;
-        DefaultTableModel dtm = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "Nome", "Média", "Posição"
-                }) {
-            Class[] types = new Class[]{
-                String.class, int.class, String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-        for (Candidato candidato : candidatos) {
-            dtm.addRow(new Object[]{
-                        candidato.getNome(),
-                        media,
-                        posicao});
-        }
-
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
