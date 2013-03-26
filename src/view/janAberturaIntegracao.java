@@ -549,6 +549,10 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
             CronogramaDao cronogramaDao = new CronogramaDao();
             try {
+                System.out.println(cronograma.getAtividade());
+                System.out.println(cronograma.getConcurso().getIdConcurso());
+                System.out.println(cronograma.getData());
+                System.out.println(cronograma.getHorario());
                 cronogramaDao.inserir(cronograma);
             } catch (SQLException ex) {
                 Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
@@ -642,7 +646,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
           //  try {
             DefaultTableModel dtm = (DefaultTableModel) jTableCronogramaAbertura.getModel();
             dtm.addRow(new Object[]{jTextFieldAtividade.getText(),
-                                    jDateChooserData.getDate().toString(),
+                                    Datas.getDate(jDateChooserData.getDate()),
                                     jFormattedTextFieldHora.getText(),
                                     jTextFieldLocal.getText()});
         

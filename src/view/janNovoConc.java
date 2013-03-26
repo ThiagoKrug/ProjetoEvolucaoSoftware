@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.validation.ConstraintViolation;
@@ -39,14 +40,13 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private Concurso concurso;
     private Validator validator;
-    Component component; 
-            
-            
+    Component component;
+    private JLabel status;
 
     /**
      * Creates new form janNovoConc
      */
-    public janNovoConc() {
+    public janNovoConc(JLabel status) {
         super("Configurações do Concurso");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -57,7 +57,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         this.preenheDadosDefault();
         this.setsFields();
-        
+
         component = jTabbedPane5.getSelectedComponent();
     }
 
@@ -166,9 +166,9 @@ public class janNovoConc extends javax.swing.JFrame {
                 DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
                 for (Candidato candidato : candidatos) {
                     dtm.addRow(new Object[]{
-                        candidato.getIdCandidato(),
-                        candidato.getNome()
-                    });
+                                candidato.getIdCandidato(),
+                                candidato.getNome()
+                            });
                 }
             }
 
@@ -238,8 +238,8 @@ public class janNovoConc extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-            "ID", "Nome do Candidato"
-        }) {
+                    "ID", "Nome do Candidato"
+                }) {
             Class[] types = new Class[]{
                 int.class, String.class
             };
@@ -810,23 +810,26 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
-            
+
             this.salvaDadosGerais();
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
         } else if (component == jPanelCandidatos) {
             this.salvaCandidatos();
         } else if (component == jPanelProvasConcurso) {
+            this.dispose();
+            janMenu.CONCURSO = concurso;
+
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        
+
         if (nextTab < jTabbedPane5.getTabCount()) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
-        
+        verificaBotoes(component);
+
 
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
@@ -835,16 +838,16 @@ public class janNovoConc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-       
+
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    private void verificaBotoes(Component component){
+    private void verificaBotoes(Component component) {
         if (component == jPanelDadosGerais) {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(false);
@@ -855,12 +858,12 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(true);
         } else if (component == jPanelProvasConcurso) {
-            jButtonProximo.setVisible(false);
+            jButtonProximo.setText("Concluído");
             jButtonVoltar.setVisible(true);
         }
 
-        
-    
+
+
     }
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
@@ -886,16 +889,16 @@ public class janNovoConc extends javax.swing.JFrame {
             cdao.inserir(candidato);
             DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
             dtm.addRow(new Object[]{
-                candidato.getIdCandidato(),
-                candidato.getNome()
-            });
+                        candidato.getIdCandidato(),
+                        candidato.getNome()
+                    });
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         jTextFieldCandidatoNome.setText("");
         jComboBoxCandidatoSexo.setSelectedIndex(0);
         jDateChooserCandidatoDataNascimento.setDate(null);
-        
+
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void salvaDadosGerais() {
@@ -1046,53 +1049,18 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
     private void jTabbedPane5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusLost
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusLost
 
     private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
-       component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5StateChanged
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new janNovoConc().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel classe;
     private javax.swing.JLabel edital;
