@@ -28,7 +28,7 @@ import util.Datas;
  *
  * @author Jader
  */
-public class janAbertura extends javax.swing.JFrame {
+public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private Abertura abertura = new Abertura();
     private Concurso concurso;
@@ -36,7 +36,7 @@ public class janAbertura extends javax.swing.JFrame {
     /**
      * Creates new form janAbertura
      */
-    public janAbertura() {
+    public janAberturaIntegracao() {
         concurso = janMenu.CONCURSO;
         initComponents();
         this.setsFields();
@@ -127,6 +127,11 @@ public class janAbertura extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCronogramaAbertura = new javax.swing.JTable();
         jButtonCronograma = new javax.swing.JButton();
+        jTextFieldAtividade = new javax.swing.JTextField();
+        jDateChooserData = new com.toedter.calendar.JDateChooser();
+        jFormattedTextFieldHora = new javax.swing.JFormattedTextField();
+        jTextFieldLocal = new javax.swing.JTextField();
+        jButtonAdicionaAtividade = new javax.swing.JButton();
         jPanelCandidato = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -263,7 +268,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelInstalacaoLayout.setVerticalGroup(
             jPanelInstalacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Instalação", jPanelInstalacao);
@@ -311,7 +316,7 @@ public class janAbertura extends javax.swing.JFrame {
         jTableCronogramaAbertura.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableCronogramaAbertura);
 
-        jScrollPane2.setBounds(30, 30, 460, 370);
+        jScrollPane2.setBounds(30, 150, 460, 250);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCronograma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -324,6 +329,25 @@ public class janAbertura extends javax.swing.JFrame {
         });
         jButtonCronograma.setBounds(70, 410, 370, 40);
         jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldAtividade.setBounds(90, 20, 320, 30);
+        jLayeredPane3.add(jTextFieldAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooserData.setBounds(90, 60, 140, 30);
+        jLayeredPane3.add(jDateChooserData, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jFormattedTextFieldHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldHora.setBounds(300, 60, 110, 30);
+        jLayeredPane3.add(jFormattedTextFieldHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextFieldLocal.setBounds(90, 100, 320, 30);
+        jLayeredPane3.add(jTextFieldLocal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButtonAdicionaAtividade.setText("jButton1");
+        jButtonAdicionaAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionaAtividadeActionPerformed(evt);
+            }
+        });
+        jButtonAdicionaAtividade.setBounds(420, 50, 73, 30);
+        jLayeredPane3.add(jButtonAdicionaAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCronogramaLayout = new javax.swing.GroupLayout(jPanelCronograma);
         jPanelCronograma.setLayout(jPanelCronogramaLayout);
@@ -333,7 +357,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCronogramaLayout.setVerticalGroup(
             jPanelCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Cronograma", jPanelCronograma);
@@ -374,7 +398,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCandidatoLayout.setVerticalGroup(
             jPanelCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Abertura", jPanelCandidato);
@@ -407,7 +431,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -456,7 +480,7 @@ public class janAbertura extends javax.swing.JFrame {
             try {
                 cronogramaDao.inserir(cronograma);
             } catch (SQLException ex) {
-                Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
@@ -532,6 +556,16 @@ public class janAbertura extends javax.swing.JFrame {
         jListCandidatoAbertura.setModel(candiModel);
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
+    private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
+        if (jTextFieldAtividade != null && 
+                jTextFieldLocal != null && 
+                jDateChooserData != null 
+                && jFormattedTextFieldHora != null){
+            
+        
+        }
+    }//GEN-LAST:event_jButtonAdicionaAtividadeActionPerformed
+
     private void salvaDadosGerais() {
         if (abertura == null) {
             abertura = new Abertura();
@@ -591,20 +625,20 @@ public class janAbertura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janAbertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janAbertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janAbertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janAbertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new janAbertura().setVisible(true);
+                new janAberturaIntegracao().setVisible(true);
             }
         });
     }
@@ -615,12 +649,15 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JLabel PortariaNomeacao;
     private javax.swing.JLabel horadeinicio;
     private javax.swing.JLabel horadeinicio2;
+    private javax.swing.JButton jButtonAdicionaAtividade;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriarAta;
     private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JButton jButtonVoltar;
+    private com.toedter.calendar.JDateChooser jDateChooserData;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHora;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
@@ -634,10 +671,12 @@ public class janAbertura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTableCronogramaAbertura;
+    private javax.swing.JTextField jTextFieldAtividade;
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldEmissorPortaria;
     private javax.swing.JTextField jTextFieldHoraInstalacao;
     private javax.swing.JTextField jTextFieldHoraInstalacao1;
+    private javax.swing.JTextField jTextFieldLocal;
     private javax.swing.JTextField jTextFieldLocalSessao;
     private javax.swing.JTextField jTextPortariaNomeacao;
     private javax.swing.JLabel marqueoscadidatos;
