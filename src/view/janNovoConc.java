@@ -39,6 +39,9 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private Concurso concurso;
     private Validator validator;
+    Component component; 
+            
+            
 
     /**
      * Creates new form janNovoConc
@@ -54,6 +57,8 @@ public class janNovoConc extends javax.swing.JFrame {
 
         this.preenheDadosDefault();
         this.setsFields();
+        
+        component = jTabbedPane5.getSelectedComponent();
     }
 
     private void setsFields() {
@@ -377,9 +382,17 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
+        jTabbedPane5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane5StateChanged(evt);
+            }
+        });
         jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTabbedPane5FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTabbedPane5FocusLost(evt);
             }
         });
 
@@ -766,7 +779,7 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -797,6 +810,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
+            
             this.salvaDadosGerais();
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
@@ -806,24 +820,48 @@ public class janNovoConc extends javax.swing.JFrame {
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        
         if (nextTab < jTabbedPane5.getTabCount()) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
+        component = jTabbedPane5.getSelectedComponent();
+         verificaBotoes(component);
+        
 
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
+       
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
+        component = jTabbedPane5.getSelectedComponent();
+         verificaBotoes(component);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
+    private void verificaBotoes(Component component){
+        if (component == jPanelDadosGerais) {
+            jButtonProximo.setVisible(true);
+            jButtonVoltar.setVisible(false);
+        } else if (component == jPanelBancaExaminadora) {
+            jButtonProximo.setVisible(true);
+            jButtonVoltar.setVisible(true);
+        } else if (component == jPanelCandidatos) {
+            jButtonProximo.setVisible(true);
+            jButtonVoltar.setVisible(true);
+        } else if (component == jPanelProvasConcurso) {
+            jButtonProximo.setVisible(false);
+            jButtonVoltar.setVisible(true);
+        }
+
+        
+    
+    }
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
@@ -843,8 +881,7 @@ public class janNovoConc extends javax.swing.JFrame {
         candidato.setNome(jTextFieldCandidatoNome.getText());
         candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
         candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
-        candidato.setIdConcurso(concurso.getIdConcurso());
-        candidato.setIdConcurso(Integer.valueOf(concurso.getIdConcurso()));
+        candidato.setConcurso(concurso);
         try {
             cdao.inserir(candidato);
             DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
@@ -855,6 +892,10 @@ public class janNovoConc extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        jTextFieldCandidatoNome.setText("");
+        jComboBoxCandidatoSexo.setSelectedIndex(0);
+        jDateChooserCandidatoDataNascimento.setDate(null);
+        
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void salvaDadosGerais() {
@@ -1004,8 +1045,19 @@ public class janNovoConc extends javax.swing.JFrame {
     }
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
-        // TODO add your handling code here:
+        component = jTabbedPane5.getSelectedComponent();
+         verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusGained
+
+    private void jTabbedPane5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusLost
+        component = jTabbedPane5.getSelectedComponent();
+         verificaBotoes(component);
+    }//GEN-LAST:event_jTabbedPane5FocusLost
+
+    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
+       component = jTabbedPane5.getSelectedComponent();
+         verificaBotoes(component);
+    }//GEN-LAST:event_jTabbedPane5StateChanged
 
     /**
      * @param args the command line arguments

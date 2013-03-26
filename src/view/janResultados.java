@@ -10,6 +10,7 @@ import br.com.model.entity.Concurso;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,13 +18,17 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class janResultados extends javax.swing.JFrame {
 
+    private Concurso concurso;
+
     /**
      * Creates new form janResultados
      */
     public janResultados() {
         initComponents();
+        this.concurso = janMenu.CONCURSO;
         this.setFields();
         this.preencherDadosDefault();
+        
     }
 
     /**
@@ -52,14 +57,20 @@ public class janResultados extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCandidatoResulatdos = new javax.swing.JTable();
         jComboBoxCandidatos = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAtas = new javax.swing.JMenu();
+        jMenuItemResProvaEsc = new javax.swing.JMenuItem();
+        jMenuItemResProvDidad = new javax.swing.JMenuItem();
+        jMenuItemResFinalConc = new javax.swing.JMenuItem();
         jMenuPlanilhas = new javax.swing.JMenu();
+        jMenuItemListNotProvaEsc = new javax.swing.JMenuItem();
+        jMenuItemListNotProvaDidat = new javax.swing.JMenuItem();
+        jMenuItemPlanilhaDeminstNotFinal = new javax.swing.JMenuItem();
         jMenuParecerFinal = new javax.swing.JMenu();
+        jMenuItemParecBanca = new javax.swing.JMenuItem();
 
         jMenu5.setText("File");
         jMenuBar2.add(jMenu5);
@@ -136,7 +147,7 @@ public class janResultados extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Resumo", jPanel1);
@@ -149,8 +160,6 @@ public class janResultados extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Escolha o Candidato:");
-
-        jButton1.setText("jButton1");
 
         jTableCandidatoResulatdos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,44 +206,62 @@ public class janResultados extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(276, 276, 276)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Notas por Candidato", jPanel2);
 
-        jTabbedPane1.setBounds(0, 0, 550, 280);
+        jTabbedPane1.setBounds(0, 0, 550, 320);
         jLayeredPane1.add(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
         jMenuAtas.setBackground(new java.awt.Color(255, 255, 255));
         jMenuAtas.setText("Atas");
+
+        jMenuItemResProvaEsc.setText("Sessão de Divulgação do Resultado da Prova Escrita");
+        jMenuAtas.add(jMenuItemResProvaEsc);
+
+        jMenuItemResProvDidad.setText("Sessão de Divulgação do Resultado da Prova Didática");
+        jMenuAtas.add(jMenuItemResProvDidad);
+
+        jMenuItemResFinalConc.setText("Sessão de Divulgação do Resultado Final do Concurso");
+        jMenuAtas.add(jMenuItemResFinalConc);
+
         jMenuBar1.add(jMenuAtas);
 
         jMenuPlanilhas.setBackground(new java.awt.Color(255, 255, 255));
         jMenuPlanilhas.setText("Planilhas");
+
+        jMenuItemListNotProvaEsc.setText("Listagem de Notas da Prova Escrita");
+        jMenuPlanilhas.add(jMenuItemListNotProvaEsc);
+
+        jMenuItemListNotProvaDidat.setText("Listagem de Notas da Prova Didática");
+        jMenuPlanilhas.add(jMenuItemListNotProvaDidat);
+
+        jMenuItemPlanilhaDeminstNotFinal.setText("Planilha Demonstrativa das Notas Finais");
+        jMenuItemPlanilhaDeminstNotFinal.setToolTipText("Do candidato Selecionado");
+        jMenuPlanilhas.add(jMenuItemPlanilhaDeminstNotFinal);
+
         jMenuBar1.add(jMenuPlanilhas);
 
         jMenuParecerFinal.setText("Parecer Final");
+
+        jMenuItemParecBanca.setText("Gerar Parecer Final da Banca");
+        jMenuParecerFinal.add(jMenuItemParecBanca);
+
         jMenuBar1.add(jMenuParecerFinal);
 
         setJMenuBar(jMenuBar1);
@@ -247,11 +274,11 @@ public class janResultados extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-567)/2, (screenSize.height-289)/2, 567, 289);
+        setBounds((screenSize.width-565)/2, (screenSize.height-384)/2, 565, 384);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalActionPerformed
@@ -300,27 +327,37 @@ public class janResultados extends javax.swing.JFrame {
 
     public void setFields() {
         Concurso concurso = janMenu.CONCURSO;
-        for (int i = 0; i < jComboBoxCandidatos.getModel().getSize(); i++) {
-            String candidato = (String) jComboBoxCandidatos.getModel().getElementAt(i);
-            //FAZER ESSE IF FUNCIONAR DIREITO, EU QUERO O OBJETO !@#$
-            //Candidato candidato = (Candidato) jComboBoxCandidatos.getModel().getElementAt(i);
-            //if(candidato.getIdConcurso() == concurso.getIdConcurso()){
-            jComboBoxCandidatos.getModel().setSelectedItem(candidato);
-            //     break;
-            //}
+        if (concurso != null) {
+
+            //Candidato candidato = null;
+            for (int i = 0; i < jComboBoxCandidatos.getModel().getSize(); i++) {
+                String candidato = (String) jComboBoxCandidatos.getModel().getElementAt(i);
+                //FAZER ESSE IF FUNCIONAR DIREITO, EU QUERO O OBJETO !@#$
+                //candidato = (Candidato) jComboBoxCandidatos.getModel().getSelectedItem();
+                //System.out.println(candidato.getNome());
+                //if (candidato.getIdConcurso() == concurso.getIdConcurso()) {
+                    jComboBoxCandidatos.getModel().setSelectedItem(candidato);
+                  //  break;
+                //}
+            }
         }
     }
 
     public void preencherDadosDefault() {
+        this.concurso = janMenu.CONCURSO;
         ListCellRenderer lcr = new ListCellRenderer();
         jComboBoxCandidatos.setRenderer(lcr.createListCellRenderer(Candidato.class, "getNome"));
         CandidatoDao cdao = new CandidatoDao();
         List<Candidato> candidatos = null;
 
         try {
-            candidatos = cdao.pesquisarTodos();
+            candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
         } catch (SQLException e) {
+            
             e.printStackTrace();
+        }catch (NullPointerException ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Concurso não encontrado");
         }
         DefaultComboBoxModel<Candidato> candidatoModel = new DefaultComboBoxModel<>();
         for (Candidato candidato : candidatos) {
@@ -330,7 +367,6 @@ public class janResultados extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBoxCandidatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -344,6 +380,13 @@ public class janResultados extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAtas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItemListNotProvaDidat;
+    private javax.swing.JMenuItem jMenuItemListNotProvaEsc;
+    private javax.swing.JMenuItem jMenuItemParecBanca;
+    private javax.swing.JMenuItem jMenuItemPlanilhaDeminstNotFinal;
+    private javax.swing.JMenuItem jMenuItemResFinalConc;
+    private javax.swing.JMenuItem jMenuItemResProvDidad;
+    private javax.swing.JMenuItem jMenuItemResProvaEsc;
     private javax.swing.JMenu jMenuParecerFinal;
     private javax.swing.JMenu jMenuPlanilhas;
     private javax.swing.JPanel jPanel1;

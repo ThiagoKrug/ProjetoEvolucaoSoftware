@@ -1,6 +1,7 @@
 package view;
 
 import br.com.model.entity.Concurso;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -219,8 +220,18 @@ public class janMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Opções");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem5.setText("Configurações");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -257,17 +268,29 @@ public class janMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(579, 372));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-579)/2, (screenSize.height-372)/2, 579, 372);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         
-        janNovoConc NovoConcurso = new janNovoConc();
-        NovoConcurso.setVisible(true);
+        if(CONCURSO == null){
+            janNovoConc NovoConcurso = new janNovoConc();
+            NovoConcurso.setVisible(true);
+        
+        }else{
+            int retorno = JOptionPane.showConfirmDialog(rootPane, "Você deseja criar um novo concurso?");
+            if (retorno == 0){
+                CONCURSO = null;
+                this.jLabelStatus.setText("");
+                janNovoConc NovoConcurso = new janNovoConc();
+                NovoConcurso.setVisible(true);
+            }
+        }
+        
         
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
@@ -317,8 +340,7 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jMenuItemNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoActionPerformed
        
-        janNovoConc NovoConcurso = new janNovoConc();
-        NovoConcurso.setVisible(true);
+        jButtonNovoActionPerformed(evt);
         
     }//GEN-LAST:event_jMenuItemNovoActionPerformed
 
@@ -330,7 +352,7 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jButtonAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAberturaActionPerformed
         
-        janAbertura Abertura = new janAbertura();
+        janAberturaIntegracao Abertura = new janAberturaIntegracao();
         Abertura.setVisible(true);
         
     }//GEN-LAST:event_jButtonAberturaActionPerformed
@@ -350,6 +372,15 @@ public class janMenu extends javax.swing.JFrame {
         janAbrir abrir = new janAbrir(jLabelStatus);
         abrir.setVisible(true);
     }//GEN-LAST:event_jButtonAbrirActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        //
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        janNovoConc NovoConcurso = new janNovoConc();
+            NovoConcurso.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
     
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package br.com.model.entity;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bruno
@@ -52,5 +54,7 @@ public class CriterioAvaliacao implements IEntidade {
     public String toString() {
         return  this.criterio + " - " + this.peso ;
     }
+    
+    
     
 }
