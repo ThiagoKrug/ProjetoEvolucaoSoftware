@@ -27,8 +27,9 @@ public class janResultados extends javax.swing.JFrame {
         initComponents();
         this.concurso = janMenu.CONCURSO;
         this.setFields();
-        this.preencherDadosDefault();
-        
+        this.preencheTabela();
+        this.preencherDadosComboCandidato();
+
     }
 
     /**
@@ -336,14 +337,14 @@ public class janResultados extends javax.swing.JFrame {
                 //candidato = (Candidato) jComboBoxCandidatos.getModel().getSelectedItem();
                 //System.out.println(candidato.getNome());
                 //if (candidato.getIdConcurso() == concurso.getIdConcurso()) {
-                    jComboBoxCandidatos.getModel().setSelectedItem(candidato);
-                  //  break;
+                jComboBoxCandidatos.getModel().setSelectedItem(candidato);
+                //  break;
                 //}
             }
         }
     }
 
-    public void preencherDadosDefault() {
+    public void preencherDadosComboCandidato() {
         this.concurso = janMenu.CONCURSO;
         ListCellRenderer lcr = new ListCellRenderer();
         jComboBoxCandidatos.setRenderer(lcr.createListCellRenderer(Candidato.class, "getNome"));
@@ -353,9 +354,9 @@ public class janResultados extends javax.swing.JFrame {
         try {
             candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
         } catch (SQLException e) {
-            
+
             e.printStackTrace();
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, "Concurso não encontrado");
         }
@@ -365,6 +366,16 @@ public class janResultados extends javax.swing.JFrame {
         }
         jComboBoxCandidatos.setModel(candidatoModel);
 
+    }
+
+    public void preencheTabela() {
+        CandidatoDao cdao = new CandidatoDao();
+        List<Candidato> candidatos = null;
+        try{
+            candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBoxCandidatos;
