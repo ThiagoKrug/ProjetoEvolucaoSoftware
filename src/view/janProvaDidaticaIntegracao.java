@@ -26,7 +26,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         initComponents();
 
         botao_AdicionarPontoDidatica.setEnabled(false);
-        botao_RemoverPontoDidatica.setEnabled(false);
+        //botao_RemoverPontoDidatica.setEnabled(false);
     }
 
     /**
@@ -536,12 +536,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
 
         }
-
-
-
-
-
-
     }//GEN-LAST:event_jButtonAdicionarCriterioDidaticaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -603,25 +597,30 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botao_RemoverPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoverPontoDidaticaActionPerformed
-
         try {
-            
-            
-            
+            int selecao = jListPontoDidaticaCadastrado.getSelectedIndex();
+
+            if (selecao != -1) {
+                /**
+                 *
+                 */
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception exceptError) {
             // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
             exceptError.printStackTrace();
-            }
+        }
     }//GEN-LAST:event_botao_RemoverPontoDidaticaActionPerformed
 
     private void jTextFieldPontoDidaticaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPontoDidaticaMouseClicked
-        
         try {
-                botao_AdicionarPontoDidatica.setEnabled(true);
+            botao_AdicionarPontoDidatica.setEnabled(true);
         } catch (Exception exceptError) {
             // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
             exceptError.printStackTrace();
-            }
+        }
     }//GEN-LAST:event_jTextFieldPontoDidaticaMouseClicked
 
     /**
