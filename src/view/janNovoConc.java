@@ -843,8 +843,8 @@ public class janNovoConc extends javax.swing.JFrame {
         candidato.setNome(jTextFieldCandidatoNome.getText());
         candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
         candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
-        candidato.setIdConcurso(concurso.getIdConcurso());
-        candidato.setIdConcurso(Integer.valueOf(concurso.getIdConcurso()));
+        //candidato.setIdConcurso(concurso.getIdConcurso());
+        //candidato.setIdConcurso(Integer.valueOf(concurso.getIdConcurso()));
         try {
             cdao.inserir(candidato);
             DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
