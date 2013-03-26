@@ -131,6 +131,7 @@ public class janAbrir extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(170, 10, 160, 29);
 
+        jButtonAbrirConcurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/open.png"))); // NOI18N
         jButtonAbrirConcurso.setText("Abrir Concurso");
         jButtonAbrirConcurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,8 +139,9 @@ public class janAbrir extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonAbrirConcurso);
-        jButtonAbrirConcurso.setBounds(60, 380, 120, 30);
+        jButtonAbrirConcurso.setBounds(80, 370, 160, 40);
 
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +149,7 @@ public class janAbrir extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonCancelar);
-        jButtonCancelar.setBounds(300, 380, 120, 30);
+        jButtonCancelar.setBounds(250, 370, 160, 40);
 
         jPanel2.setBounds(0, 0, 490, 430);
         jLayeredPane1.add(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -164,7 +166,6 @@ public class janAbrir extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAbrirConcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirConcursoActionPerformed

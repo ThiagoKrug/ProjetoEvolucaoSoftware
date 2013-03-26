@@ -236,13 +236,13 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(70, 380, 390, 40);
+        jButtonCriarAta.setBounds(60, 360, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonGravar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save2.png"))); // NOI18N
         jButtonGravar.setMnemonic('v');
         jButtonGravar.setText("Gravar");
         jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +250,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonGravarActionPerformed(evt);
             }
         });
-        jButtonGravar.setBounds(200, 430, 120, 40);
+        jButtonGravar.setBounds(330, 410, 120, 40);
         jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
@@ -263,7 +263,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelInstalacaoLayout.setVerticalGroup(
             jPanelInstalacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Instalação", jPanelInstalacao);
@@ -333,7 +333,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCronogramaLayout.setVerticalGroup(
             jPanelCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Cronograma", jPanelCronograma);
@@ -374,7 +374,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCandidatoLayout.setVerticalGroup(
             jPanelCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Abertura", jPanelCandidato);
@@ -407,7 +407,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -433,7 +433,8 @@ public class janAbertura extends javax.swing.JFrame {
             Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
             //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
             cronograma.setData(data);
-
+            
+            System.out.println(jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
             cronograma.setHorario(hora);

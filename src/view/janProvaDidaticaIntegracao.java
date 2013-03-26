@@ -420,6 +420,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLayeredPane7.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDateChooserDataRealizacao.setBounds(340, 70, 160, 30);
         jLayeredPane7.add(jDateChooserDataRealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jFormattedTextFieldHoraRealizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         jFormattedTextFieldHoraRealizacao.setBounds(530, 70, 100, 30);
         jLayeredPane7.add(jFormattedTextFieldHoraRealizacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
