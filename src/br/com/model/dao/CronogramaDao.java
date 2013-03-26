@@ -5,6 +5,7 @@
 package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
+import br.com.model.entity.Abertura;
 import br.com.model.entity.Cronograma;
 import br.com.model.entity.IEntidade;
 import java.lang.reflect.InvocationTargetException;
@@ -275,9 +276,63 @@ public class CronogramaDao implements IDao {
         }
         return cronogramas;
     }
-
+    
+    
+    public List<Cronograma> pesquisarPorIdConcurso(int idConcurso) throws SQLException {
+        String sql = "SELECT * FROM cronograma where id_concurso = ?";
+        List<Cronograma> cronogramas = new ArrayList<Cronograma>();
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, idConcurso);
+        System.out.println(stmt.toString());
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Cronograma cronograma = new Cronograma();
+            //abertura.setIdAbertura(rs.getInt("id_abertura"));
+            cronograma.setIdCronograma(rs.getInt("id_cronograma"));
+            cronograma.setAtividade(rs.getString("atividade"));
+            //concurso.setDataInicio( rs.getDate("data_inicio") );
+            cronograma.setData(rs.getDate("data"));
+            //abertura.setHoraInicio(rs.getTime("hora_inicio"));
+            cronograma.setHorario(rs.getTime("horario"));
+            cronograma.setLocal(rs.getString("local"));
+            cronograma.setIdConcurso(rs.getInt("id_concurso"));
+            //fields.setsFromDatabase(cronograma, rs);
+            cronogramas.add(cronograma);
+        }
+        return cronogramas;
+    }
     @Override
     public List<? extends IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+   /* 
+    public Abertura pesquisarPorIdConcurso(int idConcurso) throws SQLException {
+        String sql = "SELECT * FROM abertura where id_concurso = ?";
+
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, idConcurso);
+        System.out.println(stmt.toString());
+        ResultSet rs = stmt.executeQuery();
+
+        Abertura abertura = null;
+        if (rs.next()) {
+            abertura = new Abertura();
+            abertura.setIdAbertura(rs.getInt("id_abertura"));
+            //bancaExaminadora.setIdBanca(rs.getInt("id_banca_examinadora"));
+            abertura.setIdConcurso(rs.getInt("id_concurso"));
+            abertura.setHoraInicio(rs.getTime("hora_inicio"));
+            abertura.setLocal(rs.getString("local"));
+            abertura.setPortaria(rs.getString("portaria"));
+            abertura.setEmissor(rs.getString("emissor"));
+        }
+        return abertura;
+    } */
+    
+    
+    
+    
 }
