@@ -45,7 +45,11 @@ public class Ponto_ProvaDidatica implements IEntidade {
     public void setProvaDidatica(ProvaDidatica provaDidatica) {
         this.provaDidatica = provaDidatica;
     }
-    
+
+    @Override
+    public String toString() {
+        return descricaoPonto;
+    }
     
     
 }
