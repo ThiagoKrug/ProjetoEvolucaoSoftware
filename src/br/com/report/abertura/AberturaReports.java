@@ -73,42 +73,6 @@ public class AberturaReports {
     }
     
 
-//    private String intToPort(int n) {
-//        String[] numbers = ("um "
-//                + "dois "
-//                + "três "
-//                + "quatro "
-//                + "cinco seis sete oito nove dez "
-//                + "onze doze treze quatorze quinze dezesseis "
-//                + "dezessete dezoito dezenove vinte "
-//                + "trinta quarenta cinquenta sessenta "
-//                + "setenta oitente noventa cem duzentos trezentos "
-//                + "quatrocentos quinhentos seiscentos oitocentos "
-//                + "novecentos mil").split(" ");
-//        String pt = "";
-//        String pi = "" + n;
-//        if (pi.length() == 4) {
-//            if (pi.charAt(0) == '0') {
-//                return "" + intToPort(
-//                    Integer.parseInt(pi.substring(1)));
-//            }
-//            int first = Integer.parseInt(pi.charAt(0) + "");
-//            return numbers[first - 1] + " mil e " + intToPort(
-//                    Integer.parseInt(pi.substring(1)));
-//        }
-//        
-//        if (pi.length() == 3) {
-//            if (pi.charAt(0) == '0') {
-//                return "" + intToPort(
-//                    Integer.parseInt(pi.substring(1)));
-//            }
-//            int first = Integer.parseInt(pi.charAt(0) + "");
-//            pt += numbers[first - 1] + " mil e " + intToPort(
-//                    Integer.parseInt(pi.substring(1)));
-//        }
-//        
-//        return pt;
-//    }
     
     public String sayDate(Date date) {
         
@@ -172,5 +136,17 @@ public class AberturaReports {
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml("cronograma.html", html + html2);
+    }
+    
+    public void gerarRecibo(Abertura abertura) throws SQLException {
+        String html = this.htmlOpen("reciboTemp.html");
+        Concurso concurso = abertura.getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
+        this.saveHtml(html, "recibo.html");
     }
 }
