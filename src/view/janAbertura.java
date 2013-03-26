@@ -2,6 +2,7 @@ package view;
 
 import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.Campus;
@@ -13,11 +14,14 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
+import javax.validation.ConstraintViolation;
 import util.Datas;
 
 /**
@@ -42,7 +46,7 @@ public class janAbertura extends javax.swing.JFrame {
         Concurso concurso = janMenu.CONCURSO;
         if (concurso != null) {
             // dados gerais
-            Abertura abertura = concurso.getAbertura();
+            abertura = concurso.getAbertura();
             if (abertura != null) {
                 jTextFieldHoraInstalacao.setText(Datas.getTime(abertura.getHoraInicio()));
                 jTextFieldLocalSessao.setText(abertura.getLocal());
@@ -454,7 +458,7 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+       /* Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
         abertura.setHoraInicio(HoraInicio);
         abertura.setLocal(jTextFieldLocalSessao.getText());
         abertura.setPortaria(jTextPortariaNomeacao.getText());
@@ -466,7 +470,8 @@ public class janAbertura extends javax.swing.JFrame {
             aberturaDao.inserir(abertura);
         } catch (SQLException ex) {
             Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        this.salvaDadosGerais();
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
@@ -475,7 +480,7 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        Component component = jTabbedPane5.getSelectedComponent();
+        /*Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelInstalacao) {
             //concurso.setMinisterio(jTextFieldMinisterio.getText());
         } else if (component == jPanelCronograma) {
@@ -488,12 +493,11 @@ public class janAbertura extends javax.swing.JFrame {
 //            bancaExaminadora.
         } else if (component == jPanelCandidato) {
         } else {
-
+*/
             int nextTab = jTabbedPane5.getSelectedIndex() + 1;
             if (nextTab < jTabbedPane5.getTabCount()) {
                 jTabbedPane5.setSelectedIndex(nextTab);
-            }
-        }
+            }    
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -520,6 +524,47 @@ public class janAbertura extends javax.swing.JFrame {
         jListCandidatoAbertura.setModel(candiModel);
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
+     private void salvaDadosGerais() {
+        if (abertura == null) {
+            abertura = new Abertura();
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                aberturaDao.inserir(abertura);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        abertura.setHoraInicio(Datas.convertStringToTime(jTextFieldHoraInstalacao.getText()));
+        abertura.setLocal(jTextFieldLocalSessao.getText());
+        abertura.setPortaria(jTextPortariaNomeacao.getText());
+        abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+        abertura.setIdConcurso(concurso.getIdConcurso());
+        /*concurso.setMinisterio(jTextFieldMinisterio.getText());
+        concurso.setInstituicao(jTextFieldInstituicao.getText());
+        concurso.setCampus((Campus) jComboBoxCampus.getSelectedItem());
+        concurso.setArea(jTextFieldArea.getText());
+        concurso.setEdital(jTextFieldEdital.getText());
+        concurso.setDataInicio(jDateChooserDataInicio.getDate());
+        concurso.setClasseConcurso((ClasseConcurso) jComboBoxClasse.getSelectedItem());
+        */
+        /*Set<ConstraintViolation<Concurso>> constraintViolations = validator.validate(concurso);
+        if (constraintViolations.size() > 0) {
+            for (ConstraintViolation<Concurso> constraintViolation : constraintViolations) {
+                System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
+                JOptionPane.showMessageDialog(this, "O campo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage(), "", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {*/
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                if (abertura.getIdAbertura() == null) {
+                    aberturaDao.inserir(abertura);
+                } else {
+                    aberturaDao.alterar(abertura);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+ }
     /**
      * @param args the command line arguments
      */

@@ -58,6 +58,7 @@ public class AberturaDao implements IDao {
                 while (i < this.campos.length) {
                     Method method = map.get(this.campos[i][0])[0];
                     //this.setStatement(i, stmt, method.invoke(abertura, new Object[] {}));
+                    System.out.println(method.getName());
                     Object obj = method.invoke(abertura, new Object[]{});
                     System.out.println(obj);
                     this.setStatement(i, stmt, obj);
@@ -126,7 +127,7 @@ public class AberturaDao implements IDao {
                 sql += this.campos[i][0] + " = ?, ";
                 i++;
             }
-            sql += this.campos[i][0] + "WHERE " + this.campos[0][0] + " = ?";
+            sql += this.campos[i][0] + " = ? WHERE " + this.campos[0][0] + " = ?";
             return sql;
         }
 
