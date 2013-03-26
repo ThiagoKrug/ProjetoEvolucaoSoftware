@@ -2,19 +2,26 @@ package view;
 
 import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.Campus;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.ClasseConcurso;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
+import javax.validation.ConstraintViolation;
 import util.Datas;
 
 /**
@@ -24,12 +31,66 @@ import util.Datas;
 public class janAbertura extends javax.swing.JFrame {
 
     private Abertura abertura = new Abertura();
+    private Concurso concurso;
 
     /**
      * Creates new form janAbertura
      */
     public janAbertura() {
+        concurso = janMenu.CONCURSO;
         initComponents();
+        this.setsFields();
+    }
+
+    private void setsFields() {
+        Concurso concurso = janMenu.CONCURSO;
+        if (concurso != null) {
+            // dados gerais
+            abertura = concurso.getAbertura();
+            if (abertura != null) {
+                jTextFieldHoraInstalacao.setText(Datas.getTime(abertura.getHoraInicio()));
+                jTextFieldLocalSessao.setText(abertura.getLocal());
+                jTextPortariaNomeacao.setText(abertura.getPortaria());
+                jTextFieldEmissorPortaria.setText(abertura.getEmissor());
+
+                // Cronograma
+                CronogramaDao cronogramaDao = new CronogramaDao();
+                List<Cronograma> cronogramas = null;
+                try {
+                    cronogramas = cronogramaDao.pesquisarPorIdConcurso(abertura.getIdConcurso());
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                DefaultTableModel dtm = new DefaultTableModel(
+                        new Object[][]{},
+                        new String[]{
+                            "Atividade", "Data", "Horário", "Local"
+                        }) {
+                    Class[] types = new Class[]{
+                        String.class, String.class, String.class, String.class
+                    };
+
+                    public Class getColumnClass(int columnIndex) {
+                        return types[columnIndex];
+                    }
+
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return false;
+                    }
+                };
+                for (Cronograma cronograma : cronogramas) {
+                    dtm.addRow(new Object[]{
+                                cronograma.getAtividade(),
+                                Datas.getDate(cronograma.getData()),
+                                Datas.getTime(cronograma.getHorario()),
+                                //Datas.getDate(concurso.getDataInicio())
+                                cronograma.getLocal()
+                            });
+                }
+                jTableCronogramaAbertura.setModel(dtm);
+            }
+        }
     }
 
     /**
@@ -175,13 +236,13 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(70, 380, 390, 40);
+        jButtonCriarAta.setBounds(60, 360, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonGravar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/back.png"))); // NOI18N
+        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save2.png"))); // NOI18N
         jButtonGravar.setMnemonic('v');
         jButtonGravar.setText("Gravar");
         jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +250,7 @@ public class janAbertura extends javax.swing.JFrame {
                 jButtonGravarActionPerformed(evt);
             }
         });
-        jButtonGravar.setBounds(200, 430, 120, 40);
+        jButtonGravar.setBounds(330, 410, 120, 40);
         jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
@@ -202,7 +263,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelInstalacaoLayout.setVerticalGroup(
             jPanelInstalacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Instalação", jPanelInstalacao);
@@ -272,7 +333,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCronogramaLayout.setVerticalGroup(
             jPanelCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Cronograma", jPanelCronograma);
@@ -313,7 +374,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         jPanelCandidatoLayout.setVerticalGroup(
             jPanelCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Abertura", jPanelCandidato);
@@ -346,7 +407,7 @@ public class janAbertura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -372,7 +433,8 @@ public class janAbertura extends javax.swing.JFrame {
             Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
             //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
             cronograma.setData(data);
-
+            
+            System.out.println(jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
             cronograma.setHorario(hora);
@@ -390,12 +452,6 @@ public class janAbertura extends javax.swing.JFrame {
                 Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
-
-
-
-
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
@@ -403,7 +459,7 @@ public class janAbertura extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
+       /* Date HoraInicio = Datas.convertStringToTime(jTextFieldHoraInstalacao.getText());
         abertura.setHoraInicio(HoraInicio);
         abertura.setLocal(jTextFieldLocalSessao.getText());
         abertura.setPortaria(jTextPortariaNomeacao.getText());
@@ -415,16 +471,17 @@ public class janAbertura extends javax.swing.JFrame {
             aberturaDao.inserir(abertura);
         } catch (SQLException ex) {
             Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        this.salvaDadosGerais();
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        Component component = jTabbedPane5.getSelectedComponent();
+        /*Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelInstalacao) {
             //concurso.setMinisterio(jTextFieldMinisterio.getText());
         } else if (component == jPanelCronograma) {
@@ -436,74 +493,79 @@ public class janAbertura extends javax.swing.JFrame {
 //            BancaExaminadora bancaExaminadora = new BancaExaminadora();
 //            bancaExaminadora.
         } else if (component == jPanelCandidato) {
-            CandidatoDao cdao = new CandidatoDao();
-            List<Candidato> candidato = null;
-            try {
-                candidato = cdao.pesquisarTodos();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
-            System.out.println("Antes");
-            for (Candidato candi : candidato) {
-                System.out.println("Dentro do for");
-                candiModel.addElement(candi);
-            }
-            //jComboBoxCampus.setModel(campiModel);
-            jListCandidatoAbertura.setModel(candiModel);
         } else {
-
+*/
             int nextTab = jTabbedPane5.getSelectedIndex() + 1;
             if (nextTab < jTabbedPane5.getTabCount()) {
                 jTabbedPane5.setSelectedIndex(nextTab);
-            }
-        }
+            }    
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-            if (nextTab < jTabbedPane5.getTabCount()) {
-                jTabbedPane5.setSelectedIndex(nextTab);
-            }
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
-        CronogramaDao cronogramaDao = new CronogramaDao();
-        List<Cronograma> cronogramas = null;
+        CandidatoDao cdao = new CandidatoDao();
+        List<Candidato> candidato = null;
         try {
-            cronogramas = cronogramaDao.pesquisarTodos();
+            candidato = cdao.pesquisarTodos();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        DefaultTableModel dtm = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-            "Atividade", "Data", "Horário", "Local"
-        }) {
-            Class[] types = new Class[]{
-                String.class, Date.class, Date.class, String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-        for (Cronograma cronograma : cronogramas) {
-            dtm.addRow(new Object[]{
-                cronograma.getAtividade(),
-                Datas.getDate(cronograma.getData()),
-                Datas.getTime(cronograma.getHorario()),
-                //Datas.getDate(concurso.getDataInicio())
-                cronograma.getLocal()
-            });
+        DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+        for (Candidato candi : candidato) {
+            candiModel.addElement(candi);
+        }
+        //jComboBoxCampus.setModel(campiModel);
+        jListCandidatoAbertura.setModel(candiModel);
     }//GEN-LAST:event_jTabbedPane5FocusGained
-}
+
+     private void salvaDadosGerais() {
+        if (abertura == null) {
+            abertura = new Abertura();
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                aberturaDao.inserir(abertura);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        abertura.setHoraInicio(Datas.convertStringToTime(jTextFieldHoraInstalacao.getText()));
+        abertura.setLocal(jTextFieldLocalSessao.getText());
+        abertura.setPortaria(jTextPortariaNomeacao.getText());
+        abertura.setEmissor(jTextFieldEmissorPortaria.getText());
+        abertura.setIdConcurso(concurso.getIdConcurso());
+        /*concurso.setMinisterio(jTextFieldMinisterio.getText());
+        concurso.setInstituicao(jTextFieldInstituicao.getText());
+        concurso.setCampus((Campus) jComboBoxCampus.getSelectedItem());
+        concurso.setArea(jTextFieldArea.getText());
+        concurso.setEdital(jTextFieldEdital.getText());
+        concurso.setDataInicio(jDateChooserDataInicio.getDate());
+        concurso.setClasseConcurso((ClasseConcurso) jComboBoxClasse.getSelectedItem());
+        */
+        /*Set<ConstraintViolation<Concurso>> constraintViolations = validator.validate(concurso);
+        if (constraintViolations.size() > 0) {
+            for (ConstraintViolation<Concurso> constraintViolation : constraintViolations) {
+                System.out.println("O atributo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
+                JOptionPane.showMessageDialog(this, "O campo " + constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage(), "", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {*/
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                if (abertura.getIdAbertura() == null) {
+                    aberturaDao.inserir(abertura);
+                } else {
+                    aberturaDao.alterar(abertura);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+ }
     /**
      * @param args the command line arguments
      */

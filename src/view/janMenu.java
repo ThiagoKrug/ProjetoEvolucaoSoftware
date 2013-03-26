@@ -299,7 +299,7 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jButtonDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDidaticaActionPerformed
         
-        janProvaDidatica Didatica =  new janProvaDidatica();
+        janProvaDidaticaIntegracao Didatica =  new janProvaDidaticaIntegracao();
         Didatica.setVisible(true);
         
     }//GEN-LAST:event_jButtonDidaticaActionPerformed

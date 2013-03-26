@@ -124,4 +124,11 @@ public class Examinador implements IEntidade {
     public void setIdTitulacao(Integer idTitulacao) {
         this.idTitulacao = idTitulacao;
     }
+
+    @Override
+    public String toString() {
+        return this.getPessoa().getNome();
+    }
+    
+    
 }
