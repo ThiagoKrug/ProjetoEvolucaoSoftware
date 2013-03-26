@@ -4,7 +4,10 @@ import br.com.model.dao.AberturaDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.CronogramaDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.Campus;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.ClasseConcurso;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
 import java.awt.Component;
 import java.sql.SQLException;
@@ -24,12 +27,29 @@ import util.Datas;
 public class janAbertura extends javax.swing.JFrame {
 
     private Abertura abertura = new Abertura();
+    private Concurso concurso;
 
     /**
      * Creates new form janAbertura
      */
     public janAbertura() {
+        concurso = janMenu.CONCURSO;
         initComponents();
+        this.setsFields();
+    }
+
+    private void setsFields() {
+        Concurso concurso = janMenu.CONCURSO;
+        if (concurso != null) {
+            // dados gerais
+            Abertura abertura = concurso.getAbertura();
+            if (abertura != null) {
+                jTextFieldHoraInstalacao.setText(Datas.getTime(abertura.getHoraInicio()));
+                jTextFieldLocalSessao.setText(abertura.getLocal());
+                jTextPortariaNomeacao.setText(abertura.getPortaria());
+                jTextFieldEmissorPortaria.setText(abertura.getEmissor());
+            }
+        }
     }
 
     /**
@@ -390,12 +410,6 @@ public class janAbertura extends javax.swing.JFrame {
                 Logger.getLogger(janAbertura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
-
-
-
-
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
@@ -463,9 +477,9 @@ public class janAbertura extends javax.swing.JFrame {
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-            if (nextTab < jTabbedPane5.getTabCount()) {
-                jTabbedPane5.setSelectedIndex(nextTab);
-            }
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
@@ -480,8 +494,8 @@ public class janAbertura extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-            "Atividade", "Data", "Horário", "Local"
-        }) {
+                    "Atividade", "Data", "Horário", "Local"
+                }) {
             Class[] types = new Class[]{
                 String.class, Date.class, Date.class, String.class
             };
@@ -496,14 +510,15 @@ public class janAbertura extends javax.swing.JFrame {
         };
         for (Cronograma cronograma : cronogramas) {
             dtm.addRow(new Object[]{
-                cronograma.getAtividade(),
-                Datas.getDate(cronograma.getData()),
-                Datas.getTime(cronograma.getHorario()),
-                //Datas.getDate(concurso.getDataInicio())
-                cronograma.getLocal()
-            });
+                        cronograma.getAtividade(),
+                        Datas.getDate(cronograma.getData()),
+                        Datas.getTime(cronograma.getHorario()),
+                        //Datas.getDate(concurso.getDataInicio())
+                        cronograma.getLocal()
+                    });
     }//GEN-LAST:event_jTabbedPane5FocusGained
-}
+    }
+
     /**
      * @param args the command line arguments
      */

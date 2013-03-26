@@ -1,5 +1,6 @@
 package br.com.model.entity;
 
+import br.com.model.dao.AberturaDao;
 import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.ClasseConcursoDao;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ public class Concurso implements IEntidade {
     private boolean temProvaMemorial;
     private String ministerio;
     private BancaExaminadora bancaExaminadora;
+    private Abertura abertura;
 
     public Concurso() {
     }
@@ -280,4 +282,20 @@ public class Concurso implements IEntidade {
         }
         return bancaExaminadora;
     }
+    public Abertura getAbertura() {
+        if (abertura == null) {
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                abertura = aberturaDao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } 
+        return abertura;
+    }
+    
+    
+    
+    
+    
 }
