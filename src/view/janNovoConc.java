@@ -376,6 +376,11 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
+        jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane5FocusGained(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Área:");
@@ -763,8 +768,8 @@ public class janNovoConc extends javax.swing.JFrame {
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(756, 545));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-756)/2, (screenSize.height-545)/2, 756, 545);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed
@@ -979,6 +984,10 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private void salvaCandidatos() {
     }
+
+    private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane5FocusGained
 
     /**
      * @param args the command line arguments

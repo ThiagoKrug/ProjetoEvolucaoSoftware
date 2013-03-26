@@ -1,13 +1,13 @@
 package br.com.model.entity;
 
+import br.com.model.dao.AberturaDao;
 import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ClasseConcursoDao;
+import br.com.model.dao.CronogramaDao;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,6 +34,8 @@ public class Concurso implements IEntidade {
     private String ministerio;
     private BancaExaminadora bancaExaminadora;
     private List<Candidato> candidatos;
+    private Abertura abertura;
+    private List<Cronograma> cronograma;
 
     public Concurso() {
     }
@@ -282,6 +284,30 @@ public class Concurso implements IEntidade {
             }
         }
         return bancaExaminadora;
+    }
+
+    public Abertura getAbertura() {
+        if (abertura == null) {
+            AberturaDao aberturaDao = new AberturaDao();
+            try {
+                abertura = aberturaDao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return abertura;
+    }
+
+    public List<Cronograma> getCronograma() {
+        if (cronograma == null) {
+            CronogramaDao cronogramaDao = new CronogramaDao();
+            try {
+                cronograma = cronogramaDao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return cronograma;
     }
 
     public void setBancaExaminadora(BancaExaminadora bancaExaminadora) {

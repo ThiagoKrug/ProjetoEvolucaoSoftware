@@ -4,6 +4,13 @@
  */
 package view;
 
+import br.com.model.dao.CandidatoDao;
+import br.com.model.entity.Candidato;
+import br.com.model.entity.Concurso;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Sendeski
@@ -15,6 +22,8 @@ public class janResultados extends javax.swing.JFrame {
      */
     public janResultados() {
         initComponents();
+        this.setFields();
+        this.preencherDadosDefault();
     }
 
     /**
@@ -46,7 +55,7 @@ public class janResultados extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCandidatoResulatdos = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxCandidatos = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAtas = new javax.swing.JMenu();
         jMenuPlanilhas = new javax.swing.JMenu();
@@ -145,7 +154,7 @@ public class janResultados extends javax.swing.JFrame {
 
         jTableCandidatoResulatdos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
+                {null, null, null, "", null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -154,11 +163,24 @@ public class janResultados extends javax.swing.JFrame {
             new String [] {
                 "Examinador", "Títulos", "Escrita", "Didática", "Memorial"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTableCandidatoResulatdos);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(56, 30));
+        jComboBoxCandidatos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Candidato 1", "Candidato 2", "Candidato 3", "Candidato 4" }));
+        jComboBoxCandidatos.setPreferredSize(new java.awt.Dimension(56, 30));
+        jComboBoxCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCandidatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,7 +196,7 @@ public class janResultados extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(276, 276, 276)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,7 +213,7 @@ public class janResultados extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
@@ -236,6 +258,10 @@ public class janResultados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLocalActionPerformed
 
+    private void jComboBoxCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCandidatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCandidatosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,15 +290,48 @@ public class janResultados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new janResultados().setVisible(true);
             }
         });
     }
+
+    public void setFields() {
+        Concurso concurso = janMenu.CONCURSO;
+        for (int i = 0; i < jComboBoxCandidatos.getModel().getSize(); i++) {
+            String candidato = (String) jComboBoxCandidatos.getModel().getElementAt(i);
+            //FAZER ESSE IF FUNCIONAR DIREITO, EU QUERO O OBJETO !@#$
+            //Candidato candidato = (Candidato) jComboBoxCandidatos.getModel().getElementAt(i);
+            //if(candidato.getIdConcurso() == concurso.getIdConcurso()){
+            jComboBoxCandidatos.getModel().setSelectedItem(candidato);
+            //     break;
+            //}
+        }
+    }
+
+    public void preencherDadosDefault() {
+        ListCellRenderer lcr = new ListCellRenderer();
+        jComboBoxCandidatos.setRenderer(lcr.createListCellRenderer(Candidato.class, "getNome"));
+        CandidatoDao cdao = new CandidatoDao();
+        List<Candidato> candidatos = null;
+
+        try {
+            candidatos = cdao.pesquisarTodos();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        DefaultComboBoxModel<Candidato> candidatoModel = new DefaultComboBoxModel<>();
+        for (Candidato candidato : candidatos) {
+            candidatoModel.addElement(candidato);
+        }
+        jComboBoxCandidatos.setModel(candidatoModel);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBoxCandidatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
