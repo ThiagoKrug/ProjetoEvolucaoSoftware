@@ -49,19 +49,22 @@ public class janProvaEscrita extends javax.swing.JFrame {
     public janProvaEscrita() {
         super("Configurações do Concurso");
         initComponents();
-        this.provaEscrita = new ProvaEscrita();
+        this.provaEscrita = janMenu.CONCURSO.getProvaEscrita();
         this.pdao = new ProvaEscritaDao();
-        this.provaEscrita.setConcurso(new Concurso().setIdConcurso(1));
-        this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
-        try {
-            this.pdao.inserir(this.provaEscrita);
-        } catch (SQLException ex) {
-            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (this.provaEscrita == null) {
+            this.provaEscrita = new ProvaEscrita();
+            this.provaEscrita.setConcurso(janMenu.CONCURSO);
+            this.provaEscrita.setPontoSorteado(new PontoProvaEscrita());
+            try {
+                this.pdao.inserir(this.provaEscrita);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
+
         this.carregarCandidatos();
         this.carregarExaminadores();
-
-
     }
 
     /**
@@ -1029,11 +1032,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.provaEscrita.adicionarCandidatoAptoLeitura(c);
             this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
             try {
-            this.pdao.alterar(this.provaEscrita);
-        } catch (SQLException ex) {
-            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else {
+                this.pdao.alterar(this.provaEscrita);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAdicionarCadidatoPresenteLeituraActionPerformed
@@ -1072,18 +1075,18 @@ public class janProvaEscrita extends javax.swing.JFrame {
             this.provaEscrita.removerCandidatoAptoLeitura(c);
             this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
             try {
-            this.pdao.alterar(this.provaEscrita);
-        } catch (SQLException ex) {
-            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else {
+                this.pdao.alterar(this.provaEscrita);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoverCadidatoPresenteLeituraActionPerformed
 
     private void jButtonGerarAtaLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaLeituraActionPerformed
         // TODO add your handling code here:
-        
+
         if (this.jTextFieldLocalLeitura.getText().equalsIgnoreCase("") == true
                 || this.jTextFieldLocalLeitura.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe o local da leitura!", null, JOptionPane.ERROR_MESSAGE);
@@ -1094,7 +1097,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Informe a hora de inicio da leitura!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-       
+
         this.provaEscrita.setHoraInicioLeitura(Datas.convertStringToTime(this.jTextFieldHoraInicioLeitura.getText()));
         this.provaEscrita.setLocalLeitura(this.jTextFieldLocalLeitura.getText());
 
@@ -1119,16 +1122,16 @@ public class janProvaEscrita extends javax.swing.JFrame {
             exc.printStackTrace();
         }
         this.jButtonGerarAtaLeitura.setEnabled(true);
-        
-        
-        
-        
+
+
+
+
     }//GEN-LAST:event_jButtonGerarAtaLeituraActionPerformed
 
     private void jButtonGerarAtaJulgamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaJulgamentoActionPerformed
         // TODO add your handling code here:
-        
-       if (this.jTextFieldLocalJulgamento.getText().equalsIgnoreCase("") == true
+
+        if (this.jTextFieldLocalJulgamento.getText().equalsIgnoreCase("") == true
                 || this.jTextFieldLocalJulgamento.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe o local da julgamento!", null, JOptionPane.ERROR_MESSAGE);
             return;
@@ -1138,7 +1141,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Informe a hora de inicio da julgamento!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-       
+
         this.provaEscrita.setHoraInicioJulgamento(Datas.convertStringToTime(this.jTextFieldHoraInicioJulgamento.getText()));
         this.provaEscrita.setLocalJulgamento(this.jTextFieldLocalJulgamento.getText());
 
@@ -1162,14 +1165,14 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (JRException exc) {
             exc.printStackTrace();
         }
-        this.jButtonGerarAtaJulgamento.setEnabled(true); 
-        
+        this.jButtonGerarAtaJulgamento.setEnabled(true);
+
     }//GEN-LAST:event_jButtonGerarAtaJulgamentoActionPerformed
 
     private void jButtonGerarAtaResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarAtaResultadoActionPerformed
         // TODO add your handling code here:
-        
-         if (this.jTextFieldLocalDivulgacaoResultado.getText().equalsIgnoreCase("") == true
+
+        if (this.jTextFieldLocalDivulgacaoResultado.getText().equalsIgnoreCase("") == true
                 || this.jTextFieldLocalDivulgacaoResultado.getText() == null) {
             JOptionPane.showMessageDialog(this, "Informe o local do resultado!", null, JOptionPane.ERROR_MESSAGE);
             return;
@@ -1179,7 +1182,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Informe a hora de inicio do resultado!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-       
+
         this.provaEscrita.setHoraInicioJulgamento(Datas.convertStringToTime(this.jTextFieldHoraInicioDivulgacaoResultado.getText()));
         this.provaEscrita.setLocalJulgamento(this.jTextFieldLocalDivulgacaoResultado.getText());
 
@@ -1203,27 +1206,27 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (JRException exc) {
             exc.printStackTrace();
         }
-        this.jButtonGerarAtaResultado.setEnabled(true); 
+        this.jButtonGerarAtaResultado.setEnabled(true);
     }//GEN-LAST:event_jButtonGerarAtaResultadoActionPerformed
 
     private void jButtonGerarPlanilhaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
         // TODO add your handling code here:
-        
-        if(this.jListCandidatosPlanilha.getSelectedValue() == null ){
+
+        if (this.jListCandidatosPlanilha.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(this.jListExaminadorPlanilha.getSelectedValue() == null ){
+        if (this.jListExaminadorPlanilha.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(this, "Selecione um examinador!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        
-        if(this.jListCriterios.getModel().getSize() <= 0 ){
+
+
+        if (this.jListCriterios.getModel().getSize() <= 0) {
             JOptionPane.showMessageDialog(this, "Cadastre pelo menos um critério de avaliação!", null, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         Candidato c = (Candidato) this.jListCandidatosPlanilha.getSelectedValue();
         Examinador e = (Examinador) this.jListExaminadorPlanilha.getSelectedValue();
         this.jButtonGerarPlanilhaAvaliacao.setEnabled(false);
@@ -1241,9 +1244,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (JRException exc) {
             exc.printStackTrace();
         }
-        this.jButtonGerarPlanilhaAvaliacao.setEnabled(true); 
-        
-        
+        this.jButtonGerarPlanilhaAvaliacao.setEnabled(true);
+
+
     }//GEN-LAST:event_jButtonGerarPlanilhaAvaliacaoActionPerformed
 
     /**
@@ -1382,7 +1385,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void carregarCandidatos() {
         CandidatoDao c = new CandidatoDao();
         try {
-            this.listCandidatos = c.pesquisarTodosOrdenadoPor("nome asc");
+            this.listCandidatos = c.pesquisarTodos();
             this.jListCandidatosConcurso.removeAll();
             this.jListCandidatosConcurso.setListData(listCandidatos.toArray());
             this.jListCandidatosPlanilha.setListData(listCandidatos.toArray());
@@ -1390,7 +1393,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void carregarExaminadores() {
         ExaminadorDao c = new ExaminadorDao();
         try {
