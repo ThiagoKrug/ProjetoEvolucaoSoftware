@@ -433,7 +433,8 @@ public class janAbertura extends javax.swing.JFrame {
             Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
             //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
             cronograma.setData(data);
-
+            
+            System.out.println(jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
             //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
             cronograma.setHorario(hora);
