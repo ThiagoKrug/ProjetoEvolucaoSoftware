@@ -175,4 +175,8 @@ public class AberturaReports {
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml(html + html2, "listaPres.html");
     }
+    
+    public void gerarPlanilhaProvaTits() {
+        
+    }
 }
