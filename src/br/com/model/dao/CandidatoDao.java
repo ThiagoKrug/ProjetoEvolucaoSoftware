@@ -191,6 +191,9 @@ public class CandidatoDao implements IDao {
         if (entidade instanceof Candidato) {
 
             Candidato candidato = (Candidato) entidade;
+            
+            PessoaDao pdao = new PessoaDao();
+            pdao.inserir(candidato);
 
             String sql = " INSERT INTO `candidato` (";
             sql += "   id_pessoa,id_concurso,apto_prova_escrita,apto_prova_didatica,";
@@ -214,19 +217,37 @@ public class CandidatoDao implements IDao {
                     stmt.setString(2, null);
                 }
 
-                stmt.setBoolean(3, candidato.isAptoProvaEscrita());
-                stmt.setBoolean(4, candidato.isAptoProvaDidatica());
-
-                if (candidato.getIdProvaDidatica() != 0) {
-                    stmt.setInt(5, candidato.getIdProvaDidatica());
+                if (candidato.getAptoProvaEscrita() != null) {
+                    stmt.setBoolean(3, candidato.isAptoProvaEscrita());
                 } else {
-                    stmt.setString(5, null);
+                    stmt.setString(3, null);
                 }
 
-                if (candidato.getIdProvaEscrita() != 0) {
-                    stmt.setInt(6, candidato.getIdProvaEscrita());
+                if (candidato.getAptoProvaDidatica() != null) {
+                    stmt.setBoolean(4, candidato.isAptoProvaDidatica());
                 } else {
-                    stmt.setString(6, null);
+                    stmt.setString(4, null);
+                }
+
+                // comentei pq no banco naum tem o campo id_prova_didatica
+//                if (candidato.getIdProvaDidatica() != null) {
+//                    if (candidato.getIdProvaDidatica() != 0) {
+//                        stmt.setInt(5, candidato.getIdProvaDidatica());
+//                    } else {
+//                        stmt.setString(5, null);
+//                    }
+//                } else {
+//                    stmt.setString(5, null);
+//                }
+
+                if (candidato.getIdProvaEscrita() != null) {
+                    if (candidato.getIdProvaEscrita() != 0) {
+                        stmt.setInt(5, candidato.getIdProvaEscrita());
+                    } else {
+                        stmt.setString(5, null);
+                    }
+                } else {
+                    stmt.setString(5, null);
                 }
 
                 stmt.executeUpdate();

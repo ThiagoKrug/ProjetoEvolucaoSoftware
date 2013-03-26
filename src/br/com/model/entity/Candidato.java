@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.HashMap;
 import javax.validation.constraints.NotNull;
 
@@ -145,11 +140,11 @@ public class Candidato extends Pessoa implements IEntidade {
         return getPresenteProvaTitulos();
     }
 
-    public int getIdProvaDidatica() {
+    public Integer getIdProvaDidatica() {
         return idProvaDidatica;
     }
 
-    public int getIdProvaEscrita() {
+    public Integer getIdProvaEscrita() {
         return idProvaEscrita;
     }
 

@@ -2,6 +2,7 @@ package view;
 
 import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CampusDao;
+import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ClasseConcursoDao;
 import br.com.model.dao.ConcursoDao;
 import br.com.model.dao.ExaminadorDao;
@@ -836,7 +837,24 @@ public class janNovoConc extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxExaminador2TituloActionPerformed
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
-        
+        CandidatoDao cdao = new CandidatoDao();
+
+        Candidato candidato = new Candidato();
+        candidato.setNome(jTextFieldCandidatoNome.getText());
+        candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
+        candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
+        candidato.setIdConcurso(concurso.getIdConcurso());
+        candidato.setIdConcurso(Integer.valueOf(concurso.getIdConcurso()));
+        try {
+            cdao.inserir(candidato);
+            DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+            dtm.addRow(new Object[]{
+                candidato.getIdCandidato(),
+                candidato.getNome()
+            });
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void salvaDadosGerais() {
