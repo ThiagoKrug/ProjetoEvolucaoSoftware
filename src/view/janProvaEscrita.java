@@ -1218,6 +1218,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
             return;
         }
         
+        
+        if(this.jListCriterios.getModel().getSize() <= 0 ){
+            JOptionPane.showMessageDialog(this, "Cadastre pelo menos um critério de avaliação!", null, JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         Candidato c = (Candidato) this.jListCandidatosPlanilha.getSelectedValue();
         Examinador e = (Examinador) this.jListExaminadorPlanilha.getSelectedValue();
         this.jButtonGerarPlanilhaAvaliacao.setEnabled(false);
@@ -1388,7 +1394,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void carregarExaminadores() {
         ExaminadorDao c = new ExaminadorDao();
         try {
-            this.jListCandidatosPlanilha.setListData(c.pesquisarTodosOrdenadoPor("nome asc").toArray());
+            this.jListExaminadorPlanilha.setListData(c.pesquisarTodos().toArray());
         } catch (Exception ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
