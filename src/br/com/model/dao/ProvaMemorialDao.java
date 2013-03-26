@@ -124,8 +124,8 @@ public class ProvaMemorialDao  implements IDao{
     }
 
     @Override
-    public List<IEntidade> pesquisarTodos()  {
-       List<IEntidade> listaProvaMemorial = new ArrayList<IEntidade>() ;
+    public List<ProvaMemorial> pesquisarTodos()  {
+       List<ProvaMemorial> listaProvaMemorial = new ArrayList<>() ;
       
        String sql = "select * from prova_memorial"; 
        try {
