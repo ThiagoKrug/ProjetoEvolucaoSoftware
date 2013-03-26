@@ -584,7 +584,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
                 try {
                     ponto_dao.inserir(ponto_pDidatica);
                 } catch (Exception exceptError) {
-                    
+                    JOptionPane.showMessageDialog(this, " ERROR: "+exceptError, null, JOptionPane.ERROR_MESSAGE);
                     exceptError.printStackTrace();
                 }
 
