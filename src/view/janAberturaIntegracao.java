@@ -69,7 +69,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jTextFieldEdital = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButtonCancelar = new javax.swing.JButton();
-        jButtonProximo = new javax.swing.JButton();
+        jButtonConcluido = new javax.swing.JButton();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanelInstalacao = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
@@ -119,6 +119,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
+        jButtonProximo = new javax.swing.JButton();
 
         jTextFieldEdital.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -138,18 +139,23 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jButtonCancelar.setBounds(210, 550, 120, 40);
         jLayeredPane1.add(jButtonCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
-        jButtonProximo.setMnemonic('p');
-        jButtonProximo.setText("Próximo");
-        jButtonProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProximoActionPerformed(evt);
+        jButtonConcluido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonConcluido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        jButtonConcluido.setMnemonic('p');
+        jButtonConcluido.setText("Concluido");
+        jButtonConcluido.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButtonConcluido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonConcluidoMouseClicked(evt);
             }
         });
-        jButtonProximo.setBounds(330, 550, 120, 40);
-        jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButtonConcluido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConcluidoActionPerformed(evt);
+            }
+        });
+        jButtonConcluido.setBounds(330, 550, 120, 40);
+        jLayeredPane1.add(jButtonConcluido, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
         jTabbedPane5.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -465,6 +471,24 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jButtonVoltar.setBounds(90, 550, 120, 40);
         jLayeredPane1.add(jButtonVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButtonProximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/next.png"))); // NOI18N
+        jButtonProximo.setMnemonic('p');
+        jButtonProximo.setText("Próximo");
+        jButtonProximo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButtonProximo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonProximoMouseClicked(evt);
+            }
+        });
+        jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProximoActionPerformed(evt);
+            }
+        });
+        jButtonProximo.setBounds(330, 550, 120, 40);
+        jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -555,15 +579,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
-            jTabbedPane5.setSelectedIndex(nextTab);
-        }
-        component = jTabbedPane5.getSelectedComponent();
-        verificaBotoes(component);
-        
-    }//GEN-LAST:event_jButtonProximoActionPerformed
+    private void jButtonConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConcluidoActionPerformed
+        janMenu menu = new janMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonConcluidoActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
@@ -572,8 +592,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         }
         component = jTabbedPane5.getSelectedComponent();
         verificaBotoes(component);
-        
-        
+
+
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
@@ -761,17 +781,40 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5StateChanged
 
+    private void jButtonConcluidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConcluidoMouseClicked
+    }//GEN-LAST:event_jButtonConcluidoMouseClicked
+
+
+    
+    private void jButtonProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProximoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonProximoMouseClicked
+
+    private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
+        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
+    }//GEN-LAST:event_jButtonProximoActionPerformed
+
     private void verificaBotoes(Component component) {
         if (component == jPanelInstalacao) {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(false);
+            jButtonConcluido.setVisible(false);
         } else if (component == jPanelCronograma) {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(true);
+            jButtonConcluido.setVisible(false);
         } else if (component == jPanelCandidato) {
-            jButtonProximo.setText("Concluído");
+            //jButtonConcluido.setText("Concluído");
+            jButtonProximo.setVisible(false);
+            jButtonConcluido.setVisible(true);
             jButtonVoltar.setVisible(true);
-        }
+        } 
+            
     }
 
     private void salvaDadosGerais() {
@@ -867,6 +910,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdicionaCandidato;
     private javax.swing.JButton jButtonAdicionaTodosCandidatos;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConcluido;
     private javax.swing.JButton jButtonCriarAta;
     private javax.swing.JButton jButtonCronograma;
     private javax.swing.JButton jButtonGravar;

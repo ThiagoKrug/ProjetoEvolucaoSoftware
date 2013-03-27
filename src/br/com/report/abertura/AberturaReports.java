@@ -30,6 +30,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -104,6 +105,10 @@ public class AberturaReports {
         dt += " de " + year;
         return dt;
     }
+    
+    public String sayDateExt(Date date) {
+        return Datas.getDataExtenso(date);
+    }
 
     public void createAta(Abertura abertura) throws SQLException {
         Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
@@ -120,7 +125,7 @@ public class AberturaReports {
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{portaria}}", concurso.getPortaria())
-                .replace("{{dataInicio}}", this.sayDate(abertura.getHoraInicio()));
+                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
         this.saveHtml("ata_abertura.html", html);
     }
     
@@ -264,5 +269,25 @@ public class AberturaReports {
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml(html + html2, "listaPres.html");
+    }
+    
+    
+    public void createAtaRecep(Abertura abertura) throws SQLException {
+        Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
+        String html = this.htmlOpen("ata_recep.html");
+        Concurso concurso = abertura.getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{n_ata}}", nroAta.toString())
+                .replace("{{local}}", abertura.getLocal())
+                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+                .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{portaria}}", concurso.getPortaria())
+                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
+        this.saveHtml("ata_abertura.html", html);
     }
 }
