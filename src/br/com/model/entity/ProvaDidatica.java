@@ -2,6 +2,7 @@ package br.com.model.entity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import view.janProvaDidaticaIntegracao;
 
 /**
  *
@@ -9,6 +10,7 @@ import java.util.Iterator;
  * @since 23/03/2013
  * @see Ponto_ProvaDidatica
  * @see Notas_ProvaDidatica
+ * @see janProvaDidaticaIntegracao
  */
 public class ProvaDidatica implements IEntidade {
 
