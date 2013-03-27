@@ -51,8 +51,8 @@ public class janResultados extends javax.swing.JFrame {
     public janResultados() {
         initComponents();
         this.concurso = janMenu.CONCURSO;
-        this.setFields();
         this.preencheTabelaResultadoResumo();
+        //this.setFields();
         this.preencherDadosComboCandidato();
         this.iniciaTabelaResultado();
         //this.preencheTabelaResultadoCandidato();
@@ -376,22 +376,19 @@ public class janResultados extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCandidatosMouseClicked
 
     private void jButtonSalvarNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarNotasMouseClicked
-                                                       
-        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
-        ProvaMemorialDao memDao = new ProvaMemorialDao();
-        List<ProvaMemorial> provasMem = memDao.pesquisarTodos();
-        int idProvaexam = 0;
-        for (int i = 0; i < provasMem.size(); i++) {
-            if (provasMem.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
-                idProvaexam = provasMem.get(i).getConcurso().getIdConcurso();
-            }
-        }
 
+        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
+        //System.out.println(candit.getNome());            
+        ProvaMemorialDao memDao = new ProvaMemorialDao();
+        ProvaMemorial provaMem = memDao.pesquisarPorIdCurso(concurso.getIdConcurso());
+        //System.out.println(provasMem.get(0).getIdProvaMemorial()+"CARACA VEIH");
+        System.out.println(provaMem.getIdProvaMemorial());
+        
         NotaMemorialDao notDao = new NotaMemorialDao();
         NotaMemorial nota = new NotaMemorial();
         nota.setIdCandidato(candit.getIdCandidato());
         nota.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
-        nota.setIdProvaMemorial(idProvaexam);
+        nota.setIdProvaMemorial(provaMem.getIdProvaMemorial());
         nota.setNotaProvaMemorial((int) jTableCandidatoResulatdos.getValueAt(1, 5));
         try {
             notDao.inserir(nota);
@@ -419,14 +416,14 @@ public class janResultados extends javax.swing.JFrame {
         notaDidat.setIdCandidato(candit.getIdCandidato());
         notaDidat.setIdExaminador(IdProvaDidatica);
         notaDidat.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
-        notaDidat.setNotaProvaDidatica((int)jTableCandidatoResulatdos.getValueAt(1, 4));
+        notaDidat.setNotaProvaDidatica((int) jTableCandidatoResulatdos.getValueAt(1, 4));
         try {
             didatDao.inserir(notaDidat);
         } catch (SQLException ex) {
             Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
         ProvaEscritaDao escDao = new ProvaEscritaDao();
         List<ProvaEscrita> provaesc = null;
         try {
@@ -446,14 +443,14 @@ public class janResultados extends javax.swing.JFrame {
         notaEsc.setIdCandidato(candit.getIdCandidato());
         notaEsc.setIdExaminador(IdProvaEscr);
         notaEsc.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
-        notaEsc.setNotaProvaEscrita((int)jTableCandidatoResulatdos.getValueAt(1, 3));
+        notaEsc.setNotaProvaEscrita((int) jTableCandidatoResulatdos.getValueAt(1, 3));
         try {
             notaEscDao.inserir(notaDidat);
         } catch (SQLException ex) {
             Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        ProvaTitulosDao titDao = new ProvaTitulosDao();                
+
+        ProvaTitulosDao titDao = new ProvaTitulosDao();
         List<ProvaTitulos> provaTit = null;
         try {
             provaTit = titDao.pesquisarTodos();
@@ -472,7 +469,7 @@ public class janResultados extends javax.swing.JFrame {
         notaTit.setIdCandidato(candit.getIdCandidato());
         notaTit.setIdExaminador(IdProvaTit);
         notaTit.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
-        notaTit.setNotaProvaTitulo((int)jTableCandidatoResulatdos.getValueAt(1, 2));
+        notaTit.setNotaProvaTitulo((int) jTableCandidatoResulatdos.getValueAt(1, 2));
         try {
             notaTitDao.inserir(notaTit);
         } catch (SQLException ex) {
@@ -520,16 +517,10 @@ public class janResultados extends javax.swing.JFrame {
         Concurso concurso = janMenu.CONCURSO;
         if (concurso != null) {
 
-            //Candidato candidato = null;
+            Candidato candidato = null;
             for (int i = 0; i < jComboBoxCandidatos.getModel().getSize(); i++) {
-                String candidato = (String) jComboBoxCandidatos.getModel().getElementAt(i);
-                //FAZER ESSE IF FUNCIONAR DIREITO, EU QUERO O OBJETO !@#$
-                //candidato = (Candidato) jComboBoxCandidatos.getModel().getSelectedItem();
-                //System.out.println(candidato.getNome());
-                //if (candidato.getIdConcurso() == concurso.getIdConcurso()) {
+                candidato = (Candidato) jComboBoxCandidatos.getModel().getElementAt(i);
                 jComboBoxCandidatos.getModel().setSelectedItem(candidato);
-                //  break;
-                //}
             }
         }
     }
@@ -585,8 +576,10 @@ public class janResultados extends javax.swing.JFrame {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, "Concurso não encontrado");
         }
+        Candidato candidato;
         DefaultComboBoxModel<Candidato> candidatoModel = new DefaultComboBoxModel<>();
-        for (Candidato candidato : candidatos) {
+        for (int i = 0; i < candidatos.size(); i++) {
+            candidato = candidatos.get(i);
             candidatoModel.addElement(candidato);
         }
         jComboBoxCandidatos.setModel(candidatoModel);
