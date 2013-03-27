@@ -7,6 +7,7 @@ import br.com.model.entity.Abertura;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import java.awt.Component;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private Concurso concurso;
     ArrayList<Candidato> candidatosAptos = new ArrayList();
     List<Candidato> candidato = null;
+    Component component;
 
     /**
      * Creates new form janAbertura
@@ -150,6 +152,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonProximo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane5.setToolTipText("");
+        jTabbedPane5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane5StateChanged(evt);
+            }
+        });
         jTabbedPane5.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTabbedPane5FocusGained(evt);
@@ -549,50 +556,43 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        /*Component component = jTabbedPane5.getSelectedComponent();
-         if (component == jPanelInstalacao) {
-         //concurso.setMinisterio(jTextFieldMinisterio.getText());
-         } else if (component == jPanelCronograma) {
-         //            jcom
-         //            pres.setSexo(null);
-         //            Examinador presidente = new Examinador();
-         //            presidente.set
-         //            
-         //            BancaExaminadora bancaExaminadora = new BancaExaminadora();
-         //            bancaExaminadora.
-         } else if (component == jPanelCandidato) {
-         } else {
-         */
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
         if (nextTab < jTabbedPane5.getTabCount()) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
+        
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
+        if (nextTab >= 0) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
+        
+        
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         CandidatoDao cdao = new CandidatoDao();
         System.out.println(concurso.getIdConcurso());
-        
+
         try {
             candidato = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
-        } catch (SQLException |NullPointerException ex) {
+        } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
         }
         if (candidato != null) {
             jListCandidatos.setListData(candidato.toArray());
         }
-    /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
-     for (Candidato candi : candidato) {
-     candiModel.addElement(candi);
-     }
-     jListCandidatos.setModel(candiModel);*/
+        /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+         for (Candidato candi : candidato) {
+         candiModel.addElement(candi);
+         }
+         jListCandidatos.setModel(candiModel);*/
     }//GEN-LAST:event_jTabbedPane5FocusGained
     private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
         Cronograma c = new Cronograma();
@@ -672,12 +672,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         try {
 
             cronogramaDao.inserir(crono);
-        
 
-} catch (SQLException ex) {
-            Logger.getLogger(janAberturaIntegracao.class  
 
-.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(janAberturaIntegracao.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -690,12 +689,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
             try {
                 cronograma = (Cronograma) cd.pesquisarPorId(id);
                 cd.excluir(cronograma);
-            
 
-} catch (SQLException ex) {
-                Logger.getLogger(janAberturaIntegracao.class  
 
-.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAberturaIntegracao.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um cronograma para ser excluido!");
@@ -758,6 +756,24 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
     }//GEN-LAST:event_jButtonRemoveTodosCandidatosActionPerformed
 
+    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
+    }//GEN-LAST:event_jTabbedPane5StateChanged
+
+    private void verificaBotoes(Component component) {
+        if (component == jPanelInstalacao) {
+            jButtonProximo.setVisible(true);
+            jButtonVoltar.setVisible(false);
+        } else if (component == jPanelCronograma) {
+            jButtonProximo.setVisible(true);
+            jButtonVoltar.setVisible(true);
+        } else if (component == jPanelCandidato) {
+            jButtonProximo.setText("Concluído");
+            jButtonVoltar.setVisible(true);
+        }
+    }
+
     private void salvaDadosGerais() {
         if (abertura == null) {
             abertura = new Abertura();
@@ -814,32 +830,22 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
