@@ -65,6 +65,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         this.carregarCandidatos();
         this.carregarExaminadores();
+        this.recarregarDados();
     }
 
     /**
@@ -892,6 +893,9 @@ public class janProvaEscrita extends javax.swing.JFrame {
             // mapa de parâmetros do relatório (ainda vamos aprender a usar)
             Map parametros = new HashMap();
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
+            String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
+            parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Lista de Presença - Prova Escrita", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -969,6 +973,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Lista de Critérios", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1026,6 +1031,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Ata de Realização", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1127,6 +1133,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Ata de Leitura", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1171,6 +1178,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Ata de Julgamento", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1212,6 +1220,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Ata de Resultado", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1250,6 +1259,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("data", data);
             parametros.put("candidato", c.getNome());
             parametros.put("examinador", e.getPessoa().getNome());
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Planilhas para Avaliação", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1415,9 +1425,31 @@ public class janProvaEscrita extends javax.swing.JFrame {
     }
     
     private Map configurarDadosConcurso(Map parametros){
+        parametros.put("instituicao", janMenu.CONCURSO.getInstituicao());
+        parametros.put("ministerio", janMenu.CONCURSO.getMinisterio());
+        parametros.put("campus", janMenu.CONCURSO.getCampus().getCidadeCampus());
+        parametros.put("area", janMenu.CONCURSO.getArea());
+        parametros.put("classe_concurso", janMenu.CONCURSO.getClasseConcurso().getNome());
         parametros.put("examinador_1", janMenu.CONCURSO.getBancaExaminadora().getPresidente().getPessoa().getNome());
-        //parametros.put("examinador_2", janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
-        //parametros.put("examinador_3", janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        parametros.put("examinador_2", janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco().getPessoa().getNome());
+        parametros.put("examinador_3", janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco().getPessoa().getNome());
         return parametros;
+    }
+    
+    private void recarregarDados(){
+        this.jTextFieldLocalRealizacao.setText(this.provaEscrita.getLocalRealizacao());
+        this.jTextFieldLocalDivulgacaoResultado.setText(this.provaEscrita.getLocalResultado());
+        this.jTextFieldLocalLeitura.setText(this.provaEscrita.getLocalLeitura());
+        this.jTextFieldLocalJulgamento.setText(this.provaEscrita.getLocalJulgamento());
+        
+        this.jTextFieldHoraInicioDivulgacaoResultado.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioResultado()));
+        this.jTextFieldHoraInicioJulgamento.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioJulgamento()));
+        this.jTextFieldHoraInicioLeitura.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioLeitura()));
+        
+        this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+        this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+        this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
     }
 }

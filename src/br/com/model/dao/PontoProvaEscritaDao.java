@@ -106,6 +106,12 @@ public class PontoProvaEscritaDao implements IDao {
         }
         return pontoProvaEscrita;
     }
+    
+    public List<PontoProvaEscrita> pesquisarPorIdProvaEscrita(int id) throws SQLException {
+        String sql = "SELECT * FROM ponto_prova_escrita where id_prova_escrita="+Integer.toString(id);
+        List<PontoProvaEscrita> listPontoProvaEscrita = pesquisar(sql);
+        return listPontoProvaEscrita;
+    }
 
     @Override
     public List<PontoProvaEscrita> pesquisarTodos() throws SQLException {
