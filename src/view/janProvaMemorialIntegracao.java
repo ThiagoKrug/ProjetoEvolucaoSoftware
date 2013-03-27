@@ -10,6 +10,7 @@ import br.com.model.dao.ProvaMemorialDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.CriterioAvaliacao;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
+import br.com.model.entity.Examinador;
 import br.com.model.entity.ProvaMemorial;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,6 +41,11 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
         initComponents();
 
         preencheListasCandidatos();
+        ArrayList<Examinador> listaExaminadores = new ArrayList();
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getPresidenteDoBanco());
+        jListExaminadores.setListData(listaExaminadores.toArray());
 
 //        this.listCandidatos = janMenu.CONCURSO.getCandidatos();
 //        DefaultListModel defaultListModel = new DefaultListModel();

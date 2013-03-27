@@ -63,6 +63,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
             }
         }
 
+        ArrayList<Examinador> listaExaminadores = new ArrayList();
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getPresidenteDoBanco());
+        jListExaminadorPlanilha.setListData(listaExaminadores.toArray());
+        
         this.carregarCandidatos();
         this.carregarExaminadores();
     }
@@ -1406,12 +1412,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
     }
 
     private void carregarExaminadores() {
-        ExaminadorDao c = new ExaminadorDao();
-        try {
-            this.jListExaminadorPlanilha.setListData(c.pesquisarTodos().toArray());
-        } catch (Exception ex) {
-            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ExaminadorDao c = new ExaminadorDao();
+//        try {
+//            this.jListExaminadorPlanilha.setListData(c.pesquisarTodos().toArray());
+//        } catch (Exception ex) {
+//            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        ArrayList<Examinador> listaExaminadores = new ArrayList();
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getPresidenteDoBanco());
     }
     
     private Map configurarDadosConcurso(Map parametros){
