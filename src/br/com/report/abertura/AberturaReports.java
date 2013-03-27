@@ -4,19 +4,26 @@
  */
 package br.com.report.abertura;
 
+import br.com.model.dao.AvaliacaoItemDao;
 import br.com.model.dao.AvaliacaoProvaTitulosDao;
+import br.com.model.dao.ClasseDAO;
+import br.com.model.dao.ItemClasseDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.AvaliacaoItem;
 import br.com.model.entity.AvaliacaoProvaTitulo;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.Classe;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
 import br.com.model.entity.IEntidade;
+import br.com.model.entity.ItemClasse;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -179,6 +186,8 @@ public class AberturaReports {
         this.saveHtml(html + html2, "listaPres.html");
     }
     
+    
+    
     public void gerarPlanilhaProvaTits(Candidato candidato) throws SQLException{
         AvaliacaoProvaTitulo apt = null;
         List<AvaliacaoProvaTitulo> apts = (List<AvaliacaoProvaTitulo>)new AvaliacaoProvaTitulosDao().pesquisarTodos();
@@ -189,7 +198,29 @@ public class AberturaReports {
         }
         
         if (apt != null) {
-            
+            List<Classe> classes = (List<Classe>)new ClasseDAO().pesquisarTodos();
+            for (Classe classe: classes) {
+                List<ItemClasse> titens = (List<ItemClasse>)new ItemClasseDao().pesquisarTodos();
+                List<ItemClasse> itens = new ArrayList<ItemClasse>();
+                for (int i = 0; i < titens.size(); i++) {
+                    ItemClasse item = titens.get(i);
+                    if (item.getClasse().getIdClasse() == classe.getIdClasse()) {
+                        itens.add(item);
+                    }
+                }
+                
+                for (int j = 0; j < itens.size(); j++) {
+                    ItemClasse item = itens.get(j);
+                    List<AvaliacaoItem> avs = (List<AvaliacaoItem>)new AvaliacaoItemDao().pesquisarTodos();
+                    AvaliacaoItem avit = null;
+                    for (AvaliacaoItem av: avs) {
+                        if (av.getItemClasse().getIdItemClasse() == item.getIdItemClasse()) {
+                            avit = av;
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 
 -- -----------------------------------------------------
@@ -633,6 +633,72 @@ CREATE  TABLE IF NOT EXISTS `candidato_aptos_leitura_prova_escrita` (
   CONSTRAINT `fk_prova_escrita_has_candidato_candidato1`
     FOREIGN KEY (`id_candidato` )
     REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `nota_prova_escrita`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `nota_prova_escrita` ;
+
+CREATE  TABLE IF NOT EXISTS `nota_prova_escrita` (
+  `idnota_prova_escrita` INT NOT NULL ,
+  `candidato_id_candidato` INT NOT NULL ,
+  `examinador_id_examinador` INT NOT NULL ,
+  `prova_escrita_id_prova_escrita` INT NOT NULL ,
+  `nota_prova_escrita` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idnota_prova_escrita`) ,
+  INDEX `fk_nota_prova_escrita_candidato1` (`candidato_id_candidato` ASC) ,
+  INDEX `fk_nota_prova_escrita_prova_escrita1` (`prova_escrita_id_prova_escrita` ASC) ,
+  INDEX `fk_nota_prova_escrita_examinador1` (`examinador_id_examinador` ASC) ,
+  CONSTRAINT `fk_nota_prova_escrita_candidato1`
+    FOREIGN KEY (`candidato_id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_prova_escrita_prova_escrita1`
+    FOREIGN KEY (`prova_escrita_id_prova_escrita` )
+    REFERENCES `prova_escrita` (`id_prova_escrita` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_prova_escrita_examinador1`
+    FOREIGN KEY (`examinador_id_examinador` )
+    REFERENCES `examinador` (`id_examinador` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `nota_prova_titulos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `nota_prova_titulos` ;
+
+CREATE  TABLE IF NOT EXISTS `nota_prova_titulos` (
+  `idnota_prova_titulos` INT NOT NULL ,
+  `prova_titulo_id_prova_titulo` INT NOT NULL ,
+  `candidato_id_candidato` INT NOT NULL ,
+  `examinador_id_examinador` INT NOT NULL ,
+  `nota_prova_titulos` VARCHAR(45) NULL ,
+  PRIMARY KEY (`idnota_prova_titulos`) ,
+  INDEX `fk_nota_prova_titulos_prova_titulo1` (`prova_titulo_id_prova_titulo` ASC) ,
+  INDEX `fk_nota_prova_titulos_candidato1` (`candidato_id_candidato` ASC) ,
+  INDEX `fk_nota_prova_titulos_examinador1` (`examinador_id_examinador` ASC) ,
+  CONSTRAINT `fk_nota_prova_titulos_prova_titulo1`
+    FOREIGN KEY (`prova_titulo_id_prova_titulo` )
+    REFERENCES `prova_titulo` (`id_prova_titulo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_prova_titulos_candidato1`
+    FOREIGN KEY (`candidato_id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nota_prova_titulos_examinador1`
+    FOREIGN KEY (`examinador_id_examinador` )
+    REFERENCES `examinador` (`id_examinador` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
