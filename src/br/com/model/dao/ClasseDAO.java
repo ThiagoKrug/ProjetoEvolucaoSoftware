@@ -22,50 +22,56 @@ import java.util.List;
 public class ClasseDAO implements IDao {
 
     public ClasseDAO() {
-        
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    @Override
     public Classe pesquisarPorId(int id) throws SQLException {
-        
+
         String sql = "SELECT * FROM classe WHERE id_classe = ? ";
         Classe classe = new Classe();
-        
+
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
-        
+
         ResultSet rs = stmt.executeQuery();
-        
+
         if (rs.next()) {
             classe.setIdClasse(rs.getInt("id_classe"));
             classe.setNomeClasse(rs.getString("nome_classe"));
             classe.setPesoClasse(rs.getFloat("peso_classe"));
             classe.setNotaReferenciaClasse(rs.getFloat("nota_referencia_classe"));
-            classe.setItens(new ArrayList<ItemClasse>());
-            
-            String sql2 = "SELECT * FROM item_classe WHERE id_classe = ? ";
-            
-            PreparedStatement stmt2 = connection.prepareStatement(sql2);
-            stmt.setInt(1, classe.getIdClasse());
-            
-            ResultSet rs2 = stmt2.executeQuery();
-            
-            while (rs2.next()) {
-                
-                ItemClasse item = new ItemClasse();
-                item.setIdItemClasse(rs.getInt("id_item_classe"));
-                item.setDiscriminacao(rs.getString("discriminacao"));
-                item.setPontuacao(rs.getFloat("pontuacao"));
-                item.setClasse(classe);
-                classe.getItens().add(item);
-                
-            }
-            
+            //classe.setItens(new ArrayList<ItemClasse>());
+
+//            String sql2 = "SELECT * FROM item_classe WHERE id_classe = ? ";
+//
+//            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+//            stmt.setInt(1, classe.getIdClasse());
+//
+//            ResultSet rs2 = stmt2.executeQuery();
+//
+//            while (rs2.next()) {
+//
+//                ItemClasse item = new ItemClasse();
+//                item.setIdItemClasse(rs.getInt("id_item_classe"));
+//                item.setDiscriminacao(rs.getString("discriminacao"));
+//                item.setPontuacao(rs.getFloat("pontuacao"));
+//                item.setClasse(classe);
+//                classe.getItens().add(item);
+//
+//            }
+
             return classe;
         }
-        
+
         return null;
-        
+
     }
 
     @Override
@@ -92,5 +98,4 @@ public class ClasseDAO implements IDao {
     public List<IEntidade> pesquisarTodosOrdenadoPor(String criterioOrdenamento) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

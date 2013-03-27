@@ -1,14 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
+import br.com.model.dao.ItemClasseDao;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -16,10 +16,10 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author Bruno
  */
 public class Classe implements IEntidade {
-    
+
     @NotNull
     private int idClasse;
-    @NotBlank 
+    @NotBlank
     private String nomeClasse;
     @NotNull
     @Min(0)
@@ -30,20 +30,19 @@ public class Classe implements IEntidade {
     @Max(10)
     private float notaReferenciaClasse;
     @NotNull
-    private ArrayList<ItemClasse> itens;
+    private List<ItemClasse> itens;
 
     public Classe() {
     }
 
     public Classe(String nomeClasse, float pesoClasse, float notaReferenciaClasse, ArrayList<ItemClasse> itens) {
-       
+
         this.nomeClasse = nomeClasse;
         this.pesoClasse = pesoClasse;
         this.notaReferenciaClasse = notaReferenciaClasse;
         this.itens = itens;
     }
 
-    
     public int getIdClasse() {
         return idClasse;
     }
@@ -76,14 +75,19 @@ public class Classe implements IEntidade {
         this.notaReferenciaClasse = notaReferenciaClasse;
     }
 
-    public ArrayList<ItemClasse> getItens() {
+    public List<ItemClasse> getItens() {
+        if (itens == null) {
+            ItemClasseDao itemClasseDao = new ItemClasseDao();
+            try {
+                itens = itemClasseDao.pesquisarPorIdClasse(idClasse);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         return itens;
     }
 
     public void setItens(ArrayList<ItemClasse> itens) {
         this.itens = itens;
     }
-    
-    
-    
 }
