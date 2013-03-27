@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPlanilhasAvaliacaoProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3cbc18b-d4db-4a5a-af5f-859eaeccea7e">
 	<property name="ireport.zoom" value="1.3310000000000008"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="435"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -36,6 +36,28 @@
 	<parameter name="id_prova_escrita" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="examinador_1" class="java.lang.String"/>
+	<parameter name="examinador_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="examinador_3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="campus" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="classe_concurso" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ministerio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      criterio_avaliacao.`criterio` AS criterio_avaliacao_criterio,
@@ -53,24 +75,23 @@ WHERE
 	<title>
 		<band height="138" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="b86742f2-ba73-4302-af02-85a59213a909" x="270" y="21" width="247" height="49"/>
-				<textElement>
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
-FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
-CAMPUS: ALEGRETE
-CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
-ÁREA: ENGENHARIA DE SOFTWARE
-]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="f161dd88-d978-4937-a6cf-c2353dc7f74a" x="0" y="99" width="555" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[AVALIAÇÃO INDIVIDUAL DA PROVA ESCRITA ]]></text>
 			</staticText>
+			<textField>
+				<reportElement uuid="f6e3e136-4180-443f-8ea8-1082db857f60" x="293" y="21" width="247" height="49"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ministerio}+"\n"+
+$P{instituicao}+"\n"+
+"CAMPUS: "+ $P{campus}+"\n"+
+"CONCURSO PÚBLICO PARA "+ $P{classe_concurso}+"\n"+
+"ÁREA: " +$P{area}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -149,11 +170,11 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 	</columnFooter>
 	<pageFooter>
 		<band height="183" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="5eeb2c47-b6f7-4255-bec0-0d9ca6b4d611" x="188" y="120" width="135" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Prof. Adj 3]]></text>
-			</staticText>
+			<textField>
+				<reportElement uuid="d30c640c-6792-4b95-96aa-6a45bbb81ad2" x="188" y="120" width="135" height="20"/>
+				<textElement textAlignment="Center" markup="none"/>
+				<textFieldExpression><![CDATA["Prof."+ $P{examinador}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement uuid="45b23952-1889-41e5-800b-cb330dc612eb" x="188" y="100" width="135" height="20"/>
 				<textElement textAlignment="Center"/>
