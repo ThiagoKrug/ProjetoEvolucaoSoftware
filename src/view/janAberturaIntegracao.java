@@ -97,7 +97,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jTextFieldEdital = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -360,10 +359,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jButtonRemoveAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
         jButtonRemoveAtividade.setMnemonic('r');
         jButtonRemoveAtividade.setText("Remover");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTableCronogramaAbertura, org.jdesktop.beansbinding.ELProperty.create("${selectedElement !=null}"), jButtonRemoveAtividade, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
-        bindingGroup.addBinding(binding);
-
         jButtonRemoveAtividade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRemoveAtividadeActionPerformed(evt);
@@ -507,8 +502,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
-
-        bindingGroup.bind();
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-536)/2, (screenSize.height-642)/2, 536, 642);
@@ -847,6 +840,5 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLabel textoAjudaLocalSessao;
     private javax.swing.JLabel textoajudaPortaria;
     private javax.swing.JLabel textoajudaemissor;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
