@@ -1385,7 +1385,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void carregarCandidatos() {
         CandidatoDao c = new CandidatoDao();
         try {
-            this.listCandidatos = c.pesquisarTodos();
+            this.listCandidatos = c.pesquisarPorIdConcurso(janMenu.CONCURSO.getIdConcurso());
             this.jListCandidatosConcurso.removeAll();
             this.jListCandidatosConcurso.setListData(listCandidatos.toArray());
             this.jListCandidatosPlanilha.setListData(listCandidatos.toArray());
