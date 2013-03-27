@@ -278,15 +278,15 @@ public class janMenu extends javax.swing.JFrame {
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         
         if(CONCURSO == null){
-            janNovoConc NovoConcurso = new janNovoConc();
+            janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
             NovoConcurso.setVisible(true);
         
         }else{
             int retorno = JOptionPane.showConfirmDialog(rootPane, "Você deseja criar um novo concurso?");
             if (retorno == 0){
                 CONCURSO = null;
-                this.jLabelStatus.setText("");
-                janNovoConc NovoConcurso = new janNovoConc();
+               // this.jLabelStatus.setText("");
+                janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
                 NovoConcurso.setVisible(true);
             }
         }
@@ -378,7 +378,7 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        janNovoConc NovoConcurso = new janNovoConc();
+        janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
             NovoConcurso.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     
@@ -426,7 +426,7 @@ public class janMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonResultado;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonTitulos;
-    private javax.swing.JLabel jLabelStatus;
+    public javax.swing.JLabel jLabelStatus;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
