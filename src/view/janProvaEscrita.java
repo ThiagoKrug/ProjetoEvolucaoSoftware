@@ -838,6 +838,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             CriterioAvaliacao c = new CriterioAvaliacao();
             c.setCriterio(this.jTextFieldTextoCriterio.getText());
             c.setPeso(Float.parseFloat(this.jTextFieldCriterioPeso.getText()));
+            c.setIdProvaEscrita(this.provaEscrita.getIdProvaEscrita());
             c.setProvaEscrita(this.provaEscrita);
 
             CriterioAvaliacaoDao cdao = new CriterioAvaliacaoDao();
@@ -1183,8 +1184,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
             return;
         }
 
-        this.provaEscrita.setHoraInicioJulgamento(Datas.convertStringToTime(this.jTextFieldHoraInicioDivulgacaoResultado.getText()));
-        this.provaEscrita.setLocalJulgamento(this.jTextFieldLocalDivulgacaoResultado.getText());
+        this.provaEscrita.setHoraInicioResultado(Datas.convertStringToTime(this.jTextFieldHoraInicioDivulgacaoResultado.getText()));
+        this.provaEscrita.setLocalResultado(this.jTextFieldLocalDivulgacaoResultado.getText());
 
         try {
             this.pdao.alterar(this.provaEscrita);
@@ -1385,7 +1386,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
     private void carregarCandidatos() {
         CandidatoDao c = new CandidatoDao();
         try {
-            this.listCandidatos = c.pesquisarTodos();
+            this.listCandidatos = c.pesquisarPorIdConcurso(janMenu.CONCURSO.getIdConcurso());
             this.jListCandidatosConcurso.removeAll();
             this.jListCandidatosConcurso.setListData(listCandidatos.toArray());
             this.jListCandidatosPlanilha.setListData(listCandidatos.toArray());

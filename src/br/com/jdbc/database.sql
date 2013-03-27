@@ -645,26 +645,26 @@ DROP TABLE IF EXISTS `nota_prova_escrita` ;
 
 CREATE  TABLE IF NOT EXISTS `nota_prova_escrita` (
   `idnota_prova_escrita` INT NOT NULL ,
-  `candidato_id_candidato` INT NOT NULL ,
-  `examinador_id_examinador` INT NOT NULL ,
-  `prova_escrita_id_prova_escrita` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
+  `id_examinador` INT NOT NULL ,
+  `id_prova_escrita` INT NOT NULL ,
   `nota_prova_escrita` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idnota_prova_escrita`) ,
-  INDEX `fk_nota_prova_escrita_candidato1` (`candidato_id_candidato` ASC) ,
-  INDEX `fk_nota_prova_escrita_prova_escrita1` (`prova_escrita_id_prova_escrita` ASC) ,
-  INDEX `fk_nota_prova_escrita_examinador1` (`examinador_id_examinador` ASC) ,
+  INDEX `fk_nota_prova_escrita_candidato1` (`id_candidato` ASC) ,
+  INDEX `fk_nota_prova_escrita_prova_escrita1` (`id_prova_escrita` ASC) ,
+  INDEX `fk_nota_prova_escrita_examinador1` (`id_examinador` ASC) ,
   CONSTRAINT `fk_nota_prova_escrita_candidato1`
-    FOREIGN KEY (`candidato_id_candidato` )
+    FOREIGN KEY (`id_candidato` )
     REFERENCES `candidato` (`id_candidato` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_prova_escrita_prova_escrita1`
-    FOREIGN KEY (`prova_escrita_id_prova_escrita` )
+    FOREIGN KEY (`id_prova_escrita` )
     REFERENCES `prova_escrita` (`id_prova_escrita` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_prova_escrita_examinador1`
-    FOREIGN KEY (`examinador_id_examinador` )
+    FOREIGN KEY (`id_examinador` )
     REFERENCES `examinador` (`id_examinador` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -678,26 +678,26 @@ DROP TABLE IF EXISTS `nota_prova_titulos` ;
 
 CREATE  TABLE IF NOT EXISTS `nota_prova_titulos` (
   `idnota_prova_titulos` INT NOT NULL ,
-  `prova_titulo_id_prova_titulo` INT NOT NULL ,
-  `candidato_id_candidato` INT NOT NULL ,
-  `examinador_id_examinador` INT NOT NULL ,
+  `id_prova_titulo` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
+  `id_examinador` INT NOT NULL ,
   `nota_prova_titulos` VARCHAR(45) NULL ,
   PRIMARY KEY (`idnota_prova_titulos`) ,
-  INDEX `fk_nota_prova_titulos_prova_titulo1` (`prova_titulo_id_prova_titulo` ASC) ,
-  INDEX `fk_nota_prova_titulos_candidato1` (`candidato_id_candidato` ASC) ,
-  INDEX `fk_nota_prova_titulos_examinador1` (`examinador_id_examinador` ASC) ,
+  INDEX `fk_nota_prova_titulos_prova_titulo1` (`id_prova_titulo` ASC) ,
+  INDEX `fk_nota_prova_titulos_candidato1` (`id_candidato` ASC) ,
+  INDEX `fk_nota_prova_titulos_examinador1` (`id_examinador` ASC) ,
   CONSTRAINT `fk_nota_prova_titulos_prova_titulo1`
-    FOREIGN KEY (`prova_titulo_id_prova_titulo` )
+    FOREIGN KEY (`id_prova_titulo` )
     REFERENCES `prova_titulo` (`id_prova_titulo` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_prova_titulos_candidato1`
-    FOREIGN KEY (`candidato_id_candidato` )
+    FOREIGN KEY (`id_candidato` )
     REFERENCES `candidato` (`id_candidato` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_prova_titulos_examinador1`
-    FOREIGN KEY (`examinador_id_examinador` )
+    FOREIGN KEY (`id_examinador` )
     REFERENCES `examinador` (`id_examinador` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

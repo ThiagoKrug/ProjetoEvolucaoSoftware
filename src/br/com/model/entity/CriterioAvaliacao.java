@@ -25,6 +25,10 @@ public class CriterioAvaliacao implements IEntidade {
     private String criterio;
     private float peso;
     private ProvaEscrita provaEscrita;
+
+    public void setProvaEscrita(ProvaEscrita provaEscrita) {
+        this.provaEscrita = provaEscrita;
+    }
     private ProvaMemorial provaMemorial;
     private ProvaDidatica provaDidatica;
 
@@ -62,12 +66,8 @@ public class CriterioAvaliacao implements IEntidade {
 
     public ProvaDidatica getProvaDidatica() {
         ProvaDidaticaDao provaDidaticaDao = new ProvaDidaticaDao();
-        try {
-           provaDidatica = provaDidaticaDao.pesquisarPorId(idProvaDidatica);
-        } catch (SQLException ex) {
-            Logger.getLogger(CriterioAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return provaDidatica;
+        
+        return null;
     }
 
     public void setProvaDidatica(ProvaDidatica provaDidatica) {
