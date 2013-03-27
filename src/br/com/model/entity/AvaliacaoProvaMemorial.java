@@ -7,7 +7,7 @@ package br.com.model.entity;
 import java.util.ArrayList;
 import javax.validation.constraints.NotNull;
 
-/** 
+/**
  *
  * @author Bruno
  */
