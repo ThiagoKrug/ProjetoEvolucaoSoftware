@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
  * @author Gaattuso
  */
 public class janMenu extends javax.swing.JFrame {
+
     public static Concurso CONCURSO;
 
     /**
@@ -276,22 +277,22 @@ public class janMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        
-        if(CONCURSO == null){
+
+        if (CONCURSO == null) {
             janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
             NovoConcurso.setVisible(true);
-        
-        }else{
+
+        } else {
             int retorno = JOptionPane.showConfirmDialog(rootPane, "Você deseja criar um novo concurso?");
-            if (retorno == 0){
+            if (retorno == 0) {
                 CONCURSO = null;
-               // this.jLabelStatus.setText("");
+                // this.jLabelStatus.setText("");
                 janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
                 NovoConcurso.setVisible(true);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -299,10 +300,10 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscritaActionPerformed
-       
+
         janProvaEscrita ProvaEscrita = new janProvaEscrita();
         ProvaEscrita.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonEscritaActionPerformed
 
     private void jMenuItemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirActionPerformed
@@ -314,24 +315,24 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButtonResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResultadoActionPerformed
-        
+
         janResultados Resultado = new janResultados();
         Resultado.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonResultadoActionPerformed
 
     private void jButtonDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDidaticaActionPerformed
-        
-        janProvaDidaticaIntegracao Didatica =  new janProvaDidaticaIntegracao();
+
+        janProvaDidaticaIntegracao Didatica = new janProvaDidaticaIntegracao();
         Didatica.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonDidaticaActionPerformed
 
     private void jButtonMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemorialActionPerformed
-        
+
         janProvaMemorialIntegracao provaMemorialIntegracao = new janProvaMemorialIntegracao();
         provaMemorialIntegracao.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonMemorialActionPerformed
 
     private void jMenuItemSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalvarActionPerformed
@@ -339,29 +340,29 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSalvarActionPerformed
 
     private void jMenuItemNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoActionPerformed
-       
+
         jButtonNovoActionPerformed(evt);
-        
+
     }//GEN-LAST:event_jMenuItemNovoActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        
+
         System.exit(0);
-        
+
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jButtonAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAberturaActionPerformed
-        
+
         janAberturaIntegracao Abertura = new janAberturaIntegracao();
         Abertura.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonAberturaActionPerformed
 
     private void jButtonTitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTitulosActionPerformed
-        
+
         janProvaTitulos Titulos = new janProvaTitulos();
         Titulos.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonTitulosActionPerformed
 
     private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
@@ -379,9 +380,9 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
-            NovoConcurso.setVisible(true);
+        NovoConcurso.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

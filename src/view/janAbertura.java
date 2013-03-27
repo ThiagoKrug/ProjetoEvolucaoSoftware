@@ -536,11 +536,11 @@ public class janAbertura extends javax.swing.JFrame {
         if (abertura == null) {
             abertura = new Abertura();
             AberturaDao aberturaDao = new AberturaDao();
-            try {
-                aberturaDao.inserir(abertura);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+//            try {
+//                aberturaDao.inserir(abertura);
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
         }
         abertura.setHoraInicio(Datas.convertStringToTime(jTextFieldHoraInstalacao.getText()));
         abertura.setLocal(jTextFieldLocalSessao.getText());
