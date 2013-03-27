@@ -6,6 +6,7 @@ package br.com.model.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -21,28 +22,8 @@ public class ProvaMemorial implements IEntidade{
    @NotNull 
    private ArrayList<CriterioAvaliacao> criterios;
    @NotNull
-   private boolean compareceu;
-   @NotNull
-   private Date data_comparecimento;
+   private ArrayList<Candidato> candidatosAptosProva = new ArrayList<>();
 
-    public Date getData_comparecimento() {
-        return data_comparecimento;
-    }
-
-    public void setData_comparecimento(Date data_comparecimento) {
-        this.data_comparecimento = data_comparecimento;
-    }
-   
-   
-
-    public boolean getCompareceu() {
-        return compareceu;
-    }
-
-    public void setCompareceu(boolean compareceu) {
-        this.compareceu = compareceu;
-    }
-   
    
 
     public int getIdProvaMemorial() {
@@ -69,6 +50,20 @@ public class ProvaMemorial implements IEntidade{
         this.criterios = criterios;
     }
    
+     public void adicionarCandidatoApto(Candidato c) {
+        Iterator<Candidato> iterator = this.candidatosAptosProva.iterator();
+        while (iterator.hasNext()) {
+            Candidato object = iterator.next();
+            if (object.getIdCandidato() == c.getIdCandidato()) {
+                return;
+            }
+        }
+        this.candidatosAptosProva.add(c);
+    }
+     
+     public ArrayList<Candidato> getCandidatosAptosProva() {
+        return candidatosAptosProva;
+    }
    
     
 }
