@@ -7,6 +7,7 @@ import br.com.model.entity.Abertura;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import br.com.report.abertura.AberturaReports;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -544,7 +545,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     }
     private void jButtonCriarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarAtaActionPerformed
-        // TODO add your handling code here:
+        try {
+            new AberturaReports().createAta(abertura);
+        } catch (SQLException e) {
+            System.out.println("Shit");
+            e.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao criar a ata.");
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonCriarAtaActionPerformed
 
     private void jTextFieldLocalSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalSessaoActionPerformed
@@ -573,6 +582,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
          }*/
         this.salvaDadosGerais();
 
+
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -580,8 +590,6 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConcluidoActionPerformed
-        janMenu menu = new janMenu();
-        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonConcluidoActionPerformed
 
@@ -784,19 +792,19 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private void jButtonConcluidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConcluidoMouseClicked
     }//GEN-LAST:event_jButtonConcluidoMouseClicked
 
-
-    
     private void jButtonProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProximoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonProximoMouseClicked
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        if (nextTab < jTabbedPane5.getTabCount()) {
-            jTabbedPane5.setSelectedIndex(nextTab);
-        }
-        component = jTabbedPane5.getSelectedComponent();
-        verificaBotoes(component);
+//        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+//        if (nextTab < jTabbedPane5.getTabCount()) {
+//            jTabbedPane5.setSelectedIndex(nextTab);
+//        }
+//        component = jTabbedPane5.getSelectedComponent();
+//        verificaBotoes(component);
+        
+        chamaProximaTela();
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     private void verificaBotoes(Component component) {
@@ -813,8 +821,17 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
             jButtonProximo.setVisible(false);
             jButtonConcluido.setVisible(true);
             jButtonVoltar.setVisible(true);
-        } 
-            
+        }
+
+    }
+
+    private void chamaProximaTela() {
+        int nextTab = jTabbedPane5.getSelectedIndex() + 1;
+        if (nextTab < jTabbedPane5.getTabCount()) {
+            jTabbedPane5.setSelectedIndex(nextTab);
+        }
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
     }
 
     private void salvaDadosGerais() {
@@ -849,10 +866,18 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
          } else {*/
         AberturaDao aberturaDao = new AberturaDao();
         try {
+
             if (abertura.getIdAbertura() == null) {
                 aberturaDao.inserir(abertura);
+                JOptionPane.showMessageDialog(null, "Gravação Efetuada com Sucesso");
+
+                chamaProximaTela();      
+
             } else {
                 aberturaDao.alterar(abertura);
+                JOptionPane.showMessageDialog(null, "Alteração Efetuada com Sucesso");
+
+                chamaProximaTela();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

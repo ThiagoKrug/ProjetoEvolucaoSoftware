@@ -11,10 +11,12 @@ import br.com.model.dao.ItemClasseDao;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.AvaliacaoItem;
 import br.com.model.entity.AvaliacaoProvaTitulo;
+import br.com.model.entity.BancaExaminadora;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Classe;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import br.com.model.entity.Examinador;
 import br.com.model.entity.IEntidade;
 import br.com.model.entity.ItemClasse;
 import java.io.BufferedReader;
@@ -111,26 +113,45 @@ public class AberturaReports {
     }
 
     public void createAta(Abertura abertura) throws SQLException {
+        System.out.println(System.getProperty("user.dir"));
         Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
-        String html = this.htmlOpen("ata_abertura.html");
+        String html = this.htmlOpen("ata_abertura_temp.html");
         Concurso concurso = abertura.getConcurso();
-        html = html.replace("{{ministerio}}", concurso.getMinisterio())
-                .replace("{{area}}", concurso.getArea())
-                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
-                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
-                .replace("{{instituicao}}", concurso.getInstituicao())
-                .replace("{{n_ata}}", nroAta.toString())
-                .replace("{{local}}", abertura.getLocal())
-                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+//        System.out.println(concurso.getMinisterio());
+        html = html.replace("{{ministerio}}",
+                concurso.getMinisterio());
+        html = html
+                .replace("{{area}}", concurso.getArea());
+        html = html
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus());
+        html = html
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome());
+        html = html
+                .replace("{{instituicao}}", concurso.getInstituicao());
+        html = html
+                .replace("{{n_ata}}", nroAta.toString());
+        html = html
+                .replace("{{local}}", abertura.getLocal());
+        BancaExaminadora examinador = concurso.getBancaExaminadora();
+        html = html
+                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome());
+        System.out.println(html);
+        html = html
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
-                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome());
+        html = html
                 .replace("{{portaria}}", concurso.getPortaria())
-                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
-        this.saveHtml("ata_abertura.html", html);
+                .replace("{{data_ata}}", this.sayDateExt(concurso.getDataInicio()))
+                .replace("{{data_assin}}", this.sayDate(Calendar.getInstance().getTime()))
+                .replace("{{hora_inicio}}", Datas.getHoraToString())
+                .replace("{{emissor}}", abertura.getEmissor());
+        this.saveHtml("ata_instalacao.html", html);
     }
     
     public void createCronograma(List<Cronograma> cronogramas) throws SQLException {
+        
         String html = this.htmlOpen("cronograma_begin.html");
+        
         Concurso concurso = cronogramas.get(0).getConcurso();
         html = html.replace("{{ministerio}}", concurso.getMinisterio())
                 .replace("{{area}}", concurso.getArea())
@@ -162,6 +183,7 @@ public class AberturaReports {
                 .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
                 .replace("{{classe}}", concurso.getClasseConcurso().getNome())
                 .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml(html, "recibo.html");
     }

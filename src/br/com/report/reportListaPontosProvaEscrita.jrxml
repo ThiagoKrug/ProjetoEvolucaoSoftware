@@ -2,11 +2,33 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportListaPontosProvaEscrita" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c816dce3-a489-441d-9a52-bb6bf95c33d4">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="4"/>
 	<parameter name="id_prova_escrita" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="data" class="java.lang.String"/>
+	<parameter name="examinador_1" class="java.lang.String"/>
+	<parameter name="examinador_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="examinador_3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="campus" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="classe_concurso" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ministerio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      ponto_prova_escrita.`descricao` AS ponto_prova_escrita_descricao,
@@ -23,18 +45,17 @@ WHERE
 	</background>
 	<title>
 		<band height="134" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="62133085-61fc-43a7-a613-69dbdfeb3dd5" x="283" y="11" width="247" height="49"/>
-				<textElement>
+			<textField>
+				<reportElement uuid="5d6cfb2c-2c60-420a-8b47-46fb86b30df0" x="283" y="11" width="247" height="49"/>
+				<textElement markup="none">
 					<font fontName="Arial" size="8"/>
 				</textElement>
-				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
-FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
-CAMPUS: ALEGRETE
-CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
-ÁREA: ENGENHARIA DE SOFTWARE
-]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{ministerio}+"\n"+
+$P{instituicao}+"\n"+
+"CAMPUS: "+ $P{campus}+"\n"+
+"CONCURSO PÚBLICO PARA "+ $P{classe_concurso}+"\n"+
+"ÁREA: " +$P{area}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement uuid="c16a37c6-e7de-4e26-ab9a-e10c8c8b2a13" x="16" y="88" width="528" height="20"/>
 				<textElement textAlignment="Center">
@@ -50,26 +71,26 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="c2e6c5ca-f487-48e3-b9aa-0ab392568982" x="135" y="2" width="130" height="20"/>
+				<reportElement uuid="c2e6c5ca-f487-48e3-b9aa-0ab392568982" x="180" y="2" width="148" height="20"/>
 				<textElement/>
 				<text><![CDATA[Descrição do Ponto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="68b3ecc4-8aa7-4974-9c62-c29e140bfca5" x="0" y="2" width="100" height="20"/>
+				<reportElement uuid="68b3ecc4-8aa7-4974-9c62-c29e140bfca5" x="45" y="2" width="55" height="20"/>
 				<textElement/>
-				<text><![CDATA[Nro Candidato]]></text>
+				<text><![CDATA[Nro.]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement uuid="3282d7b7-2e4d-42f9-b8e3-6868b65aa3ba" x="135" y="0" width="420" height="20"/>
+				<reportElement uuid="3282d7b7-2e4d-42f9-b8e3-6868b65aa3ba" x="180" y="0" width="375" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{ponto_prova_escrita_descricao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="9124c32c-f346-4c60-8823-62a910059b6f" x="0" y="0" width="100" height="20"/>
+				<reportElement uuid="9124c32c-f346-4c60-8823-62a910059b6f" x="45" y="0" width="55" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{ponto_prova_escrita_id_ponto_prova_escrita}]]></textFieldExpression>
 			</textField>
@@ -90,26 +111,26 @@ CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[____________________________]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="414e6e89-b6cb-48c7-bfca-67d79e33debb" x="0" y="83" width="135" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Prof. Adj 1]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="2ca9fb2f-4117-468b-bec0-b6a8700edf1a" x="193" y="83" width="135" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Prof. Adj 2]]></text>
-			</staticText>
+			<textField>
+				<reportElement uuid="fc62e88c-1ecd-4920-974d-9b21b0300ac3" x="0" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center" markup="none"/>
+				<textFieldExpression><![CDATA["Prof. "+$P{examinador_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44b3db0c-fcc4-442f-91b2-0dd862d43561" x="193" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center" markup="none"/>
+				<textFieldExpression><![CDATA["Prof. "+$P{examinador_2}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement uuid="3af1ceea-940c-4e11-85ab-6c7ec510c70e" x="193" y="63" width="135" height="20"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[____________________________]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="8524aa12-b7f1-4b60-afa8-9b2ab944b671" x="395" y="83" width="135" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Prof. Adj 3]]></text>
-			</staticText>
+			<textField>
+				<reportElement uuid="63cbb079-003b-4ebf-9de1-33aa34b19697" x="395" y="83" width="135" height="20"/>
+				<textElement textAlignment="Center" markup="none"/>
+				<textFieldExpression><![CDATA["Prof. "+$P{examinador_3}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement uuid="ad0c5fa4-cbd1-4f1e-b960-24044853677a" x="395" y="63" width="135" height="20"/>
 				<textElement textAlignment="Center"/>
