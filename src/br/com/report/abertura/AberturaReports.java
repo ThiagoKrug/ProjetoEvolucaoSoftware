@@ -165,6 +165,7 @@ public class AberturaReports {
                 .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
                 .replace("{{classe}}", concurso.getClasseConcurso().getNome())
                 .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml(html, "recibo.html");
     }
