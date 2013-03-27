@@ -4,10 +4,13 @@
  */
 package br.com.report.abertura;
 
+import br.com.model.dao.AvaliacaoProvaTitulosDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.AvaliacaoProvaTitulo;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import br.com.model.entity.IEntidade;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -176,7 +179,17 @@ public class AberturaReports {
         this.saveHtml(html + html2, "listaPres.html");
     }
     
-    public void gerarPlanilhaProvaTits() {
+    public void gerarPlanilhaProvaTits(Candidato candidato) throws SQLException{
+        AvaliacaoProvaTitulo apt = null;
+        List<AvaliacaoProvaTitulo> apts = (List<AvaliacaoProvaTitulo>)new AvaliacaoProvaTitulosDao().pesquisarTodos();
+        for (AvaliacaoProvaTitulo ap: apts) {
+            if (ap.getCandidato().getIdCandidato() == candidato.getIdCandidato()) {
+                apt = ap;
+            }
+        }
         
+        if (apt != null) {
+            
+        }
     }
 }
