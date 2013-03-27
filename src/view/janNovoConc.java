@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.validation.ConstraintViolation;
@@ -40,11 +41,12 @@ public class janNovoConc extends javax.swing.JFrame {
     private Concurso concurso;
     private Validator validator;
     Component component;
+    private JLabel status;
 
     /**
      * Creates new form janNovoConc
      */
-    public janNovoConc() {
+    public janNovoConc(JLabel status) {
         super("Configurações do Concurso");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -825,6 +827,9 @@ public class janNovoConc extends javax.swing.JFrame {
         } else if (component == jPanelCandidatos) {
             this.salvaCandidatos();
         } else if (component == jPanelProvasConcurso) {
+            this.dispose();
+            janMenu.CONCURSO = concurso;
+
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
@@ -863,7 +868,7 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(true);
         } else if (component == jPanelProvasConcurso) {
-            jButtonProximo.setVisible(false);
+            jButtonProximo.setText("Concluído");
             jButtonVoltar.setVisible(true);
         }
 
@@ -1062,10 +1067,10 @@ public class janNovoConc extends javax.swing.JFrame {
         verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusLost
 
-    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
+    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {
         component = jTabbedPane5.getSelectedComponent();
         verificaBotoes(component);
-    }//GEN-LAST:event_jTabbedPane5StateChanged
+    }
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int linha = jTableCandidatos.getSelectedRow();
@@ -1110,41 +1115,6 @@ public class janNovoConc extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecione um candidato para ser excluído!");
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new janNovoConc().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel classe;
     private javax.swing.JLabel edital;
