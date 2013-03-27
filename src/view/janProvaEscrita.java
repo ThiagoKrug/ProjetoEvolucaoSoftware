@@ -910,6 +910,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Lista de Pontos", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1411,5 +1412,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private Map configurarDadosConcurso(Map parametros){
+        parametros.put("examinador_1", janMenu.CONCURSO.getBancaExaminadora().getPresidente().getPessoa().getNome());
+        //parametros.put("examinador_2", janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        //parametros.put("examinador_3", janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        return parametros;
     }
 }
