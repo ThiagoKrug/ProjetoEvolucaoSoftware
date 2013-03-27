@@ -1448,8 +1448,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         
         this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
         this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+        
+        DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+            lista.removeAllElements();
+            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                lista.addElement(this.provaEscrita.getPontos().get(i));
+            }
+            
         this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
         this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
         this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        
+        this.jFormattedTextFieldHoraSorteio.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraPontoSorteado()));
+        this.jFormattedTextFieldHoraInicioProva.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioProva()));
+        this.jFormattedTextFieldHoraFimProva.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraFimProva()));
+        this.jComboBoxPontos.getModel().setSelectedItem(this.provaEscrita.getPontoSorteado());
     }
 }
