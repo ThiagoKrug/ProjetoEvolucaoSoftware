@@ -63,6 +63,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
             }
         }
 
+        ArrayList<Examinador> listaExaminadores = new ArrayList();
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getPresidenteDoBanco());
+        jListExaminadorPlanilha.setListData(listaExaminadores.toArray());
+        
         this.carregarCandidatos();
         this.carregarExaminadores();
         this.recarregarDados();
@@ -1416,12 +1422,17 @@ public class janProvaEscrita extends javax.swing.JFrame {
     }
 
     private void carregarExaminadores() {
-        ExaminadorDao c = new ExaminadorDao();
-        try {
-            this.jListExaminadorPlanilha.setListData(c.pesquisarTodos().toArray());
-        } catch (Exception ex) {
-            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ExaminadorDao c = new ExaminadorDao();
+//        try {
+//            this.jListExaminadorPlanilha.setListData(c.pesquisarTodos().toArray());
+//        } catch (Exception ex) {
+//            Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        ArrayList<Examinador> listaExaminadores = new ArrayList();
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        listaExaminadores.add(janMenu.CONCURSO.getBancaExaminadora().getPresidenteDoBanco());
     }
     
     private Map configurarDadosConcurso(Map parametros){
@@ -1448,8 +1459,20 @@ public class janProvaEscrita extends javax.swing.JFrame {
         
         this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
         this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+        
+        DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+            lista.removeAllElements();
+            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                lista.addElement(this.provaEscrita.getPontos().get(i));
+            }
+            
         this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
         this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
         this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
+        
+        this.jFormattedTextFieldHoraSorteio.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraPontoSorteado()));
+        this.jFormattedTextFieldHoraInicioProva.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioProva()));
+        this.jFormattedTextFieldHoraFimProva.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraFimProva()));
+        this.jComboBoxPontos.getModel().setSelectedItem(this.provaEscrita.getPontoSorteado());
     }
 }
