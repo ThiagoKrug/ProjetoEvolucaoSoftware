@@ -22,11 +22,11 @@ import java.util.List;
 public class NotaProvaTituloDao implements IDao {
 
     @Override
-    public IEntidade inserir(IEntidade entidade) throws SQLException {
-                if (entidade instanceof NotaProvaTitulo) {
+    public NotaProvaTitulo inserir(IEntidade entidade) throws SQLException {
+        if (entidade instanceof NotaProvaTitulo) {
             NotaProvaTitulo notaProvaTitulo = (NotaProvaTitulo) entidade;
 
-            String sql = "INSERT into nota_prova_titulo (id_nota_prova_titulos, id_examinador,"
+            String sql = "INSERT into nota_prova_titulo (idnota_prova_titulos, id_examinador,"
                     + " id_candidato, id_prova_titulos, nota_prova_titulos)"
                     + " values (?,?,?,?,?)";
             Connection connection = ConnectionFactory.getConnection();
@@ -68,8 +68,46 @@ public class NotaProvaTituloDao implements IDao {
     }
 
     @Override
-    public IEntidade pesquisarPorId(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public NotaProvaTitulo pesquisarPorId(int id) throws SQLException {
+        String sql = "SELECT * from nota_prova_titulos WHERE idnota_prova_titulos = ?";
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        NotaProvaTitulo nota = null;
+
+        if (rs.next()) {
+            nota = new NotaProvaTitulo();
+            nota.setIdNotaProvaTitulo(rs.getInt("idnota_prova_titulos"));
+            nota.setIdExaminador(rs.getInt("id_examinador"));
+            nota.setIdCandidato(rs.getInt("id_candidato"));
+            nota.setIdProvaTitulo(rs.getInt("id_prova_titulo"));
+            nota.setNotaProvaTitulo(rs.getFloat("nota_prova_titulos"));
+        }
+        return nota;
+    }
+
+    public NotaProvaTitulo pesquisarPorCandidatoId(int id) throws SQLException {
+        String sql = "SELECT * from nota_prova_titulos WHERE id_candidato = ?";
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        NotaProvaTitulo nota = null;
+
+        if (rs.next()) {
+            nota = new NotaProvaTitulo();
+            nota.setIdNotaProvaTitulo(rs.getInt("idnota_prova_titulos"));
+            nota.setIdExaminador(rs.getInt("id_examinador"));
+            nota.setIdCandidato(rs.getInt("id_candidato"));
+            nota.setIdProvaTitulo(rs.getInt("id_prova_titulo"));
+            nota.setNotaProvaTitulo(rs.getFloat("nota_prova_titulos"));
+        }
+        return nota;
+
+
     }
 
     @Override
