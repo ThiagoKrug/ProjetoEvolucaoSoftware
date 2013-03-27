@@ -236,7 +236,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonAdicionarCandidatoActionPerformed(evt);
             }
         });
-        jButtonAdicionarCandidato.setBounds(350, 90, 50, 23);
+        jButtonAdicionarCandidato.setBounds(350, 90, 50, 30);
         jLayeredPane2.add(jButtonAdicionarCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCandidatos.setText(">>");
@@ -245,7 +245,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonAdicionarTodosCandidatosActionPerformed(evt);
             }
         });
-        jButtonAdicionarTodosCandidatos.setBounds(350, 120, 49, 23);
+        jButtonAdicionarTodosCandidatos.setBounds(350, 130, 49, 30);
         jLayeredPane2.add(jButtonAdicionarTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCandidato.setText("<");
@@ -254,7 +254,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonRemoverCandidatoActionPerformed(evt);
             }
         });
-        jButtonRemoverCandidato.setBounds(350, 150, 50, 23);
+        jButtonRemoverCandidato.setBounds(350, 170, 50, 30);
         jLayeredPane2.add(jButtonRemoverCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCandidatos.setText("<<");
@@ -263,7 +263,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonRemoverTodosCandidatosActionPerformed(evt);
             }
         });
-        jButtonRemoverTodosCandidatos.setBounds(350, 180, 49, 23);
+        jButtonRemoverTodosCandidatos.setBounds(350, 210, 49, 30);
         jLayeredPane2.add(jButtonRemoverTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText("Selecione os candidadtos aptos a realização da prova escrita.");
@@ -285,7 +285,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonGerarListaCandidatosActionPerformed(evt);
             }
         });
-        jButtonGerarListaCandidatos.setBounds(483, 330, 250, 33);
+        jButtonGerarListaCandidatos.setBounds(483, 330, 250, 30);
         jLayeredPane2.add(jButtonGerarListaCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -527,7 +527,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonGerarAtaLeituraActionPerformed(evt);
             }
         });
-        jButtonGerarAtaLeitura.setBounds(520, 320, 200, 33);
+        jButtonGerarAtaLeitura.setBounds(520, 320, 200, 30);
         jLayeredPane6.add(jButtonGerarAtaLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jListCandidatosAptos2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -546,19 +546,19 @@ public class janProvaEscrita extends javax.swing.JFrame {
                 jButtonAdicionarCadidatoPresenteLeituraActionPerformed(evt);
             }
         });
-        jButtonAdicionarCadidatoPresenteLeitura.setBounds(360, 150, 41, 23);
+        jButtonAdicionarCadidatoPresenteLeitura.setBounds(360, 140, 50, 30);
         jLayeredPane6.add(jButtonAdicionarCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionarTodosCadidatosPresenteLeitura.setText(">>");
-        jButtonAdicionarTodosCadidatosPresenteLeitura.setBounds(360, 180, 49, 23);
+        jButtonAdicionarTodosCadidatosPresenteLeitura.setBounds(360, 180, 50, 30);
         jLayeredPane6.add(jButtonAdicionarTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverCadidatoPresenteLeitura.setText("<");
-        jButtonRemoverCadidatoPresenteLeitura.setBounds(360, 210, 41, 23);
+        jButtonRemoverCadidatoPresenteLeitura.setBounds(360, 220, 50, 30);
         jLayeredPane6.add(jButtonRemoverCadidatoPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoverTodosCadidatosPresenteLeitura.setText("<<");
-        jButtonRemoverTodosCadidatosPresenteLeitura.setBounds(360, 240, 49, 23);
+        jButtonRemoverTodosCadidatosPresenteLeitura.setBounds(360, 260, 50, 30);
         jLayeredPane6.add(jButtonRemoverTodosCadidatosPresenteLeitura, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -712,11 +712,11 @@ public class janProvaEscrita extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(791, 571));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-791)/2, (screenSize.height-571)/2, 791, 571);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
@@ -786,6 +786,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             p.setProvaEscrita(this.provaEscrita);
             try {
                 pdao.inserir(p);
+                jTextFieldTextoPonto.setText("");
             } catch (SQLException ex) {
                 Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -806,20 +807,24 @@ public class janProvaEscrita extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selected = this.jListListaPontos.getSelectedIndex();
         if (selected != -1) {
-            PontoProvaEscrita p = (PontoProvaEscrita) this.jListListaPontos.getSelectedValue();
-            PontoProvaEscritaDao pdao = new PontoProvaEscritaDao();
-            try {
-                pdao.excluir(p);
-            } catch (SQLException ex) {
-                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            int opcao = JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que quer excluir o ponto selecionado?");
+            if (opcao == 0) {
+                PontoProvaEscrita p = (PontoProvaEscrita) this.jListListaPontos.getSelectedValue();
+                PontoProvaEscritaDao pdao = new PontoProvaEscritaDao();
+                try {
+                    pdao.excluir(p);
+                } catch (SQLException ex) {
+                    Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.provaEscrita.removerPonto(p);
+                this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+                DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
+                lista.removeAllElements();
+                for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
+                    lista.addElement(this.provaEscrita.getPontos().get(i));
+                }
             }
-            this.provaEscrita.removerPonto(p);
-            this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
-            DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxPontos.getModel();
-            lista.removeAllElements();
-            for (int i = 0; i < this.provaEscrita.getPontos().size(); i++) {
-                lista.addElement(this.provaEscrita.getPontos().get(i));
-            }
+
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
         }
@@ -860,15 +865,19 @@ public class janProvaEscrita extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selected = this.jListCriterios.getSelectedIndex();
         if (selected != -1) {
-            CriterioAvaliacao c = (CriterioAvaliacao) this.jListCriterios.getSelectedValue();
-            CriterioAvaliacaoDao cdao = new CriterioAvaliacaoDao();
-            try {
-                cdao.excluir(c);
-            } catch (SQLException ex) {
-                Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+            int opcao = JOptionPane.showConfirmDialog(rootPane, "Você tem certeza deseja excluir o critério selecionado?");
+            if (opcao == 0) {
+                CriterioAvaliacao c = (CriterioAvaliacao) this.jListCriterios.getSelectedValue();
+                CriterioAvaliacaoDao cdao = new CriterioAvaliacaoDao();
+                try {
+                    cdao.excluir(c);
+                } catch (SQLException ex) {
+                    Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.provaEscrita.removerCriterioAvaliacao(c);
+                this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
             }
-            this.provaEscrita.removerCriterioAvaliacao(c);
-            this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um critério!", null, JOptionPane.ERROR_MESSAGE);
         }
@@ -901,6 +910,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Lista de Pontos", inputStream, parametros, ConnectionFactory.getConnection());
         } catch (JRException exc) {
@@ -1402,5 +1412,12 @@ public class janProvaEscrita extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private Map configurarDadosConcurso(Map parametros){
+        parametros.put("examinador_1", janMenu.CONCURSO.getBancaExaminadora().getPresidente().getPessoa().getNome());
+        //parametros.put("examinador_2", janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco());
+        //parametros.put("examinador_3", janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco());
+        return parametros;
     }
 }

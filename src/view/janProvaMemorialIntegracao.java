@@ -490,24 +490,23 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCriterioMemorialActionPerformed
 
     private void jButtonAddCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCriterioMemorialActionPerformed
-        
-                                                                  
-             CriterioAvaliacao ca = new CriterioAvaliacao();
-             CriterioAvaliacaoDao criterioAvaliacaoDao =new CriterioAvaliacaoDao();
-             ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
-            
-            try {
-                ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
-                criteriosMemorial.add(ca);
-                jListCriteriosMemorial.removeAll();
-                jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
-                this.jTextFieldCriterioMemorial.setText("");
-                this.jTextFieldPesoMemorial.setText("");
-                this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
-            } catch (NumberFormatException | NullPointerException nfe) {
-                JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+             
+               CriterioAvaliacao ca = new CriterioAvaliacao();
+               ca.setCriterio(jTextFieldCriterioMemorial.getText());
+                
+                try {
+                    ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
+                    criteriosMemorial.add(ca);
+                    jListCriteriosMemorial.removeAll();
+                    jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
+                    this.jTextFieldCriterioMemorial.setText("");
+                    this.jTextFieldPesoMemorial.setText("");
+                    this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
+                } catch (NumberFormatException | NullPointerException nfe) {
+                    JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
 
-            }
+                }
+      
   
     }//GEN-LAST:event_jButtonAddCriterioMemorialActionPerformed
 
