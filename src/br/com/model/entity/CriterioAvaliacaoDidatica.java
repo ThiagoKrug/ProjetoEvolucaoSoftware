@@ -6,11 +6,13 @@ package br.com.model.entity;
 
 /**
  *
- * @author Nasser
+ * @author Juliano R. M.
  */
 public class CriterioAvaliacaoDidatica {
-     private String criterio;
+
+    private String criterio;
     private Float peso;
+    private ProvaDidatica provaDidatica;
 
     public String getCriterio() {
         return criterio;
@@ -27,15 +29,17 @@ public class CriterioAvaliacaoDidatica {
     public void setPeso(Float peso) {
         this.peso = peso;
     }
-    
-    
-    //public String toString(CriterioAvaliacaoDidatica cad){
-    //    return cad.getCriterio() + "   " + cad.getPeso().toString();
-    //}
+
+    public ProvaDidatica getProvaDidatica() {
+        return provaDidatica;
+    }
+
+    public void setProvaDidatica(ProvaDidatica provaDidatica) {
+        this.provaDidatica = provaDidatica;
+    }
 
     @Override
     public String toString() {
-        return  criterio + ", peso=" + peso ;
+        return criterio + ", peso=" + peso;
     }
-    
 }

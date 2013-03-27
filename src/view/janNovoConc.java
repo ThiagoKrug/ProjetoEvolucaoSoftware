@@ -20,8 +20,6 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
@@ -48,12 +46,15 @@ public class janNovoConc extends javax.swing.JFrame {
      */
     public janNovoConc(JLabel status) {
         super("Configurações do Concurso");
+        this.status = status;
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
         concurso = janMenu.CONCURSO;
         initComponents();
+        jTextFieldIdCandidato.setText("");
+        jTextFieldIdCandidato.setVisible(false);
 
         this.preenheDadosDefault();
         this.setsFields();
@@ -166,16 +167,17 @@ public class janNovoConc extends javax.swing.JFrame {
                 DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
                 for (Candidato candidato : candidatos) {
                     dtm.addRow(new Object[]{
-                                candidato.getIdCandidato(),
-                                candidato.getNome()
-                            });
+                        candidato.getIdCandidato(),
+                        candidato.getNome()
+                    });
                 }
             }
 
-
             // provas do concurso
-
-
+            jCheckBoxProvaDeTitulos.setSelected(concurso.isTemProvaTitulos());
+            jCheckBoxProvaDidatica.setSelected(concurso.isTemProvaDidática());
+            jCheckBoxProvaEscrita.setSelected(concurso.isTemProvaEscrita());
+            jCheckBoxProvaMemorial.setSelected(concurso.isTemProvaMemorial());
         }
     }
 
@@ -238,8 +240,8 @@ public class janNovoConc extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "ID", "Nome do Candidato"
-                }) {
+            "ID", "Nome do Candidato"
+        }) {
             Class[] types = new Class[]{
                 int.class, String.class
             };
@@ -328,6 +330,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jDateChooserCandidatoDataNascimento = new com.toedter.calendar.JDateChooser();
+        jTextFieldIdCandidato = new javax.swing.JTextField();
         jPanelProvasConcurso = new javax.swing.JPanel();
         jCheckBoxProvaEscrita = new javax.swing.JCheckBox();
         jCheckBoxProvaDeTitulos = new javax.swing.JCheckBox();
@@ -612,21 +615,21 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Nome:");
-        jLabel21.setBounds(10, 90, 41, 17);
+        jLabel21.setBounds(30, 80, 41, 17);
         jLayeredPane4.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Sexo:");
-        jLabel22.setBounds(260, 90, 36, 17);
+        jLabel22.setBounds(210, 140, 36, 17);
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCandidatoNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldCandidatoNome.setBounds(10, 110, 240, 30);
+        jTextFieldCandidatoNome.setBounds(30, 100, 310, 30);
         jLayeredPane4.add(jTextFieldCandidatoNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCandidatoSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxCandidatoSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
-        jComboBoxCandidatoSexo.setBounds(260, 110, 110, 30);
+        jComboBoxCandidatoSexo.setBounds(210, 160, 130, 30);
         jLayeredPane4.add(jComboBoxCandidatoSexo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTableCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -659,7 +662,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableCandidatos);
         jTableCandidatos.getColumnModel().getColumn(0).setResizable(false);
 
-        jScrollPane1.setBounds(390, 80, 340, 190);
+        jScrollPane1.setBounds(390, 60, 340, 190);
         jLayeredPane4.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -671,7 +674,7 @@ public class janNovoConc extends javax.swing.JFrame {
                 jButtonExcluirActionPerformed(evt);
             }
         });
-        jButtonExcluir.setBounds(250, 200, 120, 33);
+        jButtonExcluir.setBounds(590, 260, 120, 33);
         jLayeredPane4.add(jButtonExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -683,24 +686,24 @@ public class janNovoConc extends javax.swing.JFrame {
                 jButtonEditarActionPerformed(evt);
             }
         });
-        jButtonEditar.setBounds(130, 200, 120, 33);
+        jButtonEditar.setBounds(410, 260, 120, 33);
         jLayeredPane4.add(jButtonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
         jButtonAdicionar.setMnemonic('a');
-        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.setText("Salvar");
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdicionarActionPerformed(evt);
             }
         });
-        jButtonAdicionar.setBounds(10, 200, 120, 33);
+        jButtonAdicionar.setBounds(220, 220, 120, 33);
         jLayeredPane4.add(jButtonAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data de Nascimento:");
-        jLabel24.setBounds(10, 140, 140, 17);
+        jLabel24.setBounds(30, 140, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator3.setBounds(0, 300, 730, 10);
         jLayeredPane4.add(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -710,8 +713,12 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator5.setBounds(0, 50, 730, 10);
         jLayeredPane4.add(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooserCandidatoDataNascimento.setBounds(10, 160, 150, 30);
+        jDateChooserCandidatoDataNascimento.setBounds(30, 160, 160, 30);
         jLayeredPane4.add(jDateChooserCandidatoDataNascimento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTextFieldIdCandidato.setText("id Candidato");
+        jTextFieldIdCandidato.setBounds(30, 210, 80, 20);
+        jLayeredPane4.add(jTextFieldIdCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCandidatosLayout = new javax.swing.GroupLayout(jPanelCandidatos);
         jPanelCandidatos.setLayout(jPanelCandidatosLayout);
@@ -789,11 +796,11 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-756)/2, (screenSize.height-545)/2, 756, 545);
+        setSize(new java.awt.Dimension(756, 545));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed
@@ -820,16 +827,19 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
-
             this.salvaDadosGerais();
+            this.status.setText(
+                    " Edital: " + concurso.getEdital()
+                    + " | Área: " + concurso.getArea()
+                    + " | Classe do Concurso: " + concurso.getClasseConcurso().getNome());
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
         } else if (component == jPanelCandidatos) {
-            this.salvaCandidatos();
+            // naum precisa pq os botoes fazem isso automaticamente
         } else if (component == jPanelProvasConcurso) {
+            this.salvaProvasConcurso();
             this.dispose();
             janMenu.CONCURSO = concurso;
-
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
@@ -871,10 +881,8 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonProximo.setText("Concluído");
             jButtonVoltar.setVisible(true);
         }
-
-
-
     }
+
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
@@ -890,21 +898,45 @@ public class janNovoConc extends javax.swing.JFrame {
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         CandidatoDao cdao = new CandidatoDao();
 
-        Candidato candidato = new Candidato();
+        Candidato candidato = null;
+        String id = jTextFieldIdCandidato.getText();
+        if (id.isEmpty()) {
+            candidato = new Candidato();
+        } else {
+            try {
+                candidato = cdao.pesquisarPorId(Integer.parseInt(id));
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         candidato.setNome(jTextFieldCandidatoNome.getText());
         candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
         candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
         candidato.setConcurso(concurso);
         try {
-            cdao.inserir(candidato);
+            if (candidato.getIdCandidato() == null) {
+                cdao.inserir(candidato);
+            } else {
+                cdao.alterar(candidato);
+                for (int i = 0; i < jTableCandidatos.getModel().getRowCount(); i++) {
+                    Integer id2 = (Integer) jTableCandidatos.getModel().getValueAt(i, 0);
+                    if (id2 != null) {
+                        if (id2 == candidato.getIdCandidato()) {
+                            DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+                            dtm.removeRow(i);
+                        }
+                    }
+                }
+            }
             DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
             dtm.addRow(new Object[]{
-                        candidato.getIdCandidato(),
-                        candidato.getNome()
-                    });
+                candidato.getIdCandidato(),
+                candidato.getNome()
+            });
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        jTextFieldIdCandidato.setText("");
         jTextFieldCandidatoNome.setText("");
         jComboBoxCandidatoSexo.setSelectedIndex(0);
         jDateChooserCandidatoDataNascimento.setDate(null);
@@ -1054,7 +1086,22 @@ public class janNovoConc extends javax.swing.JFrame {
         }
     }
 
-    private void salvaCandidatos() {
+    private void salvaProvasConcurso() {
+        concurso.setTemProvaDidática(jCheckBoxProvaDidatica.isSelected());
+        concurso.setTemProvaEscrita(jCheckBoxProvaEscrita.isSelected());
+        concurso.setTemProvaMemorial(jCheckBoxProvaMemorial.isSelected());
+        concurso.setTemProvaTitulos(jCheckBoxProvaDeTitulos.isSelected());
+
+        ConcursoDao cdao = new ConcursoDao();
+        try {
+            if (concurso.getIdConcurso() == 0) {
+                cdao.inserir(concurso);
+            } else {
+                cdao.alterar(concurso);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
@@ -1067,19 +1114,55 @@ public class janNovoConc extends javax.swing.JFrame {
         verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusLost
 
-    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
+    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {
         component = jTabbedPane5.getSelectedComponent();
         verificaBotoes(component);
-    }//GEN-LAST:event_jTabbedPane5StateChanged
-
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+    }
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+        int linha = jTableCandidatos.getSelectedRow();
+        if (linha >= 0) {
+            int id = (int) jTableCandidatos.getModel().getValueAt(linha, 0);
+            CandidatoDao candidatoDao = new CandidatoDao();
+            Candidato candidato = null;
+            try {
+                candidato = candidatoDao.pesquisarPorId(id);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            jTextFieldIdCandidato.setText(candidato.getIdCandidato() + "");
+            jTextFieldCandidatoNome.setText(candidato.getNome());
+            for (int i = 0; i < jComboBoxCandidatoSexo.getModel().getSize(); i++) {
+                String sexo = (String) jComboBoxCandidatoSexo.getModel().getElementAt(i);
+                if (sexo.substring(0, 1).equalsIgnoreCase(candidato.getSexo())) {
+                    jComboBoxCandidatoSexo.setSelectedIndex(i);
+                    break;
+                }
+            }
+            jDateChooserCandidatoDataNascimento.setDate(candidato.getDataNascimento());
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato para ser excluído!");
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int linha = jTableCandidatos.getSelectedRow();
+        if (linha >= 0) {
+            int id = (int) jTableCandidatos.getModel().getValueAt(linha, 0);
+            CandidatoDao candidatoDao = new CandidatoDao();
+            try {
+                Candidato candidato = candidatoDao.pesquisarPorId(id);
+                candidatoDao.excluir(candidato);
+                DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+                dtm.removeRow(linha);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possível excluir o candidato selecionado. Verifique se o candidato já possui provas ou notas adicionadas.", "", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato para ser excluído!");
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel classe;
     private javax.swing.JLabel edital;
@@ -1143,6 +1226,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldExaminador1Nome;
     private javax.swing.JTextField jTextFieldExaminador2Nome;
+    private javax.swing.JTextField jTextFieldIdCandidato;
     private javax.swing.JTextField jTextFieldInstituicao;
     private javax.swing.JTextField jTextFieldMinisterio;
     private javax.swing.JTextField jTextFieldPresidente;

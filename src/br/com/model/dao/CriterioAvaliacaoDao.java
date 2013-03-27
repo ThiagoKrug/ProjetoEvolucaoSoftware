@@ -57,12 +57,18 @@ public class CriterioAvaliacaoDao implements IDao{
             String sql = "UPDATE criterio_avaliacao SET "
                     + "criterio = ?,"
                     + "peso = ?,"
+                    + "id_prova_memorial = ?,"
+                    + "id_prova_escrita = ?,"
+                    + "id_prova_didatica = ?,"
                     + "WHERE id_criterio_avaliacao = ? ";
 
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, criterio.getCriterio());
             stmt.setFloat(2, criterio.getPeso());
+            stmt.setInt(2, criterio.getProvaMemorial().getIdProvaMemorial());
+            stmt.setInt(2, criterio.getProvaEscrita().getIdProvaEscrita());
+            stmt.setInt(2, criterio.getProvaDidatica().getIdProvaDidatica());
             stmt.setInt(3, criterio.getIdCriterioAvaliacao());
 
             if (stmt.executeUpdate() == 1) {

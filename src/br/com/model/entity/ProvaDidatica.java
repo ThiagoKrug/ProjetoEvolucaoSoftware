@@ -17,10 +17,12 @@ public class ProvaDidatica implements IEntidade {
     private String localRealizacaoProvaDidatica;
     private ArrayList<Candidato> candidatosAptosProvaDidatica;
     private ArrayList<Ponto_ProvaDidatica> pontos_ProvaDidatica;
+    private ArrayList<CriterioAvaliacaoDidatica> criterios;
 
     public ProvaDidatica() {
         this.candidatosAptosProvaDidatica = new ArrayList<Candidato>();
         this.pontos_ProvaDidatica = new ArrayList<Ponto_ProvaDidatica>();
+        this.criterios = new ArrayList<CriterioAvaliacaoDidatica>();
     }
 
     public int getIdProvaDidatica() {
@@ -63,6 +65,14 @@ public class ProvaDidatica implements IEntidade {
         this.pontos_ProvaDidatica = pontos_ProvaDidatica;
     }
 
+    public ArrayList<CriterioAvaliacaoDidatica> getCriterios() {
+        return criterios;
+    }
+
+    public void setCriterios(ArrayList<CriterioAvaliacaoDidatica> criterios) {
+        this.criterios = criterios;
+    }
+
     /**
      * <p>Método que adiciona um Ponto da Prova Didatica</p>
      *
@@ -97,5 +107,35 @@ public class ProvaDidatica implements IEntidade {
                 return;
             }
         }
+    }
+
+    public float getSomaPontosCriterioAvaliacao() {
+        float soma = 0f;
+        try {
+            Iterator<CriterioAvaliacaoDidatica> iterator = this.criterios.iterator();
+            while (iterator.hasNext()) {
+                CriterioAvaliacaoDidatica object = iterator.next();
+                soma += object.getPeso();
+            }
+        } catch (Exception exceptError) {
+            exceptError.printStackTrace();
+        }
+        return soma;
+    }
+
+    public void adicionarCandidatoAptoDidatica(Candidato c) {
+        try {
+            Iterator<Candidato> iterator = this.candidatosAptosProvaDidatica.iterator();
+            while (iterator.hasNext()) {
+                Candidato object = iterator.next();
+                if (object.getIdCandidato() == c.getIdCandidato()) {
+                    return;
+                }
+            }
+        } catch (Exception exceptError) {
+            exceptError.printStackTrace();
+        }
+
+        this.candidatosAptosProvaDidatica.add(c);
     }
 }

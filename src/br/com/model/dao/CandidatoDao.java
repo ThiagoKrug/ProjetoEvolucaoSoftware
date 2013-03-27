@@ -33,8 +33,9 @@ public class CandidatoDao implements IDao {
                     + "id_concurso, "
                     + "apto_prova_escrita, "
                     + "apto_prova_didatica, "
+                    + "apto_prova_memorial, "
                     + "id_prova_escrita "
-                    + ") VALUES (?, ?, ?, ?, ?)";
+                    + ") VALUES (?, ?, ?, ?, ?,?)";
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, candidato.getIdPessoa());
@@ -49,10 +50,15 @@ public class CandidatoDao implements IDao {
             } else {
                 stmt.setString(4, null);
             }
-            if (candidato.getProvaEscrita() != null) {
-                stmt.setInt(5, candidato.getProvaEscrita().getIdProvaEscrita());
+            if (candidato.getAptoProvaMemorial() != null) {
+                stmt.setBoolean(5, candidato.getAptoProvaMemorial());
             } else {
                 stmt.setString(5, null);
+            }
+            if (candidato.getProvaEscrita() != null) {
+                stmt.setInt(6, candidato.getProvaEscrita().getIdProvaEscrita());
+            } else {
+                stmt.setString(6, null);
             }
 
             System.out.println(stmt.toString());
@@ -75,11 +81,12 @@ public class CandidatoDao implements IDao {
             PessoaDao pdao = new PessoaDao();
             pdao.alterar(candidato);
 
-            String sql = "UPDATE candidato SET ("
+            String sql = "UPDATE candidato SET "
                     + "id_pessoa = ?, "
                     + "id_concurso = ?, "
                     + "apto_prova_escrita = ?, "
                     + "apto_prova_didatica = ?, "
+                    + "apto_prova_memorial = ?, "
                     + "id_prova_escrita = ? "
                     + "WHERE id_candidato = ?";
             Connection connection = ConnectionFactory.getConnection();
@@ -96,14 +103,19 @@ public class CandidatoDao implements IDao {
             } else {
                 stmt.setString(4, null);
             }
-            if (candidato.getProvaEscrita() != null) {
-                stmt.setInt(5, candidato.getProvaEscrita().getIdProvaEscrita());
+            if (candidato.getAptoProvaMemorial() != null) {
+                stmt.setBoolean(5, candidato.getAptoProvaMemorial());
             } else {
                 stmt.setString(5, null);
             }
-            stmt.setInt(6, candidato.getIdCandidato());
+            if (candidato.getProvaEscrita() != null) {
+                stmt.setInt(6, candidato.getProvaEscrita().getIdProvaEscrita());
+            } else {
+                stmt.setString(6, null);
+            }
+            stmt.setInt(7, candidato.getIdCandidato());
 
-            System.out.println(stmt.toString());
+            System.out.println("SQL"+stmt.toString());
             if (stmt.executeUpdate() == 1) {
                 return candidato;
             }
@@ -115,10 +127,7 @@ public class CandidatoDao implements IDao {
     public Candidato excluir(IEntidade entidade) throws SQLException {
         if (entidade instanceof Candidato) {
             Candidato candidato = (Candidato) entidade;
-            
-            PessoaDao pdao = new PessoaDao();
-            pdao.excluir(candidato);
-            
+
             String sql = "DELETE FROM candidato WHERE id_candidato = ? ";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -127,6 +136,9 @@ public class CandidatoDao implements IDao {
 
             System.out.println(stmt.toString());
             if (stmt.executeUpdate() == 1) {
+                PessoaDao pdao = new PessoaDao();
+                pdao.excluir(candidato);
+
                 return candidato;
             }
         }
@@ -214,7 +226,7 @@ public class CandidatoDao implements IDao {
     private Candidato setsFromDatabase(ResultSet rs) throws SQLException {
         PessoaDao pdao = new PessoaDao();
         Pessoa pessoa = pdao.pesquisarPorId(rs.getInt("id_pessoa"));
-        
+
         Candidato candidato = new Candidato();
         candidato.setIdCandidato(rs.getInt("id_candidato"));
         candidato.setIdPessoa(pessoa.getIdPessoa());
@@ -225,6 +237,7 @@ public class CandidatoDao implements IDao {
         concurso.setIdConcurso(rs.getInt("id_concurso"));
         candidato.setConcurso(concurso);
         candidato.setAptoProvaEscrita(rs.getBoolean("apto_prova_escrita"));
+        candidato.setAptoProvaMemorial(rs.getBoolean("apto_prova_memorial"));
         candidato.setAptoProvaDidatica(rs.getBoolean("apto_prova_didatica"));
         ProvaEscrita provaEscrita = new ProvaEscrita();
         provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));

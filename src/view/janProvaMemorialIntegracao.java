@@ -4,10 +4,21 @@
  */
 package view;
 
+import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.CriterioAvaliacaoDao;
+import br.com.model.dao.ProvaMemorialDao;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.CriterioAvaliacao;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
+import br.com.model.entity.ProvaMemorial;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.validation.groups.Default;
 
 /**
  *
@@ -16,12 +27,23 @@ import javax.swing.JOptionPane;
 public class janProvaMemorialIntegracao extends javax.swing.JFrame {
 
     ArrayList<CriterioAvaliacao> criteriosMemorial = new ArrayList();
+    private List<Candidato> listCandidatos;
+    private ProvaMemorial provaMemorial = new ProvaMemorial();
+    private CandidatoDao cdao = new CandidatoDao();
     /**
      * Creates new form janProvaMemorial
      */
     public janProvaMemorialIntegracao() {
         super("Prova de Memorial");
         initComponents();
+        
+        this.listCandidatos = janMenu.CONCURSO.getCandidatos();
+        DefaultListModel defaultListModel = new DefaultListModel();
+        for (Candidato candidato : this.listCandidatos) {
+           defaultListModel.addElement(candidato.getNome());
+           
+        }
+        jListCandidatosMemorial.setModel(defaultListModel);
     }
 
     /**
@@ -468,19 +490,30 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCriterioMemorialActionPerformed
 
     private void jButtonAddCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCriterioMemorialActionPerformed
-         CriterioAvaliacao ca = new CriterioAvaliacao();
-        ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
-        try {
-            ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
-            criteriosMemorial.add(ca);
-            jListCriteriosMemorial.removeAll();
-            jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
-            this.jTextFieldCriterioMemorial.setText("");
-            this.jTextFieldPesoMemorial.setText("");
-            this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
+        
+        try {                                                           
+             CriterioAvaliacao ca = new CriterioAvaliacao();
+             CriterioAvaliacaoDao criterioAvaliacaoDao =new CriterioAvaliacaoDao();
+             ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
+             ca.set
+             criterioAvaliacaoDao.alterar(ca);
             
-        } catch (NumberFormatException | NullPointerException nfe) {
-            JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+            try {
+                ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
+                criteriosMemorial.add(ca);
+                jListCriteriosMemorial.removeAll();
+                jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
+                this.jTextFieldCriterioMemorial.setText("");
+                this.jTextFieldPesoMemorial.setText("");
+                this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
+            } catch (NumberFormatException | NullPointerException nfe) {
+                JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+
+            }
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaMemorialIntegracao.class.getName()).log( Level.SEVERE, null, ex);
 
         }
 
@@ -510,7 +543,24 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoveTodosCandidatosMemorialActionPerformed
 
     private void jButtonAddCandidatoMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCandidatoMemorialActionPerformed
-        // TODO add your handling code here:
+        int selected = this.jListCandidatosMemorial.getSelectedIndex();
+        if (selected != -1) {
+            Candidato c = this.listCandidatos.get(selected);
+            this.provaMemorial.adicionarCandidatoApto(c);
+            this.provaMemorial.setConcurso(janMenu.CONCURSO);
+            this.listCandidatos.remove(c);
+            this.jListCandidatosMemorial.setListData(this.listCandidatos.toArray());
+            this.jListCandidatosSelecionadosMemorial.setListData(this.provaMemorial.getCandidatosAptosProva().toArray());
+           // this.jListCandidatosSelecionadosMemorial.setListData(this.provaMemorial.getCandidatosAptosProva().toArray());
+            try {
+                c.setAptoProvaMemorial(true);
+                cdao.alterar(c);
+            } catch (SQLException ex) {
+                Logger.getLogger(janProvaMemorial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAddCandidatoMemorialActionPerformed
 
     private Float calculaTotalPesos(ArrayList<CriterioAvaliacao> c){

@@ -4,15 +4,20 @@
  */
 package view;
 
+import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ExaminadorDao;
+import br.com.model.dao.NotaMemorialDao;
 import br.com.model.dao.ProvaDidaticaDao;
 import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.dao.ProvaMemorialDao;
 import br.com.model.dao.ProvaTitulosDao;
+import br.com.model.entity.BancaExaminadora;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Examinador;
+import br.com.model.entity.NotaMemorial;
+import br.com.model.entity.Notas_ProvaDidatica;
 import br.com.model.entity.ProvaDidatica;
 import br.com.model.entity.ProvaEscrita;
 import br.com.model.entity.ProvaMemorial;
@@ -20,6 +25,8 @@ import br.com.model.entity.ProvaTitulos;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 public class janResultados extends javax.swing.JFrame {
 
     private Concurso concurso;
+    private List<Candidato> candidatos = null;
 
     /**
      * Creates new form janResultados
@@ -41,6 +49,7 @@ public class janResultados extends javax.swing.JFrame {
         this.setFields();
         this.preencheTabelaResultadoResumo();
         this.preencherDadosComboCandidato();
+        this.iniciaTabelaResultado();
         //this.preencheTabelaResultadoCandidato();
 
     }
@@ -65,6 +74,7 @@ public class janResultados extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCandidatoResulatdos = new javax.swing.JTable();
         jComboBoxCandidatos = new javax.swing.JComboBox();
+        jButtonSalvarNotas = new javax.swing.JButton();
         jPanelResumo = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
@@ -112,11 +122,7 @@ public class janResultados extends javax.swing.JFrame {
 
         jTableCandidatoResulatdos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, "", null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Examinador", "Títulos", "Escrita", "Didática", "Memorial"
@@ -134,9 +140,26 @@ public class janResultados extends javax.swing.JFrame {
 
         jComboBoxCandidatos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Candidato 1", "Candidato 2", "Candidato 3", "Candidato 4" }));
         jComboBoxCandidatos.setPreferredSize(new java.awt.Dimension(56, 30));
+        jComboBoxCandidatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxCandidatosMouseClicked(evt);
+            }
+        });
         jComboBoxCandidatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCandidatosActionPerformed(evt);
+            }
+        });
+
+        jButtonSalvarNotas.setText("Salvar Notas");
+        jButtonSalvarNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSalvarNotasMouseClicked(evt);
+            }
+        });
+        jButtonSalvarNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarNotasActionPerformed(evt);
             }
         });
 
@@ -154,7 +177,9 @@ public class janResultados extends javax.swing.JFrame {
                     .addGroup(jPanelNotasCandidatoLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSalvarNotas)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelNotasCandidatoLayout.setVerticalGroup(
@@ -162,9 +187,11 @@ public class janResultados extends javax.swing.JFrame {
             .addGroup(jPanelNotasCandidatoLayout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelNotasCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelNotasCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelNotasCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jComboBoxCandidatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonSalvarNotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -303,6 +330,70 @@ public class janResultados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCandidatosActionPerformed
 
+    private void jButtonSalvarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarNotasActionPerformed
+    }//GEN-LAST:event_jButtonSalvarNotasActionPerformed
+
+    private void jComboBoxCandidatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxCandidatosMouseClicked
+
+        BancaExaminadoraDao bancaDao = new BancaExaminadoraDao();
+        BancaExaminadora banca = null;
+
+        try {
+            banca = bancaDao.pesquisarPorIdConcurso(concurso.getIdConcurso());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+
+        String[] colunas = {"Examinador", "Títulos", "Escrita", "Didática", "Memorial"};
+        jTableCandidatoResulatdos.setModel(new DefaultTableModel(null, colunas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return true;
+            }
+        });
+
+        jTableCandidatoResulatdos.setRowSelectionAllowed(true);
+        jTableCandidatoResulatdos.getTableHeader().setReorderingAllowed(false);
+
+        DefaultTableModel modelo = (DefaultTableModel) jTableCandidatoResulatdos.getModel();
+        modelo.setNumRows(0);
+        modelo.addRow(new String[]{
+                    banca.getPresidenteDoBanco().getPessoa().getNome()
+                });
+        modelo.addRow(new String[]{
+                    banca.getExaminador2DoBanco().getPessoa().getNome()
+                });
+
+        modelo.addRow(new String[]{
+                    banca.getExaminador3DoBanco().getPessoa().getNome()
+                });
+    }//GEN-LAST:event_jComboBoxCandidatosMouseClicked
+
+    private void jButtonSalvarNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarNotasMouseClicked
+        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
+        ProvaMemorialDao memDao = new ProvaMemorialDao();
+        List<ProvaMemorial> provasMem = memDao.pesquisarTodos();
+        int idProvaexam = 0;
+        for (int i = 0; i < provasMem.size(); i++) {
+            if (provasMem.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
+                idProvaexam = provasMem.get(i).getConcurso().getIdConcurso();
+            }
+        }
+
+        NotaMemorialDao notDao = new NotaMemorialDao();
+        NotaMemorial nota = new NotaMemorial();
+        nota.setIdCandidato(candit.getIdCandidato());
+        nota.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
+        nota.setIdProvaMemorial(idProvaexam);        
+        nota.setNotaProvaMemorial((int)jTableCandidatoResulatdos.getValueAt(1, 5));
+        try {
+            notDao.inserir(nota);
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSalvarNotasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -357,12 +448,47 @@ public class janResultados extends javax.swing.JFrame {
         }
     }
 
+    public void iniciaTabelaResultado() {
+        BancaExaminadoraDao bancaDao = new BancaExaminadoraDao();
+        BancaExaminadora banca = null;
+
+        try {
+            banca = bancaDao.pesquisarPorIdConcurso(concurso.getIdConcurso());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+
+        String[] colunas = {"Examinador", "Títulos", "Escrita", "Didática", "Memorial"};
+        jTableCandidatoResulatdos.setModel(new DefaultTableModel(null, colunas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return true;
+            }
+        });
+
+        jTableCandidatoResulatdos.setRowSelectionAllowed(true);
+        jTableCandidatoResulatdos.getTableHeader().setReorderingAllowed(false);
+
+        DefaultTableModel modelo = (DefaultTableModel) jTableCandidatoResulatdos.getModel();
+        modelo.setNumRows(0);
+        modelo.addRow(new String[]{
+                    banca.getPresidenteDoBanco().getPessoa().getNome()
+                });
+        modelo.addRow(new String[]{
+                    banca.getExaminador2DoBanco().getPessoa().getNome()
+                });
+
+        modelo.addRow(new String[]{
+                    banca.getExaminador3DoBanco().getPessoa().getNome()
+                });
+    }
+
     public void preencherDadosComboCandidato() {
         this.concurso = janMenu.CONCURSO;
         ListCellRenderer lcr = new ListCellRenderer();
         jComboBoxCandidatos.setRenderer(lcr.createListCellRenderer(Candidato.class, "getNome"));
         CandidatoDao cdao = new CandidatoDao();
-        List<Candidato> candidatos = null;
 
         try {
             candidatos = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
@@ -420,12 +546,10 @@ public class janResultados extends javax.swing.JFrame {
         jTableResumoResultados.getColumnModel().getColumn(2).setResizable(false);
     }
 
-    
-    
     public void preencheTabelaResultadoCandidato() {
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSalvarNotas;
     private javax.swing.JComboBox jComboBoxCandidatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
