@@ -836,6 +836,7 @@ public class janNovoConc extends javax.swing.JFrame {
         } else if (component == jPanelProvasConcurso) {
             this.dispose();
             janMenu.CONCURSO = concurso;
+            janMenu.habilitaBotoes();
 
         }
 
