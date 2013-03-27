@@ -580,12 +580,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         CandidatoDao cdao = new CandidatoDao();
 
         try {
-            candidato = cdao.pesquisarTodos();
+            candidato = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        jListCandidatos.setListData(candidato.toArray());
+        if(!candidato.isEmpty()){
+            jListCandidatos.setListData(candidato.toArray());
+        }
+        
 
         /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
          for (Candidato candi : candidato) {
