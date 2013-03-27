@@ -7,6 +7,7 @@ package view;
 import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ExaminadorDao;
+import br.com.model.dao.NotaMemorialDao;
 import br.com.model.dao.ProvaDidaticaDao;
 import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.dao.ProvaMemorialDao;
@@ -15,6 +16,7 @@ import br.com.model.entity.BancaExaminadora;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Examinador;
+import br.com.model.entity.NotaMemorial;
 import br.com.model.entity.Notas_ProvaDidatica;
 import br.com.model.entity.ProvaDidatica;
 import br.com.model.entity.ProvaEscrita;
@@ -23,6 +25,8 @@ import br.com.model.entity.ProvaTitulos;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -330,7 +334,7 @@ public class janResultados extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarNotasActionPerformed
 
     private void jComboBoxCandidatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxCandidatosMouseClicked
- 
+
         BancaExaminadoraDao bancaDao = new BancaExaminadoraDao();
         BancaExaminadora banca = null;
 
@@ -367,9 +371,27 @@ public class janResultados extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCandidatosMouseClicked
 
     private void jButtonSalvarNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarNotasMouseClicked
-     Candidato canditi = (Candidato)jComboBoxCandidatos.getSelectedItem();
-     
-        
+        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
+        ProvaMemorialDao memDao = new ProvaMemorialDao();
+        List<ProvaMemorial> provasMem = memDao.pesquisarTodos();
+        int idProvaexam = 0;
+        for (int i = 0; i < provasMem.size(); i++) {
+            if (provasMem.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
+                idProvaexam = provasMem.get(i).getConcurso().getIdConcurso();
+            }
+        }
+
+        NotaMemorialDao notDao = new NotaMemorialDao();
+        NotaMemorial nota = new NotaMemorial();
+        nota.setIdCandidato(candit.getIdCandidato());
+        nota.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
+        nota.setIdProvaMemorial(idProvaexam);        
+        nota.setNotaProvaMemorial((int)jTableCandidatoResulatdos.getValueAt(1, 5));
+        try {
+            notDao.inserir(nota);
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonSalvarNotasMouseClicked
 
     /**
@@ -426,7 +448,7 @@ public class janResultados extends javax.swing.JFrame {
         }
     }
 
-    public void iniciaTabelaResultado(){
+    public void iniciaTabelaResultado() {
         BancaExaminadoraDao bancaDao = new BancaExaminadoraDao();
         BancaExaminadora banca = null;
 
@@ -461,7 +483,7 @@ public class janResultados extends javax.swing.JFrame {
                     banca.getExaminador3DoBanco().getPessoa().getNome()
                 });
     }
-    
+
     public void preencherDadosComboCandidato() {
         this.concurso = janMenu.CONCURSO;
         ListCellRenderer lcr = new ListCellRenderer();
