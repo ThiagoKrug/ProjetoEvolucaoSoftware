@@ -181,5 +181,28 @@ public class ProvaMemorialDao  implements IDao{
         }
        return  listaProvaMemorial;
     }
+    public ProvaMemorial pesquisarPorIdCurso(int id){
+        ProvaMemorial provaMemorial = new ProvaMemorial();
+        String sql = "SELECT * from prova_memorial where id_concurso = ?";
+        try {
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                provaMemorial.setIdProvaMemorial(rs.getInt("id_prova_memorial"));
+//                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
+//                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
+                provaMemorial.setConcurso(null);
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       return provaMemorial;
+        
+    }
     
 }
