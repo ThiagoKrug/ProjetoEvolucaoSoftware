@@ -26,7 +26,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private Abertura abertura = new Abertura();
     private Concurso concurso;
-    ArrayList <Candidato> candidatosAptos = new ArrayList();
+    ArrayList<Candidato> candidatosAptos = new ArrayList();
     List<Candidato> candidato = null;
 
     /**
@@ -44,47 +44,13 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
             // dados gerais
             abertura = concurso.getAbertura();
             if (abertura != null) {
-                jTextFieldHoraInstalacao.setText(Datas.getTime(abertura.getHoraInicio()));
+                jTextFieldHoraInstalacao.setText(Datas.getTimeNoSecond(abertura.getHoraInicio()));
                 jTextFieldLocalSessao.setText(abertura.getLocal());
                 jTextPortariaNomeacao.setText(abertura.getPortaria());
                 jTextFieldEmissorPortaria.setText(abertura.getEmissor());
 
                 // Cronograma
-                CronogramaDao cronogramaDao = new CronogramaDao();
-                List<Cronograma> cronogramas = null;
-                try {
-                    cronogramas = cronogramaDao.pesquisarPorIdConcurso(abertura.getIdConcurso());
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-                DefaultTableModel dtm = new DefaultTableModel(
-                        new Object[][]{},
-                        new String[]{
-                            "Atividade", "Data", "Horário", "Local"
-                        }) {
-                    Class[] types = new Class[]{
-                        String.class, String.class, String.class, String.class
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
-                    }
-
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return false;
-                    }
-                };
-                for (Cronograma cronograma : cronogramas) {
-                    dtm.addRow(new Object[]{
-                                cronograma.getAtividade(),
-                                Datas.getDate(cronograma.getData()),
-                                Datas.getTime(cronograma.getHorario()),
-                                //Datas.getDate(concurso.getDataInicio())
-                                cronograma.getLocal()
-                            });
-                }
-                jTableCronogramaAbertura.setModel(dtm);
+                this.preecheTabelaCronograma();
             }
         }
     }
@@ -250,7 +216,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(60, 360, 390, 40);
+        jButtonCriarAta.setBounds(50, 420, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -264,7 +230,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonGravarActionPerformed(evt);
             }
         });
-        jButtonGravar.setBounds(330, 410, 120, 40);
+        jButtonGravar.setBounds(320, 370, 120, 40);
         jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
@@ -287,11 +253,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Atividade", "Data", "Horário", "Local"
+                "id", "Atividade", "Data", "Horário", "Local"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -301,7 +267,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jTableCronogramaAbertura.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableCronogramaAbertura);
 
-        jScrollPane2.setBounds(30, 190, 460, 200);
+        jScrollPane2.setBounds(30, 230, 460, 160);
         jLayeredPane3.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonCronograma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -314,15 +280,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         });
         jButtonCronograma.setBounds(70, 410, 370, 40);
         jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldAtividade.setBounds(40, 30, 280, 30);
+        jTextFieldAtividade.setBounds(90, 30, 280, 30);
         jLayeredPane3.add(jTextFieldAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooserData.setBounds(40, 80, 150, 30);
+        jDateChooserData.setBounds(90, 80, 150, 30);
         jLayeredPane3.add(jDateChooserData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextFieldHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextFieldHora.setBounds(210, 80, 100, 30);
+        jFormattedTextFieldHora.setBounds(260, 80, 100, 30);
         jLayeredPane3.add(jFormattedTextFieldHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocal.setBounds(40, 130, 280, 30);
+        jTextFieldLocal.setBounds(90, 130, 280, 30);
         jLayeredPane3.add(jTextFieldLocal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionaAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
@@ -333,27 +299,27 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonAdicionaAtividadeActionPerformed(evt);
             }
         });
-        jButtonAdicionaAtividade.setBounds(370, 30, 110, 30);
+        jButtonAdicionaAtividade.setBounds(100, 180, 110, 30);
         jLayeredPane3.add(jButtonAdicionaAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Atividade:");
-        jLabel21.setBounds(40, 10, 120, 17);
+        jLabel21.setBounds(90, 10, 120, 17);
         jLayeredPane3.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Local:");
-        jLabel22.setBounds(40, 110, 41, 17);
+        jLabel22.setBounds(90, 110, 41, 17);
         jLayeredPane3.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Data:");
-        jLabel23.setBounds(40, 60, 34, 17);
+        jLabel23.setBounds(90, 60, 34, 17);
         jLayeredPane3.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Hora:");
-        jLabel24.setBounds(210, 60, 34, 17);
+        jLabel24.setBounds(260, 60, 34, 17);
         jLayeredPane3.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoveAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
@@ -364,7 +330,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonRemoveAtividadeActionPerformed(evt);
             }
         });
-        jButtonRemoveAtividade.setBounds(370, 130, 110, 30);
+        jButtonRemoveAtividade.setBounds(240, 180, 110, 30);
         jLayeredPane3.add(jButtonRemoveAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCronogramaLayout = new javax.swing.GroupLayout(jPanelCronograma);
@@ -500,13 +466,52 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-536)/2, (screenSize.height-642)/2, 536, 642);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void preecheTabelaCronograma() {
+
+        CronogramaDao cronogramaDao = new CronogramaDao();
+        List<Cronograma> cronogramas = null;
+        try {
+            cronogramas = cronogramaDao.pesquisarPorIdConcurso(abertura.getIdConcurso());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "id", "Atividade", "Data", "Horário", "Local"
+                }) {
+            Class[] types = new Class[]{
+                String.class, String.class, String.class, String.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        for (Cronograma cronograma : cronogramas) {
+            dtm.addRow(new Object[]{
+                        cronograma.getIdCronograma(),
+                        cronograma.getAtividade(),
+                        Datas.getDate(cronograma.getData()),
+                        Datas.getTimeNoSecond(cronograma.getHorario()),
+                        cronograma.getLocal()
+                    });
+        }
+        jTableCronogramaAbertura.setModel(dtm);
+
+    }
     private void jButtonCriarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarAtaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCriarAtaActionPerformed
@@ -516,46 +521,9 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLocalSessaoActionPerformed
 
     private void jButtonCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronogramaActionPerformed
-
-        for (int i = 0; i < jTableCronogramaAbertura.getRowCount(); i++) {
-
-
-            String atividade = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 0);
-            Cronograma cronograma = new Cronograma();
-            cronograma.setAtividade(atividade);
-
-                Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 1));
-                //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
-                cronograma.setData(data);
-
-                System.out.println(jTableCronogramaAbertura.getModel().getValueAt(i, 2));
-                Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
-                //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
-                cronograma.setHorario(hora);
-
-
-
-            String local = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 3);
-            cronograma.setLocal(local);
-
-            cronograma.setIdConcurso(1);
-
-            CronogramaDao cronogramaDao = new CronogramaDao();
-            try {
-                System.out.println(cronograma.getAtividade());
-                System.out.println(cronograma.getConcurso().getIdConcurso());
-                System.out.println(cronograma.getData());
-                System.out.println(cronograma.getHorario());
-                cronogramaDao.inserir(cronograma);
-            } catch (SQLException ex) {
-                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }//GEN-LAST:event_jButtonCronogramaActionPerformed
 
     private void CriarAtaAberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarAtaAberturaActionPerformed
-        
-        
     }//GEN-LAST:event_CriarAtaAberturaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
@@ -610,7 +578,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         CandidatoDao cdao = new CandidatoDao();
-        
+
         try {
             candidato = cdao.pesquisarTodos();
         } catch (SQLException ex) {
@@ -618,90 +586,166 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         }
 
         jListCandidatos.setListData(candidato.toArray());
-        
+
         /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
-        for (Candidato candi : candidato) {
-            candiModel.addElement(candi);
-        }
-        jListCandidatos.setModel(candiModel);*/
+         for (Candidato candi : candidato) {
+         candiModel.addElement(candi);
+         }
+         jListCandidatos.setModel(candiModel);*/
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
-    
-    
-    
-    
     private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
-        if (jTextFieldAtividade.getText() != null && 
-                jTextFieldLocal.getText() != null && 
-                jDateChooserData.getDate() != null 
-                && jFormattedTextFieldHora.getText() != null){
-            
-          //  try {
+        Cronograma c = new Cronograma();
+        if (jTextFieldAtividade.getText() != null
+                && jTextFieldLocal.getText() != null
+                && jDateChooserData.getDate() != null
+                && jFormattedTextFieldHora.getText() != null) {
+
+            //  try {
             DefaultTableModel dtm = (DefaultTableModel) jTableCronogramaAbertura.getModel();
-            dtm.addRow(new Object[]{jTextFieldAtividade.getText(),
-                                    Datas.getDate(jDateChooserData.getDate()),
-                                    jFormattedTextFieldHora.getText(),
-                                    jTextFieldLocal.getText()});
-        
+            dtm.addRow(new Object[]{null,
+                        jTextFieldAtividade.getText(),
+                        Datas.getDate(jDateChooserData.getDate()),
+                        jFormattedTextFieldHora.getText(),
+                        jTextFieldLocal.getText()});
+            
+            
+            c.setAtividade(jTextFieldAtividade.getText());
+            c.setIdConcurso(concurso.getIdConcurso());
+            c.setData(jDateChooserData.getDate());
+            c.setHorario(Datas.convertStringToTime(jFormattedTextFieldHora.getText()));
+            c.setLocal(jTextFieldLocal.getText());
+
         }
-        
+
         jTextFieldAtividade.setText(null);
         jTextFieldLocal.setText(null);
         jDateChooserData.setDate(null);
         jFormattedTextFieldHora.setText(null);
+
+        this.gravarCronograma(c);
+        
+        this.preecheTabelaCronograma();
     }//GEN-LAST:event_jButtonAdicionaAtividadeActionPerformed
 
+//    private void gravarCronograma() {
+//        for (int i = 0; i < jTableCronogramaAbertura.getRowCount(); i++) {
+//
+//
+//            String atividade = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
+//            Cronograma cronograma = new Cronograma();
+//            cronograma.setAtividade(atividade);
+//
+//            Date data = Datas.getData((String) jTableCronogramaAbertura.getModel().getValueAt(i, 2));
+//            //Date data = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 1);
+//            cronograma.setData(data);
+//
+//            Date hora = Datas.convertStringToTime((String) jTableCronogramaAbertura.getModel().getValueAt(i, 3));
+//            //Date hora = (Date) jTableCronogramaAbertura.getModel().getValueAt(i, 2);
+//            cronograma.setHorario(hora);
+//
+//
+//
+//            String local = (String) jTableCronogramaAbertura.getModel().getValueAt(i, 4);
+//            cronograma.setLocal(local);
+//
+//            cronograma.setIdConcurso(concurso.getIdConcurso());
+//
+//            CronogramaDao cronogramaDao = new CronogramaDao();
+//            try {
+//                System.out.println(cronograma.getAtividade());
+//                System.out.println(cronograma.getConcurso().getIdConcurso());
+//                System.out.println(cronograma.getData());
+//                System.out.println(cronograma.getHorario());
+//                cronogramaDao.inserir(cronograma);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//
+//    }
+    
+    
+    private void gravarCronograma(Cronograma c) {
+            Cronograma crono = c;
+
+            CronogramaDao cronogramaDao = new CronogramaDao();
+            try {
+                
+                cronogramaDao.inserir(crono);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+
     private void jButtonRemoveAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveAtividadeActionPerformed
+        int selected = jTableCronogramaAbertura.getSelectedRow();
+        if (selected != -1) {
+            Cronograma cronograma = new Cronograma();
+            int id = (int)jTableCronogramaAbertura.getModel().getValueAt(selected, 0);
+            CronogramaDao cd = new CronogramaDao();
+            try {
+                cronograma = (Cronograma)cd.pesquisarPorId(id);
+                cd.excluir(cronograma);
+            } catch (SQLException ex) {
+                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um cronograma para ser excluido!");
+        }
         
-        
-        
+        this.preecheTabelaCronograma();
+
     }//GEN-LAST:event_jButtonRemoveAtividadeActionPerformed
 
     private void jButtonAdicionaCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaCandidatoActionPerformed
         int selected = jListCandidatos.getSelectedIndex();
-        
-        if (selected != -1){
-            candidatosAptos.add((Candidato)jListCandidatos.getSelectedValue());
+
+        if (selected != -1) {
+            candidatosAptos.add((Candidato) jListCandidatos.getSelectedValue());
             jListCandidatosPresentesAbertura.removeAll();
             jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
-            
+
             candidato.remove(jListCandidatos.getSelectedValue());
             jListCandidatos.setListData(candidato.toArray());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um candidato");
         }
 
-        
+
     }//GEN-LAST:event_jButtonAdicionaCandidatoActionPerformed
 
     private void jButtonAdicionaTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaTodosCandidatosActionPerformed
-        for (int i = 0; i < candidato.size(); i++){
+        for (int i = 0; i < candidato.size(); i++) {
             candidatosAptos.add(candidato.get(i));
         }
         candidato.clear();
         jListCandidatosPresentesAbertura.removeAll();
         jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
         jListCandidatos.setListData(candidato.toArray());
-        
+
     }//GEN-LAST:event_jButtonAdicionaTodosCandidatosActionPerformed
 
     private void jButtonRemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCandidatoActionPerformed
         int selected = jListCandidatosPresentesAbertura.getSelectedIndex();
-        
-        if (selected != -1){
-            candidato.add((Candidato)jListCandidatosPresentesAbertura.getSelectedValue());
+
+        if (selected != -1) {
+            candidato.add((Candidato) jListCandidatosPresentesAbertura.getSelectedValue());
             jListCandidatos.removeAll();
             jListCandidatos.setListData(candidato.toArray());
-            
+
             candidatosAptos.remove(jListCandidatosPresentesAbertura.getSelectedValue());
             jListCandidatosPresentesAbertura.setListData(candidatosAptos.toArray());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um candidato");
         }
     }//GEN-LAST:event_jButtonRemoveCandidatoActionPerformed
 
     private void jButtonRemoveTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveTodosCandidatosActionPerformed
-        for (int i = 0; i < candidatosAptos.size(); i++){
+        for (int i = 0; i < candidatosAptos.size(); i++) {
             candidato.add(candidatosAptos.get(i));
         }
         candidatosAptos.clear();
@@ -713,12 +757,12 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     private void salvaDadosGerais() {
         if (abertura == null) {
             abertura = new Abertura();
-            AberturaDao aberturaDao = new AberturaDao();
-            try {
-                aberturaDao.inserir(abertura);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+//            AberturaDao aberturaDao = new AberturaDao();
+//            try {
+//                aberturaDao.inserir(abertura);
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
         }
         abertura.setHoraInicio(Datas.convertStringToTime(jTextFieldHoraInstalacao.getText()));
         abertura.setLocal(jTextFieldLocalSessao.getText());

@@ -81,7 +81,7 @@ public class CandidatoDao implements IDao {
             PessoaDao pdao = new PessoaDao();
             pdao.alterar(candidato);
 
-            String sql = "UPDATE candidato SET ("
+            String sql = "UPDATE candidato SET "
                     + "id_pessoa = ?, "
                     + "id_concurso = ?, "
                     + "apto_prova_escrita = ?, "
