@@ -359,6 +359,11 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jButtonGravarSorteio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/save.png"))); // NOI18N
         jButtonGravarSorteio.setText("Gravar");
+        jButtonGravarSorteio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarSorteioActionPerformed(evt);
+            }
+        });
         jButtonGravarSorteio.setBounds(340, 260, 130, 50);
         jLayeredPane5.add(jButtonGravarSorteio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -727,16 +732,25 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_AddCandidatosActionPerformed
 
     private void botao_RemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveCandidatoActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_botao_RemoveCandidatoActionPerformed
 
     private void botao_AddTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AddTodosCandidatosActionPerformed
-        // TODO add your handling code here:
+
+        
     }//GEN-LAST:event_botao_AddTodosCandidatosActionPerformed
 
     private void botao_RemoveTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveTodosCandidatosActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_botao_RemoveTodosCandidatosActionPerformed
+
+    private void jButtonGravarSorteioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarSorteioActionPerformed
+
+        
+        
+    }//GEN-LAST:event_jButtonGravarSorteioActionPerformed
 
     /**
      * @param args the command line arguments
