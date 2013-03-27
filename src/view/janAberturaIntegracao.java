@@ -7,6 +7,7 @@ import br.com.model.entity.Abertura;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import br.com.report.abertura.AberturaReports;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -544,7 +545,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     }
     private void jButtonCriarAtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarAtaActionPerformed
-        // TODO add your handling code here:
+        try {
+            new AberturaReports().createAta(abertura);
+        } catch (SQLException e) {
+            System.out.println("Shit");
+            e.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao criar a ata.");
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonCriarAtaActionPerformed
 
     private void jTextFieldLocalSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocalSessaoActionPerformed
