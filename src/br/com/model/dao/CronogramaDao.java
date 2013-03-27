@@ -148,7 +148,7 @@ public class CronogramaDao implements IDao {
         }
 
         public String getGetIdSql() {
-            String sql = "SELECT * FROM " + this.table_name + " "
+            String sql = "SELECT * FROM " + this.table_name + " WHERE "
                     + this.campos[0][0] + " = ?";
             return sql;
         }
@@ -249,12 +249,13 @@ public class CronogramaDao implements IDao {
         Fields fields = new Fields();
         String sql = fields.getGetIdSql();
 
+        System.out.println(sql);
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
 
-        Cronograma cronograma = null;
+        Cronograma cronograma = new Cronograma();
         if (rs.next()) {
             fields.setsFromDatabase(cronograma, rs);
         }
