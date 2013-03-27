@@ -8,17 +8,13 @@ package br.com.model.entity;
  *
  * @author Juliano R. M.
  */
-public class Notas_ProvaDidatica {
+public class Notas_ProvaDidatica implements IEntidade{
 
     private int idNotaProvaDidatica;
     private float notaProvaDidatica;
-    private Candidato candidato;
-    private Examinador examinador;
-    private ProvaDidatica provaDidatica;
-    
-    
-    public Notas_ProvaDidatica() {
-    }
+    private int idCandidato;
+    private int idExaminador;
+    private int idProvaDidatica;
 
     public int getIdNotaProvaDidatica() {
         return idNotaProvaDidatica;
@@ -36,32 +32,28 @@ public class Notas_ProvaDidatica {
         this.notaProvaDidatica = notaProvaDidatica;
     }
 
-    public Candidato getCandidato() {
-        return candidato;
+    public int getIdCandidato() {
+        return idCandidato;
     }
 
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
+    public void setIdCandidato(int idCandidato) {
+        this.idCandidato = idCandidato;
     }
 
-    public Examinador getExaminador() {
-        return examinador;
+    public int getIdExaminador() {
+        return idExaminador;
     }
 
-    public void setExaminador(Examinador examinador) {
-        this.examinador = examinador;
+    public void setIdExaminador(int idExaminador) {
+        this.idExaminador = idExaminador;
     }
 
-    public ProvaDidatica getProvaDidatica() {
-        return provaDidatica;
+    public int getIdProvaDidatica() {
+        return idProvaDidatica;
     }
 
-    public void setProvaDidatica(ProvaDidatica provaDidatica) {
-        this.provaDidatica = provaDidatica;
+    public void setIdProvaDidatica(int idProvaDidatica) {
+        this.idProvaDidatica = idProvaDidatica;
     }
-    
-    
-    
-    
     
 }

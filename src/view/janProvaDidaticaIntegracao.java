@@ -6,6 +6,7 @@ package view;
 
 import br.com.model.dao.Ponto_ProvaDidaticaDao;
 import br.com.model.dao.ProvaDidaticaDao;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.CriterioAvaliacaoDidatica;
 import br.com.model.entity.Ponto_ProvaDidatica;
@@ -13,6 +14,7 @@ import br.com.model.entity.ProvaDidatica;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -20,13 +22,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Nasser
+ * @author Juliano R. M.
  */
 public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
     private ProvaDidatica obj_provaDidatica;
     private ProvaDidaticaDao pDidatica_Dao;
-    public ArrayList<CriterioAvaliacaoDidatica> listaCriterios = new ArrayList();
+    public ArrayList<CriterioAvaliacaoDidatica> listaCriterios;
+    private List<Candidato> listCandidatos;
 
     /**
      * Creates new form janProvaDidaticaIntegracao
@@ -38,6 +41,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         this.obj_provaDidatica = new ProvaDidatica();
         this.pDidatica_Dao = new ProvaDidaticaDao();
         this.obj_provaDidatica.setConcurso(new Concurso().setIdConcurso(1));
+        this.listaCriterios = new ArrayList();
         try {
 
             this.pDidatica_Dao.inserir(obj_provaDidatica);
@@ -71,22 +75,22 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCriterioDidatica = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButtonAdicionarCriterioDidatica = new javax.swing.JButton();
+        botao_AdicionarCriterioDidatica = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListCriteriosProvaDidatica = new javax.swing.JList();
         jTextFieldPeso = new javax.swing.JTextField();
-        jButtonRemoverCriteriosDidatica = new javax.swing.JButton();
+        botao_RemoverCriteriosDidatica = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jListCandidatos = new javax.swing.JList();
+        list_AllCandidatos = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jListCandidatosSelecionados = new javax.swing.JList();
-        jButtonAddCandidatos = new javax.swing.JButton();
-        jButtonAddTodosCandidatos = new javax.swing.JButton();
-        jButtonRemoveCandidato = new javax.swing.JButton();
-        jButtonRemoveTodosCandidatos = new javax.swing.JButton();
+        list_CandidatosSelecionados = new javax.swing.JList();
+        botao_AddCandidatos = new javax.swing.JButton();
+        botao_AddTodosCandidatos = new javax.swing.JButton();
+        botao_RemoveCandidato = new javax.swing.JButton();
+        botao_RemoveTodosCandidatos = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -203,15 +207,15 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jLabel4.setBounds(20, 70, 70, 30);
         jLayeredPane3.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAdicionarCriterioDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
-        jButtonAdicionarCriterioDidatica.setText("Adicionar");
-        jButtonAdicionarCriterioDidatica.addActionListener(new java.awt.event.ActionListener() {
+        botao_AdicionarCriterioDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
+        botao_AdicionarCriterioDidatica.setText("Adicionar");
+        botao_AdicionarCriterioDidatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdicionarCriterioDidaticaActionPerformed(evt);
+                botao_AdicionarCriterioDidaticaActionPerformed(evt);
             }
         });
-        jButtonAdicionarCriterioDidatica.setBounds(510, 30, 120, 33);
-        jLayeredPane3.add(jButtonAdicionarCriterioDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_AdicionarCriterioDidatica.setBounds(510, 30, 120, 33);
+        jLayeredPane3.add(botao_AdicionarCriterioDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jListCriteriosProvaDidatica.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListCriteriosProvaDidatica);
@@ -221,15 +225,15 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jTextFieldPeso.setBounds(80, 70, 80, 30);
         jLayeredPane3.add(jTextFieldPeso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonRemoverCriteriosDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
-        jButtonRemoverCriteriosDidatica.setText("Remover");
-        jButtonRemoverCriteriosDidatica.addActionListener(new java.awt.event.ActionListener() {
+        botao_RemoverCriteriosDidatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
+        botao_RemoverCriteriosDidatica.setText("Remover");
+        botao_RemoverCriteriosDidatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverCriteriosDidaticaActionPerformed(evt);
+                botao_RemoverCriteriosDidaticaActionPerformed(evt);
             }
         });
-        jButtonRemoverCriteriosDidatica.setBounds(510, 280, 120, 33);
-        jLayeredPane3.add(jButtonRemoverCriteriosDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_RemoverCriteriosDidatica.setBounds(510, 280, 120, 33);
+        jLayeredPane3.add(botao_RemoverCriteriosDidatica, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel19.setText("Critérios Cadastrados");
         jLabel19.setBounds(20, 100, 260, 30);
@@ -248,33 +252,57 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Critérios", jPanel2);
 
-        jListCandidatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(jListCandidatos);
+        list_AllCandidatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(list_AllCandidatos);
 
         jScrollPane3.setBounds(20, 70, 260, 230);
         jLayeredPane4.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jListCandidatosSelecionados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane4.setViewportView(jListCandidatosSelecionados);
+        list_CandidatosSelecionados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(list_CandidatosSelecionados);
 
         jScrollPane4.setBounds(430, 70, 258, 230);
         jLayeredPane4.add(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAddCandidatos.setText(">");
-        jButtonAddCandidatos.setBounds(330, 110, 50, 25);
-        jLayeredPane4.add(jButtonAddCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_AddCandidatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botao_AddCandidatos.setText(">");
+        botao_AddCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_AddCandidatosActionPerformed(evt);
+            }
+        });
+        botao_AddCandidatos.setBounds(330, 110, 50, 25);
+        jLayeredPane4.add(botao_AddCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonAddTodosCandidatos.setText(">>");
-        jButtonAddTodosCandidatos.setBounds(330, 145, 50, 25);
-        jLayeredPane4.add(jButtonAddTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_AddTodosCandidatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botao_AddTodosCandidatos.setText(">>");
+        botao_AddTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_AddTodosCandidatosActionPerformed(evt);
+            }
+        });
+        botao_AddTodosCandidatos.setBounds(330, 145, 50, 25);
+        jLayeredPane4.add(botao_AddTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonRemoveCandidato.setText("<");
-        jButtonRemoveCandidato.setBounds(330, 180, 50, 25);
-        jLayeredPane4.add(jButtonRemoveCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_RemoveCandidato.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botao_RemoveCandidato.setText("<");
+        botao_RemoveCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_RemoveCandidatoActionPerformed(evt);
+            }
+        });
+        botao_RemoveCandidato.setBounds(330, 180, 50, 25);
+        jLayeredPane4.add(botao_RemoveCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonRemoveTodosCandidatos.setText("<<");
-        jButtonRemoveTodosCandidatos.setBounds(330, 220, 50, 25);
-        jLayeredPane4.add(jButtonRemoveTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botao_RemoveTodosCandidatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botao_RemoveTodosCandidatos.setText("<<");
+        botao_RemoveTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_RemoveTodosCandidatosActionPerformed(evt);
+            }
+        });
+        botao_RemoveTodosCandidatos.setBounds(330, 220, 50, 25);
+        jLayeredPane4.add(botao_RemoveTodosCandidatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel16.setText("Candidatos do concurso:");
         jLabel16.setBounds(20, 50, 150, 14);
@@ -540,21 +568,38 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAdicionarCriterioDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCriterioDidaticaActionPerformed
-        CriterioAvaliacaoDidatica cad = new CriterioAvaliacaoDidatica();
-        cad.setCriterio(this.jTextFieldCriterioDidatica.getText());
-        try {
-            cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
-            listaCriterios.add(cad);
-            jListCriteriosProvaDidatica.removeAll();
-            jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
-            this.jTextFieldCriterioDidatica.setText("");
-            this.jTextFieldPeso.setText("");
+    private void botao_AdicionarCriterioDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AdicionarCriterioDidaticaActionPerformed
+        boolean criterio = this.jTextFieldCriterioDidatica.getText().isEmpty();
+        boolean pesoCriterio = this.jTextFieldPeso.getText().isEmpty();
 
-        } catch (NumberFormatException | NullPointerException nfe) {
+        if ((!criterio) && (!pesoCriterio)) {
+
+            if ((this.obj_provaDidatica.getSomaPontosCriterioAvaliacao() + Float.parseFloat(this.jTextFieldCriterioDidatica.getText())) > 10) {
+                JOptionPane.showMessageDialog(this, "A soma do número de pontos não pode ser superior a 10 pontos!", null, JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            CriterioAvaliacaoDidatica cad = new CriterioAvaliacaoDidatica();
+            cad.setCriterio(this.jTextFieldCriterioDidatica.getText());
+            cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
+            cad.setProvaDidatica(this.obj_provaDidatica);
+
+            try {
+                cad.setPeso(Float.parseFloat(this.jTextFieldPeso.getText()));
+                listaCriterios.add(cad);
+                jListCriteriosProvaDidatica.removeAll();
+                jListCriteriosProvaDidatica.setListData(listaCriterios.toArray());
+                this.jTextFieldCriterioDidatica.setText("");
+                this.jTextFieldPeso.setText("");
+
+            } catch (NumberFormatException | NullPointerException exceptError) {
+                JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+                exceptError.printStackTrace();
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonAdicionarCriterioDidaticaActionPerformed
+    }//GEN-LAST:event_botao_AdicionarCriterioDidaticaActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
@@ -579,7 +624,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
     @SuppressWarnings("CallToThreadDumpStack")
     private void botao_AdicionarPontoDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AdicionarPontoDidaticaActionPerformed
-
         try {
             String pontoProvaDidatica = this.jTextFieldPontoDidatica.getText();
 
@@ -607,7 +651,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botao_AdicionarPontoDidaticaActionPerformed
 
-    private void jButtonRemoverCriteriosDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCriteriosDidaticaActionPerformed
+    private void botao_RemoverCriteriosDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoverCriteriosDidaticaActionPerformed
 
         if (jListCriteriosProvaDidatica.getSelectedIndex() != -1) {
             listaCriterios.remove(jListCriteriosProvaDidatica.getSelectedIndex());
@@ -615,7 +659,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Critério!", null, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonRemoverCriteriosDidaticaActionPerformed
+    }//GEN-LAST:event_botao_RemoverCriteriosDidaticaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -647,7 +691,6 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Selecione um ponto!", null, JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception exceptError) {
-            // Logger.getLogger(janProvaEscrita.class.getName()).log(Level.SEVERE, null, exceptError);
             exceptError.printStackTrace();
         }
     }//GEN-LAST:event_botao_RemoverPontoDidaticaActionPerformed
@@ -660,6 +703,40 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             exceptError.printStackTrace();
         }
     }//GEN-LAST:event_jTextFieldPontoDidaticaMouseClicked
+
+    private void botao_AddCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AddCandidatosActionPerformed
+        int selected = this.list_AllCandidatos.getSelectedIndex();
+
+        if (selected != -1) {
+
+            Candidato candidato = this.listCandidatos.get(selected);
+            this.obj_provaDidatica.adicionarCandidatoAptoDidatica(candidato);
+            this.listCandidatos.remove(candidato);
+            this.list_AllCandidatos.setListData(this.listCandidatos.toArray());
+            this.list_CandidatosSelecionados.setListData(this.obj_provaDidatica.getCandidatosAptosProvaDidatica().toArray());
+
+            try {
+                this.pDidatica_Dao.alterar(this.obj_provaDidatica);
+            } catch (Exception exceptError) {
+                JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
+                exceptError.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato!", null, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botao_AddCandidatosActionPerformed
+
+    private void botao_RemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveCandidatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botao_RemoveCandidatoActionPerformed
+
+    private void botao_AddTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AddTodosCandidatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botao_AddTodosCandidatosActionPerformed
+
+    private void botao_RemoveTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveTodosCandidatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botao_RemoveTodosCandidatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -696,20 +773,20 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botao_AddCandidatos;
+    private javax.swing.JButton botao_AddTodosCandidatos;
+    private javax.swing.JButton botao_AdicionarCriterioDidatica;
     private javax.swing.JButton botao_AdicionarPontoDidatica;
+    private javax.swing.JButton botao_RemoveCandidato;
+    private javax.swing.JButton botao_RemoveTodosCandidatos;
+    private javax.swing.JButton botao_RemoverCriteriosDidatica;
     private javax.swing.JButton botao_RemoverPontoDidatica;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonAddCandidatos;
-    private javax.swing.JButton jButtonAddTodosCandidatos;
-    private javax.swing.JButton jButtonAdicionarCriterioDidatica;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGravarRealizacao;
     private javax.swing.JButton jButtonGravarSorteio;
     private javax.swing.JButton jButtonProximo;
-    private javax.swing.JButton jButtonRemoveCandidato;
-    private javax.swing.JButton jButtonRemoveTodosCandidatos;
-    private javax.swing.JButton jButtonRemoverCriteriosDidatica;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox jComboBoxCompareceuRealizacao;
     private javax.swing.JComboBox jComboBoxCompareceuSorteio;
@@ -746,10 +823,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane6;
     private javax.swing.JLayeredPane jLayeredPane7;
     private javax.swing.JLayeredPane jLayeredPane8;
-    private javax.swing.JList jListCandidatos;
     private javax.swing.JList jListCandidatosPlanilhas;
     private javax.swing.JList jListCandidatosRealizacao;
-    private javax.swing.JList jListCandidatosSelecionados;
     private javax.swing.JList jListCandidatosSorteio;
     private javax.swing.JList jListCriteriosProvaDidatica;
     private javax.swing.JList jListExaminadoresPlanilhas;
@@ -773,6 +848,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCriterioDidatica;
     private javax.swing.JTextField jTextFieldPeso;
     private javax.swing.JTextField jTextFieldPontoDidatica;
+    private javax.swing.JList list_AllCandidatos;
+    private javax.swing.JList list_CandidatosSelecionados;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }

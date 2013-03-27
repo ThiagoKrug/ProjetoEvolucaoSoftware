@@ -252,6 +252,14 @@ public class Concurso implements IEntidade {
     }
 
     public ClasseConcurso getClasseConcurso() {
+        if (classeConcurso == null) {
+            ClasseConcursoDao ccdao = new ClasseConcursoDao();
+            try {
+                return ccdao.pesquisarPorId(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (classeConcurso.getNome() == null) {
             ClasseConcursoDao ccdao = new ClasseConcursoDao();
             try {
@@ -261,10 +269,6 @@ public class Concurso implements IEntidade {
             }
         }
         return classeConcurso;
-    }
-
-    public int getIdClasseConcurso() {
-        return classeConcurso.getIdClasseConcurso();
     }
 
     public void setClasseConcurso(ClasseConcurso classeConcurso) {
