@@ -818,7 +818,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCronAction
 
     private void criarAtaAbAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarAtaAbAction
-        new AberturaReports().gerarListaPresenca(candidatosAptos);
+        try {
+            new AberturaReports().gerarListaPresenca(candidatosAptos);
+        } catch (SQLException ex) {
+            Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_criarAtaAbAction
 
     private void verificaBotoes(Component component) {
