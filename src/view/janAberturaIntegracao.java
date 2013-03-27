@@ -216,7 +216,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonCriarAtaActionPerformed(evt);
             }
         });
-        jButtonCriarAta.setBounds(60, 360, 390, 40);
+        jButtonCriarAta.setBounds(50, 420, 390, 40);
         jLayeredPane2.add(jButtonCriarAta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextFieldHoraInstalacao.setBounds(60, 70, 70, 30);
         jLayeredPane2.add(jTextFieldHoraInstalacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -230,7 +230,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonGravarActionPerformed(evt);
             }
         });
-        jButtonGravar.setBounds(330, 410, 120, 40);
+        jButtonGravar.setBounds(320, 370, 120, 40);
         jLayeredPane2.add(jButtonGravar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelInstalacaoLayout = new javax.swing.GroupLayout(jPanelInstalacao);
@@ -280,15 +280,15 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         });
         jButtonCronograma.setBounds(70, 410, 370, 40);
         jLayeredPane3.add(jButtonCronograma, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldAtividade.setBounds(40, 30, 280, 30);
+        jTextFieldAtividade.setBounds(90, 30, 280, 30);
         jLayeredPane3.add(jTextFieldAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooserData.setBounds(40, 80, 150, 30);
+        jDateChooserData.setBounds(90, 80, 150, 30);
         jLayeredPane3.add(jDateChooserData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jFormattedTextFieldHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextFieldHora.setBounds(210, 80, 100, 30);
+        jFormattedTextFieldHora.setBounds(260, 80, 100, 30);
         jLayeredPane3.add(jFormattedTextFieldHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jTextFieldLocal.setBounds(40, 130, 280, 30);
+        jTextFieldLocal.setBounds(90, 130, 280, 30);
         jLayeredPane3.add(jTextFieldLocal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionaAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
@@ -299,27 +299,27 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonAdicionaAtividadeActionPerformed(evt);
             }
         });
-        jButtonAdicionaAtividade.setBounds(370, 30, 110, 30);
+        jButtonAdicionaAtividade.setBounds(100, 180, 110, 30);
         jLayeredPane3.add(jButtonAdicionaAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Atividade:");
-        jLabel21.setBounds(40, 10, 120, 17);
+        jLabel21.setBounds(90, 10, 120, 17);
         jLayeredPane3.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Local:");
-        jLabel22.setBounds(40, 110, 41, 17);
+        jLabel22.setBounds(90, 110, 41, 17);
         jLayeredPane3.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Data:");
-        jLabel23.setBounds(40, 60, 34, 17);
+        jLabel23.setBounds(90, 60, 34, 17);
         jLayeredPane3.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Hora:");
-        jLabel24.setBounds(210, 60, 34, 17);
+        jLabel24.setBounds(260, 60, 34, 17);
         jLayeredPane3.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRemoveAtividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/remove.png"))); // NOI18N
@@ -330,7 +330,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 jButtonRemoveAtividadeActionPerformed(evt);
             }
         });
-        jButtonRemoveAtividade.setBounds(370, 130, 110, 30);
+        jButtonRemoveAtividade.setBounds(240, 180, 110, 30);
         jLayeredPane3.add(jButtonRemoveAtividade, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCronogramaLayout = new javax.swing.GroupLayout(jPanelCronograma);
@@ -466,7 +466,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
