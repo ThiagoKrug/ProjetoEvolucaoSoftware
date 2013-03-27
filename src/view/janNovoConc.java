@@ -54,6 +54,8 @@ public class janNovoConc extends javax.swing.JFrame {
 
         concurso = janMenu.CONCURSO;
         initComponents();
+        jTextFieldIdCandidato.setText("");
+        jTextFieldIdCandidato.setVisible(false);
 
         this.preenheDadosDefault();
         this.setsFields();
@@ -328,6 +330,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jDateChooserCandidatoDataNascimento = new com.toedter.calendar.JDateChooser();
+        jTextFieldIdCandidato = new javax.swing.JTextField();
         jPanelProvasConcurso = new javax.swing.JPanel();
         jCheckBoxProvaEscrita = new javax.swing.JCheckBox();
         jCheckBoxProvaDeTitulos = new javax.swing.JCheckBox();
@@ -713,6 +716,10 @@ public class janNovoConc extends javax.swing.JFrame {
         jDateChooserCandidatoDataNascimento.setBounds(30, 160, 160, 30);
         jLayeredPane4.add(jDateChooserCandidatoDataNascimento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jTextFieldIdCandidato.setText("id Candidato");
+        jTextFieldIdCandidato.setBounds(30, 210, 80, 20);
+        jLayeredPane4.add(jTextFieldIdCandidato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jPanelCandidatosLayout = new javax.swing.GroupLayout(jPanelCandidatos);
         jPanelCandidatos.setLayout(jPanelCandidatosLayout);
         jPanelCandidatosLayout.setHorizontalGroup(
@@ -871,10 +878,8 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonProximo.setText("Concluído");
             jButtonVoltar.setVisible(true);
         }
-
-
-
     }
+    
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
@@ -890,13 +895,36 @@ public class janNovoConc extends javax.swing.JFrame {
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         CandidatoDao cdao = new CandidatoDao();
 
-        Candidato candidato = new Candidato();
+        Candidato candidato = null;
+        String id = jTextFieldIdCandidato.getText();
+        if (id.isEmpty()) {
+            candidato = new Candidato();
+        } else {
+            try {
+                candidato = cdao.pesquisarPorId(Integer.parseInt(id));
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         candidato.setNome(jTextFieldCandidatoNome.getText());
         candidato.setSexo(((String) jComboBoxCandidatoSexo.getSelectedItem()).substring(0, 1));
         candidato.setDataNascimento(jDateChooserCandidatoDataNascimento.getDate());
         candidato.setConcurso(concurso);
         try {
-            cdao.inserir(candidato);
+            if (candidato.getIdCandidato() == null) {
+                cdao.inserir(candidato);
+            } else {
+                cdao.alterar(candidato);
+                for (int i = 0; i < jTableCandidatos.getModel().getRowCount(); i++) {
+                    Integer id2 = (Integer) jTableCandidatos.getModel().getValueAt(i, 0);
+                    if (id2 != null) {
+                        if (id2 == candidato.getIdCandidato()) {
+                            DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+                            dtm.removeRow(i);
+                        }
+                    }
+                }
+            }
             DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
             dtm.addRow(new Object[]{
                 candidato.getIdCandidato(),
@@ -905,6 +933,7 @@ public class janNovoConc extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        jTextFieldIdCandidato.setText("");
         jTextFieldCandidatoNome.setText("");
         jComboBoxCandidatoSexo.setSelectedIndex(0);
         jDateChooserCandidatoDataNascimento.setDate(null);
@@ -1083,6 +1112,7 @@ public class janNovoConc extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+            jTextFieldIdCandidato.setText(candidato.getIdCandidato() + "");
             jTextFieldCandidatoNome.setText(candidato.getNome());
             for (int i = 0; i < jComboBoxCandidatoSexo.getModel().getSize(); i++) {
                 String sexo = (String) jComboBoxCandidatoSexo.getModel().getElementAt(i);
@@ -1178,6 +1208,7 @@ public class janNovoConc extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEdital;
     private javax.swing.JTextField jTextFieldExaminador1Nome;
     private javax.swing.JTextField jTextFieldExaminador2Nome;
+    private javax.swing.JTextField jTextFieldIdCandidato;
     private javax.swing.JTextField jTextFieldInstituicao;
     private javax.swing.JTextField jTextFieldMinisterio;
     private javax.swing.JTextField jTextFieldPresidente;

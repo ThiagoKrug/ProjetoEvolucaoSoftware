@@ -34,8 +34,8 @@ public class ProvaMemorialDao  implements IDao{
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, provaMemorial.getConcurso().getIdConcurso());
-            stmt.setDate(2, new Date (provaMemorial.getData_comparecimento().getTime()));
-            stmt.setBoolean(3, provaMemorial.getCompareceu());
+//            stmt.setDate(2, new Date (provaMemorial.getData_comparecimento().getTime()));
+//            stmt.setBoolean(3, provaMemorial.getCompareceu());
             stmt.executeUpdate();
             
             ResultSet rs = stmt.getGeneratedKeys();
@@ -55,15 +55,18 @@ public class ProvaMemorialDao  implements IDao{
     @Override
     public IEntidade alterar(IEntidade entidade) throws SQLException {
         if(entidade instanceof ProvaMemorial){
+           
           
           ProvaMemorial provaMemorial = (ProvaMemorial) entidade;
-          String sql = "update prova_memorial set id_concurso=?,data_comparecimento=?,compareceu=? where id_prova_memorial=? ";
+            
+          String sql = "update prova_memorial set id_concurso=?,compareceu=? where id_prova_memorial=? ";
          
+//            System.out.println("data: "+provaMemorial.getData_comparecimento());
             Connection connection = ConnectionFactory.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, provaMemorial.getConcurso().getIdConcurso());
-            stmt.setDate(2, new Date (provaMemorial.getData_comparecimento().getTime()));
-            stmt.setBoolean(3, provaMemorial.getCompareceu());
+//            stmt.setDate(2, new Date (provaMemorial.getData_comparecimento().getTime()));
+//            stmt.setBoolean(2, provaMemorial.getCompareceu());
             stmt.executeUpdate();
             
             ResultSet rs = stmt.getGeneratedKeys();
@@ -111,8 +114,8 @@ public class ProvaMemorialDao  implements IDao{
             int posicao = 0;
             while (rs.next()) {
                 provaMemorial.setIdProvaMemorial(rs.getInt("id_prova_memorial"));
-                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
-                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
+//                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
+//                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
                 provaMemorial.setConcurso(null);
                 
             }
@@ -137,8 +140,8 @@ public class ProvaMemorialDao  implements IDao{
             while (rs.next()) {
                 ProvaMemorial provaMemorial = new ProvaMemorial();
                 provaMemorial.setIdProvaMemorial(rs.getInt("id_prova_memorial"));
-                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
-                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
+//                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
+//                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
                 provaMemorial.setConcurso(null);
                 
                 listaProvaMemorial.add(provaMemorial);
@@ -165,8 +168,8 @@ public class ProvaMemorialDao  implements IDao{
             while (rs.next()) {
                 ProvaMemorial provaMemorial = new ProvaMemorial();
                 provaMemorial.setIdProvaMemorial(rs.getInt("id_prova_memorial"));
-                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
-                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
+//                provaMemorial.setCompareceu(rs.getBoolean("compareceu"));
+//                provaMemorial.setData_comparecimento(rs.getDate("data_comparecimento"));
                 provaMemorial.setConcurso(null);
                 
                 listaProvaMemorial.add(provaMemorial);

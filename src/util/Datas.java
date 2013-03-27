@@ -28,7 +28,7 @@ public class Datas {
     private static String TIME = "HHH:mm:ss";
     private static String HOUR = "H";
     private static String MINUTE = "m";
-    private static String TIME_NO_SECOND = "HH:mm";
+    private static String TIME_NO_SECOND = "hh:mm";
     private static String DATE_DATABASE = "yyyy-MM-dd";
 
     /**
@@ -89,6 +89,21 @@ public class Datas {
         return date.format(hora);
     }
 
+    
+    /**
+     * Método para converter uma hora do tipo Date para uma String. O formato de
+     * saída da String será "hh:mm"
+     *
+     * @param hora a hora no tipo Date
+     * @return {@link String} no formato "hh:mm"
+     */
+    public static String getTimeNoSecond(Date hora) {
+        DateFormat date = new SimpleDateFormat(TIME_NO_SECOND);
+        return date.format(hora);
+    }
+    
+    
+    
     /**
      * Método para pegar a hora de um objeto Date.
      *
