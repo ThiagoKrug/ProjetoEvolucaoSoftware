@@ -290,6 +290,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jButtonCronograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCronogramaActionPerformed(evt);
+                jButtonCronAction(evt);
             }
         });
         jButtonCronograma.setBounds(70, 410, 370, 40);
@@ -376,6 +377,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         CriarAtaAbertura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CriarAtaAberturaActionPerformed(evt);
+                criarAtaAbAction(evt);
             }
         });
         CriarAtaAbertura.setBounds(80, 420, 360, 40);
@@ -498,11 +500,11 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-536)/2, (screenSize.height-642)/2, 536, 642);
+        setSize(new java.awt.Dimension(536, 642));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void preecheTabelaCronograma() {
@@ -806,6 +808,18 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         
         chamaProximaTela();
     }//GEN-LAST:event_jButtonProximoActionPerformed
+
+    private void jButtonCronAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCronAction
+        try {
+            new AberturaReports().createCronograma(concurso);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonCronAction
+
+    private void criarAtaAbAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarAtaAbAction
+        new AberturaReports().gerarListaPresenca(candidatosAptos);
+    }//GEN-LAST:event_criarAtaAbAction
 
     private void verificaBotoes(Component component) {
         if (component == jPanelInstalacao) {

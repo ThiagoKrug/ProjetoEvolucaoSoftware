@@ -7,6 +7,8 @@ package br.com.report.abertura;
 import br.com.model.dao.AvaliacaoItemDao;
 import br.com.model.dao.AvaliacaoProvaTitulosDao;
 import br.com.model.dao.ClasseDAO;
+import br.com.model.dao.ConcursoDao;
+import br.com.model.dao.CronogramaDao;
 import br.com.model.dao.ItemClasseDao;
 import br.com.model.entity.Abertura;
 import br.com.model.entity.AvaliacaoItem;
@@ -157,15 +159,16 @@ public class AberturaReports {
                 .replace("{{hora_inicio}}", Datas.getHoraToString());
         html = html
                 .replace("{{emissor}}", abertura.getEmissor());
-        this.saveHtml(html, "ata_instalacaoklo.html");
+        this.saveHtml(html, "ata_instalacao.html");
 //        System.out.println("Ok!" + html);
     }
     
-    public void createCronograma(List<Cronograma> cronogramas) throws SQLException {
+    public void createCronograma(Concurso concurso) throws SQLException {
         
         String html = this.htmlOpen("cronograma_begin.html");
+        List<Cronograma> cronogramas = new CronogramaDao().pesquisarPorIdConcurso(concurso.getIdConcurso());
         
-        Concurso concurso = cronogramas.get(0).getConcurso();
+//        Concurso concurso = cronogramas.get(0).getConcurso();
         html = html.replace("{{ministerio}}", concurso.getMinisterio())
                 .replace("{{area}}", concurso.getArea())
                 .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
@@ -201,9 +204,11 @@ public class AberturaReports {
         this.saveHtml(html, "recibo.html");
     }
     
-    public void gerarListaPresenca(List<Candidato> candidatos) {
+    public void gerarListaPresenca(List<Candidato> candidatos) throws SQLException {
         String html = this.htmlOpen("listaPresTempBegin.html");
-        Concurso concurso = candidatos.get(0).getConcurso();
+        Integer idConc = candidatos.get(0).getConcurso().getIdConcurso();
+        Concurso concurso = new ConcursoDao().pesquisarPorId(idConc);
+        System.out.println(concurso.getMinisterio());
         html = html.replace("{{ministerio}}", concurso.getMinisterio())
                 .replace("{{area}}", concurso.getArea())
                 .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
