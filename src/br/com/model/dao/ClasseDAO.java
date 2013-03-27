@@ -84,7 +84,7 @@ public class ClasseDAO implements IDao {
     }
 
     @Override
-    public List<IEntidade> pesquisarTodos() throws SQLException {
+    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
