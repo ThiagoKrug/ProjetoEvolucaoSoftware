@@ -1256,6 +1256,8 @@ public class janProvaEscrita extends javax.swing.JFrame {
             parametros.put("id_prova_escrita", this.provaEscrita.getIdProvaEscrita());
             String data = Datas.getDataExtenso(new Date(System.currentTimeMillis()));
             parametros.put("data", data);
+            parametros.put("candidato", c.getNome());
+            parametros.put("examinador", e.getPessoa().getNome());
             this.configurarDadosConcurso(parametros);
             // abre o relatório
             ReportUtils.openReport("Planilhas para Avaliação", inputStream, parametros, ConnectionFactory.getConnection());
