@@ -106,6 +106,7 @@ CREATE  TABLE IF NOT EXISTS `candidato` (
   `apto_prova_escrita` TINYINT(1) NULL DEFAULT NULL ,
   `apto_prova_didatica` TINYINT(1) NULL DEFAULT NULL ,
   `id_prova_escrita` INT NULL ,
+  `apto_prova_memorial` TINYINT(1) NULL ,
   PRIMARY KEY (`id_candidato`) ,
   INDEX `fk_candidato_concurso_idx` (`id_concurso` ASC) ,
   INDEX `fk_candidato_usuario1_idx` (`id_pessoa` ASC) ,
