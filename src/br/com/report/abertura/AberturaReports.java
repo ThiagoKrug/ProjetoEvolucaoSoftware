@@ -112,7 +112,7 @@ public class AberturaReports {
 
     public void createAta(Abertura abertura) throws SQLException {
         Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
-        String html = this.htmlOpen("ata_abertura.html");
+        String html = this.htmlOpen("ata_abertura_temp.html");
         Concurso concurso = abertura.getConcurso();
         html = html.replace("{{ministerio}}", concurso.getMinisterio())
                 .replace("{{area}}", concurso.getArea())
@@ -125,8 +125,11 @@ public class AberturaReports {
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{portaria}}", concurso.getPortaria())
-                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
-        this.saveHtml("ata_abertura.html", html);
+                .replace("{{data_ata}}", this.sayDateExt(concurso.getDataInicio()))
+                .replace("{{data_assin}}", this.sayDate(Calendar.getInstance().getTime()))
+                .replace("{{hora_inicio}}", Datas.getHoraToString())
+                .replace("{{emissor}}", abertura.getEmissor());
+        this.saveHtml("ata_instalacao.html", html);
     }
     
     public void createCronograma(List<Cronograma> cronogramas) throws SQLException {
