@@ -99,14 +99,17 @@ public class BancaExaminadoraDao implements IDao {
 
             Examinador examinador1 = new Examinador();
             examinador1.setIdExaminador(rs.getInt("examinador_1"));
+            examinador1.setIdPessoa(new ExaminadorDao().pesquisarPorId(rs.getInt("examinador_1")).getIdPessoa());
             bancaExaminadora.setPresidente(examinador1);
 
             Examinador examinador2 = new Examinador();
             examinador2.setIdExaminador(rs.getInt("examinador_2"));
+            examinador2.setIdPessoa(new ExaminadorDao().pesquisarPorId(rs.getInt("examinador_2")).getIdPessoa());
             bancaExaminadora.setExaminador2(examinador2);
 
             Examinador examinador3 = new Examinador();
             examinador3.setIdExaminador(rs.getInt("examinador_3"));
+            examinador3.setIdPessoa(new ExaminadorDao().pesquisarPorId(rs.getInt("examinador_3")).getIdPessoa());
             bancaExaminadora.setExaminador3(examinador3);
         }
         return bancaExaminadora;

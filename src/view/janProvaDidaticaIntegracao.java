@@ -4,6 +4,7 @@
  */
 package view;
 
+import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.Ponto_ProvaDidaticaDao;
 import br.com.model.dao.ProvaDidaticaDao;
 import br.com.model.entity.Candidato;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +31,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private ProvaDidatica obj_provaDidatica;
     private ProvaDidaticaDao pDidatica_Dao;
     public ArrayList<CriterioAvaliacaoDidatica> listaCriterios;
-    private List<Candidato> listCandidatos;
+    private List<Candidato> listCandidatos = new ArrayList<Candidato>();
+    private CandidatoDao cdao = new CandidatoDao();
 
     /**
      * Creates new form janProvaDidaticaIntegracao
@@ -37,6 +40,14 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     public janProvaDidaticaIntegracao() {
         initComponents();
         botao_AdicionarPontoDidatica.setEnabled(false);
+
+        this.listCandidatos = janMenu.CONCURSO.getCandidatos();
+        DefaultListModel defaultListModel = new DefaultListModel();
+        for (Candidato candidato : this.listCandidatos) {
+
+            defaultListModel.addElement(candidato.getNome());
+        }
+        list_AllCandidatos.setModel(defaultListModel);
 
         this.obj_provaDidatica = new ProvaDidatica();
         this.pDidatica_Dao = new ProvaDidaticaDao();
@@ -615,7 +626,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
@@ -713,15 +725,15 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         int selected = this.list_AllCandidatos.getSelectedIndex();
 
         if (selected != -1) {
-
             Candidato candidato = this.listCandidatos.get(selected);
             this.obj_provaDidatica.adicionarCandidatoAptoDidatica(candidato);
+            this.obj_provaDidatica.setConcurso(janMenu.CONCURSO);
             this.listCandidatos.remove(candidato);
             this.list_AllCandidatos.setListData(this.listCandidatos.toArray());
             this.list_CandidatosSelecionados.setListData(this.obj_provaDidatica.getCandidatosAptosProvaDidatica().toArray());
 
             try {
-                this.pDidatica_Dao.alterar(this.obj_provaDidatica);
+                this.pDidatica_Dao.alterar(candidato);
             } catch (Exception exceptError) {
                 JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
                 exceptError.printStackTrace();
@@ -732,24 +744,15 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_AddCandidatosActionPerformed
 
     private void botao_RemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveCandidatoActionPerformed
-        
-        
     }//GEN-LAST:event_botao_RemoveCandidatoActionPerformed
 
     private void botao_AddTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AddTodosCandidatosActionPerformed
-
-        
     }//GEN-LAST:event_botao_AddTodosCandidatosActionPerformed
 
     private void botao_RemoveTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveTodosCandidatosActionPerformed
-        
-        
     }//GEN-LAST:event_botao_RemoveTodosCandidatosActionPerformed
 
     private void jButtonGravarSorteioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarSorteioActionPerformed
-
-        
-        
     }//GEN-LAST:event_jButtonGravarSorteioActionPerformed
 
     /**
