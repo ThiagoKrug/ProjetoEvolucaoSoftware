@@ -21,9 +21,11 @@ import br.com.model.entity.IEntidade;
 import br.com.model.entity.ItemClasse;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,12 +69,18 @@ public class AberturaReports {
     }
 
     public void saveHtml(String s, String fileName) {
-        FileWriter output = null;
+        Writer output = null;
         try {
-            output = new FileWriter(fileName);
-            BufferedWriter writer = new BufferedWriter(output);
-            writer.write(s);
+            File nfile = new File(fileName);
+            System.out.println(nfile.getAbsolutePath());
+            if (!nfile.exists())
+                nfile.createNewFile();
+            output = new BufferedWriter(new FileWriter(nfile.getAbsoluteFile()));
+            output.write(s);
+            
+            output.close();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
             if (output != null) {
@@ -135,17 +143,22 @@ public class AberturaReports {
         BancaExaminadora examinador = concurso.getBancaExaminadora();
         html = html
                 .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome());
-        System.out.println(html);
         html = html
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome());
+        System.out.println(abertura.getPortaria());
         html = html
-                .replace("{{portaria}}", concurso.getPortaria())
-                .replace("{{data_ata}}", this.sayDateExt(concurso.getDataInicio()))
-                .replace("{{data_assin}}", this.sayDate(Calendar.getInstance().getTime()))
-                .replace("{{hora_inicio}}", Datas.getHoraToString())
+                .replace("{{portaria}}", abertura.getPortaria());
+        html = html
+                .replace("{{data_ata}}", this.sayDateExt(concurso.getDataInicio()));
+        html = html
+                .replace("{{data_assin}}", this.sayDate(Calendar.getInstance().getTime()));
+        html = html
+                .replace("{{hora_inicio}}", Datas.getHoraToString());
+        html = html
                 .replace("{{emissor}}", abertura.getEmissor());
-        this.saveHtml("ata_instalacao.html", html);
+        this.saveHtml(html, "ata_instalacaoklo.html");
+//        System.out.println("Ok!" + html);
     }
     
     public void createCronograma(List<Cronograma> cronogramas) throws SQLException {
