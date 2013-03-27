@@ -65,6 +65,7 @@ public class janProvaEscrita extends javax.swing.JFrame {
 
         this.carregarCandidatos();
         this.carregarExaminadores();
+        this.recarregarDados();
     }
 
     /**
@@ -1433,5 +1434,22 @@ public class janProvaEscrita extends javax.swing.JFrame {
         parametros.put("examinador_2", janMenu.CONCURSO.getBancaExaminadora().getExaminador2DoBanco().getPessoa().getNome());
         parametros.put("examinador_3", janMenu.CONCURSO.getBancaExaminadora().getExaminador3DoBanco().getPessoa().getNome());
         return parametros;
+    }
+    
+    private void recarregarDados(){
+        this.jTextFieldLocalRealizacao.setText(this.provaEscrita.getLocalRealizacao());
+        this.jTextFieldLocalDivulgacaoResultado.setText(this.provaEscrita.getLocalResultado());
+        this.jTextFieldLocalLeitura.setText(this.provaEscrita.getLocalLeitura());
+        this.jTextFieldLocalJulgamento.setText(this.provaEscrita.getLocalJulgamento());
+        
+        this.jTextFieldHoraInicioDivulgacaoResultado.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioResultado()));
+        this.jTextFieldHoraInicioJulgamento.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioJulgamento()));
+        this.jTextFieldHoraInicioLeitura.setText(Datas.getTimeNoSecond(this.provaEscrita.getHoraInicioLeitura()));
+        
+        this.jListListaPontos.setListData(this.provaEscrita.getPontos().toArray());
+        this.jListCriterios.setListData(this.provaEscrita.getCriterios().toArray());
+        this.jListCandidatosAptos.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        this.jListCandidatosAptos2.setListData(this.provaEscrita.getCandidatosAptosProva().toArray());
+        this.jListCandidatosPresentesLeitura.setListData(this.provaEscrita.getCandidatosAptosLeitura().toArray());
     }
 }
