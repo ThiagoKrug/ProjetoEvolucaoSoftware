@@ -840,6 +840,8 @@ public class janNovoConc extends javax.swing.JFrame {
             this.salvaProvasConcurso();
             this.dispose();
             janMenu.CONCURSO = concurso;
+            janMenu.habilitaBotoes();
+
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;

@@ -6,8 +6,7 @@ package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.IEntidade;
-import br.com.model.entity.NotaProvaTitulo;
-//import br.com.model.entity.NotaMemorial;
+import br.com.model.entity.Notas_ProvaDidatica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,39 +18,46 @@ import java.util.List;
  *
  * @author Helison
  */
-public class NotaProvaTituloDao implements IDao {
+public class Notas_ProvaDidaticaDao implements IDao {
 
+    /**
+     * Insere a Nota da prova didatica do candidato
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
-    public NotaProvaTitulo inserir(IEntidade entidade) throws SQLException {
-        if (entidade instanceof NotaProvaTitulo) {
-            NotaProvaTitulo notaProvaTitulo = (NotaProvaTitulo) entidade;
+    public Notas_ProvaDidatica inserir(IEntidade entidade) throws SQLException {
+        if (entidade instanceof Notas_ProvaDidatica) {
+            Notas_ProvaDidatica notaProvaDidatica = (Notas_ProvaDidatica) entidade;
 
-            String sql = "INSERT into nota_prova_titulo (idnota_prova_titulos, id_examinador,"
-                    + " id_candidato, id_prova_titulos, nota_prova_titulos)"
+            String sql = "INSERT into notas_prova_didatica (id_notas_prova_didatica, id_examinador,"
+                    + " id_candidato, id_prova_didatica, notas_prova)"
                     + " values (?,?,?,?,?)";
             Connection connection = ConnectionFactory.getConnection();
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                if (notaProvaTitulo.getIdNotaProvaTitulo() != 0) {
-                    stmt.setInt(1, notaProvaTitulo.getIdNotaProvaTitulo());
+                if (notaProvaDidatica.getIdNotaProvaDidatica() != 0) {
+                    stmt.setInt(1, notaProvaDidatica.getIdNotaProvaDidatica());
                 } else {
                     stmt.setString(1, null);
                 }
-                stmt.setInt(2, notaProvaTitulo.getIdExaminador());
-                stmt.setInt(3, notaProvaTitulo.getIdCandidato());
-                stmt.setInt(4, notaProvaTitulo.getIdNotaProvaTitulo());
-                stmt.setFloat(5, notaProvaTitulo.getNotaProvaTitulo());
+                stmt.setInt(2, notaProvaDidatica.getIdExaminador());
+                stmt.setInt(3, notaProvaDidatica.getIdCandidato());
+                stmt.setInt(4, notaProvaDidatica.getIdNotaProvaDidatica());
+                stmt.setFloat(5, notaProvaDidatica.getNotaProvaDidatica());
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
 
                 if (rs.next()) {
-                    notaProvaTitulo.setIdNotaProvaTitulo(rs.getInt(1));
+                    notaProvaDidatica.setIdNotaProvaDidatica(rs.getInt(1));
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return notaProvaTitulo;
+            return notaProvaDidatica;
         }
 
         return null;
@@ -67,43 +73,56 @@ public class NotaProvaTituloDao implements IDao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Pesquisa uma nota de uma prova didatica pelo ID
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
-    public NotaProvaTitulo pesquisarPorId(int id) throws SQLException {
-        String sql = "SELECT * from nota_prova_titulos WHERE idnota_prova_titulos = ?";
+    public Notas_ProvaDidatica pesquisarPorId(int id) throws SQLException {
+        String sql = "SELECT * from notas_prova_didatica WHERE id_notas_prova_didatica = ?";
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        NotaProvaTitulo nota = null;
+        Notas_ProvaDidatica nota = null;
 
         if (rs.next()) {
-            nota = new NotaProvaTitulo();
-            nota.setIdNotaProvaTitulo(rs.getInt("idnota_prova_titulos"));
+            nota = new Notas_ProvaDidatica();
+            nota.setIdNotaProvaDidatica(rs.getInt("id_notas_prova_didatica"));
             nota.setIdExaminador(rs.getInt("id_examinador"));
             nota.setIdCandidato(rs.getInt("id_candidato"));
-            nota.setIdProvaTitulo(rs.getInt("id_prova_titulo"));
-            nota.setNotaProvaTitulo(rs.getFloat("nota_prova_titulos"));
+            nota.setIdProvaDidatica(rs.getInt("id_prova_didatica"));
+            nota.setNotaProvaDidatica(rs.getFloat("notas_prova"));
         }
         return nota;
     }
 
-    public NotaProvaTitulo pesquisarPorCandidatoId(int id) throws SQLException {
-        String sql = "SELECT * from nota_prova_titulos WHERE id_candidato = ?";
+    /**
+     * Pesquisa a nota da prova didatica pelo ID do candidato
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
+    public Notas_ProvaDidatica pesquisarPorCandidatoId(int id) throws SQLException {
+        String sql = "SELECT * from notas_prova_didatica WHERE id_candidato = ?";
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        NotaProvaTitulo nota = null;
+        Notas_ProvaDidatica nota = null;
 
         if (rs.next()) {
-            nota = new NotaProvaTitulo();
-            nota.setIdNotaProvaTitulo(rs.getInt("idnota_prova_titulos"));
+            nota = new Notas_ProvaDidatica();
+            nota.setIdNotaProvaDidatica(rs.getInt("id_notas_prova_didatica"));
             nota.setIdExaminador(rs.getInt("id_examinador"));
             nota.setIdCandidato(rs.getInt("id_candidato"));
-            nota.setIdProvaTitulo(rs.getInt("id_prova_titulo"));
-            nota.setNotaProvaTitulo(rs.getFloat("nota_prova_titulos"));
+            nota.setIdProvaDidatica(rs.getInt("id_prova_didatica"));
+            nota.setNotaProvaDidatica(rs.getFloat("notas_prova"));
         }
         return nota;
 

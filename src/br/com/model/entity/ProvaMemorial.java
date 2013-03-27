@@ -19,6 +19,8 @@ public class ProvaMemorial implements IEntidade{
    private int idProvaMemorial;
    @NotNull 
    private Concurso concurso;
+   @NotNull
+   private String local;
    @NotNull 
    private ArrayList<CriterioAvaliacao> criterios;
    @NotNull

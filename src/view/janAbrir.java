@@ -35,8 +35,8 @@ public class janAbrir extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-            "ID", "Edital", "Área", "Classe do Concurso", "Data de Início"
-        }) {
+                    "ID", "Edital", "Área", "Classe do Concurso", "Data de Início"
+                }) {
             Class[] types = new Class[]{
                 int.class, String.class, String.class, String.class, String.class
             };
@@ -59,12 +59,12 @@ public class janAbrir extends javax.swing.JFrame {
                 classeConcurso = concurso.getClasseConcurso().getNome();
             }
             dtm.addRow(new Object[]{
-                concurso.getIdConcurso(),
-                concurso.getEdital(),
-                concurso.getArea(),
-                classeConcurso,
-                dataInicio
-            });
+                        concurso.getIdConcurso(),
+                        concurso.getEdital(),
+                        concurso.getArea(),
+                        classeConcurso,
+                        dataInicio
+                    });
         }
 
         jTableConcursos.setModel(dtm);
@@ -192,6 +192,9 @@ public class janAbrir extends javax.swing.JFrame {
                     + " | Área: " + janMenu.CONCURSO.getArea()
                     + " | Classe do Concurso: " + janMenu.CONCURSO.getClasseConcurso().getNome());
             this.dispose();
+
+            janMenu.habilitaBotoes();
+
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Concurso");
         }
@@ -199,6 +202,7 @@ public class janAbrir extends javax.swing.JFrame {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();
+        janMenu.habilitaBotoes();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrirConcurso;

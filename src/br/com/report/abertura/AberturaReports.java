@@ -30,6 +30,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -104,6 +105,10 @@ public class AberturaReports {
         dt += " de " + year;
         return dt;
     }
+    
+    public String sayDateExt(Date date) {
+        return Datas.getDataExtenso(date);
+    }
 
     public void createAta(Abertura abertura) throws SQLException {
         Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
@@ -120,7 +125,7 @@ public class AberturaReports {
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{portaria}}", concurso.getPortaria())
-                .replace("{{dataInicio}}", this.sayDate(abertura.getHoraInicio()));
+                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
         this.saveHtml("ata_abertura.html", html);
     }
     
@@ -178,7 +183,7 @@ public class AberturaReports {
             html += "<td></td>";
             html += "</tr>";
         }
-        String html2 = this.htmlOpen("listaPresTempBegin.html");
+        String html2 = this.htmlOpen("listaPresTempEnd.html");
         html2 = html2.replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
@@ -189,6 +194,15 @@ public class AberturaReports {
     
     
     public void gerarPlanilhaProvaTits(Candidato candidato) throws SQLException{
+        String html = this.htmlOpen("planilhaPTTempBegin.html");
+        Concurso concurso = candidato.getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{cand_nome}}", candidato.getNome());
+        
         AvaliacaoProvaTitulo apt = null;
         List<AvaliacaoProvaTitulo> apts = (List<AvaliacaoProvaTitulo>)new AvaliacaoProvaTitulosDao().pesquisarTodos();
         for (AvaliacaoProvaTitulo ap: apts) {
@@ -200,6 +214,7 @@ public class AberturaReports {
         if (apt != null) {
             List<Classe> classes = (List<Classe>)new ClasseDAO().pesquisarTodos();
             for (Classe classe: classes) {
+                html += "<div><h2>" + classe.getNomeClasse() + "</h2>";
                 List<ItemClasse> titens = (List<ItemClasse>)new ItemClasseDao().pesquisarTodos();
                 List<ItemClasse> itens = new ArrayList<ItemClasse>();
                 for (int i = 0; i < titens.size(); i++) {
@@ -208,9 +223,23 @@ public class AberturaReports {
                         itens.add(item);
                     }
                 }
+                html += "<table>";
+                html += "<tr>"
+                        + "<td>Item</td>"
+                        + "<td>Discriminação</td>"
+                        + "<td>Pontuação por Unidade</td>"
+                        + "<td>Quantidade</td>"
+                        + "<td>Pontuação</td>"
+                        + "</tr>";
                 
                 for (int j = 0; j < itens.size(); j++) {
+                    html += "<tr>";
                     ItemClasse item = itens.get(j);
+                    html += "<td>" + j + "</td>";
+                    html += "<td>" + item.getDiscriminacao() + "</td>";
+                    html += "<td>" + item.getPontuacao() + "</td>";
+                    html += "<td>{{quantidade}}</td>";
+                    html += "<td>{{pontuacao}}</td>";
                     List<AvaliacaoItem> avs = (List<AvaliacaoItem>)new AvaliacaoItemDao().pesquisarTodos();
                     AvaliacaoItem avit = null;
                     for (AvaliacaoItem av: avs) {
@@ -218,9 +247,47 @@ public class AberturaReports {
                             avit = av;
                         }
                     }
+                    if (avit != null) {
+                        html = html.replace("{{quantidade}}", avit.getQuantidade() + "")
+                                .replace("{{pontuacao}}", (item.getPontuacao() * avit.getQuantidade()) + "");
+                                
+                    } else {
+                        html = html.replace("{{quantidade}}", "")
+                                .replace("{{pontuacao}}", "");
+                    }
+                    html += "</tr>";
                     
                 }
+                html += "</table>";
+                html += "</div>";
             }
         }
+        
+        String html2 = this.htmlOpen("planilhaPTTempEnd.html");
+        html2 = html2.replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+                .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
+        this.saveHtml(html + html2, "listaPres.html");
+    }
+    
+    
+    public void createAtaRecep(Abertura abertura) throws SQLException {
+        Integer nroAta = Integer.parseInt(JOptionPane.showInputDialog("Número da Ata: "));
+        String html = this.htmlOpen("ata_recep.html");
+        Concurso concurso = abertura.getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao())
+                .replace("{{n_ata}}", nroAta.toString())
+                .replace("{{local}}", abertura.getLocal())
+                .replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+                .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{portaria}}", concurso.getPortaria())
+                .replace("{{dataInicio}}", this.sayDateExt(abertura.getHoraInicio()));
+        this.saveHtml("ata_abertura.html", html);
     }
 }
