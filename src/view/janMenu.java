@@ -17,6 +17,36 @@ public class janMenu extends javax.swing.JFrame {
     public janMenu() {
         initComponents();
         jLabelStatus.setText("");
+
+        if (CONCURSO == null) {
+            bloqueiaBotoes();
+
+        } else {
+            habilitaBotoes();
+        }
+
+    }
+
+    public static void habilitaBotoes() {
+        jButtonAbertura.setEnabled(true);
+        jButtonResultado.setEnabled(true);
+
+        jButtonDidatica.setEnabled(CONCURSO.isTemProvaDidática());
+
+        jButtonEscrita.setEnabled(CONCURSO.isTemProvaEscrita());
+
+        jButtonMemorial.setEnabled(CONCURSO.isTemProvaMemorial());
+
+        jButtonTitulos.setEnabled(CONCURSO.isTemProvaTitulos());
+    }
+
+    public static void bloqueiaBotoes() {
+        jButtonAbertura.setEnabled(false);
+        jButtonDidatica.setEnabled(false);
+        jButtonEscrita.setEnabled(false);
+        jButtonMemorial.setEnabled(false);
+        jButtonResultado.setEnabled(false);
+        jButtonTitulos.setEnabled(false);
     }
 
     /**
@@ -277,7 +307,7 @@ public class janMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-
+        janMenu.bloqueiaBotoes();
         if (CONCURSO == null) {
             janNovoConc NovoConcurso = new janNovoConc(jLabelStatus);
             NovoConcurso.setVisible(true);
@@ -370,6 +400,7 @@ public class janMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
+        janMenu.bloqueiaBotoes();
         janAbrir abrir = new janAbrir(jLabelStatus);
         abrir.setVisible(true);
     }//GEN-LAST:event_jButtonAbrirActionPerformed
@@ -418,15 +449,15 @@ public class janMenu extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAbertura;
+    public static javax.swing.JButton jButtonAbertura;
     private javax.swing.JButton jButtonAbrir;
-    private javax.swing.JButton jButtonDidatica;
-    private javax.swing.JButton jButtonEscrita;
-    private javax.swing.JButton jButtonMemorial;
+    public static javax.swing.JButton jButtonDidatica;
+    public static javax.swing.JButton jButtonEscrita;
+    public static javax.swing.JButton jButtonMemorial;
     private javax.swing.JButton jButtonNovo;
-    private javax.swing.JButton jButtonResultado;
+    public static javax.swing.JButton jButtonResultado;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JButton jButtonTitulos;
+    public static javax.swing.JButton jButtonTitulos;
     public javax.swing.JLabel jLabelStatus;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
