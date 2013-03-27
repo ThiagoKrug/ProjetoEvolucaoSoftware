@@ -2,8 +2,30 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b75cffa2-347d-4334-aae8-afae03b78431">
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="120"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="id_prova_escrita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="examinador_1" class="java.lang.String"/>
+	<parameter name="examinador_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="examinador_3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="campus" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="classe_concurso" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ministerio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -32,22 +54,17 @@ WHERE
 				</textElement>
 				<text><![CDATA[LISTA DE PRESENÇA - Presença dos Candidatos na Realização da Prova Escrita]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="2a29d785-9cd1-419b-b44c-8b80962e242a" x="286" y="0" width="247" height="49"/>
-				<textElement>
+			<textField>
+				<reportElement uuid="ee1b66a2-922d-415f-a26c-e01d46b465ad" x="294" y="12" width="247" height="49"/>
+				<textElement markup="none">
 					<font fontName="Arial" size="8"/>
 				</textElement>
-				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO
-FUNDAÇÃO UNIVERSIDADE FEDERAL DO PAMPA
-CAMPUS: ALEGRETE
-CONCURSO PÚBLICO PARA PROFESSOR ADJUNTO
-ÁREA: ENGENHARIA DE SOFTWARE
-]]></text>
-			</staticText>
-			<image>
-				<reportElement uuid="8c306087-bb1d-4f56-97be-da848b6da195" x="31" y="-1" width="82" height="50"/>
-				<imageExpression><![CDATA["C:\\Users\\Rafael\\Documents\\NetBeansProjects\\ProjetoEvolucaoSoftware\\src\\util\\img\\logo.jpg"]]></imageExpression>
-			</image>
+				<textFieldExpression><![CDATA[$P{ministerio}+"\n"+
+$P{instituicao}+"\n"+
+"CAMPUS: "+ $P{campus}+"\n"+
+"CONCURSO PÚBLICO PARA "+ $P{classe_concurso}+"\n"+
+"ÁREA: " +$P{area}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
