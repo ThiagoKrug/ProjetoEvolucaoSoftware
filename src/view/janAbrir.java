@@ -50,12 +50,16 @@ public class janAbrir extends javax.swing.JFrame {
             }
         };
         for (Concurso concurso : concursos) {
+            String dataInicio = "";
+            if (concurso.getDataInicio() != null) {
+                dataInicio = Datas.getDate(concurso.getDataInicio());
+            }
             dtm.addRow(new Object[]{
                 concurso.getIdConcurso(),
                 concurso.getEdital(),
                 concurso.getArea(),
                 concurso.getClasseConcurso().getNome(),
-                Datas.getDate(concurso.getDataInicio())
+                dataInicio
             });
         }
 
