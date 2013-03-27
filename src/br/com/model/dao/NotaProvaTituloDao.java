@@ -4,8 +4,15 @@
  */
 package br.com.model.dao;
 
+import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.IEntidade;
+import br.com.model.entity.NotaProvaTitulo;
+//import br.com.model.entity.NotaMemorial;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -16,7 +23,38 @@ public class NotaProvaTituloDao implements IDao {
 
     @Override
     public IEntidade inserir(IEntidade entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+                if (entidade instanceof NotaProvaTitulo) {
+            NotaProvaTitulo notaProvaTitulo = (NotaProvaTitulo) entidade;
+
+            String sql = "INSERT into nota_prova_titulo (id_nota_prova_titulos, id_examinador,"
+                    + " id_candidato, id_prova_titulos, nota_prova_titulos)"
+                    + " values (?,?,?,?,?)";
+            Connection connection = ConnectionFactory.getConnection();
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                if (notaProvaTitulo.getIdNotaProvaTitulo() != 0) {
+                    stmt.setInt(1, notaProvaTitulo.getIdNotaProvaTitulo());
+                } else {
+                    stmt.setString(1, null);
+                }
+                stmt.setInt(2, notaProvaTitulo.getIdExaminador());
+                stmt.setInt(3, notaProvaTitulo.getIdCandidato());
+                stmt.setInt(4, notaProvaTitulo.getIdNotaProvaTitulo());
+                stmt.setFloat(5, notaProvaTitulo.getNotaProvaTitulo());
+                stmt.executeUpdate();
+                ResultSet rs = stmt.getGeneratedKeys();
+
+                if (rs.next()) {
+                    notaProvaTitulo.setIdNotaProvaTitulo(rs.getInt(1));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return notaProvaTitulo;
+        }
+
+        return null;
     }
 
     @Override
