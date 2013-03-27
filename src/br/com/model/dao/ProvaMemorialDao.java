@@ -123,7 +123,7 @@ public class ProvaMemorialDao  implements IDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       return (IEntidade) provaMemorial;
+       return provaMemorial;
     }
 
     @Override
