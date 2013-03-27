@@ -4,9 +4,13 @@
  */
 package br.com.report.abertura;
 
+import br.com.model.dao.AvaliacaoProvaTitulosDao;
 import br.com.model.entity.Abertura;
+import br.com.model.entity.AvaliacaoProvaTitulo;
+import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Cronograma;
+import br.com.model.entity.IEntidade;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -135,7 +139,7 @@ public class AberturaReports {
                 .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
                 .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
-        this.saveHtml("cronograma.html", html + html2);
+        this.saveHtml(html + html2, "cronograma.html");
     }
     
     public void gerarRecibo(Abertura abertura) throws SQLException {
@@ -148,5 +152,44 @@ public class AberturaReports {
                 .replace("{{instituicao}}", concurso.getInstituicao())
                 .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
         this.saveHtml(html, "recibo.html");
+    }
+    
+    public void gerarListaPresenca(List<Candidato> candidatos) {
+        String html = this.htmlOpen("listaPresTempBegin.html");
+        Concurso concurso = candidatos.get(0).getConcurso();
+        html = html.replace("{{ministerio}}", concurso.getMinisterio())
+                .replace("{{area}}", concurso.getArea())
+                .replace("{{campus}}", concurso.getCampus().getCidadeCampus())
+                .replace("{{classe}}", concurso.getClasseConcurso().getNome())
+                .replace("{{instituicao}}", concurso.getInstituicao());
+                
+        
+        for (int i = 0; i < candidatos.size(); i++) {
+            html += "<tr>";
+            html += "<td>" + i + "</td>";
+            html += "<td>" + candidatos.get(i).getNome() + "</td>";
+            html += "<td></td>";
+            html += "</tr>";
+        }
+        String html2 = this.htmlOpen("listaPresTempBegin.html");
+        html2 = html2.replace("{{banca1}}", concurso.getBancaExaminadora().getPresidente().getPessoa().getNome())
+                .replace("{{banca2}}", concurso.getBancaExaminadora().getExaminador2().getPessoa().getNome())
+                .replace("{{banca3}}", concurso.getBancaExaminadora().getExaminador3().getPessoa().getNome())
+                .replace("{{data}}", this.sayDate(Calendar.getInstance().getTime()));
+        this.saveHtml(html + html2, "listaPres.html");
+    }
+    
+    public void gerarPlanilhaProvaTits(Candidato candidato) throws SQLException{
+        AvaliacaoProvaTitulo apt = null;
+        List<AvaliacaoProvaTitulo> apts = (List<AvaliacaoProvaTitulo>)new AvaliacaoProvaTitulosDao().pesquisarTodos();
+        for (AvaliacaoProvaTitulo ap: apts) {
+            if (ap.getCandidato().getIdCandidato() == candidato.getIdCandidato()) {
+                apt = ap;
+            }
+        }
+        
+        if (apt != null) {
+            
+        }
     }
 }

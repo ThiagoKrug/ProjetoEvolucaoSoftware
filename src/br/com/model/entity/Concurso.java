@@ -5,9 +5,12 @@ import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ClasseConcursoDao;
 import br.com.model.dao.CronogramaDao;
+import br.com.model.dao.ProvaEscritaDao;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -36,6 +39,7 @@ public class Concurso implements IEntidade {
     private List<Candidato> candidatos;
     private Abertura abertura;
     private List<Cronograma> cronograma;
+    private ProvaEscrita provaEscrita;
 
     public Concurso() {
     }
@@ -248,6 +252,14 @@ public class Concurso implements IEntidade {
     }
 
     public ClasseConcurso getClasseConcurso() {
+        if (classeConcurso == null) {
+            ClasseConcursoDao ccdao = new ClasseConcursoDao();
+            try {
+                return ccdao.pesquisarPorId(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (classeConcurso.getNome() == null) {
             ClasseConcursoDao ccdao = new ClasseConcursoDao();
             try {
@@ -257,10 +269,6 @@ public class Concurso implements IEntidade {
             }
         }
         return classeConcurso;
-    }
-
-    public int getIdClasseConcurso() {
-        return classeConcurso.getIdClasseConcurso();
     }
 
     public void setClasseConcurso(ClasseConcurso classeConcurso) {
@@ -328,5 +336,21 @@ public class Concurso implements IEntidade {
 
     public void setCandidatos(List<Candidato> candidatos) {
         this.candidatos = candidatos;
+    }
+
+    public ProvaEscrita getProvaEscrita() {
+        if (provaEscrita == null) {
+            ProvaEscritaDao provaEscritaDao = new ProvaEscritaDao();
+            try {
+                provaEscrita = provaEscritaDao.pesquisarPorIdConcurso(idConcurso);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return provaEscrita;
+    }
+
+    public void setProvaEscrita(ProvaEscrita provaEscrita) {
+        this.provaEscrita = provaEscrita;
     }
 }

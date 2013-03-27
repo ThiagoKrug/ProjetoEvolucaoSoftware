@@ -2,7 +2,9 @@ package br.com.model.dao;
 
 import br.com.jdbc.ConnectionFactory;
 import br.com.model.entity.Candidato;
+import br.com.model.entity.Concurso;
 import br.com.model.entity.IEntidade;
+import br.com.model.entity.PontoProvaEscrita;
 import br.com.model.entity.ProvaEscrita;
 import java.sql.Connection;
 import java.sql.Date;
@@ -303,5 +305,38 @@ public class ProvaEscritaDao implements IDao {
         } else {
             stmt.setDate(index, null);
         }
+    }
+
+    public ProvaEscrita pesquisarPorIdConcurso(int idConcurso) throws SQLException {
+        String sql = "SELECT * FROM prova_escrita where id_concurso = ?";
+
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, idConcurso);
+        ResultSet rs = stmt.executeQuery();
+
+        ProvaEscrita provaEscrita = null;
+        if (rs.next()) {
+            provaEscrita = new ProvaEscrita();
+            provaEscrita.setIdProvaEscrita(rs.getInt("id_prova_escrita"));
+            Concurso concurso = new Concurso();
+            concurso.setIdConcurso(rs.getInt("id_concurso"));
+            provaEscrita.setConcurso(concurso);
+            provaEscrita.setLocalJulgamento(rs.getString("local_julgamento"));
+            provaEscrita.setLocalLeitura(rs.getString("local_leitura"));
+            provaEscrita.setLocalRealizacao(rs.getString("local_realizacao"));
+            provaEscrita.setLocalResultado(rs.getString("local_resultado"));
+            provaEscrita.setHoraFimLeitura(rs.getDate("hora_fim_leitura"));
+            provaEscrita.setHoraFimProva(rs.getDate("hora_fim_prova"));
+            provaEscrita.setHoraInicioJulgamento(rs.getDate("hora_inicio_julgamento"));
+            provaEscrita.setHoraInicioLeitura(rs.getDate("hora_inicio_leitura"));
+            provaEscrita.setHoraInicioProva(rs.getDate("hora_inicio_prova"));
+            provaEscrita.setHoraInicioResultado(rs.getDate("hora_inicio_resultado"));
+            provaEscrita.setHoraPontoSorteado(rs.getDate("hora_ponto_sorteado"));
+            PontoProvaEscrita pontoProvaEscrita = new PontoProvaEscrita();
+            pontoProvaEscrita.setIdPontoProvaEscrita(rs.getInt("id_ponto_sorteado_prova_escrita"));
+            provaEscrita.setPontoSorteado(pontoProvaEscrita);
+        }
+        return provaEscrita;
     }
 }

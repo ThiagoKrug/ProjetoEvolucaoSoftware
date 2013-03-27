@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.validation.ConstraintViolation;
@@ -39,14 +40,13 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private Concurso concurso;
     private Validator validator;
-    Component component; 
-            
-            
+    Component component;
+    private JLabel status;
 
     /**
      * Creates new form janNovoConc
      */
-    public janNovoConc() {
+    public janNovoConc(JLabel status) {
         super("Configurações do Concurso");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -57,7 +57,7 @@ public class janNovoConc extends javax.swing.JFrame {
 
         this.preenheDadosDefault();
         this.setsFields();
-        
+
         component = jTabbedPane5.getSelectedComponent();
     }
 
@@ -612,21 +612,21 @@ public class janNovoConc extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Nome:");
-        jLabel21.setBounds(10, 90, 41, 17);
+        jLabel21.setBounds(30, 80, 41, 17);
         jLayeredPane4.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Sexo:");
-        jLabel22.setBounds(260, 90, 36, 17);
+        jLabel22.setBounds(210, 140, 36, 17);
         jLayeredPane4.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextFieldCandidatoNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldCandidatoNome.setBounds(10, 110, 240, 30);
+        jTextFieldCandidatoNome.setBounds(30, 100, 310, 30);
         jLayeredPane4.add(jTextFieldCandidatoNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBoxCandidatoSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxCandidatoSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
-        jComboBoxCandidatoSexo.setBounds(260, 110, 110, 30);
+        jComboBoxCandidatoSexo.setBounds(210, 160, 130, 30);
         jLayeredPane4.add(jComboBoxCandidatoSexo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTableCandidatos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -659,38 +659,48 @@ public class janNovoConc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableCandidatos);
         jTableCandidatos.getColumnModel().getColumn(0).setResizable(false);
 
-        jScrollPane1.setBounds(390, 80, 340, 190);
+        jScrollPane1.setBounds(390, 60, 340, 190);
         jLayeredPane4.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/excluir.png"))); // NOI18N
         jButtonExcluir.setMnemonic('x');
         jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setBounds(250, 200, 120, 33);
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+        jButtonExcluir.setBounds(590, 260, 120, 33);
         jLayeredPane4.add(jButtonExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/edt.png"))); // NOI18N
         jButtonEditar.setMnemonic('e');
         jButtonEditar.setText("Editar");
-        jButtonEditar.setBounds(130, 200, 120, 33);
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+        jButtonEditar.setBounds(410, 260, 120, 33);
         jLayeredPane4.add(jButtonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/add.png"))); // NOI18N
         jButtonAdicionar.setMnemonic('a');
-        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.setText("Salvar");
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdicionarActionPerformed(evt);
             }
         });
-        jButtonAdicionar.setBounds(10, 200, 120, 33);
+        jButtonAdicionar.setBounds(220, 220, 120, 33);
         jLayeredPane4.add(jButtonAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data de Nascimento:");
-        jLabel24.setBounds(10, 140, 140, 17);
+        jLabel24.setBounds(30, 140, 140, 17);
         jLayeredPane4.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator3.setBounds(0, 300, 730, 10);
         jLayeredPane4.add(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -700,7 +710,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jLayeredPane4.add(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jSeparator5.setBounds(0, 50, 730, 10);
         jLayeredPane4.add(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooserCandidatoDataNascimento.setBounds(10, 160, 150, 30);
+        jDateChooserCandidatoDataNascimento.setBounds(30, 160, 160, 30);
         jLayeredPane4.add(jDateChooserCandidatoDataNascimento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanelCandidatosLayout = new javax.swing.GroupLayout(jPanelCandidatos);
@@ -779,11 +789,11 @@ public class janNovoConc extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-756)/2, (screenSize.height-545)/2, 756, 545);
+        setSize(new java.awt.Dimension(756, 545));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasseActionPerformed
@@ -810,23 +820,26 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
-            
+
             this.salvaDadosGerais();
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
         } else if (component == jPanelCandidatos) {
             this.salvaCandidatos();
         } else if (component == jPanelProvasConcurso) {
+            this.dispose();
+            janMenu.CONCURSO = concurso;
+
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
-        
+
         if (nextTab < jTabbedPane5.getTabCount()) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
-        
+        verificaBotoes(component);
+
 
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
@@ -835,16 +848,16 @@ public class janNovoConc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-       
+
         int nextTab = jTabbedPane5.getSelectedIndex() - 1;
         if (nextTab >= 0) {
             jTabbedPane5.setSelectedIndex(nextTab);
         }
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    private void verificaBotoes(Component component){
+    private void verificaBotoes(Component component) {
         if (component == jPanelDadosGerais) {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(false);
@@ -855,12 +868,12 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonProximo.setVisible(true);
             jButtonVoltar.setVisible(true);
         } else if (component == jPanelProvasConcurso) {
-            jButtonProximo.setVisible(false);
+            jButtonProximo.setText("Concluído");
             jButtonVoltar.setVisible(true);
         }
 
-        
-    
+
+
     }
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
@@ -895,7 +908,7 @@ public class janNovoConc extends javax.swing.JFrame {
         jTextFieldCandidatoNome.setText("");
         jComboBoxCandidatoSexo.setSelectedIndex(0);
         jDateChooserCandidatoDataNascimento.setDate(null);
-        
+
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void salvaDadosGerais() {
@@ -1046,53 +1059,62 @@ public class janNovoConc extends javax.swing.JFrame {
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusGained
 
     private void jTabbedPane5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusLost
         component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
+        verificaBotoes(component);
     }//GEN-LAST:event_jTabbedPane5FocusLost
 
-    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane5StateChanged
-       component = jTabbedPane5.getSelectedComponent();
-         verificaBotoes(component);
-    }//GEN-LAST:event_jTabbedPane5StateChanged
+    private void jTabbedPane5StateChanged(javax.swing.event.ChangeEvent evt) {
+        component = jTabbedPane5.getSelectedComponent();
+        verificaBotoes(component);
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        int linha = jTableCandidatos.getSelectedRow();
+        if (linha >= 0) {
+            int id = (int) jTableCandidatos.getModel().getValueAt(linha, 0);
+            CandidatoDao candidatoDao = new CandidatoDao();
+            Candidato candidato = null;
+            try {
+                candidato = candidatoDao.pesquisarPorId(id);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            jTextFieldCandidatoNome.setText(candidato.getNome());
+            for (int i = 0; i < jComboBoxCandidatoSexo.getModel().getSize(); i++) {
+                String sexo = (String) jComboBoxCandidatoSexo.getModel().getElementAt(i);
+                if (sexo.substring(0, 1).equalsIgnoreCase(candidato.getSexo())) {
+                    jComboBoxCandidatoSexo.setSelectedIndex(i);
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janNovoConc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            jDateChooserCandidatoDataNascimento.setDate(candidato.getDataNascimento());
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato para ser excluído!");
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new janNovoConc().setVisible(true);
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int linha = jTableCandidatos.getSelectedRow();
+        if (linha >= 0) {
+            int id = (int) jTableCandidatos.getModel().getValueAt(linha, 0);
+            CandidatoDao candidatoDao = new CandidatoDao();
+            try {
+                Candidato candidato = candidatoDao.pesquisarPorId(id);
+                candidatoDao.excluir(candidato);
+                DefaultTableModel dtm = (DefaultTableModel) jTableCandidatos.getModel();
+                dtm.removeRow(linha);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possível excluir o candidato selecionado. Verifique se o candidato já possui provas ou notas adicionadas.", "", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
-        });
-    }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um candidato para ser excluído!");
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel classe;
     private javax.swing.JLabel edital;

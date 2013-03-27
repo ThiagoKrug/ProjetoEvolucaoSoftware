@@ -115,10 +115,7 @@ public class CandidatoDao implements IDao {
     public Candidato excluir(IEntidade entidade) throws SQLException {
         if (entidade instanceof Candidato) {
             Candidato candidato = (Candidato) entidade;
-            
-            PessoaDao pdao = new PessoaDao();
-            pdao.excluir(candidato);
-            
+
             String sql = "DELETE FROM candidato WHERE id_candidato = ? ";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -127,6 +124,9 @@ public class CandidatoDao implements IDao {
 
             System.out.println(stmt.toString());
             if (stmt.executeUpdate() == 1) {
+                PessoaDao pdao = new PessoaDao();
+                pdao.excluir(candidato);
+
                 return candidato;
             }
         }
@@ -214,7 +214,7 @@ public class CandidatoDao implements IDao {
     private Candidato setsFromDatabase(ResultSet rs) throws SQLException {
         PessoaDao pdao = new PessoaDao();
         Pessoa pessoa = pdao.pesquisarPorId(rs.getInt("id_pessoa"));
-        
+
         Candidato candidato = new Candidato();
         candidato.setIdCandidato(rs.getInt("id_candidato"));
         candidato.setIdPessoa(pessoa.getIdPessoa());

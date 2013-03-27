@@ -76,7 +76,7 @@ public class ProvaDidaticaDao implements IDao {
     }
 
     @Override
-    public List<? extends IEntidade> pesquisarTodos() throws SQLException {
+    public List<ProvaDidatica> pesquisarTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
