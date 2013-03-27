@@ -491,12 +491,10 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
 
     private void jButtonAddCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCriterioMemorialActionPerformed
         
-        try {                                                           
+                                                                  
              CriterioAvaliacao ca = new CriterioAvaliacao();
              CriterioAvaliacaoDao criterioAvaliacaoDao =new CriterioAvaliacaoDao();
              ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
-      //       ca.set
-      //       criterioAvaliacaoDao.alterar(ca);
             
             try {
                 ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
@@ -510,14 +508,7 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
 
             }
-
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(janProvaMemorialIntegracao.class.getName()).log( Level.SEVERE, null, ex);
-
-        }
-
-        
+  
     }//GEN-LAST:event_jButtonAddCriterioMemorialActionPerformed
 
     private void jButtonRemoveCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCriterioMemorialActionPerformed

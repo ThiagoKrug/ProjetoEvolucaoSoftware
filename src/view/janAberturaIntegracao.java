@@ -578,25 +578,22 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
         CandidatoDao cdao = new CandidatoDao();
-
+        System.out.println(concurso.getIdConcurso());
+        
         try {
             candidato = cdao.pesquisarPorIdConcurso(concurso.getIdConcurso());
-        } catch (SQLException ex) {
+        } catch (SQLException |NullPointerException ex) {
             ex.printStackTrace();
         }
-
-        if(!candidato.isEmpty()){
+        if (candidato != null) {
             jListCandidatos.setListData(candidato.toArray());
         }
-        
-
-        /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
-         for (Candidato candi : candidato) {
-         candiModel.addElement(candi);
-         }
-         jListCandidatos.setModel(candiModel);*/
+    /*DefaultListModel<Candidato> candiModel = new DefaultListModel<>();
+     for (Candidato candi : candidato) {
+     candiModel.addElement(candi);
+     }
+     jListCandidatos.setModel(candiModel);*/
     }//GEN-LAST:event_jTabbedPane5FocusGained
-
     private void jButtonAdicionaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionaAtividadeActionPerformed
         Cronograma c = new Cronograma();
         if (jTextFieldAtividade.getText() != null
@@ -611,8 +608,8 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                         Datas.getDate(jDateChooserData.getDate()),
                         jFormattedTextFieldHora.getText(),
                         jTextFieldLocal.getText()});
-            
-            
+
+
             c.setAtividade(jTextFieldAtividade.getText());
             c.setIdConcurso(concurso.getIdConcurso());
             c.setData(jDateChooserData.getDate());
@@ -627,7 +624,7 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
         jFormattedTextFieldHora.setText(null);
 
         this.gravarCronograma(c);
-        
+
         this.preecheTabelaCronograma();
     }//GEN-LAST:event_jButtonAdicionaAtividadeActionPerformed
 
@@ -668,38 +665,42 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
 //
 //
 //    }
-    
-    
     private void gravarCronograma(Cronograma c) {
-            Cronograma crono = c;
+        Cronograma crono = c;
 
-            CronogramaDao cronogramaDao = new CronogramaDao();
-            try {
-                
-                cronogramaDao.inserir(crono);
-            } catch (SQLException ex) {
-                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        CronogramaDao cronogramaDao = new CronogramaDao();
+        try {
+
+            cronogramaDao.inserir(crono);
+        
+
+} catch (SQLException ex) {
+            Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+    }
 
     private void jButtonRemoveAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveAtividadeActionPerformed
         int selected = jTableCronogramaAbertura.getSelectedRow();
         if (selected != -1) {
             Cronograma cronograma = new Cronograma();
-            int id = (int)jTableCronogramaAbertura.getModel().getValueAt(selected, 0);
+            int id = (int) jTableCronogramaAbertura.getModel().getValueAt(selected, 0);
             CronogramaDao cd = new CronogramaDao();
             try {
-                cronograma = (Cronograma)cd.pesquisarPorId(id);
+                cronograma = (Cronograma) cd.pesquisarPorId(id);
                 cd.excluir(cronograma);
-            } catch (SQLException ex) {
-                Logger.getLogger(janAberturaIntegracao.class.getName()).log(Level.SEVERE, null, ex);
+            
+
+} catch (SQLException ex) {
+                Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um cronograma para ser excluido!");
         }
-        
+
         this.preecheTabelaCronograma();
 
     }//GEN-LAST:event_jButtonRemoveAtividadeActionPerformed
@@ -813,16 +814,32 @@ public class janAberturaIntegracao extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janAberturaIntegracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(janAberturaIntegracao.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
