@@ -185,6 +185,8 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jComboBoxCandidatos" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonSalvarNotas" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -196,9 +198,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxCandidatos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxCandidatos" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jButtonSalvarNotas" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="108" max="-2" attributes="0"/>
@@ -235,17 +240,11 @@
                     <Component class="javax.swing.JTable" name="jTableCandidatoResulatdos">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="5" rowCount="5">
+                          <Table columnCount="5" rowCount="0">
                             <Column editable="false" title="Examinador" type="java.lang.Object"/>
                             <Column editable="true" title="T&#xed;tulos" type="java.lang.Object"/>
                             <Column editable="true" title="Escrita" type="java.lang.Object"/>
-                            <Column editable="true" title="Did&#xe1;tica" type="java.lang.Object">
-                              <Data value=""/>
-                              <Data value="null"/>
-                              <Data value="null"/>
-                              <Data value="null"/>
-                              <Data value="null"/>
-                            </Column>
+                            <Column editable="true" title="Did&#xe1;tica" type="java.lang.Object"/>
                             <Column editable="false" title="Memorial" type="java.lang.Object"/>
                           </Table>
                         </Property>
@@ -300,7 +299,17 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jComboBoxCandidatosMouseClicked"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCandidatosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonSalvarNotas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salvar Notas"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSalvarNotasMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarNotasActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

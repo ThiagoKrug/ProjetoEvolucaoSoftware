@@ -329,8 +329,8 @@ public class janMenu extends javax.swing.JFrame {
 
     private void jButtonMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMemorialActionPerformed
         
-        janProvaMemorial ProvaMemorial = new janProvaMemorial();
-        ProvaMemorial.setVisible(true);
+        janProvaMemorialIntegracao provaMemorialIntegracao = new janProvaMemorialIntegracao();
+        provaMemorialIntegracao.setVisible(true);
         
     }//GEN-LAST:event_jButtonMemorialActionPerformed
 
