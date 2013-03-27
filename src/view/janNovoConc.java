@@ -46,6 +46,7 @@ public class janNovoConc extends javax.swing.JFrame {
      */
     public janNovoConc(JLabel status) {
         super("Configurações do Concurso");
+        this.status = status;
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
@@ -171,7 +172,6 @@ public class janNovoConc extends javax.swing.JFrame {
                     });
                 }
             }
-
 
             // provas do concurso
             jCheckBoxProvaDeTitulos.setSelected(concurso.isTemProvaTitulos());
@@ -827,8 +827,11 @@ public class janNovoConc extends javax.swing.JFrame {
 
         Component component = jTabbedPane5.getSelectedComponent();
         if (component == jPanelDadosGerais) {
-
             this.salvaDadosGerais();
+            this.status.setText(
+                    " Edital: " + concurso.getEdital()
+                    + " | Área: " + concurso.getArea()
+                    + " | Classe do Concurso: " + concurso.getClasseConcurso().getNome());
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
         } else if (component == jPanelCandidatos) {

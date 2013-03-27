@@ -5,6 +5,7 @@
 package view;
 
 import br.com.model.dao.CandidatoDao;
+import br.com.model.dao.CriterioAvaliacaoDao;
 import br.com.model.dao.ProvaMemorialDao;
 import br.com.model.entity.Candidato;
 import br.com.model.entity.CriterioAvaliacao;
@@ -489,19 +490,30 @@ public class janProvaMemorialIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCriterioMemorialActionPerformed
 
     private void jButtonAddCriterioMemorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCriterioMemorialActionPerformed
-         CriterioAvaliacao ca = new CriterioAvaliacao();
-        ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
-        try {
-            ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
-            criteriosMemorial.add(ca);
-            jListCriteriosMemorial.removeAll();
-            jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
-            this.jTextFieldCriterioMemorial.setText("");
-            this.jTextFieldPesoMemorial.setText("");
-            this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
+        
+        try {                                                           
+             CriterioAvaliacao ca = new CriterioAvaliacao();
+             CriterioAvaliacaoDao criterioAvaliacaoDao =new CriterioAvaliacaoDao();
+             ca.setCriterio(this.jTextFieldCriterioMemorial.getText());
+             ca.set
+             criterioAvaliacaoDao.alterar(ca);
             
-        } catch (NumberFormatException | NullPointerException nfe) {
-            JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+            try {
+                ca.setPeso(Float.parseFloat(this.jTextFieldPesoMemorial.getText()));
+                criteriosMemorial.add(ca);
+                jListCriteriosMemorial.removeAll();
+                jListCriteriosMemorial.setListData(criteriosMemorial.toArray());
+                this.jTextFieldCriterioMemorial.setText("");
+                this.jTextFieldPesoMemorial.setText("");
+                this.jTextFieldTotalPesosMemorial.setText(this.calculaTotalPesos(criteriosMemorial).toString());
+            } catch (NumberFormatException | NullPointerException nfe) {
+                JOptionPane.showMessageDialog(this, "Valor inválido!", null, JOptionPane.ERROR_MESSAGE);
+
+            }
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(janProvaMemorialIntegracao.class.getName()).log( Level.SEVERE, null, ex);
 
         }
 
