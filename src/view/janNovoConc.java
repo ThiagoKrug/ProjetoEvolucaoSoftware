@@ -20,8 +20,6 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
@@ -176,8 +174,10 @@ public class janNovoConc extends javax.swing.JFrame {
 
 
             // provas do concurso
-
-
+            jCheckBoxProvaDeTitulos.setSelected(concurso.isTemProvaTitulos());
+            jCheckBoxProvaDidatica.setSelected(concurso.isTemProvaDidática());
+            jCheckBoxProvaEscrita.setSelected(concurso.isTemProvaEscrita());
+            jCheckBoxProvaMemorial.setSelected(concurso.isTemProvaMemorial());
         }
     }
 
@@ -832,11 +832,11 @@ public class janNovoConc extends javax.swing.JFrame {
         } else if (component == jPanelBancaExaminadora) {
             this.salvaBancaExaminadora();
         } else if (component == jPanelCandidatos) {
-            this.salvaCandidatos();
+            // naum precisa pq os botoes fazem isso automaticamente
         } else if (component == jPanelProvasConcurso) {
+            this.salvaProvasConcurso();
             this.dispose();
             janMenu.CONCURSO = concurso;
-
         }
 
         int nextTab = jTabbedPane5.getSelectedIndex() + 1;
@@ -879,7 +879,7 @@ public class janNovoConc extends javax.swing.JFrame {
             jButtonVoltar.setVisible(true);
         }
     }
-    
+
     private void jCheckBoxProvaDidaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxProvaDidaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxProvaDidaticaActionPerformed
@@ -1083,7 +1083,22 @@ public class janNovoConc extends javax.swing.JFrame {
         }
     }
 
-    private void salvaCandidatos() {
+    private void salvaProvasConcurso() {
+        concurso.setTemProvaDidática(jCheckBoxProvaDidatica.isSelected());
+        concurso.setTemProvaEscrita(jCheckBoxProvaEscrita.isSelected());
+        concurso.setTemProvaMemorial(jCheckBoxProvaMemorial.isSelected());
+        concurso.setTemProvaTitulos(jCheckBoxProvaDeTitulos.isSelected());
+
+        ConcursoDao cdao = new ConcursoDao();
+        try {
+            if (concurso.getIdConcurso() == 0) {
+                cdao.inserir(concurso);
+            } else {
+                cdao.alterar(concurso);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void jTabbedPane5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane5FocusGained
