@@ -41,7 +41,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLayeredPane1" alignment="0" pref="604" max="32767" attributes="0"/>
+          <Component id="jLayeredPane1" alignment="0" pref="603" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -96,6 +96,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTabbedPane5StateChanged"/>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTabbedPane5FocusGained"/>
           </Events>
           <Constraints>
