@@ -336,6 +336,16 @@ public class ProvaEscritaDao implements IDao {
             PontoProvaEscrita pontoProvaEscrita = new PontoProvaEscrita();
             pontoProvaEscrita.setIdPontoProvaEscrita(rs.getInt("id_ponto_sorteado_prova_escrita"));
             provaEscrita.setPontoSorteado(pontoProvaEscrita);
+            try{
+                provaEscrita.setPontos( (ArrayList<PontoProvaEscrita>) new PontoProvaEscritaDao().pesquisarPorIdProvaEscrita(rs.getInt("id_prova_escrita")));
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            try{
+                provaEscrita.setCriterios( new CriterioAvaliacaoDao().pesquisarPorIdProvaEscrita(rs.getInt("id_prova_escrita")));
+            } catch(Exception e){
+                e.printStackTrace();
+            }
         }
         return provaEscrita;
     }

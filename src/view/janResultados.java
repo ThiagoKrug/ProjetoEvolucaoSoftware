@@ -8,6 +8,9 @@ import br.com.model.dao.BancaExaminadoraDao;
 import br.com.model.dao.CandidatoDao;
 import br.com.model.dao.ExaminadorDao;
 import br.com.model.dao.NotaMemorialDao;
+import br.com.model.dao.NotaProvaEscritaDao;
+import br.com.model.dao.NotaProvaTituloDao;
+import br.com.model.dao.Notas_ProvaDidaticaDao;
 import br.com.model.dao.ProvaDidaticaDao;
 import br.com.model.dao.ProvaEscritaDao;
 import br.com.model.dao.ProvaMemorialDao;
@@ -17,6 +20,8 @@ import br.com.model.entity.Candidato;
 import br.com.model.entity.Concurso;
 import br.com.model.entity.Examinador;
 import br.com.model.entity.NotaMemorial;
+import br.com.model.entity.NotaProvaEscrita;
+import br.com.model.entity.NotaProvaTitulo;
 import br.com.model.entity.Notas_ProvaDidatica;
 import br.com.model.entity.ProvaDidatica;
 import br.com.model.entity.ProvaEscrita;
@@ -46,8 +51,8 @@ public class janResultados extends javax.swing.JFrame {
     public janResultados() {
         initComponents();
         this.concurso = janMenu.CONCURSO;
-        this.setFields();
         this.preencheTabelaResultadoResumo();
+        //this.setFields();
         this.preencherDadosComboCandidato();
         this.iniciaTabelaResultado();
         //this.preencheTabelaResultadoCandidato();
@@ -371,24 +376,102 @@ public class janResultados extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCandidatosMouseClicked
 
     private void jButtonSalvarNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarNotasMouseClicked
-        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
-        ProvaMemorialDao memDao = new ProvaMemorialDao();
-        List<ProvaMemorial> provasMem = memDao.pesquisarTodos();
-        int idProvaexam = 0;
-        for (int i = 0; i < provasMem.size(); i++) {
-            if (provasMem.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
-                idProvaexam = provasMem.get(i).getConcurso().getIdConcurso();
-            }
-        }
 
+        Candidato candit = (Candidato) jComboBoxCandidatos.getSelectedItem();
+        //System.out.println(candit.getNome());            
+        ProvaMemorialDao memDao = new ProvaMemorialDao();
+        ProvaMemorial provaMem = memDao.pesquisarPorIdCurso(concurso.getIdConcurso());
+        //System.out.println(provasMem.get(0).getIdProvaMemorial()+"CARACA VEIH");
+        System.out.println(provaMem.getIdProvaMemorial());
+        
         NotaMemorialDao notDao = new NotaMemorialDao();
         NotaMemorial nota = new NotaMemorial();
         nota.setIdCandidato(candit.getIdCandidato());
         nota.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
-        nota.setIdProvaMemorial(idProvaexam);        
-        nota.setNotaProvaMemorial((int)jTableCandidatoResulatdos.getValueAt(1, 5));
+        nota.setIdProvaMemorial(provaMem.getIdProvaMemorial());
+        nota.setNotaProvaMemorial((int) jTableCandidatoResulatdos.getValueAt(1, 5));
         try {
             notDao.inserir(nota);
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        ProvaDidaticaDao didDao = new ProvaDidaticaDao();
+        List<ProvaDidatica> provasDid = null;
+        try {
+            provasDid = didDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int IdProvaDidatica = 0;
+        for (int i = 0; i < provasDid.size(); i++) {
+            if (provasDid.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
+                IdProvaDidatica = provasDid.get(i).getConcurso().getIdConcurso();
+            }
+        }
+
+        Notas_ProvaDidaticaDao didatDao = new Notas_ProvaDidaticaDao();
+        Notas_ProvaDidatica notaDidat = new Notas_ProvaDidatica();
+        notaDidat.setIdCandidato(candit.getIdCandidato());
+        notaDidat.setIdExaminador(IdProvaDidatica);
+        notaDidat.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
+        notaDidat.setNotaProvaDidatica((int) jTableCandidatoResulatdos.getValueAt(1, 4));
+        try {
+            didatDao.inserir(notaDidat);
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        ProvaEscritaDao escDao = new ProvaEscritaDao();
+        List<ProvaEscrita> provaesc = null;
+        try {
+            provaesc = escDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int IdProvaEscr = 0;
+        for (int i = 0; i < provasDid.size(); i++) {
+            if (provaesc.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
+                IdProvaEscr = provaesc.get(i).getConcurso().getIdConcurso();
+            }
+        }
+
+        NotaProvaEscritaDao notaEscDao = new NotaProvaEscritaDao();
+        NotaProvaEscrita notaEsc = new NotaProvaEscrita();
+        notaEsc.setIdCandidato(candit.getIdCandidato());
+        notaEsc.setIdExaminador(IdProvaEscr);
+        notaEsc.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
+        notaEsc.setNotaProvaEscrita((int) jTableCandidatoResulatdos.getValueAt(1, 3));
+        try {
+            notaEscDao.inserir(notaDidat);
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ProvaTitulosDao titDao = new ProvaTitulosDao();
+        List<ProvaTitulos> provaTit = null;
+        try {
+            provaTit = titDao.pesquisarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int IdProvaTit = 0;
+        for (int i = 0; i < provasDid.size(); i++) {
+            if (provaTit.get(i).getConcurso().getIdConcurso() == candit.getConcurso().getIdConcurso()) {
+                IdProvaTit = provaTit.get(i).getConcurso().getIdConcurso();
+            }
+        }
+
+        NotaProvaTituloDao notaTitDao = new NotaProvaTituloDao();
+        NotaProvaTitulo notaTit = new NotaProvaTitulo();
+        notaTit.setIdCandidato(candit.getIdCandidato());
+        notaTit.setIdExaminador(IdProvaTit);
+        notaTit.setIdExaminador(concurso.getBancaExaminadora().getPresidenteDoBanco().getIdExaminador());
+        notaTit.setNotaProvaTitulo((int) jTableCandidatoResulatdos.getValueAt(1, 2));
+        try {
+            notaTitDao.inserir(notaTit);
         } catch (SQLException ex) {
             Logger.getLogger(janResultados.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -434,16 +517,10 @@ public class janResultados extends javax.swing.JFrame {
         Concurso concurso = janMenu.CONCURSO;
         if (concurso != null) {
 
-            //Candidato candidato = null;
+            Candidato candidato = null;
             for (int i = 0; i < jComboBoxCandidatos.getModel().getSize(); i++) {
-                String candidato = (String) jComboBoxCandidatos.getModel().getElementAt(i);
-                //FAZER ESSE IF FUNCIONAR DIREITO, EU QUERO O OBJETO !@#$
-                //candidato = (Candidato) jComboBoxCandidatos.getModel().getSelectedItem();
-                //System.out.println(candidato.getNome());
-                //if (candidato.getIdConcurso() == concurso.getIdConcurso()) {
+                candidato = (Candidato) jComboBoxCandidatos.getModel().getElementAt(i);
                 jComboBoxCandidatos.getModel().setSelectedItem(candidato);
-                //  break;
-                //}
             }
         }
     }
@@ -499,8 +576,10 @@ public class janResultados extends javax.swing.JFrame {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, "Concurso não encontrado");
         }
+        Candidato candidato;
         DefaultComboBoxModel<Candidato> candidatoModel = new DefaultComboBoxModel<>();
-        for (Candidato candidato : candidatos) {
+        for (int i = 0; i < candidatos.size(); i++) {
+            candidato = candidatos.get(i);
             candidatoModel.addElement(candidato);
         }
         jComboBoxCandidatos.setModel(candidatoModel);

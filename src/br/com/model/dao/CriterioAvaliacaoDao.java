@@ -142,4 +142,10 @@ public class CriterioAvaliacaoDao implements IDao{
         }
         return listCriterio;
     }
+
+    public ArrayList<CriterioAvaliacao> pesquisarPorIdProvaEscrita(int aInt) throws SQLException {
+        String sql = "SELECT * FROM criterio_avaliacao where id_prova_escrita= " + Integer.toString(aInt);
+        ArrayList<CriterioAvaliacao> listCriterio = (ArrayList<CriterioAvaliacao>) pesquisar(sql);
+        return listCriterio;
+    }
 }

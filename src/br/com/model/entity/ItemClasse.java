@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.model.entity;
 
 import br.com.model.dao.ClasseDAO;
@@ -18,7 +14,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author Bruno
  */
 public class ItemClasse implements IEntidade {
-    
+
     @NotNull
     private Integer idItemClasse;
     private Integer idClasse;
@@ -31,51 +27,49 @@ public class ItemClasse implements IEntidade {
     @NotNull
     private Float pontuacao;
     private HashMap<String, Method[]> tablemap;
-    
+
     public ItemClasse() {
         this.tablemap = new HashMap<String, Method[]>();
         try {
-        Method[] ids = new Method[] {
-            ItemClasse.class.getMethod("getIdItemClasse", new Class<?>[] {}),
-            ItemClasse.class.getMethod("setIdItemClasse", new Class<?>[] {this.idItemClasse.getClass()})
-        };
-        this.tablemap.put("id_item_classe", ids);
-        
-        this.tablemap.put("discriminacao", new Method[] {
-            ItemClasse.class.getMethod("getDiscriminacao", new Class<?>[] {}),
-            ItemClasse.class.getMethod("setDiscriminacao", new Class<?>[] {this.discriminacao.getClass()})
-        });
-        
-        this.tablemap.put("pontuacao", new Method[] {
-            ItemClasse.class.getMethod("getPontuacao", new Class<?>[] {}),
-            ItemClasse.class.getMethod("setPontuacao", new Class<?>[] {this.pontuacao.getClass()})
-        });
-        
-        this.tablemap.put("id_classe", new Method[] {
-            ItemClasse.class.getMethod("getIdClasse", new Class<?>[] {}),
-            ItemClasse.class.getMethod("setIdClasse", new Class<?>[] {this.idClasse.getClass()})
-        });
-        
+            Method[] ids = new Method[]{
+                ItemClasse.class.getMethod("getIdItemClasse", new Class<?>[]{}),
+                ItemClasse.class.getMethod("setIdItemClasse", new Class<?>[]{Integer.class})
+            };
+            this.tablemap.put("id_item_classe", ids);
 
-        
+            this.tablemap.put("discriminacao", new Method[]{
+                ItemClasse.class.getMethod("getDiscriminacao", new Class<?>[]{}),
+                ItemClasse.class.getMethod("setDiscriminacao", new Class<?>[]{String.class})
+            });
+
+            this.tablemap.put("pontuacao", new Method[]{
+                ItemClasse.class.getMethod("getPontuacao", new Class<?>[]{}),
+                ItemClasse.class.getMethod("setPontuacao", new Class<?>[]{Float.class})
+            });
+
+            this.tablemap.put("id_classe", new Method[]{
+                ItemClasse.class.getMethod("getIdClasse", new Class<?>[]{}),
+                ItemClasse.class.getMethod("setIdClasse", new Class<?>[]{Integer.class})
+            });
+
         } catch (NoSuchMethodException e) {
             System.out.println("Erro na reflection.");
             e.printStackTrace();
         }
     }
 
-    public int getIdItemClasse() {
+    public Integer getIdItemClasse() {
         return idItemClasse;
     }
 
-    public void setIdItemClasse(int idItemClasse) {
+    public void setIdItemClasse(Integer idItemClasse) {
         this.idItemClasse = idItemClasse;
     }
 
     public Classe getClasse() throws SQLException {
         if (classe == null) {
             ClasseDAO cd = new ClasseDAO();
-            this.classe = (Classe)cd.pesquisarPorId(getIdClasse());
+            this.classe = (Classe) cd.pesquisarPorId(getIdClasse());
         }
         return classe;
     }
@@ -93,11 +87,11 @@ public class ItemClasse implements IEntidade {
         this.discriminacao = discriminacao;
     }
 
-    public float getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(float pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
@@ -121,6 +115,4 @@ public class ItemClasse implements IEntidade {
     public HashMap<String, Method[]> getTablemap() {
         return tablemap;
     }
-    
-    
 }
