@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author Helison
+ * @author Juliano R. M.
  */
 public class Notas_ProvaDidaticaDao implements IDao {
 

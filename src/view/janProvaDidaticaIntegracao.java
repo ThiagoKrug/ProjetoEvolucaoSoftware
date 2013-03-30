@@ -108,7 +108,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCandidatosSorteio = new javax.swing.JList();
+        list_CandidatosSorteio = new javax.swing.JList();
         jDateChooserDataSorteio = new com.toedter.calendar.JDateChooser();
         jFormattedTextFieldHoraSorteio = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -122,7 +122,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLayeredPane6 = new javax.swing.JLayeredPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jListCandidatosPlanilhas = new javax.swing.JList();
+        list_CandidatosPlanilhas = new javax.swing.JList();
         jScrollPane7 = new javax.swing.JScrollPane();
         jListExaminadoresPlanilhas = new javax.swing.JList();
         jLabel10 = new javax.swing.JLabel();
@@ -340,8 +340,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Candidatos", jPanel3);
 
-        jListCandidatosSorteio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane5.setViewportView(jListCandidatosSorteio);
+        list_CandidatosSorteio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(list_CandidatosSorteio);
 
         jScrollPane5.setBounds(20, 70, 260, 270);
         jLayeredPane5.add(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -403,8 +403,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Sorteio", jPanel4);
 
-        jListCandidatosPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane6.setViewportView(jListCandidatosPlanilhas);
+        list_CandidatosPlanilhas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(list_CandidatosPlanilhas);
 
         jScrollPane6.setBounds(20, 70, 300, 260);
         jLayeredPane6.add(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -654,12 +654,20 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
                 try {
                     ponto_dao.inserir(ponto_pDidatica);
                     JOptionPane.showMessageDialog(this, "Ponto Inserido com Sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+                    this.jTextFieldPontoDidatica.setText("");
                 } catch (Exception exceptError) {
                     JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
                     exceptError.printStackTrace();
                 }
                 this.obj_provaDidatica.adcionarPontoProvaDidatica(ponto_pDidatica);
                 this.jListPontoDidaticaCadastrado.setListData(this.obj_provaDidatica.getPontos_ProvaDidatica().toArray());
+
+                DefaultComboBoxModel lista = (DefaultComboBoxModel) this.jComboBoxListaPontos.getModel();
+                lista.removeAllElements();
+                for (int i = 0; i < this.obj_provaDidatica.getPontos_ProvaDidatica().size(); i++) {
+                    lista.addElement(this.obj_provaDidatica.getPontos_ProvaDidatica().get(i));
+                }
+
             } else {
                 JOptionPane.showMessageDialog(this, "Digite um Ponto!", null, JOptionPane.ERROR_MESSAGE);
             }
@@ -731,11 +739,13 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
             this.listCandidatos.remove(candidato);
             this.list_AllCandidatos.setListData(this.listCandidatos.toArray());
             this.list_CandidatosSelecionados.setListData(this.obj_provaDidatica.getCandidatosAptosProvaDidatica().toArray());
-
+            this.list_CandidatosPlanilhas.setListData(this.obj_provaDidatica.getCandidatosAptosProvaDidatica().toArray());
+            this.list_CandidatosSorteio.setListData(this.obj_provaDidatica.getCandidatosAptosProvaDidatica().toArray());
+ 
             try {
-                this.pDidatica_Dao.alterar(candidato);
+                this.pDidatica_Dao.alterar(this.obj_provaDidatica);
             } catch (Exception exceptError) {
-                JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
+               // JOptionPane.showMessageDialog(this, " ERROR: " + exceptError, null, JOptionPane.ERROR_MESSAGE);
                 exceptError.printStackTrace();
             }
         } else {
@@ -744,6 +754,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_AddCandidatosActionPerformed
 
     private void botao_RemoveCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_RemoveCandidatoActionPerformed
+        
+        
     }//GEN-LAST:event_botao_RemoveCandidatoActionPerformed
 
     private void botao_AddTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_AddTodosCandidatosActionPerformed
@@ -753,6 +765,8 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_RemoveTodosCandidatosActionPerformed
 
     private void jButtonGravarSorteioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarSorteioActionPerformed
+        
+
     }//GEN-LAST:event_jButtonGravarSorteioActionPerformed
 
     /**
@@ -840,9 +854,7 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane6;
     private javax.swing.JLayeredPane jLayeredPane7;
     private javax.swing.JLayeredPane jLayeredPane8;
-    private javax.swing.JList jListCandidatosPlanilhas;
     private javax.swing.JList jListCandidatosRealizacao;
-    private javax.swing.JList jListCandidatosSorteio;
     private javax.swing.JList jListCriteriosProvaDidatica;
     private javax.swing.JList jListExaminadoresPlanilhas;
     private javax.swing.JList jListPontoDidaticaCadastrado;
@@ -866,7 +878,9 @@ public class janProvaDidaticaIntegracao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPeso;
     private javax.swing.JTextField jTextFieldPontoDidatica;
     private javax.swing.JList list_AllCandidatos;
+    private javax.swing.JList list_CandidatosPlanilhas;
     private javax.swing.JList list_CandidatosSelecionados;
+    private javax.swing.JList list_CandidatosSorteio;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }

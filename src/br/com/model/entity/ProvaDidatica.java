@@ -140,4 +140,9 @@ public class ProvaDidatica implements IEntidade {
 
         this.candidatosAptosProvaDidatica.add(c);
     }
+
+    @Override
+    public String toString() {
+        return localRealizacaoProvaDidatica;
+    }
 }

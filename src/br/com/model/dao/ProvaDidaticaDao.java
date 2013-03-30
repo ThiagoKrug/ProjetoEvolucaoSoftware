@@ -38,19 +38,6 @@ public class ProvaDidaticaDao implements IDao {
             stmt_InserirDidaticaDao.setString(2, provaDidatica.getLocalRealizacaoProvaDidatica());
             stmt_InserirDidaticaDao.executeUpdate();
 
-            /*
-             if(!provaDidatica.getCandidatosAptosProvaDidatica().isEmpty()){
-            
-             ArrayList<Candidato> list_CandAptos = provaDidatica.getCandidatosAptosProvaDidatica();
-             Iterator<Candidato> iterator = list_CandAptos.iterator();
-                    
-             while(iterator.hasNext()){
-                    
-             Candidato obj_Candidato = iterator.next();
-             String sql_InsereCandidato = "INSERT INTO ";
-             }
-             }
-             */
             ResultSet rs_ = stmt_InserirDidaticaDao.getGeneratedKeys();
 
             if (rs_.next()) {
@@ -64,9 +51,10 @@ public class ProvaDidaticaDao implements IDao {
 
     /**
      * Inda em CONSTRUÇÃO!
+     *
      * @param entidade
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     @Override
     public ProvaDidatica alterar(IEntidade entidade) throws SQLException {
@@ -74,7 +62,7 @@ public class ProvaDidaticaDao implements IDao {
         Connection connection = ConnectionFactory.getConnection();
         ProvaDidatica provaDidatica = (ProvaDidatica) entidade;
 
-        String sql_Altera = "DELETE FROM ";
+        String sql_Altera = "DELETE FROM candidato_aptos_prova_didatica WHERE id_prova_didatica=?";
         PreparedStatement stmtAletrar = connection.prepareStatement(sql_Altera);
         stmtAletrar.setInt(1, provaDidatica.getIdProvaDidatica());
         stmtAletrar.executeUpdate();
@@ -87,15 +75,15 @@ public class ProvaDidaticaDao implements IDao {
             while (iterator.hasNext()) {
 
                 Candidato objCandidato = iterator.next();
-                String sql_InsereApatos = "INSERT INTO ";
+                String sql_InsereApatos = "INSERT INTO candidato_aptos_prova_didatica (id_prova_didatica, id_candidato) values (?,?)";
                 PreparedStatement statement = connection.prepareStatement(sql_InsereApatos, Statement.RETURN_GENERATED_KEYS);
-                statement.setInt(1, objCandidato.getIdCandidato());
                 statement.setInt(1, provaDidatica.getIdProvaDidatica());
+                statement.setInt(2, objCandidato.getIdCandidato());
                 statement.executeUpdate();
             }
         }
 
-        String sql_DeletaAptos = "";
+        String sql_DeletaAptos = "DELETE FROM candidato_aptos_prova_didatica WHERE id_prova_didatica = ?";
         PreparedStatement statement2 = connection.prepareStatement(sql_DeletaAptos);
         statement2.setInt(1, provaDidatica.getIdProvaDidatica());
         statement2.executeUpdate();
@@ -109,21 +97,21 @@ public class ProvaDidaticaDao implements IDao {
             while (iterator.hasNext()) {
 
                 Candidato obj_Candidato = iterator.next();
-                String sql_Insere = "INSERT INTO ";
+                String sql_Insere = "INSERT INTO candidato_aptos_prova_didatica (id_prova_didatica, id_candidato) values (?,?)";
 
                 PreparedStatement stmt5 = connection.prepareStatement(sql_Insere, Statement.RETURN_GENERATED_KEYS);
-                stmt5.setInt(1, obj_Candidato.getIdCandidato());
                 stmt5.setInt(1, provaDidatica.getIdProvaDidatica());
+                stmt5.setInt(2, obj_Candidato.getIdCandidato());
                 stmt5.executeUpdate();
             }
         }
 
-        String sql_Update = "UPDATE ";
+        String sql_Update = "UPDATE prova_didatica SET id_prova_didatica = ?, id_concurso = ?, local = ?";
 
         PreparedStatement stmt6 = connection.prepareStatement(sql_Update);
-//        this.setInt(stmt6, 1, value);
-//        this.setInt(stmt6, 2, value);
-//        this.setInt(stmt6, 3, value);
+        this.setInt(stmt6, 1, provaDidatica.getIdProvaDidatica());
+        this.setInt(stmt6, 2, provaDidatica.getConcurso().getIdConcurso());
+        stmt6.setString(3, provaDidatica.getLocalRealizacaoProvaDidatica());
 
         System.out.println(stmt6.toString());
         if (stmt6.executeUpdate() == 1) {

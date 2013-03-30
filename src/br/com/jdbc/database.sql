@@ -1,6 +1,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
 -- -----------------------------------------------------
@@ -699,6 +699,29 @@ CREATE  TABLE IF NOT EXISTS `nota_prova_titulos` (
   CONSTRAINT `fk_nota_prova_titulos_examinador1`
     FOREIGN KEY (`id_examinador` )
     REFERENCES `examinador` (`id_examinador` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `candidato_aptos_prova_didatica`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `candidato_aptos_prova_didatica` ;
+
+CREATE  TABLE IF NOT EXISTS `candidato_aptos_prova_didatica` (
+  `id_prova_didatica` INT NOT NULL ,
+  `id_candidato` INT NOT NULL ,
+  PRIMARY KEY (`id_prova_didatica`, `id_candidato`) ,
+  INDEX `fk_candidato_aptos_prova_didatica_candidato1_idx` (`id_candidato` ASC) ,
+  CONSTRAINT `fk_candidato_aptos_prova_didatica_prova_didatica1`
+    FOREIGN KEY (`id_prova_didatica` )
+    REFERENCES `prova_didatica` (`id_prova_didatica` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_candidato_aptos_prova_didatica_candidato1`
+    FOREIGN KEY (`id_candidato` )
+    REFERENCES `candidato` (`id_candidato` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
